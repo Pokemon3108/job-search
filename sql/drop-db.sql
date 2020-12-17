@@ -1,1 +1,1 @@
-DROP DATABASE IF EXISTS 'job_search';
+DROP DATABASE IF EXISTS job_search;
