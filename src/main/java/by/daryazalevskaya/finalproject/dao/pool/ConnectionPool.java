@@ -36,7 +36,8 @@ public final class ConnectionPool {
     }
 
 
-    public synchronized Connection getConnection() {
+    public  Connection getConnection() {
+        lock.lock();
         ConnectionFromPool connection = null;
         while (connection == null) {
             try {
@@ -53,7 +54,7 @@ public final class ConnectionPool {
                 } else if (usedConnections.size() < maxSize) {
                     connection = createConnection();
                 } else {
-                    log.error("The limit of number of database connections is exceeded");
+                    log.error("The limit of database connections is exceeded");
                     // throw new PersistentException();
                     //TODO create my exception and throw it
 
@@ -64,7 +65,9 @@ public final class ConnectionPool {
             }
         }
         usedConnections.add(connection);
-        log.info(String.format("Connection was received from pool. Current pool size: %d used connections; %d free connection", usedConnections.size(), freeConnections.size()));
+        log.info(String.format("Connection was received from pool. Current pool size: %d used connections; %d free connection",
+                usedConnections.size(), freeConnections.size()));
+        lock.unlock();
         return connection;
     }
 
@@ -103,7 +106,8 @@ public final class ConnectionPool {
                 connection.setAutoCommit(true);
                 usedConnections.remove(connection);
                 freeConnections.put(connection);
-                log.info(String.format("Connection was returned into pool. Current pool size: %d used connections; %d free connection", usedConnections.size(), freeConnections.size()));
+                log.info(String.format("Connection was returned into pool. Current pool size: %d used connections; %d free connection",
+                        usedConnections.size(), freeConnections.size()));
             }
         } catch (SQLException | InterruptedException e1) {
             log.warn("Can't free connection", e1.getMessage());

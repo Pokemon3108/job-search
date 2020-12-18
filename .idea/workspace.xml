@@ -7,11 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17868c07-069d-4906-9de5-097f10948eb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/fill-table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill-table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/controller/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/controller/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/pool/ConnectionFromPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/pool/ConnectionFromPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/pool/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/pool/ConnectionPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/controller/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/controller/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/Dao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +98,8 @@
   </component>
   <component name="ProjectId" id="1lmTeK34eOD8wWHhm2uUAfjeOfm" />
   <component name="ProjectViewState">
-    <option name="showExcludedFiles" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -107,6 +109,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../library/library v0.4" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.CSS" />
   </component>
   <component name="RunManager" selected="Application.Unnamed">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -232,7 +235,7 @@
       <option name="presentableId" value="Default" />
       <updated>1608201360455</updated>
       <workItem from="1608201364524" duration="12584000" />
-      <workItem from="1608239390894" duration="3189000" />
+      <workItem from="1608239390894" duration="7317000" />
     </task>
     <servers />
   </component>
@@ -268,22 +271,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608202829641" />
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1608236147439">
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1608287895189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608236147439" />
-    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1608236147438">
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608287895189" />
+    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1608287895189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608236147438" />
-    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1608236147438">
+    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608287895189" />
+    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1608287895189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608236147437" />
-    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1608236147438">
+    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608287895189" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1608287895189">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608236147438" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608287895189" />
     <state width="1293" height="261" key="GridCell.Tab.1.bottom" timestamp="1608231407197">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -316,5 +319,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1293" height="261" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608231407197" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1608284976493">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1608284976493" />
   </component>
 </project>
