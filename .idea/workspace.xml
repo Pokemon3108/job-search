@@ -7,31 +7,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17868c07-069d-4906-9de5-097f10948eb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/3/5375dd0e3cd1c0174f5012838aee267e9d118ba0" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/3/5375dd0e3cd1c0174f5012838aee267e9d118ba0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/f/5f33fce7458e2f70552e48a594e95352e6059b2a" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/f/5f33fce7458e2f70552e48a594e95352e6059b2a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/92d5f3ec12ab755b0b0e88a3c3fd77566891ff9e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/92d5f3ec12ab755b0b0e88a3c3fd77566891ff9e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1612e8a57cc5ae0be0c8c070252cccd2f0f07be" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/3/e31e64f03b444e33c7e4e564c6a071e8e8570600" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/3/e31e64f03b444e33c7e4e564c6a071e8e8570600" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create-db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/create-table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create-table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/fill-table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill-table.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/controller/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/controller/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/Dao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/pool/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/pool/ConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/UserCreatorDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/UserCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/controller/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/controller/Runner.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/Dao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/exception/InsertIdDataBaseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/exception/InsertIdDataBaseException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/exception/PoolException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/exception/PoolException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/ConnectionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/ConnectionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/pool/ConnectionFromPool.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/pool/ConnectionFromPool.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/pool/ConnectionPool.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/pool/ConnectionPool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/Contact.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/Contact.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/Entity$EntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/Entity$EntityBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/User$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/User$UserBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/User$UserBuilderImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/database.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/EmployeePersonalInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/EmployeePersonalInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/JobPreference.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/JobPreference.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/Language.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/Language.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/Resume.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employee/Resume.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employer/Employer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employer/Employer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employer/Vacancy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/employer/Vacancy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Currency.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Currency.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Gender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Gender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/LanguageLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/LanguageLevel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Schedule.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/model/type/Schedule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/service/creator/UserCreatorDB.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,13 +129,30 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Epam-training-java/Task 07. Books with patterns" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.CSS" />
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager" selected="TestNG.UserDaoImplTest">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="by.daryazalevskaya.finalproject.controller.Runner" />
       <module name="final-project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDaoImplTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="final-project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalproject.dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="finalproject.dao.impl" />
+      <option name="MAIN_CLASS_NAME" value="finalproject.dao.impl.UserDaoImplTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -198,7 +233,13 @@
     <list>
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.40" />
+      <item itemvalue="TestNG.UserDaoImplTest" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.UserDaoImplTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
     <option name="projectSyncType">
@@ -240,7 +281,8 @@
       <workItem from="1608201364524" duration="12584000" />
       <workItem from="1608239390894" duration="10036000" />
       <workItem from="1608410474567" duration="3740000" />
-      <workItem from="1608467536338" duration="17079000" />
+      <workItem from="1608467536338" duration="17277000" />
+      <workItem from="1608498578372" duration="4532000" />
     </task>
     <servers />
   </component>
@@ -252,14 +294,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="179" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1608473984392" />
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608487398840">
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608501914378">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608487398840" />
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1608476739347">
+    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608501914378" />
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1608498988791">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608476739347" />
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608498988791" />
     <state x="689" y="305" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608231399639">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -272,46 +314,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="633" y="437" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608203075744" />
-    <state x="758" y="182" key="ExecutionTargetDialog" timestamp="1608487490861">
+    <state x="758" y="182" key="ExecutionTargetDialog" timestamp="1608501341838">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="758" y="182" key="ExecutionTargetDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608487490861" />
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1608465735852">
+    <state x="758" y="182" key="ExecutionTargetDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608501341838" />
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1608501817949">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608465735852" />
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1608487939026">
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608501817949" />
+    <state width="1877" height="254" key="GridCell.Tab.0.bottom" timestamp="1608502472507">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608487939026" />
-    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1608487939026">
+    <state width="1877" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608502472507" />
+    <state width="1877" height="254" key="GridCell.Tab.0.center" timestamp="1608502472507">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608487939026" />
-    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1608487939025">
+    <state width="1877" height="254" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608502472507" />
+    <state width="1877" height="254" key="GridCell.Tab.0.left" timestamp="1608502472507">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608487939025" />
-    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1608487939026">
+    <state width="1877" height="254" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608502472507" />
+    <state width="1877" height="254" key="GridCell.Tab.0.right" timestamp="1608502472507">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608487939026" />
-    <state width="1877" height="235" key="GridCell.Tab.1.bottom" timestamp="1608487490870">
+    <state width="1877" height="254" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608502472507" />
+    <state width="1877" height="235" key="GridCell.Tab.1.bottom" timestamp="1608490485286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="235" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608487490870" />
-    <state width="1877" height="235" key="GridCell.Tab.1.center" timestamp="1608487490870">
+    <state width="1877" height="235" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608490485286" />
+    <state width="1877" height="235" key="GridCell.Tab.1.center" timestamp="1608490485286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="235" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608487490870" />
-    <state width="1877" height="235" key="GridCell.Tab.1.left" timestamp="1608487490870">
+    <state width="1877" height="235" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608490485286" />
+    <state width="1877" height="235" key="GridCell.Tab.1.left" timestamp="1608490485286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="235" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608487490870" />
-    <state width="1877" height="235" key="GridCell.Tab.1.right" timestamp="1608487490870">
+    <state width="1877" height="235" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608490485286" />
+    <state width="1877" height="235" key="GridCell.Tab.1.right" timestamp="1608490485286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="235" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608487490870" />
+    <state width="1877" height="235" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608490485286" />
     <state width="1293" height="261" key="GridCell.Tab.2.bottom" timestamp="1608231407197">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -336,16 +378,5 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608470517659" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

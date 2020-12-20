@@ -6,7 +6,7 @@ import by.daryazalevskaya.finalproject.model.type.Role;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserCreatorDB {
+public class UserCreator {
 
     public User createUser(ResultSet resultSet) throws SQLException {
        return  User.builder()

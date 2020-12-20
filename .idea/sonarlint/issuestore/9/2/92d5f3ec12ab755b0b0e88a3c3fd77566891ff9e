@@ -1,19 +1,15 @@
 
-W
-java:S11418"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¤è˜€è.
-i
-java:S2259'"GA "NullPointerException" could be thrown; "statement" is nullable here.(Ä»¸Ôûÿÿÿÿ8ĞÏŸ«ç.
-[
-java:S1155/">Use isEmpty() to check whether the collection is empty or not.(§ó€ã8ĞÏŸ«ç.
-Z	java:S106>"9Replace this use of System.out or System.err by a logger.(„Ó±âûÿÿÿÿ8ĞÏŸ«ç.
-W
-java:S1141 "5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¤è˜€è.
-W
-java:S1141&"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¤è˜€è.
-U	java:S106C"9Replace this use of System.out or System.err by a logger.(ö¬8ù»™€è.
-Z	java:S1062"9Replace this use of System.out or System.err by a logger.(«†’˜øÿÿÿÿ8ĞÏŸ«ç.
-U	java:S106V"9Replace this use of System.out or System.err by a logger.(ğ½¢…8ĞÏŸ«ç.
-U	java:S106P"9Replace this use of System.out or System.err by a logger.(ÛÙùÆ8ĞÏŸ«ç.
-Z	java:S1060"9Replace this use of System.out or System.err by a logger.(õ©‡àûÿÿÿÿ8ĞÏŸ«ç.
-o
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Çµí‘8îÊèªç.
+e
+java:S1128"HRemove this unused import 'by.daryazalevskaya.finalproject.dao.UserDao'.(æ‡“8ØÇ÷‹è.
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ØÇ÷‹è.
+O
+java:S1128"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8ØÇ÷‹è.
+K
+java:S1128"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8ØÇ÷‹è.
+g
+java:S1128"JRemove this unused import 'by.daryazalevskaya.finalproject.model.Contact'.(¾“ƒø8ØÇ÷‹è.
+Z	java:S106*"9Replace this use of System.out or System.err by a logger.(ÃãĞÖùÿÿÿÿ8ØÇ÷‹è.
+U	java:S106,"9Replace this use of System.out or System.err by a logger.(ö¬8ØÇ÷‹è.
+P
+java:S1481".Remove this unused "statement" local variable.(éÃ¢Ïıÿÿÿÿ8ØÇ÷‹è.
