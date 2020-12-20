@@ -1,14 +1,19 @@
 
-Z	java:S106-"9Replace this use of System.out or System.err by a logger.(õ©‡àûÿÿÿÿ8ĞÏŸ«ç.
-o
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Çµí‘8îÊèªç.
-[
-java:S1155,">Use isEmpty() to check whether the collection is empty or not.(§ó€ã8ĞÏŸ«ç.
-U	java:S106K"9Replace this use of System.out or System.err by a logger.(ÛÙùÆ8ĞÏŸ«ç.
-T
-java:S2589M"7Remove this expression which always evaluates to "true"(¤òª£8ĞÏŸ«ç.
-U	java:S106Q"9Replace this use of System.out or System.err by a logger.(ğ½¢…8ĞÏŸ«ç.
-Z	java:S106/"9Replace this use of System.out or System.err by a logger.(«†’˜øÿÿÿÿ8ĞÏŸ«ç.
+W
+java:S11418"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¤è˜€è.
 i
-java:S2259$"GA "NullPointerException" could be thrown; "statement" is nullable here.(Ä»¸Ôûÿÿÿÿ8ĞÏŸ«ç.
-Z	java:S106;"9Replace this use of System.out or System.err by a logger.(„Ó±âûÿÿÿÿ8ĞÏŸ«ç.
+java:S2259'"GA "NullPointerException" could be thrown; "statement" is nullable here.(Ä»¸Ôûÿÿÿÿ8ĞÏŸ«ç.
+[
+java:S1155/">Use isEmpty() to check whether the collection is empty or not.(§ó€ã8ĞÏŸ«ç.
+Z	java:S106>"9Replace this use of System.out or System.err by a logger.(„Ó±âûÿÿÿÿ8ĞÏŸ«ç.
+W
+java:S1141 "5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¤è˜€è.
+W
+java:S1141&"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¤è˜€è.
+U	java:S106C"9Replace this use of System.out or System.err by a logger.(ö¬8ù»™€è.
+Z	java:S1062"9Replace this use of System.out or System.err by a logger.(«†’˜øÿÿÿÿ8ĞÏŸ«ç.
+U	java:S106V"9Replace this use of System.out or System.err by a logger.(ğ½¢…8ĞÏŸ«ç.
+U	java:S106P"9Replace this use of System.out or System.err by a logger.(ÛÙùÆ8ĞÏŸ«ç.
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(õ©‡àûÿÿÿÿ8ĞÏŸ«ç.
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Çµí‘8îÊèªç.

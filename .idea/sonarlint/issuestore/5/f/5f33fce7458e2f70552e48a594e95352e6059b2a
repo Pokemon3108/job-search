@@ -1,0 +1,17 @@
+
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¢ß„§8Ÿõê€è.
+
+java:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ï³Ìê8Ÿõê€è.
+R
+java:S1068
+"0Remove this unused "readAllQuery" private field.(ü¶è™øÿÿÿÿ8Âíğ€è.
+£
+java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Õ¿±„øÿÿÿÿ8–ñ€è.
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(†›œı8Âíğ€è.
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(²º¡Æ8Ÿõê€è.
+C
+java:S1170
+"!Make this final field static too.(ü¶è™øÿÿÿÿ8Âíğ€è.

@@ -1,7 +1,13 @@
 package by.daryazalevskaya.finalproject.controller;
 
+import by.daryazalevskaya.finalproject.dao.UserDao;
+import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.dao.impl.UserDaoImpl;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
+import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.model.Contact;
+import by.daryazalevskaya.finalproject.model.User;
+import by.daryazalevskaya.finalproject.model.type.Role;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,72 +22,28 @@ public class Runner {
         String url = resource.getString("db.url");
         String user = resource.getString("db.user");
         String pass = resource.getString("db.password");
-        String driver=resource.getString("db.driver");
-        int poolSizeMax=Integer.parseInt(resource.getString("db.poolMaxSize"));
-        int startPoolSize=Integer.parseInt(resource.getString("db.poolStartSize"));
-        int timeout=Integer.parseInt(resource.getString("db.connectionTimeout"));
+        String driver = resource.getString("db.driver");
+        int poolSizeMax = Integer.parseInt(resource.getString("db.poolMaxSize"));
+        int startPoolSize = Integer.parseInt(resource.getString("db.poolStartSize"));
+        int timeout = Integer.parseInt(resource.getString("db.connectionTimeout"));
 
-        ConnectionPool.getInstance().init(driver,
-                url, user, pass, startPoolSize, poolSizeMax, timeout);
-        Connection connection = ConnectionPool.getInstance().getConnection();
         Statement statement = null;
+        Connection connection = null;
         try {
-            try {
-                statement = connection.createStatement();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            ResultSet rs = null;
-            try {
-                rs = statement.executeQuery("SELECT * FROM contact");
-                ArrayList<Contact> lst = new ArrayList<>();
-                while (rs.next()) {
-                    String name1 = rs.getString(1);
-                    String name2 = rs.getString(2);
-                    String name = rs.getString(3);
-                    lst.add(new Contact(name1, name2, name));
-                }
-                if (lst.size() > 0) {
-                    System.out.println(lst);
-                } else {
-                    System.out.println("Not found");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                if (rs != null) { // был ли создан ResultSet
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    System.err.println(
-                            "ошибка во время чтения из БД");
-                }
-            }
-        } finally {
-            /*
-             * закрыть Statement, если он был открыт или ошибка
-             * произошла во время создания Statement
-             */
-            if (statement != null) { // для 2-го блока tryJDBC
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                System.err.println("Statement не создан");
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    System.err.println("Сonnection close error: " + e);
-                }
-            }
+            ConnectionPool.getInstance().init(driver,
+                    url, user, pass, startPoolSize, poolSizeMax, timeout);
+            connection = ConnectionPool.getInstance().getConnection();
+            User user1=User.builder().password("01234567890123456789")
+                    .role(Role.EMPLOYEE)
+                    .username("Dasha")
+                    .build();
+            UserDaoImpl userDao=new UserDaoImpl();
+            userDao.setConnection(connection);
+            System.out.println(userDao.create(user1));
+        } catch (PoolException | InsertIdDataBaseException ex) {
+            System.out.println(ex);
         }
+        
 
     }
 }

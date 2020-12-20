@@ -1,5 +1,6 @@
 package by.daryazalevskaya.finalproject.dao.pool;
 
+import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -36,7 +37,7 @@ public final class ConnectionPool {
     }
 
 
-    public  Connection getConnection() {
+    public  Connection getConnection() throws PoolException {
         lock.lock();
         ConnectionFromPool connection = null;
         while (connection == null) {
@@ -54,14 +55,12 @@ public final class ConnectionPool {
                 } else if (usedConnections.size() < maxSize) {
                     connection = createConnection();
                 } else {
-                    log.error("The limit of database connections is exceeded");
-                    // throw new PersistentException();
-                    //TODO create my exception and throw it
-
+                    //log.error("The limit of database connections is exceeded");
+                    throw new PoolException("The limit of database connections is exceeded");
                 }
             } catch (InterruptedException | SQLException e) {
-                log.error("Can't connect to db");
-                //TODO create my exception and throw it
+                //log.error("Can't connect to db");
+                throw new PoolException("Can't connect to db");
             }
         }
         usedConnections.add(connection);
@@ -71,7 +70,7 @@ public final class ConnectionPool {
         return connection;
     }
 
-    public void init(String driverClass, String url, String user, String password, int startSize, int maxSize, int connectionTimeout) {
+    public void init(String driverClass, String url, String user, String password, int startSize, int maxSize, int connectionTimeout) throws PoolException {
         lock.lock();
         try {
             destroy();
@@ -85,9 +84,8 @@ public final class ConnectionPool {
                 freeConnections.put(createConnection());
             }
         } catch (InterruptedException | ClassNotFoundException | SQLException e) {
-            log.fatal("It is impossible to initialize connection pool", e);
-            //TODO create exception and throw it
-            //throw new PersistentException(e);
+          //  log.fatal("It is impossible to initialize connection pool", e);
+            throw new PoolException("It is impossible to initialize connection pool");
         } finally {
             lock.unlock();
         }
@@ -110,11 +108,11 @@ public final class ConnectionPool {
                         usedConnections.size(), freeConnections.size()));
             }
         } catch (SQLException | InterruptedException e1) {
-            log.warn("Can't free connection", e1.getMessage());
+            log.error("Can't free connection", e1.getMessage());
             try {
                 connection.getConnection().close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error(e);
             }
         } finally {
             lock.unlock();
@@ -123,6 +121,7 @@ public final class ConnectionPool {
 
 
     public void destroy() {
+        lock.lock();
         usedConnections.addAll(freeConnections);
         freeConnections.clear();
         for (ConnectionFromPool connection : usedConnections) {
@@ -133,6 +132,7 @@ public final class ConnectionPool {
             }
         }
         usedConnections.clear();
+        lock.unlock();
     }
 
 
