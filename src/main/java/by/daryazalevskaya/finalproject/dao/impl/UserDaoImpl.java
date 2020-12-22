@@ -112,9 +112,10 @@ public class UserDaoImpl extends ConnectionDao implements UserDao {
             statement.setString(1, entity.getUsername());
             statement.setString(2, entity.getPassword());
             statement.setString(3, entity.getRole().toString());
+            statement.setInt(4, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            log.error(e);
+            //log.error(e);
             throw new DaoException(e);
         }
     }
