@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Log4j2
-public class ContactDaoImpl extends ConnectionDao implements ContactDao, DeleteDao  {
+public class ContactDaoImpl extends ConnectionDao implements ContactDao, DefaultOperationsDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM contact";
     private static final String UPDATE_QUERY = "UPDATE contact SET  telephone = ?, email=?, skype=? WHERE id=?";

@@ -3,11 +3,8 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
-import by.daryazalevskaya.finalproject.service.creator.Creator;
 import by.daryazalevskaya.finalproject.service.creator.JobPreferenceCreator;
-import by.daryazalevskaya.finalproject.service.creator.UserCreator;
 import by.daryazalevskaya.finalproject.service.sql.JobPreferenceStatementFormer;
 import lombok.extern.log4j.Log4j2;
 
@@ -20,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Log4j2
-public class JobPreferenceDaoImpl extends ConnectionDao implements JobPreferenceDao, DeleteDao {
+public class JobPreferenceDaoImpl extends ConnectionDao implements JobPreferenceDao, DefaultOperationsDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM job_preference";
     private static final String READ_BY_ID_QUERY = "SELECT * FROM job_preference WHERE id=?";
@@ -176,24 +173,7 @@ public class JobPreferenceDaoImpl extends ConnectionDao implements JobPreference
 
     @Override
     public String findSpecializationById(int id) throws DaoException {
-        ResultSet resultSet = null;
-        String spec="";
-        try (PreparedStatement statement = connection.prepareStatement(FIND_SPEC_BY_ID_QUERY)) {
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                spec=resultSet.getString("name");
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            try {
-                resultSet.close();
-            } catch (SQLException | NullPointerException e) {
-                log.error(e);
-            }
-        }
-
-        return spec;
+        final String fieldName="name";
+        return findFieldById(id, connection, FIND_SPEC_BY_ID_QUERY, fieldName);
     }
 }

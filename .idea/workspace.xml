@@ -6,7 +6,16 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17868c07-069d-4906-9de5-097f10948eb2" name="Default Changelist" comment="" />
+    <list default="true" id="17868c07-069d-4906-9de5-097f10948eb2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/EmployeePersonalInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/EmployeePersonalInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/JobPreferenceDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/JobPreferenceDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/ContactDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/ContactDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/DeleteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/DefaultOperationsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/JobPreferenceDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/JobPreferenceDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -319,7 +328,7 @@
       <workItem from="1608467536338" duration="17277000" />
       <workItem from="1608498578372" duration="16956000" />
       <workItem from="1608732439229" duration="18327000" />
-      <workItem from="1608753703049" duration="4249000" />
+      <workItem from="1608753703049" duration="6983000" />
     </task>
     <servers />
   </component>
@@ -327,18 +336,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="179" key="#SQL_Dialects" timestamp="1608749523617">
+    <state x="552" y="179" key="#SQL_Dialects" timestamp="1608760008375">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="179" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1608749523617" />
+    <state x="552" y="179" key="#SQL_Dialects/0.0.1920.1040@0.0.1920.1040" timestamp="1608760008375" />
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608501914378">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608501914378" />
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1608755245617">
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1608759771930">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608755245617" />
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608759771930" />
     <state x="689" y="305" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608231399639">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -411,6 +420,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1608284976493" />
+    <state x="690" y="276" key="extract.method.dialog" timestamp="1608760227592">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="276" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608760227592" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1608470517659">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

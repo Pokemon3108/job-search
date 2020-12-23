@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Log4j2
-public class UserDaoImpl extends ConnectionDao implements UserDao, DeleteDao {
+public class UserDaoImpl extends ConnectionDao implements UserDao, DefaultOperationsDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM usr";
     private static final String READ_LOGIN_QUERY = "SELECT * FROM usr WHERE username = ?";
