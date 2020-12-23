@@ -1,0 +1,16 @@
+
+L
+java:S2695Q"/This "PreparedStatement" only has 4 parameters.(¡îŽÔ8‚”¶ˆé.
+i
+java:S2095i"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(Ê¥¶îüÿÿÿÿ8µ ’ˆé.
+d
+java:S2259<"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8°ÆÆ‡é.
+L
+java:S2695P"/This "PreparedStatement" only has 4 parameters.(¦íÁ‡8‚”¶ˆé.
+L
+java:S2695R"/This "PreparedStatement" only has 4 parameters.(½ÂÌ8”·¸ˆé.
+X	java:S125"<This block of commented-out lines of code should be removed.(¨Äü 8æ™Ë‡é.
+H
+java:S1168`"+Return an empty collection instead of null.(¥¹ï8ñ¤ˆé.
+O
+java:S1068"2Remove this unused "READ_ALL_QUERY" private field.(‘õ”º8„üØ‡é.

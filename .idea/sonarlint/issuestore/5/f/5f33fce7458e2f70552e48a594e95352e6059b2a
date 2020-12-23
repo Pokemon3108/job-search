@@ -1,14 +1,9 @@
 
 d
-java:S2259-"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ό’’ΰθ.
-]	java:S125)"<This block of commented-out lines of code should be removed.(„¶Αψÿÿÿÿ8ό’’ΰθ.
+java:S2259M"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ΉΆΘ‡ι.
 d
-java:S2259e"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ό’’ΰθ.
+java:S2259d"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ΉΆΘ‡ι.
+d
+java:S2259/"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ΉΆΘ‡ι.
 e
-java:S2259–"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ό’’ΰθ.
-]	java:S125a"<This block of commented-out lines of code should be removed.(„¶Αψÿÿÿÿ8ό’’ΰθ.
-^	java:S125’"<This block of commented-out lines of code should be removed.(„¶Αψÿÿÿÿ8ό’’ΰθ.
-]	java:S125J"<This block of commented-out lines of code should be removed.(„¶Αψÿÿÿÿ8ό’’ΰθ.
-d
-java:S2259M"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ό’’ΰθ.
-]	java:S125w"<This block of commented-out lines of code should be removed.(„¶Αψÿÿÿÿ8ό’’ΰθ.
+java:S2259"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(θε²Χ8ΉΆΘ‡ι.

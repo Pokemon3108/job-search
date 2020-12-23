@@ -6,6 +6,8 @@ import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.creator.Creator;
 import by.daryazalevskaya.finalproject.service.creator.UserCreator;
+import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
+import by.daryazalevskaya.finalproject.service.sql.UserStatementFormer;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.PreparedStatement;
@@ -23,7 +25,7 @@ public class UserDaoImpl extends ConnectionDao implements UserDao, DeleteDao {
     private static final String READ_LOGIN_QUERY = "SELECT * FROM usr WHERE username = ?";
     private static final String UPDATE_QUERY = "UPDATE usr SET  username = ?, password=?, role=?::user_role WHERE id=?";
     private static final String READ_BY_ID_QUERY = "SELECT * FROM usr WHERE id=?";
-    private static final String CREATE_QUERY = "INSERT INTO usr (username, role,password) VALUES (?, ?::user_role, ?)";
+    private static final String CREATE_QUERY = "INSERT INTO usr (username, password,role) VALUES (?, ?, ?::user_role)";
     private static final String DELETE_QUERY = "DELETE FROM usr WHERE id =?";
 
     @Override
@@ -55,12 +57,11 @@ public class UserDaoImpl extends ConnectionDao implements UserDao, DeleteDao {
     @Override
     public Integer create(User entity) throws InsertIdDataBaseException, DaoException {
         ResultSet resultSet = null;
-        Integer id;
+        Integer id=null;
 
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, entity.getUsername());
-            statement.setString(2, entity.getRole().toString());
-            statement.setString(3, entity.getPassword());
+            StatementFormer<User> statementFormer=new UserStatementFormer();
+            statementFormer.setStatement(statement, entity);
             statement.executeUpdate();
 
             resultSet = statement.getGeneratedKeys();
@@ -71,7 +72,6 @@ public class UserDaoImpl extends ConnectionDao implements UserDao, DeleteDao {
             }
         } catch (SQLException e) {
             throw new DaoException(e);
-            // log.error(e);
         } finally {
             try {
                 resultSet.close();
@@ -109,13 +109,11 @@ public class UserDaoImpl extends ConnectionDao implements UserDao, DeleteDao {
     @Override
     public void update(User entity) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            statement.setString(1, entity.getUsername());
-            statement.setString(2, entity.getPassword());
-            statement.setString(3, entity.getRole().toString());
+            StatementFormer<User> statementFormer=new UserStatementFormer();
+            statementFormer.setStatement(statement, entity);
             statement.setInt(4, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            //log.error(e);
             throw new DaoException(e);
         }
     }

@@ -6,6 +6,8 @@ import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.service.creator.ContactCreator;
 import by.daryazalevskaya.finalproject.service.creator.Creator;
+import by.daryazalevskaya.finalproject.service.sql.ContactStatementFormer;
+import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.PreparedStatement;
@@ -31,9 +33,8 @@ public class ContactDaoImpl extends ConnectionDao implements ContactDao, DeleteD
         Integer id;
 
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, entity.getTelephone());
-            statement.setString(2, entity.getEmail());
-            statement.setString(3, entity.getSkype());
+            StatementFormer<Contact> statementFormer=new ContactStatementFormer();
+            statementFormer.setStatement(statement, entity);
             statement.executeUpdate();
 
             resultSet = statement.getGeneratedKeys();
@@ -81,9 +82,8 @@ public class ContactDaoImpl extends ConnectionDao implements ContactDao, DeleteD
     @Override
     public void update(Contact entity) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            statement.setString(1, entity.getTelephone());
-            statement.setString(2, entity.getEmail());
-            statement.setString(3, entity.getSkype());
+            StatementFormer<Contact> statementFormer=new ContactStatementFormer();
+            statementFormer.setStatement(statement, entity);
             statement.setInt(4, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
