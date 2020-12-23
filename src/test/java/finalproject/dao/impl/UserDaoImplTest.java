@@ -2,26 +2,24 @@ package finalproject.dao.impl;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.dao.exception.NoEntityInDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.impl.UserDaoImpl;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.type.Role;
-import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.sql.Connection;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-@Log4j2
+
 public class UserDaoImplTest {
     private UserDaoImpl userDao = new UserDaoImpl();
-
-    private Integer id;
 
     @BeforeTest
     public void createConnection() throws PoolException {
@@ -41,59 +39,46 @@ public class UserDaoImplTest {
 
     }
 
-    @BeforeMethod
-    public void getUserIdByName() throws DaoException {
-        final String username = "Kesha";
-        this.id = userDao.read(username).getId();
-    }
-
 
     @DataProvider(name = "user")
     public Object[][] createUser() {
-        User user = User.builder().password("01234567890123456789")
+        User user = User.builder().password("qawsedrfth0123456789")
                 .role(Role.EMPLOYEE)
                 .username("Kesha")
                 .build();
         return new Object[][]{{user}};
     }
 
-    @DataProvider(name = "deleteUser")
-    public Object[][] createUserForDelete() {
-        User user = User.builder().password("0a234cccbb1234567aa")
-                .role(Role.EMPLOYEE)
-                .username("Parrot")
-                .build();
-        return new Object[][]{{user}};
-    }
-
-    @DataProvider(name = "updatedUser")
-    public Object[][] createUpdatedUser() {
-        User user = User.builder().password("01234567890123456789")
-                .role(Role.EMPLOYER)
-                .username("Dasha")
-                .build();
-        return new Object[][]{{user}};
-    }
 
     @Test(dataProvider = "user")
     public void createTest(User user) throws DaoException, InsertIdDataBaseException {
-        id = userDao.create(user);
+        int id = userDao.create(user);
         Assert.assertNotNull(id);
     }
 
-    @Test(dataProvider = "user")
-    public void readNameTest(User user) throws DaoException {
-        final String username = "Kesha";
-        User userFromDB = userDao.read(username);
-        user.setId(id);
+
+    @DataProvider(name = "userRead")
+    public Object[][] createUserForRead() {
+        final int id=1;
+        User user = User.builder().password("01234567890123456789")
+                .role(Role.EMPLOYEE)
+                .username("pokemon")
+                .id(id)
+                .build();
+        return new Object[][]{{user, id}};
+    }
+
+    @Test(dataProvider = "userRead")
+    public void readNameTest(User user, int id) throws DaoException, NoEntityInDataBaseException {
+        final String username = "pokemon";
+        User userFromDB = userDao.read(username).orElseThrow(NoEntityInDataBaseException::new);
         Assert.assertEquals(user, userFromDB);
     }
 
-    @Test(dataProvider = "user")
-    public void readIdTest(User user) throws DaoException {
-        User userFromDB = userDao.read(id);
-        user.setId(id);
-        Assert.assertEquals(user, userFromDB);
+    @Test(dataProvider = "userRead")
+    public void readIdTest(User user, int id) throws DaoException, NoEntityInDataBaseException {
+        Optional<User> userFromDB = userDao.read(id);
+        Assert.assertEquals(user, userFromDB.orElseThrow(NoEntityInDataBaseException::new));
     }
 
     @Test
@@ -101,27 +86,46 @@ public class UserDaoImplTest {
         Assert.assertTrue(userDao.findAll().size() != 0);
     }
 
+
+    @DataProvider(name = "updatedUser")
+    public Object[][] createUpdatedUser() {
+        final  int id=3;
+        User user = User.builder().password("01234567890123456789")
+                .role(Role.EMPLOYER)
+                .username("Dasha")
+                .id(id)
+                .build();
+        return new Object[][]{{user, id}};
+    }
+
     @Test(dataProvider = "updatedUser")
-    public void updateTest(User user) throws DaoException {
+    public void updateTest(User user, int id) throws DaoException, NoEntityInDataBaseException {
         final String username = "Dasha";
-        final String newUserName="Pokemon";
-        User userFromDB=userDao.read(username);
+        final String newUserName = "MyLogin";
+        User userFromDB = userDao.read(username).orElseThrow(NoEntityInDataBaseException::new);
         userFromDB.setUsername(newUserName);
 
-        Integer id = userFromDB.getId();
-        user.setId(id);
-
         userDao.update(user);
-        User updatedUserFromDB = userDao.read(id);
-        Assert.assertEquals(updatedUserFromDB, user);
+        Optional<User> updatedUserFromDB = userDao.read(id);
+        Assert.assertEquals(updatedUserFromDB.get(), user);
+    }
+
+
+    @DataProvider(name = "deleteUser")
+    public Object[][] createUserForDelete() {
+        final int id=2;
+        User user = User.builder().password("0a234cccbb1234567aa")
+                .role(Role.EMPLOYEE)
+                .username("Parrot")
+                .id(2)
+                .build();
+        return new Object[][]{{user, id}};
     }
 
     @Test(dataProvider = "deleteUser")
-    public void deleteTest(User user) throws DaoException {
-        final String username =user.getUsername();
-        Integer id = userDao.read(username).getId();
+    public void deleteTest(User user, int id) throws DaoException {
         userDao.delete(id);
-        Assert.assertNull(userDao.read(id));
+        Assert.assertTrue(userDao.read(id).isEmpty());
     }
 
 }

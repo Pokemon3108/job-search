@@ -19,10 +19,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-public class ConnectionFromPool implements Connection {
+public class ProxyConnection implements Connection {
     private Connection connection;
 
-    public ConnectionFromPool(Connection connection) {
+    public ProxyConnection(Connection connection) {
         this.connection = connection;
     }
 

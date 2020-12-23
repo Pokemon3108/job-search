@@ -6,13 +6,14 @@ import by.daryazalevskaya.finalproject.model.type.Role;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserCreator {
+public class UserCreator implements Creator<User> {
 
-    public User createUser(ResultSet resultSet) throws SQLException {
-       return  User.builder()
-                .id(resultSet.getInt("id"))
-                .username(resultSet.getString("username"))
-                .password(resultSet.getString("password"))
-                .role(Role.valueOf(resultSet.getString("role"))).build();
+    @Override
+    public User createEntity(ResultSet set) throws SQLException {
+        return  User.builder()
+                .id(set.getInt("id"))
+                .username(set.getString("username"))
+                .password(set.getString("password"))
+                .role(Role.valueOf(set.getString("role"))).build();
     }
 }

@@ -24,8 +24,8 @@ public final class ConnectionPool {
 
     private ReentrantLock lock = new ReentrantLock();
 
-    private BlockingQueue<ConnectionFromPool> freeConnections = new LinkedBlockingQueue<>();
-    private List<ConnectionFromPool> usedConnections = new CopyOnWriteArrayList<>();
+    private BlockingQueue<ProxyConnection> freeConnections = new LinkedBlockingQueue<>();
+    private List<ProxyConnection> usedConnections = new CopyOnWriteArrayList<>();
 
     private ConnectionPool() {
     }
@@ -39,7 +39,7 @@ public final class ConnectionPool {
 
     public  Connection getConnection() throws PoolException {
         lock.lock();
-        ConnectionFromPool connection = null;
+        ProxyConnection connection = null;
         while (connection == null) {
             try {
                 if (!freeConnections.isEmpty()) {
@@ -92,11 +92,11 @@ public final class ConnectionPool {
     }
 
 
-    private ConnectionFromPool createConnection() throws SQLException {
-        return new ConnectionFromPool(DriverManager.getConnection(url, user, password));
+    private ProxyConnection createConnection() throws SQLException {
+        return new ProxyConnection(DriverManager.getConnection(url, user, password));
     }
 
-    void freeConnection(ConnectionFromPool connection) {
+    void freeConnection(ProxyConnection connection) {
         lock.lock();
         try {
             if (connection.isValid(connectionTimeout)) {
@@ -124,7 +124,7 @@ public final class ConnectionPool {
         lock.lock();
         usedConnections.addAll(freeConnections);
         freeConnections.clear();
-        for (ConnectionFromPool connection : usedConnections) {
+        for (ProxyConnection connection : usedConnections) {
             try {
                 connection.getConnection().close();
             } catch (SQLException e) {

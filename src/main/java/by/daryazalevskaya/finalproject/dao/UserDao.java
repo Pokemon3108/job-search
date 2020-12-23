@@ -3,6 +3,8 @@ package by.daryazalevskaya.finalproject.dao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.model.User;
 
+import java.util.Optional;
+
 public interface UserDao extends Dao<User> {
-    User read(String username) throws DaoException;
+    Optional<User> read(String username) throws DaoException;
 }

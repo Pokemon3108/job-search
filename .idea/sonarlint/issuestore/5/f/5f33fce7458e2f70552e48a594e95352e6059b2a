@@ -1,21 +1,14 @@
 
-j
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÂŽýÕ8›ãÄˆè.
-b
-java:S2259"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8€Ã¢„è.
-b
-java:S2259"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8€Ã¢„è.
-b
-java:S2259"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8›ÊÁ„è.
-j
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÈÕÞÉ8›ãÄˆè.
-b
-java:S2259"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8—½Ï…è.
-o
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ôÕ®Ïøÿÿÿÿ8›ãÄˆè.
-o
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(²î¢´ýÿÿÿÿ8›ãÄˆè.
-b
-java:S2259"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8‘êÛ„è.
-œ
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ï³Ìê8€Ã¢„è.
+d
+java:S2259-"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8ü’’àè.
+]	java:S125)"<This block of commented-out lines of code should be removed.(„¶ÁŠøÿÿÿÿ8ü’’àè.
+d
+java:S2259e"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8ü’’àè.
+e
+java:S2259–"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8ü’’àè.
+]	java:S125a"<This block of commented-out lines of code should be removed.(„¶ÁŠøÿÿÿÿ8ü’’àè.
+^	java:S125’"<This block of commented-out lines of code should be removed.(„¶ÁŠøÿÿÿÿ8ü’’àè.
+]	java:S125J"<This block of commented-out lines of code should be removed.(„¶ÁŠøÿÿÿÿ8ü’’àè.
+d
+java:S2259M"GA "NullPointerException" could be thrown; "resultSet" is nullable here.(èå²×8ü’’àè.
+]	java:S125w"<This block of commented-out lines of code should be removed.(„¶ÁŠøÿÿÿÿ8ü’’àè.

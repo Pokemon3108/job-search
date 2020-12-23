@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true) // object id will be excluded
+@EqualsAndHashCode(callSuper = true) // object id will be included
 @Data
 @SuperBuilder
 @NoArgsConstructor
