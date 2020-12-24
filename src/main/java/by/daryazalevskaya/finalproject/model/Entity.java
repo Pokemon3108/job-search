@@ -10,5 +10,5 @@ import java.io.Serializable;
 @SuperBuilder
 @NoArgsConstructor
 public abstract class Entity implements Serializable {
-    private int id;
+    protected int id;
 }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class ContactStatementFormer extends StatementFormer<Contact>{
 
     @Override
-    public void setStatement(PreparedStatement statement, Contact entity) throws SQLException {
+    public void fillStatement(PreparedStatement statement, Contact entity) throws SQLException {
         statement.setString(1, entity.getTelephone());
         statement.setString(2, entity.getEmail());
         statement.setString(3, entity.getSkype());

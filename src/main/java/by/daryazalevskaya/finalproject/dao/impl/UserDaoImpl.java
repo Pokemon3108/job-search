@@ -5,6 +5,7 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.creator.Creator;
+import by.daryazalevskaya.finalproject.service.creator.EmployeePersonalInfoCreator;
 import by.daryazalevskaya.finalproject.service.creator.UserCreator;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.UserStatementFormer;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Log4j2
-public class UserDaoImpl extends ConnectionDao implements UserDao, DefaultOperationsDao {
+public class UserDaoImpl extends BaseDao implements UserDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM usr";
     private static final String READ_LOGIN_QUERY = "SELECT * FROM usr WHERE username = ?";
@@ -43,11 +44,7 @@ public class UserDaoImpl extends ConnectionDao implements UserDao, DefaultOperat
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
-            try {
-                resultSet.close();
-            } catch (SQLException | NullPointerException e) {
-                log.error(e);
-            }
+            closeSet(resultSet);
         }
 
         return Optional.ofNullable(user);
@@ -56,61 +53,19 @@ public class UserDaoImpl extends ConnectionDao implements UserDao, DefaultOperat
 
     @Override
     public Integer create(User entity) throws InsertIdDataBaseException, DaoException {
-        ResultSet resultSet = null;
-        Integer id=null;
-
-        try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
-            StatementFormer<User> statementFormer=new UserStatementFormer();
-            statementFormer.setStatement(statement, entity);
-            statement.executeUpdate();
-
-            resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                id = resultSet.getInt(1);
-            } else {
-                throw new InsertIdDataBaseException("There is no auto incremented index after trying to add record into table usr");
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            try {
-                resultSet.close();
-            } catch (SQLException | NullPointerException e) {
-                log.error(e);
-            }
-        }
-        return id;
+        return super.create(entity, CREATE_QUERY, new UserStatementFormer());
     }
 
     @Override
     public Optional<User> read(int id) throws DaoException {
-        ResultSet resultSet = null;
-        User user = null;
-        try (PreparedStatement statement = connection.prepareStatement(READ_BY_ID_QUERY)) {
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                Creator<User> creator = new UserCreator();
-                user = creator.createEntity(resultSet);
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            try {
-                resultSet.close();
-            } catch (SQLException | NullPointerException e) {
-                log.error(e);
-            }
-        }
-
-        return Optional.ofNullable(user);
+        return super.readById(id, READ_BY_ID_QUERY, new UserCreator());
     }
 
     @Override
     public void update(User entity) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            StatementFormer<User> statementFormer=new UserStatementFormer();
-            statementFormer.setStatement(statement, entity);
+            StatementFormer<User> statementFormer = new UserStatementFormer();
+            statementFormer.fillStatement(statement, entity);
             statement.setInt(4, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -120,30 +75,11 @@ public class UserDaoImpl extends ConnectionDao implements UserDao, DefaultOperat
 
     @Override
     public void delete(int id) throws DaoException {
-        delete(id, connection, DELETE_QUERY);
+        delete(id, DELETE_QUERY);
     }
 
     @Override
     public List<User> findAll() throws DaoException {
-        ResultSet resultSet = null;
-
-        List<User> users = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(READ_ALL_QUERY)) {
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Creator<User> creator = new UserCreator();
-                users.add(creator.createEntity(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new DaoException();
-        } finally {
-            try {
-                resultSet.close();
-            } catch (SQLException | NullPointerException e) {
-                log.error(e);
-            }
-        }
-
-        return users;
+        return super.findAll(READ_ALL_QUERY, new UserCreator());
     }
 }

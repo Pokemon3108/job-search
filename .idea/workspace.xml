@@ -7,14 +7,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17868c07-069d-4906-9de5-097f10948eb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/EmployeePersonalInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/EmployeePersonalInfoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/JobPreferenceDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/JobPreferenceDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/ConnectionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/BaseDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/ContactDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/ContactDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/DeleteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/DefaultOperationsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/CountryDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/CountryDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/DefaultOperationsDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/EmployeePersonalInfoDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/EmployeePersonalInfoDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/JobPreferenceDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/JobPreferenceDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/employee/EmployeePersonalInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/model/employee/EmployeePersonalInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/ContactCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/ContactCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/Creator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/Creator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/JobPreferenceCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/JobPreferenceCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/UserCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/creator/UserCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/ContactStatementFormer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/ContactStatementFormer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/JobPreferenceStatementFormer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/JobPreferenceStatementFormer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/StatementFormer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/StatementFormer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/UserStatementFormer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/daryazalevskaya/finalproject/service/sql/UserStatementFormer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/JobPreferenceDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/JobPreferenceDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/ContactDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/ContactDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/JobPreferenceDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/JobPreferenceDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/dao/impl/UserDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/service/sql/ContactStatementFormer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/service/sql/ContactStatementFormer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/service/sql/StatementFormer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/service/sql/StatementFormer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/service/sql/UserStatementFormer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/daryazalevskaya/finalproject/service/sql/UserStatementFormer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,27 +115,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.CSS" />
   </component>
-  <component name="RunManager" selected="TestNG.UserDaoImplTest">
+  <component name="RunManager" selected="TestNG.UserDaoImplTest.readIdTest">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="by.daryazalevskaya.finalproject.controller.Runner" />
       <module name="final-project" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ContactDaoImplTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="final-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="finalproject.dao.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="finalproject.dao.impl" />
-      <option name="MAIN_CLASS_NAME" value="finalproject.dao.impl.ContactDaoImplTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -133,24 +134,6 @@
       <option name="PACKAGE_NAME" value="finalproject.dao.impl" />
       <option name="MAIN_CLASS_NAME" value="finalproject.dao.impl.ContactDaoImplTest" />
       <option name="METHOD_NAME" value="deleteTest" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ContactDaoImplTest.readTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="final-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="finalproject.dao.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="finalproject.dao.impl" />
-      <option name="MAIN_CLASS_NAME" value="finalproject.dao.impl.ContactDaoImplTest" />
-      <option name="METHOD_NAME" value="readTest" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -186,6 +169,42 @@
       <option name="PACKAGE_NAME" value="finalproject.dao.impl" />
       <option name="MAIN_CLASS_NAME" value="finalproject.dao.impl.UserDaoImplTest" />
       <option name="METHOD_NAME" value="deleteTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDaoImplTest.findAllTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="final-project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalproject.dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="finalproject.dao.impl" />
+      <option name="MAIN_CLASS_NAME" value="finalproject.dao.impl.UserDaoImplTest" />
+      <option name="METHOD_NAME" value="findAllTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDaoImplTest.readIdTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="final-project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalproject.dao.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="finalproject.dao.impl" />
+      <option name="MAIN_CLASS_NAME" value="finalproject.dao.impl.UserDaoImplTest" />
+      <option name="METHOD_NAME" value="readIdTest" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -268,20 +287,20 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
-      <item itemvalue="TestNG.ContactDaoImplTest" />
-      <item itemvalue="TestNG.ContactDaoImplTest.readTest" />
       <item itemvalue="TestNG.ContactDaoImplTest.deleteTest" />
       <item itemvalue="TestNG.UserDaoImplTest" />
       <item itemvalue="TestNG.UserDaoImplTest.deleteTest" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.40" />
+      <item itemvalue="TestNG.UserDaoImplTest.findAllTest" />
+      <item itemvalue="TestNG.UserDaoImplTest.readIdTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.UserDaoImplTest.readIdTest" />
+        <item itemvalue="TestNG.UserDaoImplTest.findAllTest" />
         <item itemvalue="TestNG.UserDaoImplTest" />
         <item itemvalue="TestNG.UserDaoImplTest.deleteTest" />
         <item itemvalue="TestNG.ContactDaoImplTest.deleteTest" />
-        <item itemvalue="TestNG.ContactDaoImplTest" />
-        <item itemvalue="TestNG.ContactDaoImplTest.readTest" />
       </list>
     </recent_temporary>
   </component>
@@ -328,7 +347,7 @@
       <workItem from="1608467536338" duration="17277000" />
       <workItem from="1608498578372" duration="16956000" />
       <workItem from="1608732439229" duration="18327000" />
-      <workItem from="1608753703049" duration="6983000" />
+      <workItem from="1608753703049" duration="19400000" />
     </task>
     <servers />
   </component>
@@ -344,10 +363,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608501914378" />
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1608759771930">
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1608801687914">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608759771930" />
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608801687914" />
     <state x="689" y="305" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608231399639">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -360,6 +379,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="633" y="437" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608203075744" />
+    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608790314919">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608790314919" />
     <state x="758" y="182" key="ExecutionTargetDialog" timestamp="1608501341838">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -368,22 +391,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608501817949" />
-    <state width="1877" height="249" key="GridCell.Tab.0.bottom" timestamp="1608753687656">
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1608801056785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="249" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608753687656" />
-    <state width="1877" height="249" key="GridCell.Tab.0.center" timestamp="1608753687656">
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608801056785" />
+    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1608801056784">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="249" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608753687656" />
-    <state width="1877" height="249" key="GridCell.Tab.0.left" timestamp="1608753687656">
+    <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608801056784" />
+    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1608801056784">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="249" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608753687656" />
-    <state width="1877" height="249" key="GridCell.Tab.0.right" timestamp="1608753687656">
+    <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608801056784" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1608801056784">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="249" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608753687656" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608801056784" />
     <state width="1877" height="249" key="GridCell.Tab.1.bottom" timestamp="1608753687657">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -420,14 +443,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1608284976493" />
-    <state x="690" y="276" key="extract.method.dialog" timestamp="1608760227592">
+    <state x="690" y="276" key="extract.method.dialog" timestamp="1608790476045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="276" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608760227592" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1608470517659">
+    <state x="690" y="276" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608790476045" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1608791955265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608470517659" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608791955265" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1608673894674">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

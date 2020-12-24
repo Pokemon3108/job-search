@@ -5,7 +5,7 @@ import by.daryazalevskaya.finalproject.model.Contact;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ContactCreator implements Creator<Contact> {
+public class ContactCreator extends Creator<Contact> {
     @Override
     public Contact createEntity(ResultSet set) throws SQLException {
         return Contact.builder()
