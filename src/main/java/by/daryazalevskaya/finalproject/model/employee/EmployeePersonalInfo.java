@@ -13,6 +13,11 @@ import java.time.LocalDate;
 @Data
 @SuperBuilder
 public class EmployeePersonalInfo extends Entity {
+
+    public EmployeePersonalInfo(int id) {
+        super.id=id;
+    }
+
     private String name;
     private String surname;
     private LocalDate birthday;

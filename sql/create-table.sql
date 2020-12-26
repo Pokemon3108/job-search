@@ -54,7 +54,7 @@ CREATE TYPE currency_type as enum ('USD', 'EUR', 'BYN');
 CREATE TABLE IF NOT EXISTS job_preference
 (
     id                SERIAL PRIMARY KEY,
-    desired_position  VARCHAR(255) NOT NULL,
+    desired_position  INTEGER REFERENCES desired_position_type (id),
     salary            INTEGER,
     currency          currency_type,
     specialization_id INTEGER REFERENCES specialization_type (id),
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS usr
 CREATE TABLE IF NOT EXISTS resume
 (
     id                SERIAL PRIMARY KEY,
-    update            DATE NOT NULL,
+    update            TIMESTAMP DEFAULT current_timestamp,
     prof_description  TEXT,
 
     usr_id            INTEGER REFERENCES usr (id),

@@ -11,6 +11,11 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class User extends Entity {
+
+    public User(int id) {
+        super.id=id;
+    }
+
     private String username;
     private String password;
     private Role role;

@@ -4,9 +4,11 @@ import by.daryazalevskaya.finalproject.model.Entity;
 import by.daryazalevskaya.finalproject.model.type.LanguageLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@SuperBuilder
 public class Language extends Entity {
     private String name;
     private LanguageLevel level;

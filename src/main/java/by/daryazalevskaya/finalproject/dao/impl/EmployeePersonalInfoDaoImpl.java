@@ -4,20 +4,12 @@ import by.daryazalevskaya.finalproject.dao.EmployeePersonalInfoDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
-import by.daryazalevskaya.finalproject.model.employee.JobPreference;
-import by.daryazalevskaya.finalproject.service.creator.Creator;
 import by.daryazalevskaya.finalproject.service.creator.EmployeePersonalInfoCreator;
-import by.daryazalevskaya.finalproject.service.creator.JobPreferenceCreator;
-import by.daryazalevskaya.finalproject.service.creator.UserCreator;
 import by.daryazalevskaya.finalproject.service.sql.EmployeeInfoStatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.JobPreferenceStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

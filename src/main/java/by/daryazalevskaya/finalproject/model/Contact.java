@@ -11,6 +11,11 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class Contact extends Entity {
+
+    public Contact(int id) {
+        super.id=id;
+    }
+
     private String telephone;
     private String email;
     private String skype;

@@ -15,7 +15,7 @@ public class JobPreferenceStatementFormer extends StatementFormer<JobPreference>
 
     @Override
     public void fillStatement(PreparedStatement statement, JobPreference entity) throws SQLException {
-        statement.setString(1, entity.getDesiredPosition());
+        statement.setString(1, entity.getDesiredPosition().getName());
         statement.setInt(2, entity.getSalary());
         statement.setString(3, entity.getCurrency().toString());
         statement.setInt(4, foreignKey);

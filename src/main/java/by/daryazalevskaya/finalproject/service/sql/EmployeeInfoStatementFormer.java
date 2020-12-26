@@ -14,7 +14,7 @@ public class EmployeeInfoStatementFormer extends StatementFormer<EmployeePersona
         statement.setString(2, entity.getSurname());
         statement.setDate(3, Date.valueOf(entity.getBirthday()));
         statement.setString(4, entity.getGender().toString());
-        statement.setInt(5, entity.getId());
+        statement.setInt(5, entity.getCountry().getId());
         statement.setString(6, entity.getCity());
     }
 }

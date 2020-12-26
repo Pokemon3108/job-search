@@ -5,12 +5,19 @@ import by.daryazalevskaya.finalproject.model.Entity;
 import by.daryazalevskaya.finalproject.model.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@SuperBuilder
 public class Resume extends Entity {
+
+    public Resume(int id) {
+        super.id=id;
+    }
+
     private LocalDate update;
     private String description;
     private User user;
