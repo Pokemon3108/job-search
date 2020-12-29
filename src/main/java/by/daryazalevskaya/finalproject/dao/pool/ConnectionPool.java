@@ -37,7 +37,7 @@ public final class ConnectionPool {
     }
 
 
-    public  Connection getConnection() throws PoolException {
+    public Connection getConnection() throws PoolException {
         lock.lock();
         ProxyConnection connection = null;
         while (connection == null) {
@@ -55,11 +55,9 @@ public final class ConnectionPool {
                 } else if (usedConnections.size() < maxSize) {
                     connection = createConnection();
                 } else {
-                    //log.error("The limit of database connections is exceeded");
                     throw new PoolException("The limit of database connections is exceeded");
                 }
             } catch (InterruptedException | SQLException e) {
-                //log.error("Can't connect to db");
                 throw new PoolException("Can't connect to db");
             }
         }
@@ -83,10 +81,12 @@ public final class ConnectionPool {
             for (int counter = 0; counter < startSize; ++counter) {
                 freeConnections.put(createConnection());
             }
-        } catch (InterruptedException | ClassNotFoundException | SQLException e) {
-          //  log.fatal("It is impossible to initialize connection pool", e);
+        } catch (InterruptedException ex) {
+            log.error(ex);
+            Thread.currentThread().interrupt();
+        } catch (ClassNotFoundException | SQLException e){
             throw new PoolException("It is impossible to initialize connection pool");
-        } finally {
+        } finally{
             lock.unlock();
         }
     }

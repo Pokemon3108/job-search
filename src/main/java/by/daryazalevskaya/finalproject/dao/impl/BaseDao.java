@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Log4j2
-abstract class BaseDao {
+public abstract class BaseDao {
     protected Connection connection;
 
     public void setConnection(Connection connection) {
