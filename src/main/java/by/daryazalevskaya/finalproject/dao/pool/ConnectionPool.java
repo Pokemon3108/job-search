@@ -57,7 +57,10 @@ public final class ConnectionPool {
                 } else {
                     throw new PoolException("The limit of database connections is exceeded");
                 }
-            } catch (InterruptedException | SQLException e) {
+            } catch (InterruptedException ex) {
+                log.error(ex);
+                Thread.currentThread().interrupt();
+            } catch (SQLException e) {
                 throw new PoolException("Can't connect to db");
             }
         }
@@ -84,9 +87,9 @@ public final class ConnectionPool {
         } catch (InterruptedException ex) {
             log.error(ex);
             Thread.currentThread().interrupt();
-        } catch (ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             throw new PoolException("It is impossible to initialize connection pool");
-        } finally{
+        } finally {
             lock.unlock();
         }
     }
@@ -107,7 +110,10 @@ public final class ConnectionPool {
                 log.info(String.format("Connection was returned into pool. Current pool size: %d used connections; %d free connection",
                         usedConnections.size(), freeConnections.size()));
             }
-        } catch (SQLException | InterruptedException e1) {
+        } catch (InterruptedException ex) {
+            log.error(ex);
+            Thread.currentThread().interrupt();
+        } catch (SQLException e1) {
             log.error("Can't free connection", e1.getMessage());
             try {
                 connection.getConnection().close();

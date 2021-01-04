@@ -12,6 +12,11 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class Vacancy extends Entity {
+
+    public Vacancy(int id) {
+        super.id=id;
+    }
+
     private String city;
     private int minExperience;
     private Schedule schedule;

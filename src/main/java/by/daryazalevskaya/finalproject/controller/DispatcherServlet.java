@@ -5,10 +5,12 @@ import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.util.ResourceBundle;
 
 @Log4j2
+@WebServlet(urlPatterns = "/final")
 public class DispatcherServlet extends HttpServlet {
 
     @Override
@@ -29,5 +31,10 @@ public class DispatcherServlet extends HttpServlet {
             log.error("Can't create application");
             destroy();
         }
+    }
+
+    @Override
+    public void destroy() {
+        ConnectionPool.getInstance().destroy();
     }
 }

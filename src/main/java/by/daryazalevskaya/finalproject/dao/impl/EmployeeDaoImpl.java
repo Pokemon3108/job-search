@@ -4,17 +4,19 @@ import by.daryazalevskaya.finalproject.dao.EmployeeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
+import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.creator.EmployeeCreator;
 import by.daryazalevskaya.finalproject.service.sql.EmployeeStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
-
 
     private static final String READ_ALL_QUERY = "SELECT * FROM employee";
 
@@ -27,6 +29,8 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
             "resume_id = ?  WHERE user_id=?";
 
     private static final String DELETE_QUERY = "DELETE employee WHERE user_id =?";
+
+    private static final String READ_VACANCIES_QUERY="SELECT * FROM employee_vacancies WHERE employee_id=?";
 
 
     @Override
@@ -74,5 +78,25 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     @Override
     public List<Employee> findAll() throws DaoException {
         return super.findAll(READ_ALL_QUERY, new EmployeeCreator());
+    }
+
+    @Override
+    public List<Vacancy> getEmployeeVacancies(int employeeId) throws DaoException {
+        ResultSet resultSet = null;
+
+        List<Vacancy> entities = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(READ_VACANCIES_QUERY)) {
+            statement.setInt(1, employeeId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                entities.add(new Vacancy(resultSet.getInt("id")));
+            }
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
+            closeSet(resultSet);
+        }
+
+        return entities;
     }
 }
