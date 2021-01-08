@@ -1,5 +1,6 @@
 package by.daryazalevskaya.finalproject.dao.impl;
 
+import by.daryazalevskaya.finalproject.dao.Dao;
 import by.daryazalevskaya.finalproject.dao.EmployeeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
@@ -31,6 +32,10 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     private static final String DELETE_QUERY = "DELETE employee WHERE user_id =?";
 
     private static final String READ_VACANCIES_QUERY="SELECT * FROM employee_vacancies WHERE employee_id=?";
+
+    private static final String FIND_IN_RANGE="SELECT * FROM employee LIMIT ?,?";
+
+    private static final String COUNT="SELECT count(*) FROM employee";
 
 
     @Override
@@ -99,4 +104,16 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
         return entities;
     }
+
+    @Override
+    public List<Employee> findFromTo(int start, int end) throws DaoException {
+        return super.findInRange(FIND_IN_RANGE, new EmployeeCreator(), start, end);
+    }
+
+    @Override
+    public int count() throws DaoException {
+        return super.count(COUNT);
+    }
+
+
 }

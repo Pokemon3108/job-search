@@ -142,4 +142,43 @@ public abstract class BaseDao {
             log.error(e);
         }
     }
+
+    protected <T extends Entity> List<T> findInRange(final String query, Creator<T> creator, int start, int end) throws DaoException {
+        ResultSet resultSet = null;
+
+        List<T> entities = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, start);
+            statement.setInt(2, end);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                if (creator == null) {
+                    throw new DaoException("Can't build object from database");
+                }
+                entities.add(creator.createEntity(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
+            closeSet(resultSet);
+        }
+
+        return entities;
+    }
+
+    protected int count(final String query) throws DaoException {
+        ResultSet resultSet = null;
+        int amount=0;
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            resultSet = statement.executeQuery();
+            ResultSetMetaData metaData = resultSet.getMetaData();
+
+            amount = metaData.getColumnCount();
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
+            closeSet(resultSet);
+        }
+        return amount;
+    }
 }

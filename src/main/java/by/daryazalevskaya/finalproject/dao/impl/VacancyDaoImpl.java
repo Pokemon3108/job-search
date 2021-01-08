@@ -3,7 +3,9 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
+import by.daryazalevskaya.finalproject.service.creator.EmployeeCreator;
 import by.daryazalevskaya.finalproject.service.creator.VacancyCreator;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.VacancyStatementFormer;
@@ -28,6 +30,10 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             "schedule=?::schedule_type, duties=?, requirements=?, employer_id=? WHERE id=?";
 
     private static final String DELETE_QUERY = "DELETE vacancy WHERE id =?";
+
+    private static final String FIND_IN_RANGE="SELECT * FROM vacancy LIMIT ?,?";
+
+    private static final String COUNT="SELECT count(*) FROM vacancy";
 
     @Override
     public Integer create(Vacancy entity) throws InsertIdDataBaseException, DaoException {
@@ -59,5 +65,15 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     @Override
     public List<Vacancy> findAll() throws DaoException {
         return super.findAll(READ_ALL_QUERY, new VacancyCreator());
+    }
+
+    @Override
+    public List<Vacancy> findFromTo(int start, int end) throws DaoException {
+        return super.findInRange(FIND_IN_RANGE, new VacancyCreator(), start, end);
+    }
+
+    @Override
+    public int count() throws DaoException {
+        return super.count(COUNT);
     }
 }

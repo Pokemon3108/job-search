@@ -7,10 +7,13 @@ import lombok.extern.log4j.Log4j2;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 @Log4j2
-@WebServlet(urlPatterns = "/final")
+@WebServlet
 public class DispatcherServlet extends HttpServlet {
 
     @Override
@@ -31,6 +34,12 @@ public class DispatcherServlet extends HttpServlet {
             log.error("Can't create application");
             destroy();
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(req.getContextPath());
+        System.out.println(req.getRequestURI());
     }
 
     @Override
