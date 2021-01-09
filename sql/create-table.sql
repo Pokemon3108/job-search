@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS usr
     id       SERIAL PRIMARY KEY,
     role     user_role    NOT NULL,
     username VARCHAR(255) UNIQUE NOT NULL,
-    password CHAR(20)     NOT NULL
+    password CHAR(64)     NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS resume

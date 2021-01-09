@@ -1,6 +1,8 @@
 package by.daryazalevskaya.finalproject.controller.command;
 
 import by.daryazalevskaya.finalproject.controller.UriPattern;
+import by.daryazalevskaya.finalproject.controller.command.get.RegisterGetCommand;
+import by.daryazalevskaya.finalproject.controller.command.post.RegisterPostCommand;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -13,6 +15,10 @@ public class CommandStorage {
     private static Map<UriPattern, ActionCommand> postRequestMap = new EnumMap<>(UriPattern.class);
 
     private CommandStorage() {
+        getRequestMap.put(UriPattern.REGISTRATION, new RegisterGetCommand());
+
+
+        postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         //TODO fill maps
     }
 

@@ -1,5 +1,7 @@
 package by.daryazalevskaya.finalproject.service;
 
+import by.daryazalevskaya.finalproject.dao.exception.DaoException;
+import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
 
 import java.util.List;
@@ -12,9 +14,13 @@ public abstract class BaseService<T> {
         this.transaction = transaction;
     }
 
-    protected abstract Integer create(T entity);
-    protected abstract Optional<T> read(int id);
-    protected abstract void update(T entity);
-    protected abstract void delete(int id);
-    protected abstract List<T> findAll();
+    public abstract boolean addNewEntity(T entity) throws DaoException, InsertIdDataBaseException;
+
+    public abstract Optional<T> read(int id) throws DaoException;
+
+    public abstract void update(T entity) throws DaoException;
+
+    public abstract void delete(int id) throws DaoException;
+
+    public abstract List<T> findAll() throws DaoException;
 }

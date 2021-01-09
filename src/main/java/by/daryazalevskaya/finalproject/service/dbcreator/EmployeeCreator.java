@@ -1,4 +1,4 @@
-package by.daryazalevskaya.finalproject.service.creator;
+package by.daryazalevskaya.finalproject.service.dbcreator;
 
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;

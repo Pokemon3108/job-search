@@ -4,7 +4,7 @@ import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.service.creator.ResumeCreator;
+import by.daryazalevskaya.finalproject.service.dbcreator.ResumeCreator;
 import by.daryazalevskaya.finalproject.service.sql.ResumeStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 

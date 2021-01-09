@@ -3,7 +3,7 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.Entity;
-import by.daryazalevskaya.finalproject.service.creator.Creator;
+import by.daryazalevskaya.finalproject.service.dbcreator.Creator;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import lombok.extern.log4j.Log4j2;
 

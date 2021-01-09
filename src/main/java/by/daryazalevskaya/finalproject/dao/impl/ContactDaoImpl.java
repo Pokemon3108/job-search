@@ -4,7 +4,7 @@ import by.daryazalevskaya.finalproject.dao.ContactDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.Contact;
-import by.daryazalevskaya.finalproject.service.creator.ContactCreator;
+import by.daryazalevskaya.finalproject.service.dbcreator.ContactCreator;
 import by.daryazalevskaya.finalproject.service.sql.ContactStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import lombok.extern.log4j.Log4j2;

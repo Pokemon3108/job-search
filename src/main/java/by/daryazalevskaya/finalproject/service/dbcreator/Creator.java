@@ -1,4 +1,4 @@
-package by.daryazalevskaya.finalproject.service.creator;
+package by.daryazalevskaya.finalproject.service.dbcreator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

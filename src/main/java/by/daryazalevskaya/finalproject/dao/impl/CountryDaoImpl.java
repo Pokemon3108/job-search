@@ -4,8 +4,7 @@ import by.daryazalevskaya.finalproject.dao.CountryDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.model.Country;
-import by.daryazalevskaya.finalproject.service.creator.CountryCreator;
-import by.daryazalevskaya.finalproject.service.creator.EmployeeCreator;
+import by.daryazalevskaya.finalproject.service.dbcreator.CountryCreator;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class CountryDaoImpl extends BaseDao implements CountryDao {
 
 
     @Override
-    public Integer create(Country entity) throws IllegalOperationException {
+    public Integer create(Country entity)  {
         throw new IllegalOperationException();
     }
 
@@ -35,16 +34,16 @@ public class CountryDaoImpl extends BaseDao implements CountryDao {
         final String fieldName = "name";
         String countryName = findStringFieldById(id, FIND_COUNTRY_BY_ID_QUERY, fieldName);
         Country country = new Country(id, countryName);
-        return Optional.ofNullable(country);
+        return Optional.of(country);
     }
 
     @Override
-    public void update(Country entity) throws IllegalOperationException {
+    public void update(Country entity)  {
         throw new IllegalOperationException();
     }
 
     @Override
-    public void delete(int id) throws IllegalOperationException {
+    public void delete(int id)  {
         throw new IllegalOperationException();
     }
 

@@ -3,10 +3,8 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
-import by.daryazalevskaya.finalproject.service.creator.EmployeeCreator;
-import by.daryazalevskaya.finalproject.service.creator.VacancyCreator;
+import by.daryazalevskaya.finalproject.service.dbcreator.VacancyCreator;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.VacancyStatementFormer;
 

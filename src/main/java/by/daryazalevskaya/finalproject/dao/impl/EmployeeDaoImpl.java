@@ -1,12 +1,11 @@
 package by.daryazalevskaya.finalproject.dao.impl;
 
-import by.daryazalevskaya.finalproject.dao.Dao;
 import by.daryazalevskaya.finalproject.dao.EmployeeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
-import by.daryazalevskaya.finalproject.service.creator.EmployeeCreator;
+import by.daryazalevskaya.finalproject.service.dbcreator.EmployeeCreator;
 import by.daryazalevskaya.finalproject.service.sql.EmployeeStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 

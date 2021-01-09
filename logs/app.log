@@ -1,1 +1,1 @@
-22:41:51.423 [main] INFO by.daryazalevskaya.finalproject.dao.pool.ConnectionPool Connection was received from pool. Current pool size: 1 used connections; 19 free connection
+17:44:27.713 [main] INFO by.daryazalevskaya.finalproject.dao.pool.ConnectionPool Connection was received from pool. Current pool size: 1 used connections; 19 free connection

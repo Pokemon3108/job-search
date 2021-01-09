@@ -1,6 +1,6 @@
 package by.daryazalevskaya.finalproject.dao.exception;
 
-public class IllegalOperationException extends Exception {
+public class IllegalOperationException extends RuntimeException {
     public IllegalOperationException() {
     }
 

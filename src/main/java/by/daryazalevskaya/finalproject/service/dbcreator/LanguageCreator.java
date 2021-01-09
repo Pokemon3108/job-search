@@ -1,4 +1,4 @@
-package by.daryazalevskaya.finalproject.service.creator;
+package by.daryazalevskaya.finalproject.service.dbcreator;
 
 import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.model.type.LanguageLevel;
