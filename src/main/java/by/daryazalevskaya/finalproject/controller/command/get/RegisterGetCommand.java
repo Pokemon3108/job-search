@@ -10,8 +10,9 @@ import java.io.IOException;
 public class RegisterGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final String jsp="/view/authorization/registration.jsp";
         request.getServletContext()
-                .getRequestDispatcher("/view/authorization/registration.jsp")
+                .getRequestDispatcher(jsp)
                 .forward(request, response);
     }
 }

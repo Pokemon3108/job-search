@@ -30,10 +30,10 @@ public class UserValidator {
     public Map<String, String> getInvalidMessages(User user) {
         Map<String, String> messages = new HashMap<>();
         if (!isValidEmail(user.getUsername())) {
-            messages.put("email-error", "Invalid email format");
+            messages.put("invalidEmail", "Invalid email format.");
         }
         if (!isPasswordValid(user.getPassword())) {
-            messages.put("password-error", "Invalid password format. It should contains more than 5 symbols.");
+            messages.put("invalidPassword", "Invalid password format. It should contains more than 5 symbols.");
         }
         return messages;
     }

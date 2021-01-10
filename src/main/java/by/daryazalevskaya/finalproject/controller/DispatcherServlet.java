@@ -1,8 +1,10 @@
 package by.daryazalevskaya.finalproject.controller;
 
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -30,6 +32,7 @@ public class DispatcherServlet extends HttpServlet {
         int startPoolSize = Integer.parseInt(resource.getString("db.poolStartSize"));
         int timeout = Integer.parseInt(resource.getString("db.connectionTimeout"));
 
+
         try {
             ConnectionPool.getInstance().init(driver,
                     url, user, pass, startPoolSize, poolSizeMax, timeout);
@@ -39,24 +42,31 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(1111);
-        process(req, resp);
+        try {
+            process(req, resp);
+        } catch (ConnectionException e) {
+            log.error(e);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        process(req, resp);
+        try {
+            process(req, resp);
+        } catch (ConnectionException e) {
+            log.error(e);
+        }
     }
 
-    private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ConnectionException {
         ActionCommand command = (ActionCommand) req.getAttribute("command");
-        System.out.println(command);
         if (command != null) {
             command.execute(req, resp);
         } else {
-            resp.sendError(404);
+           // resp.sendError(404);
         }
     }
 

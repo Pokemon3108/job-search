@@ -67,4 +67,13 @@ public class TransactionImpl implements Transaction {
             throw new TransactionException(e);
         }
     }
+
+    @Override
+    public void close() throws TransactionException {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+    }
 }

@@ -1,18 +1,17 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
 import by.daryazalevskaya.finalproject.dao.Dao;
+import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.UserDao;
-import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
-import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.dao.exception.*;
 import by.daryazalevskaya.finalproject.dao.impl.UserDaoImpl;
+import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.UserService;
 import lombok.extern.log4j.Log4j2;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Optional;
@@ -20,61 +19,58 @@ import java.util.Optional;
 @Log4j2
 public class UserServiceImpl extends UserService {
 
+    public UserServiceImpl() throws ConnectionException {
+        super();
+    }
+
     @Override
     public boolean addNewEntity(User entity) throws DaoException, InsertIdDataBaseException {
         boolean isAdded = false;
-        UserDaoImpl userDao = new UserDaoImpl();
+
+        UserDao userDao=transaction.createDao(DaoType.USER);
 
         if (userDao.read(entity.getUsername()).isEmpty()) {
             entity.setPassword(crypt(entity.getPassword()));
-            userDao.create(entity);
+            System.out.println(userDao.create(entity));
             isAdded = true;
         }
+        try {
+            transaction.commit();
+            transaction.close();
+        } catch (TransactionException e) {
+            e.printStackTrace();
+        }
         return isAdded;
-}
+    }
 
 
     @Override
     public Optional<User> read(int id) throws DaoException {
-        Optional<User> user = Optional.empty();
-        try {
-            UserDao userDao = new UserDaoImpl();
-            user = userDao.read(id);
-        } catch (IllegalOperationException ex) {
-            //can't be thrown in this method
-        }
+        Optional<User> user;
+        UserDao userDao = new UserDaoImpl();
+
+        user = userDao.read(id);
+
         return user;
     }
 
     @Override
     public void update(User entity) throws DaoException {
-        try {
-            Dao<User> userDao = new UserDaoImpl();
-            userDao.update(entity);
-        } catch (IllegalOperationException ex) {
-            //can't be thrown in this method
-        }
+        Dao<User> userDao = new UserDaoImpl();
+        userDao.update(entity);
     }
 
     @Override
     public void delete(int id) throws DaoException {
-        try {
-            Dao<User> userDao = new UserDaoImpl();
-            userDao.delete(id);
-        } catch (IllegalOperationException ex) {
-            //can't be thrown in this method
-        }
+        Dao<User> userDao = new UserDaoImpl();
+        userDao.delete(id);
     }
 
     @Override
     public List<User> findAll() throws DaoException {
-        List<User> users = new ArrayList<>();
-        try {
-            Dao<User> userDao = new UserDaoImpl();
-            users = userDao.findAll();
-        } catch (DaoException | IllegalOperationException e) {
-            log.error(e);
-        }
+        List<User> users;
+        Dao<User> userDao = new UserDaoImpl();
+        users = userDao.findAll();
         return users;
     }
 
@@ -84,10 +80,10 @@ public class UserServiceImpl extends UserService {
             digest = MessageDigest.getInstance("sha-256");
             digest.reset();
             digest.update(string.getBytes());
-            byte hash[] = digest.digest();
+            byte[] hash = digest.digest();
             Formatter formatter = new Formatter();
-            for (int i = 0; i < hash.length; i++) {
-                formatter.format("%02X", hash[i]);
+            for (byte b : hash) {
+                formatter.format("%02X", b);
             }
             String hashStr = formatter.toString();
             formatter.close();

@@ -15,6 +15,10 @@
             <AppenderRef ref="File"/>
         </Root>
 
+        <Logger name="by.daryazalevskaya.finalproject" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
     </Loggers>
 
 </Configuration>

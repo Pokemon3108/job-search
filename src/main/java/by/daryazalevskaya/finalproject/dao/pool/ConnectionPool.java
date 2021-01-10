@@ -28,6 +28,7 @@ public final class ConnectionPool {
     private List<ProxyConnection> usedConnections = new CopyOnWriteArrayList<>();
 
     private ConnectionPool() {
+
     }
 
     private static ConnectionPool instance = new ConnectionPool();
@@ -39,8 +40,10 @@ public final class ConnectionPool {
 
     public Connection getConnection() throws PoolException {
         lock.lock();
+
         ProxyConnection connection = null;
         while (connection == null) {
+
             try {
                 if (!freeConnections.isEmpty()) {
                     connection = freeConnections.take();
@@ -55,6 +58,7 @@ public final class ConnectionPool {
                 } else if (usedConnections.size() < maxSize) {
                     connection = createConnection();
                 } else {
+
                     throw new PoolException("The limit of database connections is exceeded");
                 }
             } catch (InterruptedException ex) {
@@ -81,6 +85,7 @@ public final class ConnectionPool {
             this.password = password;
             this.maxSize = maxSize;
             this.connectionTimeout = connectionTimeout;
+
             for (int counter = 0; counter < startSize; ++counter) {
                 freeConnections.put(createConnection());
             }

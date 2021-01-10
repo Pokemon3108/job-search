@@ -42,9 +42,9 @@ public class UserDaoImplTest {
 
     @DataProvider(name = "user")
     public Object[][] createUser() {
-        User user = User.builder().password("qawsedrfth0123456789")
+        User user = User.builder().password("$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.1111")
                 .role(Role.EMPLOYEE)
-                .username("Kesha")
+                .username("zdashka@tut.by")
                 .build();
         return new Object[][]{{user}};
     }
