@@ -44,7 +44,7 @@ public class UserDaoImplTest {
     public Object[][] createUser() {
         User user = User.builder().password("$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.1111")
                 .role(Role.EMPLOYEE)
-                .username("zdashka@tut.by")
+                .email("zdashka@tut.by")
                 .build();
         return new Object[][]{{user}};
     }
@@ -62,7 +62,7 @@ public class UserDaoImplTest {
         final int id=1;
         User user = User.builder().password("01234567890123456789")
                 .role(Role.EMPLOYEE)
-                .username("pokemon")
+                .email("pokemon")
                 .id(id)
                 .build();
         return new Object[][]{{user, id}};
@@ -92,7 +92,7 @@ public class UserDaoImplTest {
         final  int id=3;
         User user = User.builder().password("01234567890123456789")
                 .role(Role.EMPLOYER)
-                .username("Dasha")
+                .email("Dasha")
                 .id(id)
                 .build();
         return new Object[][]{{user, id}};
@@ -100,10 +100,10 @@ public class UserDaoImplTest {
 
     @Test(dataProvider = "updatedUser")
     public void updateTest(User user, int id) throws DaoException, NoEntityInDataBaseException {
-        final String username = "Dasha";
-        final String newUserName = "MyLogin";
-        User userFromDB = userDao.read(username).orElseThrow(NoEntityInDataBaseException::new);
-        userFromDB.setUsername(newUserName);
+        final String email = "Dasha@tut.by";
+        final String newEmail = "MyLogin@tut.by";
+        User userFromDB = userDao.read(email).orElseThrow(NoEntityInDataBaseException::new);
+        userFromDB.setEmail(newEmail);
 
         userDao.update(user);
         Optional<User> updatedUserFromDB = userDao.read(id);
@@ -116,7 +116,7 @@ public class UserDaoImplTest {
         final int id=2;
         User user = User.builder().password("0a234cccbb1234567aa")
                 .role(Role.EMPLOYEE)
-                .username("Parrot")
+                .email("Parrot@gmail.com")
                 .id(2)
                 .build();
         return new Object[][]{{user, id}};

@@ -9,11 +9,11 @@ public class UserBuilder implements RequestBuilder<User> {
 
     @Override
     public User build(HttpServletRequest request) {
-        String username=request.getParameter("username");
+        String email=request.getParameter("email");
         String password=request.getParameter("password");
         Role role=Role.valueOf(request.getParameter("role"));
         return User.builder()
-                .username(username)
+                .email(email)
                 .role(role)
                 .password(password)
                 .build();

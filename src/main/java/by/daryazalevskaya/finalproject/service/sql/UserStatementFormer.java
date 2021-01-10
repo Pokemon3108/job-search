@@ -9,7 +9,7 @@ public  class UserStatementFormer extends StatementFormer<User> {
 
     @Override
     public void fillStatement(PreparedStatement statement, User entity) throws SQLException {
-        statement.setString(1, entity.getUsername());
+        statement.setString(1, entity.getEmail());
         statement.setString(2, entity.getPassword());
         statement.setString(3, entity.getRole().toString());
     }

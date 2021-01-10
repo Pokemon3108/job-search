@@ -3,6 +3,7 @@ package by.daryazalevskaya.finalproject.controller;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
+import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
@@ -47,7 +48,7 @@ public class DispatcherServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             process(req, resp);
-        } catch (ConnectionException e) {
+        } catch (ConnectionException | TransactionException e) {
             log.error(e);
         }
     }
@@ -56,12 +57,12 @@ public class DispatcherServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             process(req, resp);
-        } catch (ConnectionException e) {
+        } catch (ConnectionException | TransactionException e) {
             log.error(e);
         }
     }
 
-    private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ConnectionException {
+    private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ConnectionException, TransactionException {
         ActionCommand command = (ActionCommand) req.getAttribute("command");
         if (command != null) {
             command.execute(req, resp);

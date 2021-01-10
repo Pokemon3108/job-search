@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserValidator {
-    private static final String PASSWORD_REGEX = "[\\w~!-]{5,}";
+    private static final String PASSWORD_REGEX = "\"(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\"";
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
                     "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -29,11 +29,12 @@ public class UserValidator {
 
     public Map<String, String> getInvalidMessages(User user) {
         Map<String, String> messages = new HashMap<>();
-        if (!isValidEmail(user.getUsername())) {
+        if (!isValidEmail(user.getEmail())) {
             messages.put("invalidEmail", "Invalid email format.");
         }
         if (!isPasswordValid(user.getPassword())) {
-            messages.put("invalidPassword", "Invalid password format. It should contains more than 5 symbols.");
+            messages.put("invalidPassword", "Invalid password format. " +
+                    "It should contains 1 number, 1 capital, 1 lowercase letter and at least 8 symbols.");
         }
         return messages;
     }

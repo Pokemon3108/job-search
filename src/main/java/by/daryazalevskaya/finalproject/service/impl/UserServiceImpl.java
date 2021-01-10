@@ -3,9 +3,9 @@ package by.daryazalevskaya.finalproject.service.impl;
 import by.daryazalevskaya.finalproject.dao.Dao;
 import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.UserDao;
-import by.daryazalevskaya.finalproject.dao.exception.*;
+import by.daryazalevskaya.finalproject.dao.exception.DaoException;
+import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.impl.UserDaoImpl;
-import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -19,26 +19,15 @@ import java.util.Optional;
 @Log4j2
 public class UserServiceImpl extends UserService {
 
-    public UserServiceImpl() throws ConnectionException {
-        super();
-    }
-
     @Override
     public boolean addNewEntity(User entity) throws DaoException, InsertIdDataBaseException {
         boolean isAdded = false;
-
         UserDao userDao=transaction.createDao(DaoType.USER);
 
-        if (userDao.read(entity.getUsername()).isEmpty()) {
+        if (userDao.read(entity.getEmail()).isEmpty()) {
             entity.setPassword(crypt(entity.getPassword()));
-            System.out.println(userDao.create(entity));
+            userDao.create(entity);
             isAdded = true;
-        }
-        try {
-            transaction.commit();
-            transaction.close();
-        } catch (TransactionException e) {
-            e.printStackTrace();
         }
         return isAdded;
     }
@@ -48,9 +37,7 @@ public class UserServiceImpl extends UserService {
     public Optional<User> read(int id) throws DaoException {
         Optional<User> user;
         UserDao userDao = new UserDaoImpl();
-
         user = userDao.read(id);
-
         return user;
     }
 

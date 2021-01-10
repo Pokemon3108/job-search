@@ -5,6 +5,7 @@ import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
@@ -28,39 +29,48 @@ public class RegisterPostCommand implements ActionCommand {
     private static final String ERROR = "/view/error500.jsp";
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
 
-        TransactionFactory factory=new TransactionFactoryImpl();
-        Transaction transaction=factory.createTransaction();
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
 
         UserService service = new UserServiceImpl();
+        service.setTransaction(transaction);
 
         UserBuilder builder = new UserBuilder();
         User user = builder.build(request);
         UserValidator validator = new UserValidator();
 
+        final String page = request.getParameter("page");
+
         Map<String, String> messages = validator.getInvalidMessages(user);
         if (!messages.isEmpty()) {
             messages.forEach(request::setAttribute);
-
-            final String page=request.getParameter("page");
             request.getServletContext()
                     .getRequestDispatcher(page)
                     .forward(request, response);
-
         } else {
             try {
-                service.addNewEntity(user);
+                if (!service.addNewEntity(user)) {
+                    request.setAttribute("repeatedEmail", "User with this email exists.");
+                    request.getServletContext()
+                            .getRequestDispatcher(page)
+                            .forward(request, response);
+                }
+
                 response.sendRedirect(UriPattern.LOGIN.getUrl());
+                transaction.commit();
+                transaction.close();
+
             } catch (DaoException | InsertIdDataBaseException e) {
+                transaction.rollback();
+                transaction.close();
                 log.error(e);
                 request.setAttribute("error", e);
                 request.getServletContext().getRequestDispatcher(ERROR).forward(request, response);
             }
         }
-
-
+        
     }
-
 
 }

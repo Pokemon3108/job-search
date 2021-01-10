@@ -16,7 +16,7 @@ public class User extends Entity {
         super.id=id;
     }
 
-    private String username;
+    private String email;
     private String password;
     private Role role;
 }
