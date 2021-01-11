@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class EmployeeStatementFormer extends StatementFormer<Employee> {
     @Override
     public void fillStatement(PreparedStatement statement, Employee entity) throws SQLException {
-        statement.setInt(1, entity.getResume().getId());
-        statement.setInt(2, entity.getUser().getId());
+        statement.setInt(1, entity.getId());
     }
 }

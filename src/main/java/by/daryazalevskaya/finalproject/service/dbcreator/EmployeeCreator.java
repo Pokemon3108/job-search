@@ -12,7 +12,7 @@ public class EmployeeCreator extends Creator<Employee> {
     public Employee createEntity(ResultSet set) throws SQLException {
         return Employee.builder()
                 .resume(new Resume(set.getInt("resume_id")))
-                .user(new User(set.getInt("user_id")))
+                .id(set.getInt("user_id"))
                 .build();
     }
 }

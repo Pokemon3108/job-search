@@ -3,9 +3,9 @@
 CREATE TABLE IF NOT EXISTS contact
 (
     id        SERIAL PRIMARY KEY,
-    telephone VARCHAR(20)  NOT NULL,
-    email     VARCHAR(255) NOT NULL,
-    skype     VARCHAR(50)  NOT NULL
+    telephone VARCHAR(20)  ,
+    email     VARCHAR(255) ,
+    skype     VARCHAR(50)
 );
 
 CREATE TYPE gender_type as enum ('Female', 'Male');
@@ -13,14 +13,14 @@ CREATE TYPE gender_type as enum ('Female', 'Male');
 CREATE TABLE IF NOT EXISTS country
 (
     id   SERIAL       NOT NULL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS employee_personal_info
 (
     id       SERIAL PRIMARY KEY,
-    name     VARCHAR(30) NOT NULL,
-    surname  VARCHAR(50) NOT NULL,
+    name     VARCHAR(30) ,
+    surname  VARCHAR(50) ,
     birthday DATE,
     gender   gender_type,
     country  INTEGER REFERENCES country (id),
@@ -32,14 +32,14 @@ CREATE TYPE lang_level as enum ('A1', 'A2', 'B1', 'B2', 'C1', 'C2');
 CREATE TABLE IF NOT EXISTS language
 (
     id    SERIAL PRIMARY KEY,
-    name  VARCHAR(30) NOT NULL,
-    level lang_level  NOT NULL
+    name  VARCHAR(30) ,
+    level lang_level
 );
 
 CREATE TABLE IF NOT EXISTS specialization_type
 (
     id   SERIAL      NOT NULL PRIMARY KEY,
-    name VARCHAR(128) NOT NULL
+    name VARCHAR(128)
 );
 
 CREATE TABLE desired_position_type
@@ -104,7 +104,7 @@ CREATE TABLE employee
 CREATE TABLE employer
 (
     user_id      INTEGER REFERENCES usr (id),
-    company_name VARCHAR(50) NOT NULL,
+    company_name VARCHAR(50),
     country      INTEGER REFERENCES country (id),
     city         VARCHAR(100),
     contact_id   INTEGER REFERENCES contact (id),
@@ -115,11 +115,11 @@ CREATE TABLE vacancy
 (
     id             SERIAL PRIMARY KEY,
     position       INTEGER REFERENCES desired_position_type (id),
-    city           VARCHAR(100) NOT NULL,
-    min_experience INTEGER      NOT NULL,
+    city           VARCHAR(100) ,
+    min_experience INTEGER      ,
     schedule       schedule_type,
-    duties         TEXT         NOT NULL,
-    requirements   TEXT         NOT NULL,
+    duties         TEXT         ,
+    requirements   TEXT         ,
     employer_id    INTEGER REFERENCES employer (user_id)
 );
 

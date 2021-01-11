@@ -20,13 +20,14 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
     private static final String READ_BY_ID_QUERY = "SELECT * FROM employer WHERE id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO employer " +
-            "(company_name, country, city, contact_id, user_id) VALUES (?, ?, ?, ?, ?)";
+            "(user_id) VALUES (?)";
 
     private static final String UPDATE_QUERY = "UPDATE employer SET  " +
             "company_name = ?, country=?, city=?, contact_id=? WHERE user_id=?";
 
 
-    private static final String DELETE_QUERY = "DELETE employer usr WHERE id =?";
+    private static final String DELETE_QUERY = "DELETE employer usr WHERE user_id =?";
+
 
     @Override
     public Integer create(Employer entity) throws DaoException {

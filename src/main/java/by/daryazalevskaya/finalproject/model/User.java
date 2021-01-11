@@ -1,6 +1,7 @@
 package by.daryazalevskaya.finalproject.model;
 
 import by.daryazalevskaya.finalproject.model.type.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -10,13 +11,16 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @NoArgsConstructor
+@AllArgsConstructor
 public class User extends Entity {
 
     public User(int id) {
         super.id=id;
     }
 
-    private String email;
-    private String password;
-    private Role role;
+    protected String email;
+    protected String password;
+    protected Role role;
+
+
 }

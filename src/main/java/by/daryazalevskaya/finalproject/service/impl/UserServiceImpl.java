@@ -26,7 +26,7 @@ public class UserServiceImpl extends UserService {
 
         if (userDao.read(entity.getEmail()).isEmpty()) {
             entity.setPassword(crypt(entity.getPassword()));
-            userDao.create(entity);
+            entity.setId(userDao.create(entity));
             isAdded = true;
         }
         return isAdded;

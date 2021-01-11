@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.controller.command.post;
 
 import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.controller.command.validation.UserValidationCommand;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
@@ -12,6 +13,7 @@ import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.UrlSlicer;
 import by.daryazalevskaya.finalproject.service.UserService;
+import by.daryazalevskaya.finalproject.service.factory.UserWithRoleFactory;
 import by.daryazalevskaya.finalproject.service.impl.UserServiceImpl;
 import by.daryazalevskaya.finalproject.service.requestbuilder.UserBuilder;
 import by.daryazalevskaya.finalproject.service.validator.UserValidator;
@@ -34,43 +36,40 @@ public class RegisterPostCommand implements ActionCommand {
         TransactionFactory factory = new TransactionFactoryImpl();
         Transaction transaction = factory.createTransaction();
 
-        UserService service = new UserServiceImpl();
-        service.setTransaction(transaction);
+        try {
+            UserService service = new UserServiceImpl();
+            service.setTransaction(transaction);
 
-        UserBuilder builder = new UserBuilder();
-        User user = builder.build(request);
-        UserValidator validator = new UserValidator();
+            UserBuilder builder = new UserBuilder();
+            User user = builder.build(request);
+            UserValidationCommand validationCommand = new UserValidationCommand();
+            validationCommand.execute(request, response);
 
-        final String page = request.getParameter("page");
-
-        Map<String, String> messages = validator.getInvalidMessages(user);
-        if (!messages.isEmpty()) {
-            messages.forEach(request::setAttribute);
-            request.getServletContext()
-                    .getRequestDispatcher(page)
-                    .forward(request, response);
-        } else {
             try {
                 if (!service.addNewEntity(user)) {
+                    final String page = request.getParameter("page");
                     request.setAttribute("repeatedEmail", "User with this email exists.");
                     request.getServletContext()
                             .getRequestDispatcher(page)
                             .forward(request, response);
                 }
 
+                UserWithRoleFactory factoryUser = new UserWithRoleFactory();
+                factoryUser.createUser(user, transaction);
+
                 response.sendRedirect(UriPattern.LOGIN.getUrl());
                 transaction.commit();
-                transaction.close();
 
             } catch (DaoException | InsertIdDataBaseException e) {
                 transaction.rollback();
-                transaction.close();
                 log.error(e);
                 request.setAttribute("error", e);
                 request.getServletContext().getRequestDispatcher(ERROR).forward(request, response);
             }
+        } finally {
+            transaction.close();
         }
-        
+
     }
 
 }

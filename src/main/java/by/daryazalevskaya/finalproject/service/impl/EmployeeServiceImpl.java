@@ -7,11 +7,12 @@ import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.service.BaseService;
+import by.daryazalevskaya.finalproject.service.EmployeeService;
 
 import java.util.List;
 import java.util.Optional;
 
-public class EmployeeServiceImpl extends BaseService<Employee> {
+public class EmployeeServiceImpl extends EmployeeService {
     @Override
     public boolean addNewEntity(Employee entity) throws DaoException, InsertIdDataBaseException {
         boolean isAdded = false;

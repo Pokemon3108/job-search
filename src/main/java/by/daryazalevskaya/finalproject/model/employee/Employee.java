@@ -9,7 +9,12 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
-public class Employee extends Entity {
-    private User user;
+public class Employee extends User {
+
+    public Employee(int id) {
+        super(id);
+    }
+
+    // private User user;
     private Resume resume;
 }

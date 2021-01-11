@@ -23,7 +23,7 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     private static final String READ_BY_ID_QUERY = "SELECT * FROM employee WHERE user_id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO employee " +
-            "(resume_id, user_id) VALUES (?, ?)";
+            "(user_id) VALUES (?)";
 
     private static final String UPDATE_QUERY = "UPDATE employee SET  " +
             "resume_id = ?  WHERE user_id=?";

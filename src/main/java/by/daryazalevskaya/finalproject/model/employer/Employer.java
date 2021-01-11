@@ -6,19 +6,21 @@ import by.daryazalevskaya.finalproject.model.Entity;
 import by.daryazalevskaya.finalproject.model.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true) // object id will be included
 @Data
 @SuperBuilder
-public class Employer extends Entity {
+@NoArgsConstructor
+public class Employer extends User {
 
     public Employer(int id) {
         super.id=id;
     }
 
-    private User user;
+    //private User user;
     private String companyName;
     private Country country;
     private String city;
