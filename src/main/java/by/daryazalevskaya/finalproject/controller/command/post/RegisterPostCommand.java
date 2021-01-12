@@ -48,7 +48,7 @@ public class RegisterPostCommand implements ActionCommand {
             try {
                 if (!service.addNewEntity(user)) {
                     final String page = request.getParameter("page");
-                    request.setAttribute("repeatedEmail", "User with this email exists.");
+                    request.setAttribute("repeatedEmail", true);
                     request.getServletContext()
                             .getRequestDispatcher(page)
                             .forward(request, response);
@@ -67,7 +67,7 @@ public class RegisterPostCommand implements ActionCommand {
                 request.getServletContext().getRequestDispatcher(ERROR).forward(request, response);
             }
         } finally {
-            transaction.close();
+             transaction.close();
         }
 
     }

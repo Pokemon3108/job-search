@@ -12,7 +12,7 @@ public class UserCreator extends Creator<User> {
     public User createEntity(ResultSet set) throws SQLException {
         return  User.builder()
                 .id(set.getInt("id"))
-                .email(set.getString("username"))
+                .email(set.getString("email"))
                 .password(set.getString("password"))
                 .role(Role.valueOf(set.getString("role"))).build();
     }

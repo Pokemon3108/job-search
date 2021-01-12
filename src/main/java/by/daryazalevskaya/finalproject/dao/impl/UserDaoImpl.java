@@ -27,12 +27,11 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     private static final String DELETE_QUERY = "DELETE FROM usr WHERE id =?";
 
     @Override
-    public Optional<User> read(String username) throws DaoException {
+    public Optional<User> read(String email) throws DaoException {
         ResultSet resultSet = null;
         User user = null;
         try (PreparedStatement statement = connection.prepareStatement(READ_LOGIN_QUERY)) {
-
-            statement.setString(1, username);
+            statement.setString(1, email);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 Creator<User> creator = new UserCreator();

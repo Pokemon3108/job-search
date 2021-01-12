@@ -1,15 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="ru_RU" scope="session" />
+<fmt:setBundle basename="property.pagecontent" var="rb" />
+<html><head>
+  <title>Registration</title>
+</head>
+<body>
+<fmt:message key="welcome" bundle="${ rb }" />
+<hr/>
 
-  <c:set var="pgTitle" value="Welcome" scope="request" />
-  <c:set var="pgTitle" value="w" scope="application" />
-
-  ${pgTitle}
-
-  </body>
-</html>
+</body></html>

@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.controller.command;
 
 import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.get.RegisterGetCommand;
+import by.daryazalevskaya.finalproject.controller.command.post.ChangeLocaleCommand;
 import by.daryazalevskaya.finalproject.controller.command.post.RegisterPostCommand;
 
 import java.util.EnumMap;
@@ -17,8 +18,8 @@ public class CommandStorage {
     private CommandStorage() {
         getRequestMap.put(UriPattern.REGISTRATION, new RegisterGetCommand());
 
-
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
+        getRequestMap.put(UriPattern.CHANGE_LOCALE, new ChangeLocaleCommand());
         //TODO fill maps
     }
 

@@ -1,6 +1,8 @@
 package by.daryazalevskaya.finalproject.controller.command.get;
 
+import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.model.type.Role;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +12,9 @@ import java.io.IOException;
 public class RegisterGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String jsp="/view/authorization/registration.jsp";
+        request.setAttribute("roles", Role.values());
         request.getServletContext()
-                .getRequestDispatcher(jsp)
+                .getRequestDispatcher(PagePath.REGISTRATION)
                 .forward(request, response);
     }
 }

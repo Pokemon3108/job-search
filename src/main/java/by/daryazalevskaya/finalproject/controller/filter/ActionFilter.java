@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Log4j2
-@WebFilter(urlPatterns = "/*", dispatcherTypes = DispatcherType.REQUEST)
+@WebFilter(urlPatterns = "/job/*", dispatcherTypes = DispatcherType.REQUEST)
 public class ActionFilter implements Filter {
 
     @Override
@@ -37,9 +37,10 @@ public class ActionFilter implements Filter {
                         servletRequest.setAttribute("command", CommandStorage.getInstance().getCommandPost(uri));
                         break;
                 }
+                filterChain.doFilter(servletRequest, servletResponse);
                 httpServletRequest.getRequestDispatcher("/controller").forward(servletRequest, servletResponse);
             } else {
-                log.error(String.format("Requested URI %s can't be processed by server.", ((HttpServletRequest) servletRequest).getRequestURL()));
+                log.error(String.format("Requested URI %s does not contains command.", ((HttpServletRequest) servletRequest).getRequestURL()));
                 filterChain.doFilter(servletRequest, servletResponse);
 
             }

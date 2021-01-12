@@ -5,7 +5,7 @@ import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
-import lombok.SneakyThrows;
+import by.daryazalevskaya.finalproject.model.Localization;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -19,8 +19,6 @@ import java.util.ResourceBundle;
 @Log4j2
 @WebServlet("/controller")
 public class DispatcherServlet extends HttpServlet {
-
-     //private static final String ERROR="/view/error404.jsp";
 
     @Override
     public void init() throws ServletException {
@@ -55,6 +53,7 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        log.debug(req.getRequestURL());
         try {
             process(req, resp);
         } catch (ConnectionException | TransactionException e) {
@@ -63,11 +62,12 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ConnectionException, TransactionException {
+        req.setAttribute("languages", Localization.values());
         ActionCommand command = (ActionCommand) req.getAttribute("command");
         if (command != null) {
             command.execute(req, resp);
         } else {
-           // resp.sendError(404);
+             resp.sendError(404);
         }
     }
 

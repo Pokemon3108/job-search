@@ -7,7 +7,12 @@ import by.daryazalevskaya.finalproject.service.dbcreator.Creator;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import lombok.extern.log4j.Log4j2;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -168,7 +173,7 @@ public abstract class BaseDao {
 
     protected int count(final String query) throws DaoException {
         ResultSet resultSet = null;
-        int amount=0;
+        int amount;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             resultSet = statement.executeQuery();
             ResultSetMetaData metaData = resultSet.getMetaData();

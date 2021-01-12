@@ -7,5 +7,6 @@
 </head>
 <body>
     <h1 class="text-center">404 Error!</h1>
+    <p>${error}</p>
 </body>
 </html>

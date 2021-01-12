@@ -1,6 +1,9 @@
-<%@ page import="by.daryazalevskaya.finalproject.model.type.Role" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<fmt:setLocale value="${localization}" scope="page"/>
+<fmt:setBundle basename="property.pagecontent" var="rb" />
 <html>
 <head>
     <title>Registration</title>
@@ -12,24 +15,29 @@
 
 </head>
 <body>
+
+<c:import url="/view/headers/header-guest.jsp"/>
+
+
 <div class="container">
-    <h2 class="my-sm-3">Registration</h2>
+    <h2 class="my-sm-3">
+        <fmt:message key="registration_title" bundle="${ rb }"/>
+    </h2>
 
-    <%--    ${pageContext.request.servletPath}--%>
-
-    <form name="userInfo" action="${pageContext.request.contextPath}/registration"  onsubmit="return validate(this);" method="post">
+    <form name="userInfo" action="${pageContext.request.contextPath}/job/registration" onsubmit="return validate(this);"
+          method="post">
 
         <input type="hidden" name="page" value="${pageContext.request.servletPath}">
 
-        <c:if test='${not empty invalidEmail}'>
+        <c:if test='${invalidEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                    ${invalidEmail}
+                <fmt:message key="invalidEmail" bundle="${ rb }"/>
             </p>
         </c:if>
 
-        <c:if test='${not empty repeatedEmail}'>
+        <c:if test='${repeatedEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                    ${repeatedEmail}
+                <fmt:message key="repeated_email" bundle="${ rb }"/>
             </p>
         </c:if>
 
@@ -37,28 +45,29 @@
         <div class="alert alert-danger my-sm-3 " role="alert" id="emailError"></div>
 
         <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
-                   placeholder="Email"
+                   placeholder=<fmt:message key="email" bundle="${ rb }"/>
                    required>
         </div>
 
-        <c:if test='${not empty invalidPassword}'>
+
+        <c:if test='${invalidPassword==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                    ${invalidPassword}
+                <fmt:message key="invalidPassword" bundle="${ rb }"/>
             </p>
         </c:if>
 
         <p class="alert alert-danger my-sm-3 " role="alert" id="passwordError"></p>
 
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+            <label for="password"><fmt:message key="password" bundle="${ rb }"/></label>
+            <input type="password" class="form-control" id="password" placeholder=<fmt:message key="password" bundle="${ rb }"/> name="password"
                    required>
         </div>
 
         <div class="form-group">
-            <c:set var="roles" value="<%=Role.values()%>"/>
+            <c:set var="roles" value="${roles}"/>
             <c:forEach items="${roles}" var="role">
                 <div class="custom-radio custom-control-inline">
                     <label>
@@ -69,13 +78,16 @@
             </c:forEach>
         </div>
 
-        <button type="submit" class="btn btn-success">Create account</button>
+        <button type="submit" class="btn btn-success"><fmt:message key="create_account" bundle="${ rb }"/></button>
     </form>
+
 </div>
 </body>
 
 <script src=<c:url value="/js/user-form-validation.js"/>>
-
-
 </script>
+
+<script src=<c:url value="/js/language.js"/>>
+</script>
+
 </html>

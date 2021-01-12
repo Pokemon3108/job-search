@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum UriPattern {
-    LOGIN ("/login"),
-    REGISTRATION("/registration");
-
+    LOGIN ("/job/login"),
+    REGISTRATION("/job/registration"),
+    CHANGE_LOCALE("/job/changeLocale");
 
     UriPattern(String url) {
         this.url = url;

@@ -9,8 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserValidationCommand implements ActionCommand {
     
@@ -25,12 +23,11 @@ public class UserValidationCommand implements ActionCommand {
         int errors=0;
         if (!validator.isValidEmail(user.getEmail())) {
             ++errors;
-            request.setAttribute("invalidEmail", "Invalid email format.");
+            request.setAttribute("isInvalidEmail", true);
         }
         if (!validator.isPasswordValid(user.getPassword())) {
             ++errors;
-            request.setAttribute("invalidPassword", "Invalid password format. " +
-                    "It should contains 1 number, 1 capital, 1 lowercase letter and at least 8 symbols.");
+            request.setAttribute("isInvalidPassword", true);
         }
 
         if (errors!=0) {
