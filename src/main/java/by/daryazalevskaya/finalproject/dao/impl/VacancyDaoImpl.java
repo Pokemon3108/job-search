@@ -27,7 +27,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             "position = ?, city=?, min_experience=?, " +
             "schedule=?::schedule_type, duties=?, requirements=?, employer_id=? WHERE id=?";
 
-    private static final String DELETE_QUERY = "DELETE vacancy WHERE id =?";
+    private static final String DELETE_QUERY = "DELETE FROM vacancy WHERE id =?";
 
     private static final String FIND_IN_RANGE="SELECT * FROM vacancy LIMIT ?,?";
 

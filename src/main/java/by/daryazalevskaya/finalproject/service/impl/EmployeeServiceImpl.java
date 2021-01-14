@@ -1,14 +1,19 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.*;
+import by.daryazalevskaya.finalproject.dao.ContactDao;
+import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.dao.EmployeeDao;
+import by.daryazalevskaya.finalproject.dao.EmployeePersonalInfoDao;
+import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
+import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
+import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
-import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.service.BaseService;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
+import by.daryazalevskaya.finalproject.service.ResumeService;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,16 +23,27 @@ public class EmployeeServiceImpl extends EmployeeService {
     @Override
     public boolean addNewEntity(Employee entity) throws DaoException, InsertIdDataBaseException {
         boolean isAdded = false;
+
+        ResumeService resumeService=new ResumeServiceImpl();
+        resumeService.setTransaction(transaction);
+        Integer resumeId=resumeService.createResume(entity);
+
+        entity.setResume(new Resume(resumeId));
+
         EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
         if (employeeDao.create(entity) != null) {
-             isAdded=true;
+            isAdded = true;
         }
         return isAdded;
     }
 
+
     @Override
     public Optional<Employee> read(int id) throws DaoException, PoolException {
-        return Optional.empty();
+        Optional<Employee> employee;
+        EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
+        employee = employeeDao.read(id);
+        return employee;
     }
 
     @Override
@@ -38,22 +54,27 @@ public class EmployeeServiceImpl extends EmployeeService {
     @Override
     public void delete(int id) throws DaoException, PoolException {
         EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
-        Employee employee=employeeDao.read(id).get();
+        Optional<Employee> employee = employeeDao.read(id);
 
-        ResumeDao resumeDao=transaction.createDao(DaoType.RESUME);
-        Resume resume=resumeDao.read(employee.getResume().getId()).get();
+        if (employee.isPresent()) {
 
-        if (Objects.nonNull(resume)) {
-            JobPreferenceDao jobPreferenceDao=transaction.createDao(DaoType.JOB_PREFERENCE);
-            jobPreferenceDao.delete(resume.getJobPreference().getId());
+            ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
+            Resume resume = resumeDao.read(employee.get().getResume().getId()).orElse(null);
 
-            EmployeePersonalInfoDao employeePersonalInfoDao=transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
-            employeePersonalInfoDao.delete(resume.getPersonalInfo().getId());
+            if (Objects.nonNull(resume)) {
+                JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+                jobPreferenceDao.delete(resume.getJobPreference().getId());
 
-            ContactDao contactDao=transaction.createDao(DaoType.CONTACT);
-            contactDao.delete(resume.getContact().getId());
+                EmployeePersonalInfoDao employeePersonalInfoDao = transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
+                employeePersonalInfoDao.delete(resume.getPersonalInfo().getId());
 
-            resumeDao.deleteResumeLanguage(resume.getId());
+                ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
+                contactDao.delete(resume.getContact().getId());
+
+                resumeDao.deleteResumeLanguage(resume.getId());
+            }
+
+            employeeDao.delete(id);
         }
     }
 
@@ -61,4 +82,17 @@ public class EmployeeServiceImpl extends EmployeeService {
     public List<Employee> findAll() throws DaoException, PoolException {
         return null;
     }
+
+    @Override
+    public void createUser(User user) throws InsertIdDataBaseException, DaoException {
+        Employee employee = new Employee(user.getId());
+        addNewEntity(employee);
+    }
+
+    @Override
+    public void deleteUser(int userId) throws PoolException, DaoException {
+        delete(userId);
+    }
+
+
 }

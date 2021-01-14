@@ -29,16 +29,6 @@
             </p>
         </c:if>
 
-
-<%--        <c:if test='${invalidEmail==true}'>--%>
-<%--            <p class="alert alert-danger my-sm-3 " role="alert">--%>
-<%--                <fmt:message key="invalidEmail" bundle="${ rb }"/>--%>
-<%--            </p>--%>
-<%--        </c:if>--%>
-
-
-<%--        <div class="alert alert-danger my-sm-3 " role="alert" id="emailError"></div>--%>
-
         <div class="form-group">
             <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
@@ -46,14 +36,6 @@
                            required>
         </div>
 
-
-<%--        <c:if test='${invalidPassword==true}'>--%>
-<%--            <p class="alert alert-danger my-sm-3 " role="alert">--%>
-<%--                <fmt:message key="invalidPassword" bundle="${ rb }"/>--%>
-<%--            </p>--%>
-<%--        </c:if>--%>
-
-<%--        <p class="alert alert-danger my-sm-3 " role="alert" id="passwordError"></p>--%>
 
         <div class="form-group">
             <label for="password"><fmt:message key="password" bundle="${ rb }"/></label>
@@ -68,9 +50,6 @@
 
 <script src=<c:url value="/js/language.js"/>>
 </script>
-
-<%--<script src=<c:url value="/js/user-form-validation.js"/>>--%>
-<%--</script>--%>
 
 </body>
 </html>

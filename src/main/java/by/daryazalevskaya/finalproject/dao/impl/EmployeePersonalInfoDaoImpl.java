@@ -27,7 +27,7 @@ public class EmployeePersonalInfoDaoImpl extends BaseDao implements EmployeePers
             "name = ?, surname=?, birthday=?, " +
             "gender=?::gender_type, country=?, city=? WHERE id=?";
 
-    private static final String DELETE_QUERY = "DELETE employee_personal_info usr WHERE id =?";
+    private static final String DELETE_QUERY = "DELETE FROM employee_personal_info usr WHERE id =?";
 
     @Override
     public Integer create(EmployeePersonalInfo entity) throws InsertIdDataBaseException, DaoException {

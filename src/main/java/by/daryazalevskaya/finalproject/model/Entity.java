@@ -12,5 +12,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class Entity implements Serializable {
-    protected int id;
+    protected Integer id;
 }

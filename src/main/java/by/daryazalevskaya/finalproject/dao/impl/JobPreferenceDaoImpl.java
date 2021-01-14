@@ -28,10 +28,10 @@ public class JobPreferenceDaoImpl extends BaseDao implements JobPreferenceDao {
     private static final String FIND_SPEC_BY_ID_QUERY = "SELECT * FROM specialization_type WHERE id=?";
 
     private static final String UPDATE_QUERY = "UPDATE job_preference SET  " +
-            "desired_position = ?, salary=?, currency=?::currency_type, " +
+            "position_id = ?, salary=?, currency=?::currency_type, " +
             "specialization_id=?, schedule=?::schedule_type, experience=? WHERE id=?";
 
-    private static final String DELETE_QUERY = "DELETE FROM usr WHERE id =?";
+    private static final String DELETE_QUERY = "DELETE FROM job_preference WHERE id =?";
 
     @Override
     public Integer create(JobPreference entity) throws InsertIdDataBaseException, DaoException {

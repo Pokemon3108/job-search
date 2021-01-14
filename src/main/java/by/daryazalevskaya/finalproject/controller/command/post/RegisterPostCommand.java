@@ -12,7 +12,7 @@ import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.UserService;
-import by.daryazalevskaya.finalproject.service.UserWithRoleActions;
+import by.daryazalevskaya.finalproject.service.UserRoleCommonActionsService;
 import by.daryazalevskaya.finalproject.service.impl.UserServiceImpl;
 import by.daryazalevskaya.finalproject.service.requestbuilder.UserBuilder;
 import lombok.extern.log4j.Log4j2;
@@ -51,8 +51,8 @@ public class RegisterPostCommand implements ActionCommand {
                             .forward(request, response);
                 }
 
-                UserWithRoleActions factoryUser = new UserWithRoleActions();
-                factoryUser.createUser(user, transaction);
+                UserRoleCommonActionsService roleService = new UserRoleCommonActionsService(transaction);
+                roleService.createAccount(user);
 
                 response.sendRedirect(request.getContextPath()+UriPattern.LOGIN.getUrl());
                 transaction.commit();

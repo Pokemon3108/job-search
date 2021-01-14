@@ -111,19 +111,9 @@ public class UserDaoImplTest {
     }
 
 
-    @DataProvider(name = "deleteUser")
-    public Object[][] createUserForDelete() {
-        final int id=2;
-        User user = User.builder().password("0a234cccbb1234567aa")
-                .role(Role.EMPLOYEE)
-                .email("Parrot@gmail.com")
-                .id(2)
-                .build();
-        return new Object[][]{{user, id}};
-    }
-
-    @Test(dataProvider = "deleteUser")
-    public void deleteTest(User user, int id) throws DaoException {
+    @Test
+    public void deleteTest() throws DaoException {
+        final int id=3;
         userDao.delete(id);
         Assert.assertTrue(userDao.read(id).isEmpty());
     }

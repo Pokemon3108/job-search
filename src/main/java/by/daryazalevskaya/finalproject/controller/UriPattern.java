@@ -9,7 +9,9 @@ public enum UriPattern {
     CHANGE_LOCALE("/job/changeLocale"),
     EMPLOYEE_HOME("/job/employee/resume"),
     EMPLOYER_HOME("/job/employer/home"),
-    LOGOUT("/job/logout");
+    LOGOUT("/job/logout"),
+    DELETE_ACCOUNT("/job/delete"),
+    CHANGE_EMPLOYEE_CONTACT("/job/employee/changeContact");
 
     UriPattern(String url) {
         this.url = url;

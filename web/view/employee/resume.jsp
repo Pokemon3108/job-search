@@ -14,6 +14,8 @@
 
 <c:import url="/view/headers/header-employee.jsp"/>
 
+
+
 <div class="container">
     <div class="card-deck">
         <div class="card-body border my-sm-3">
@@ -29,7 +31,7 @@
                     <span></span>
                 </p>
             </div>
-            <a href="/employee/resume/savePersonalInfo" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changePersonalInfo" class="btn btn-success">Edit</a>
         </div>
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
@@ -44,7 +46,7 @@
                     <span></span>
                 </p>
             </div>
-            <a href="/employee/resume/saveContact" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changeContact" class="btn btn-success">Edit</a>
         </div>
     </div>
 
@@ -62,7 +64,7 @@
                     <span></span>
                 </p>
             </div>
-            <a href="/employee/resume/saveJobPreference" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changeJobPreference" class="btn btn-success">Edit</a>
         </div>
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
@@ -77,7 +79,7 @@
                     <span th:text="${lang.level}"></span>
                 </p>
             </div>
-            <a href="/employee/resume/saveLanguage" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changeLanguage" class="btn btn-success">Edit</a>
         </div>
     </div>
 
@@ -95,7 +97,7 @@
                     <span></span>
                 </p>
             </div>
-            <a href="/employee/resume/saveSkills" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/employee/resume/saveSkills" class="btn btn-success">Edit</a>
         </div>
     </div>
 </div>

@@ -13,6 +13,7 @@ import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,21 +26,39 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     private static final String READ_BY_ID_QUERY = "SELECT * FROM resume WHERE id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO resume " +
-            "(prof_description, usr_id, contact_id, personal_info_id, job_preference_id) VALUES (?, ?, ?, ?, ?)";
+            "(usr_id) VALUES (?)";
 
     private static final String UPDATE_QUERY = "UPDATE resume SET  " +
             "prof_description = ?,  usr_id = ?, contact_id = ?, personal_info_id = ?, job_preference_id=?" +
             " WHERE id=?";
 
-    private static final String DELETE_QUERY = "DELETE resume WHERE id =?";
+    private static final String DELETE_QUERY = "DELETE  FROM resume WHERE id =?";
 
     private static final String READ_LANGUAGES_QUERY="SELECT * FROM resume_languages WHERE resume_id=?";
 
-    private static final String DELETE_LANGUAGES_QUERY="DELETE resume_languages WHERE resume_id=?";
+    private static final String DELETE_LANGUAGES_QUERY="DELETE FROM resume_languages WHERE resume_id=?";
 
     @Override
     public Integer create(Resume entity) throws InsertIdDataBaseException, DaoException {
-        return super.create(entity, CREATE_QUERY, new ResumeStatementFormer());
+        ResultSet resultSet = null;
+        Integer id = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, entity.getUser().getId());
+            statement.executeUpdate();
+
+            resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
+            } else {
+                throw new InsertIdDataBaseException("There is no auto incremented index after trying to add record into table usr");
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            closeSet(resultSet);
+        }
+        return id;
     }
 
     @Override

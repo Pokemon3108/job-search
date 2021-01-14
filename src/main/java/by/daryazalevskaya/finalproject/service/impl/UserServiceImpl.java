@@ -37,27 +37,27 @@ public class UserServiceImpl extends UserService {
     @Override
     public Optional<User> read(int id) throws DaoException {
         Optional<User> user;
-        UserDao userDao = new UserDaoImpl();
+        UserDao userDao = transaction.createDao(DaoType.USER);
         user = userDao.read(id);
         return user;
     }
 
     @Override
     public void update(User entity) throws DaoException {
-        Dao<User> userDao = new UserDaoImpl();
+        UserDao userDao = transaction.createDao(DaoType.USER);
         userDao.update(entity);
     }
 
     @Override
     public void delete(int id) throws DaoException {
-        Dao<User> userDao = new UserDaoImpl();
+        UserDao userDao = transaction.createDao(DaoType.USER);
         userDao.delete(id);
     }
 
     @Override
     public List<User> findAll() throws DaoException {
         List<User> users;
-        Dao<User> userDao = new UserDaoImpl();
+        UserDao userDao = new UserDaoImpl();
         users = userDao.findAll();
         return users;
     }

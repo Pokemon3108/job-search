@@ -23,12 +23,12 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     private static final String READ_BY_ID_QUERY = "SELECT * FROM employee WHERE user_id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO employee " +
-            "(user_id) VALUES (?)";
+            "(user_id, resume_id) VALUES (?, ?)";
 
     private static final String UPDATE_QUERY = "UPDATE employee SET  " +
             "resume_id = ?  WHERE user_id=?";
 
-    private static final String DELETE_QUERY = "DELETE employee WHERE user_id =?";
+    private static final String DELETE_QUERY = "DELETE FROM employee WHERE user_id =?";
 
     private static final String READ_VACANCIES_QUERY="SELECT * FROM employee_vacancies WHERE employee_id=?";
 
@@ -44,8 +44,10 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
         Integer id = null;
 
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY)) {
-            StatementFormer<Employee> former = new EmployeeStatementFormer();
-            former.fillStatement(statement, entity);
+            statement.setInt(1, entity.getId());
+            statement.setInt(2, entity.getResume().getId());
+//            StatementFormer<Employee> former = new EmployeeStatementFormer();
+//            former.fillStatement(statement, entity);
             int row=statement.executeUpdate();
 
             if (row!=0) {
@@ -65,15 +67,8 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     }
 
     @Override
-    public void update(Employee entity) throws DaoException, IllegalOperationException {
-        try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            StatementFormer<Employee> former = new EmployeeStatementFormer();
-            former.fillStatement(statement, entity);
-            statement.setInt(2, entity.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
+    public void update(Employee entity) throws DaoException {
+        throw new IllegalOperationException();
     }
 
     @Override

@@ -16,7 +16,6 @@ function getLanguage() {
         location.reload();
     }
     xhr.open('GET', "/main/job/changeLocale?lang=" + locale);
-    // xhr.open('GET', "/bb")
     xhr.send();
 }
 

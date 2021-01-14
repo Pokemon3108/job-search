@@ -4,6 +4,7 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
+import by.daryazalevskaya.finalproject.model.Entity;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public abstract class BaseService<T> {
 
     public abstract Optional<T> read(int id) throws DaoException, PoolException;
 
-    public abstract void update(T entity) throws DaoException, PoolException;
+    public abstract void update(T entity) throws DaoException, PoolException, InsertIdDataBaseException;
 
     public abstract void delete(int id) throws DaoException, PoolException;
 

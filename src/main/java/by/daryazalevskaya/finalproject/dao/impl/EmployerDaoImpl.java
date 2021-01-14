@@ -17,7 +17,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM employer";
 
-    private static final String READ_BY_ID_QUERY = "SELECT * FROM employer WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT * FROM employer WHERE user_id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO employer " +
             "(user_id) VALUES (?)";
@@ -26,7 +26,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
             "company_name = ?, country=?, city=?, contact_id=? WHERE user_id=?";
 
 
-    private static final String DELETE_QUERY = "DELETE employer usr WHERE user_id =?";
+    private static final String DELETE_QUERY = "DELETE FROM employer WHERE user_id =?";
 
 
     @Override

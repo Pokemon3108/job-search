@@ -1,21 +1,14 @@
 package by.daryazalevskaya.finalproject.controller.command;
 
 import by.daryazalevskaya.finalproject.controller.UriPattern;
-import by.daryazalevskaya.finalproject.controller.command.get.EmployerHomeCommand;
-import by.daryazalevskaya.finalproject.controller.command.get.LoginGetCommand;
-import by.daryazalevskaya.finalproject.controller.command.get.RegisterGetCommand;
-import by.daryazalevskaya.finalproject.controller.command.get.ResumeGetCommand;
-import by.daryazalevskaya.finalproject.controller.command.post.ChangeLocaleCommand;
-import by.daryazalevskaya.finalproject.controller.command.post.LoginPostCommand;
-import by.daryazalevskaya.finalproject.controller.command.post.LogoutCommand;
-import by.daryazalevskaya.finalproject.controller.command.post.RegisterPostCommand;
+import by.daryazalevskaya.finalproject.controller.command.get.*;
+import by.daryazalevskaya.finalproject.controller.command.post.*;
 
 import java.util.EnumMap;
 import java.util.Map;
 
 public class CommandStorage {
     private static CommandStorage storage;
-
 
     private static Map<UriPattern, ActionCommand> getRequestMap = new EnumMap<>(UriPattern.class);
     private static Map<UriPattern, ActionCommand> postRequestMap = new EnumMap<>(UriPattern.class);
@@ -26,10 +19,12 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.LOGIN, new LoginGetCommand());
         getRequestMap.put(UriPattern.EMPLOYEE_HOME, new ResumeGetCommand());
         getRequestMap.put(UriPattern.EMPLOYER_HOME, new EmployerHomeCommand());
+        getRequestMap.put(UriPattern.CHANGE_EMPLOYEE_CONTACT, new ContactEmployeeGetCommand());
 
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());
         postRequestMap.put(UriPattern.LOGOUT, new LogoutCommand());
+        postRequestMap.put(UriPattern.DELETE_ACCOUNT, new DeleteAccountCommand());
         //TODO fill maps
     }
 

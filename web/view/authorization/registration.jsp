@@ -62,7 +62,7 @@
 
         <div class="form-group">
             <label for="password"><fmt:message key="password" bundle="${ rb }"/></label>
-            <input type="password" class="form-control" id="password" placeholder=<fmt:message key="password" bundle="${ rb }"/> name="password"
+            <input type="password" class="form-control" id="password" name="password" placeholder=<fmt:message key="password" bundle="${ rb }"/>
                    required>
         </div>
 
