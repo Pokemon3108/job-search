@@ -6,7 +6,10 @@ import lombok.Getter;
 public enum UriPattern {
     LOGIN ("/job/login"),
     REGISTRATION("/job/registration"),
-    CHANGE_LOCALE("/job/changeLocale");
+    CHANGE_LOCALE("/job/changeLocale"),
+    EMPLOYEE_HOME("/job/employee/resume"),
+    EMPLOYER_HOME("/job/employer/home"),
+    LOGOUT("/job/logout");
 
     UriPattern(String url) {
         this.url = url;

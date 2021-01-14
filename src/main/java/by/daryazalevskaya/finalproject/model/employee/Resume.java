@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -24,4 +25,5 @@ public class Resume extends Entity {
     private Contact contact;
     private EmployeePersonalInfo personalInfo;
     private JobPreference jobPreference;
+    private List<Language> languageList;
 }

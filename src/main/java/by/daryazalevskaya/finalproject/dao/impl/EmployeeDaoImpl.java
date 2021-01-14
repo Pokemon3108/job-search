@@ -36,6 +36,8 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
     private static final String COUNT="SELECT count(*) FROM employee";
 
+    private static final String DELETE_VACANCIES_QUERY="DELETE employee_vacancies WHERE employee_id=?";
+
 
     @Override
     public Integer create(Employee entity) throws  DaoException {
@@ -112,6 +114,11 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     @Override
     public int count() throws DaoException {
         return super.count(COUNT);
+    }
+
+    @Override
+    public void deleteEmployeeVacancies(int employeeId) throws DaoException {
+        super.delete(employeeId, DELETE_VACANCIES_QUERY);
     }
 
 

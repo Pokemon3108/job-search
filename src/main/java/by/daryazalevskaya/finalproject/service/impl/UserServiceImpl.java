@@ -15,6 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Log4j2
 public class UserServiceImpl extends UserService {
@@ -22,7 +23,7 @@ public class UserServiceImpl extends UserService {
     @Override
     public boolean addNewEntity(User entity) throws DaoException, InsertIdDataBaseException {
         boolean isAdded = false;
-        UserDao userDao=transaction.createDao(DaoType.USER);
+        UserDao userDao = transaction.createDao(DaoType.USER);
 
         if (userDao.read(entity.getEmail()).isEmpty()) {
             entity.setPassword(crypt(entity.getPassword()));
@@ -78,5 +79,23 @@ public class UserServiceImpl extends UserService {
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
+    }
+
+    @Override
+    public boolean isValidLoginAndPassword(String email, String password) throws DaoException {
+        AtomicBoolean isValid = new AtomicBoolean(true);
+        UserDao userDao = transaction.createDao(DaoType.USER);
+        Optional<User> user = userDao.read(email);
+
+        user.ifPresentOrElse((user1 -> isValid.set(user1.getPassword().equals(crypt(password)))),
+                () -> isValid.set(false));
+
+        return isValid.get();
+    }
+
+    @Override
+    public Optional<User> findUserByEmail(String email) throws DaoException {
+        UserDao userDao = transaction.createDao(DaoType.USER);
+        return userDao.read(email);
     }
 }

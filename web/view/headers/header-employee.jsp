@@ -8,7 +8,6 @@
 <html>
 
 <head>
-    <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
@@ -24,42 +23,43 @@
 
         <div class="container header-container">
 
-            <a class="navbar-brand home" href="#">
-                <h3>Negotium</h3>
-            </a>
+            <a class="navbar-brand" href="#">Negotium</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="show-vac">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/vacancy">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employee/vacancies">
                             <h5><fmt:message key="vacancies" bundle="${ rb }"/></h5>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employee/myVacancies">
+                            <h5><fmt:message key="my_vacancies" bundle="${ rb }"/></h5>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employee/resume">
+                            <h5><fmt:message key="resume" bundle="${ rb }"/></h5>
                         </a>
                     </li>
                 </ul>
 
-                <form action="${pageContext.request.contextPath}/job/login" method="get">
-                    <%--                    <input type="submit" class="btn btn-success mx-3" value=--%>
-                    <%--                    <fmt:message key="login" bundle="${ rb }"/>  />--%>
-                    <button type="submit" class="btn btn-success mx-3">
-                        <fmt:message key="login" bundle="${ rb }"/>
-                    </button>
+                <form action="${pageContext.request.contextPath}/job/logout" method="post">
+                    <input type="submit" class="btn btn-success" value="Log out"/>
                 </form>
 
-
-                <form action="${pageContext.request.contextPath}/job/registration" method="get">
-                    <%--                    <input type="submit" class="btn btn-success" value=--%>
-                    <%--                    <fmt:message key="register" bundle="${ rb }"/>/>--%>
-                    <button type="submit" class="btn btn-success mx-3">
-                        <fmt:message key="register" bundle="${ rb }"/>
-                    </button>
-                </form>
             </div>
-
         </div>
+
+        <form action="${pageContext.request.contextPath}/job/delete" method="post">
+            <button type="submit" class="btn btn-danger mr-1">
+                <fmt:message key="delete_acc" bundle="${ rb }"/>
+            </button>
+        </form>
 
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
             <fmt:message key="change_lan" bundle="${ rb }"/>
@@ -71,6 +71,9 @@
 <c:import url="/view/headers/localization.jsp"/>
 
 </body>
+
+<script src=<c:url value="/js/language.js"/>>
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

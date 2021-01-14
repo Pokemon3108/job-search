@@ -10,6 +10,11 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class Language extends Entity {
+
+    public Language(int id) {
+        super.id=id;
+    }
+
     private String name;
     private LanguageLevel level;
 }

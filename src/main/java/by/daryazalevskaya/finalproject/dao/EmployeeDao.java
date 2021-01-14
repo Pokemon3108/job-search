@@ -10,4 +10,5 @@ public interface EmployeeDao extends Dao<Employee>  {
     List<Vacancy> getEmployeeVacancies(int employeeId) throws DaoException;
     List<Employee> findFromTo(int start, int end) throws DaoException;
     int count() throws DaoException;
+    void deleteEmployeeVacancies(int employeeId) throws DaoException;
 }

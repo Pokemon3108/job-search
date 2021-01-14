@@ -1,18 +1,20 @@
-package by.daryazalevskaya.finalproject.service.factory;
+package by.daryazalevskaya.finalproject.service;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
+import by.daryazalevskaya.finalproject.model.type.Role;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 import by.daryazalevskaya.finalproject.service.impl.EmployeeServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.EmployerServiceImpl;
 
 @SuppressWarnings("unchecked")
-public class UserWithRoleFactory {
+public class UserWithRoleActions {
 
     public void createUser(User user, Transaction transaction) throws InsertIdDataBaseException, DaoException {
         switch (user.getRole()) {
@@ -29,6 +31,20 @@ public class UserWithRoleFactory {
                 employerService.addNewEntity(employer);
                 break;
         }
+    }
 
+    public void deleteUser(int userId, Role role, Transaction transaction) throws PoolException, DaoException {
+        switch (role) {
+            case EMPLOYEE:
+                EmployeeService employeeService = new EmployeeServiceImpl();
+                employeeService.setTransaction(transaction);
+                employeeService.delete(userId);
+                break;
+            case EMPLOYER:
+                EmployerService employerService = new EmployerServiceImpl();
+                employerService.setTransaction(transaction);
+                employerService.delete(userId);
+                break;
+        }
     }
 }

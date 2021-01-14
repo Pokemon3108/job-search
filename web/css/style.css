@@ -1,3 +1,8 @@
 .container {
     max-width: 700px !important;
 }
+
+.card-body {
+    background-color: #AFEEEE !important;
+    margin-left: 2em;
+}

@@ -15,7 +15,8 @@ function getLanguage() {
     xhr.onreadystatechange = function () {
         location.reload();
     }
-    xhr.open('GET', "changeLocale?lang=" + locale);
+    xhr.open('GET', "/main/job/changeLocale?lang=" + locale);
+    // xhr.open('GET', "/bb")
     xhr.send();
 }
 
