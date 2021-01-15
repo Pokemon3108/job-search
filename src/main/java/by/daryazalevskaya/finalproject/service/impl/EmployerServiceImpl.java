@@ -7,10 +7,8 @@ import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
-import by.daryazalevskaya.finalproject.service.ContactService;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 
 import java.util.List;
@@ -22,13 +20,10 @@ import java.util.Optional;
 public class EmployerServiceImpl extends EmployerService {
 
     @Override
-    public boolean addNewEntity(Employer entity) throws DaoException, InsertIdDataBaseException {
-        boolean isAdded = false;
+    public Integer addNewEntity(Employer entity) throws DaoException, InsertIdDataBaseException {
         EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-        if (employerDao.create(entity) != null) {
-            isAdded=true;
-        }
-        return isAdded;
+        employerDao.create(entity);
+        return entity.getId();
     }
 
     @Override
@@ -43,14 +38,14 @@ public class EmployerServiceImpl extends EmployerService {
 
     @Override
     public void delete(int id) throws DaoException, PoolException {
-        EmployerDao employerDao=transaction.createDao(DaoType.EMPLOYER);
-        Employer employer=employerDao.read(id).orElse(null);
+        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+        Employer employer = employerDao.read(id).orElse(null);
 
         if (Objects.nonNull(employer)) {
-            ContactDao contactDao=transaction.createDao(DaoType.CONTACT);
+            ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
             contactDao.delete(employer.getId());
 
-            VacancyDao vacancyDao=transaction.createDao(DaoType.VACANCY);
+            VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
             vacancyDao.delete(employer.getId());
         }
         employerDao.delete(id);

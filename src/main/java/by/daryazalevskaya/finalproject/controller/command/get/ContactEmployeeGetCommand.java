@@ -6,6 +6,7 @@ import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
+import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
@@ -27,47 +28,49 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Log4j2
 public class ContactEmployeeGetCommand implements ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         HttpSession session = request.getSession(false);
 
         if (Objects.nonNull(session)) {
             Integer userId = (Integer) request.getSession().getAttribute("user");
-
+            TransactionFactory factory = new TransactionFactoryImpl();
+            Transaction transaction = factory.createTransaction();
             try {
-                TransactionFactory factory = new TransactionFactoryImpl();
-                Transaction transaction = factory.createTransaction();
-
                 EmployeeService employeeService = new EmployeeServiceImpl();
                 employeeService.setTransaction(transaction);
                 Employee employee = employeeService.read(userId).get();
 
                 ContactService contactService = new ContactServiceImpl();
                 contactService.setTransaction(transaction);
-                ResumeService resumeService=new ResumeServiceImpl();
+                ResumeService resumeService = new ResumeServiceImpl();
                 resumeService.setTransaction(transaction);
-                Optional<Resume> resume=resumeService.read(employee.getResume().getId());
+                Optional<Resume> resume = resumeService.read(employee.getResume().getId());
 
-                Contact contact = resume.get().getContact();
+                Contact emptyContact = resume.get().getContact();
 
-                if (contact != null) {
-                    Optional<Contact> fullContact = contactService.read(employee.getResume().getContact().getId());
-                    request.setAttribute("number", fullContact.get().getTelephone());
-                    request.setAttribute("email", fullContact.get().getEmail());
-                    request.setAttribute("skype", fullContact.get().getSkype());
-
+                if (emptyContact.getId()!=null) {
+                    Optional<Contact> fullContact = contactService.read(emptyContact.getId());
+                    fullContact.ifPresent(contact1 -> request.setAttribute("contact", contact1));
                 }
 
-            } catch (ConnectionException | DaoException | PoolException e) {
+                transaction.commit();
+                request.getServletContext()
+                        .getRequestDispatcher(PagePath.CONTACT)
+                        .forward(request, response);
+
+            } catch (DaoException | PoolException | TransactionException e) {
+                transaction.rollback();
                 log.error(e);
+                response.sendError(500);
+            } finally {
+                transaction.close();
             }
 
-            request.getServletContext()
-                    .getRequestDispatcher(PagePath.CONTACT)
-                    .forward(request, response);
         }
     }
 }

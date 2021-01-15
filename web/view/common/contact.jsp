@@ -7,6 +7,7 @@
 <html>
 <head>
     <title>Contact</title>
+    <link rel="script" href="<c:url value="/js/contact-form-validation.js"/>">
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
@@ -14,9 +15,11 @@
 <c:choose>
     <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
         <c:import url="/view/headers/header-employee.jsp"/>
+        <c:set var="post_path" value="${pageContext.request.contextPath}/job/employee/changeContact"/>
     </c:when>
     <c:when test="${sessionScope.role eq 'EMPLOYER'}">
         <c:import url="/view/headers/header-employer.jsp"/>
+        <c:set var="post_path" value="${pageContext.request.contextPath}/job/employer/changeContact"/>
     </c:when>
 </c:choose>
 
@@ -26,36 +29,62 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-6">
 
-                <form action="${pageContext.request.contextPath}/job/contact" method="post">
+                <form action="${post_path}" method="post" onsubmit="return validate(this);">
+
+                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">
+
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="contactError"></div>
+
+                    <c:if test='${isInvalidTelephone==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="invalid_phone" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
 
                     <div class="form-group">
                         <label for="number"> <fmt:message key="phone" bundle="${ rb }"/></label>
-                        <input type="text" class="form-control" id="number" value="${telephone}" name="number"
+                        <input type="text" class="form-control" id="number" value="${contact.telephone}" name="number"
                                pattern="+{12}\d">
                     </div>
+
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="emailError"></div>
+
+                    <c:if test='${invalidEmail==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="invalid_email" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
 
                     <div class="form-group">
                         <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                               value="${email}"
+                               value="${contact.email}"
                                name="email"
-                               placeholder=<fmt:message key="email" bundle="${ rb }"/>
+                               placeholder=
+                               <fmt:message key="email" bundle="${ rb }"/>
                                        required>
                     </div>
 
                     <div class="form-group">
                         <label for="skype">Skype</label>
-                        <input type="text" class="form-control" id="skype" value="${skype}" name="skype">
+                        <input type="text" class="form-control" id="skype" value="${contact.skype}" name="skype">
                     </div>
+
+                    <input type="hidden" name="id" value="${contact.id}">
 
                     <div><input type="submit" class="btn btn-success" value="Save changes"/></div>
                 </form>
+
             </div>
         </div>
     </div>
 </div>
 
 </body>
+
+<script src=<c:url value="/js/contact-form-validation.js"/>>
+</script>
+
 </html>

@@ -3,6 +3,7 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
@@ -37,6 +38,8 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     private static final String READ_LANGUAGES_QUERY="SELECT * FROM resume_languages WHERE resume_id=?";
 
     private static final String DELETE_LANGUAGES_QUERY="DELETE FROM resume_languages WHERE resume_id=?";
+
+    private static final String CREATE_CONTACT="UPDATE resume SET contact_id=? WHERE id=?";
 
     @Override
     public Integer create(Resume entity) throws InsertIdDataBaseException, DaoException {
@@ -111,5 +114,20 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     @Override
     public void deleteResumeLanguage(int resumeId) throws DaoException {
         delete(resumeId, DELETE_LANGUAGES_QUERY);
+    }
+
+    @Override
+    public void createContact(Resume resume) throws DaoException {
+        createField(resume.getContact().getId(), resume.getId(), CREATE_CONTACT);
+    }
+
+    private void createField(int fieldId, int resumeId,  String query) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, fieldId);
+            statement.setInt(2, resumeId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 }

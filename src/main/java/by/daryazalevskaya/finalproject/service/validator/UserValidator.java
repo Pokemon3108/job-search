@@ -3,11 +3,10 @@ package by.daryazalevskaya.finalproject.service.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserValidator {
+public class UserValidator extends Validator {
     private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\\w\\s]).{8,}";
     private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-                    "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+         "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 
 
     public boolean isPasswordValid(String password) {
@@ -19,9 +18,7 @@ public class UserValidator {
     }
 
     public boolean isValidEmail(String email) {
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+        return isValid(EMAIL_PATTERN, email);
     }
 
 

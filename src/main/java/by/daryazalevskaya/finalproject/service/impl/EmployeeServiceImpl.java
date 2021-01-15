@@ -21,20 +21,16 @@ import java.util.Optional;
 
 public class EmployeeServiceImpl extends EmployeeService {
     @Override
-    public boolean addNewEntity(Employee entity) throws DaoException, InsertIdDataBaseException {
-        boolean isAdded = false;
-
-        ResumeService resumeService=new ResumeServiceImpl();
+    public Integer addNewEntity(Employee entity) throws DaoException, InsertIdDataBaseException {
+        ResumeService resumeService = new ResumeServiceImpl();
         resumeService.setTransaction(transaction);
-        Integer resumeId=resumeService.createResume(entity);
+        Integer resumeId = resumeService.createResume(entity);
 
         entity.setResume(new Resume(resumeId));
 
         EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
-        if (employeeDao.create(entity) != null) {
-            isAdded = true;
-        }
-        return isAdded;
+        return employeeDao.create(entity);
+
     }
 
 

@@ -1,8 +1,11 @@
 package by.daryazalevskaya.finalproject.controller.command.post;
 
+import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.controller.command.get.RegisterGetCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.UserValidationCommand;
+import by.daryazalevskaya.finalproject.controller.command.validation.ValidationCommand;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
@@ -25,8 +28,6 @@ import java.io.IOException;
 @Log4j2
 public class RegisterPostCommand implements ActionCommand {
 
-    private static final String ERROR = "/view/error500.jsp";
-
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
 
@@ -39,34 +40,40 @@ public class RegisterPostCommand implements ActionCommand {
 
             UserBuilder builder = new UserBuilder();
             User user = builder.build(request);
-            UserValidationCommand validationCommand = new UserValidationCommand();
-            validationCommand.execute(request, response);
+            ValidationCommand validationCommand = new UserValidationCommand();
 
-            try {
-                if (!service.addNewEntity(user)) {
-                    final String page = request.getParameter("page");
-                    request.setAttribute("repeatedEmail", true);
-                    request.getServletContext()
-                            .getRequestDispatcher(page)
-                            .forward(request, response);
-                }
+            if (!validationCommand.isValid(request, response)) {
+                request.setAttribute("email", user.getEmail());
+                request.setAttribute("role", user.getRole());
+                ActionCommand actionCommand = new RegisterGetCommand();
+                actionCommand.execute(request, response);
+
+            } else if (service.addNewEntity(user) == null) {
+                final String page = request.getParameter("page");
+                request.setAttribute("repeatedEmail", true);
+                request.setAttribute("email", user.getEmail());
+                request.setAttribute("role", user.getRole());
+                request.getServletContext().getRequestDispatcher(page).forward(request, response);
+
+            } else {
 
                 UserRoleCommonActionsService roleService = new UserRoleCommonActionsService(transaction);
                 roleService.createAccount(user);
 
-                response.sendRedirect(request.getContextPath()+UriPattern.LOGIN.getUrl());
+                response.sendRedirect(request.getContextPath() + UriPattern.LOGIN.getUrl());
                 transaction.commit();
 
-            } catch (DaoException | InsertIdDataBaseException e) {
-                transaction.rollback();
-                log.error(e);
-                request.setAttribute("error", e);
-                request.getServletContext().getRequestDispatcher(ERROR).forward(request, response);
             }
-        } finally {
-             transaction.close();
-        }
 
+        } catch (DaoException | InsertIdDataBaseException e) {
+            transaction.rollback();
+            log.error(e);
+            request.setAttribute("error", e);
+            request.getServletContext().getRequestDispatcher(PagePath.ERROR505).forward(request, response);
+        } finally {
+            transaction.close();
+        }
     }
 
 }
+

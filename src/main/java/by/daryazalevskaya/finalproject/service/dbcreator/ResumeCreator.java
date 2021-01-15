@@ -17,7 +17,7 @@ public class ResumeCreator extends Creator<Resume> {
                 .description(set.getString("prof_description"))
                 .jobPreference(new JobPreference(set.getInt("job_preference_id")))
                 .personalInfo(new EmployeePersonalInfo(set.getInt("personal_info_id")))
-                .user(new User(set.getInt("user_id")))
+                .user(new User(set.getInt("usr_id")))
                 .build();
 
     }

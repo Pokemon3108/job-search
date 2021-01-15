@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <fmt:setLocale value="${cookie.lang.value}" scope="session"/>
 <fmt:setBundle basename="property.pagecontent" var="rb"/>
@@ -14,7 +14,7 @@
     <link rel="script" href="<c:url value="/js/user-form-validation.js"/>">
 
 </head>
-<body>
+<body onload="checkRadioButton(${role});">
 
 <c:import url="/view/headers/header-guest.jsp"/>
 
@@ -31,7 +31,7 @@
 
         <c:if test='${invalidEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                <fmt:message key="invalidEmail" bundle="${ rb }"/>
+                <fmt:message key="invalid_email" bundle="${ rb }"/>
             </p>
         </c:if>
 
@@ -46,15 +46,16 @@
 
         <div class="form-group">
             <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
-                   placeholder=<fmt:message key="email" bundle="${ rb }"/>
-                   required>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" value="${email}"
+                   placeholder=
+                   <fmt:message key="email" bundle="${ rb }"/>
+                           required>
         </div>
 
 
         <c:if test='${invalidPassword==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                <fmt:message key="invalidPassword" bundle="${ rb }"/>
+                <fmt:message key="invali_password" bundle="${ rb }"/>
             </p>
         </c:if>
 
@@ -62,17 +63,18 @@
 
         <div class="form-group">
             <label for="password"><fmt:message key="password" bundle="${ rb }"/></label>
-            <input type="password" class="form-control" id="password" name="password" placeholder=<fmt:message key="password" bundle="${ rb }"/>
-                   required>
+            <input type="password" class="form-control" id="password" name="password" placeholder=
+            <fmt:message key="password" bundle="${ rb }"/>
+                    required>
         </div>
 
         <div class="form-group">
             <c:set var="roles" value="${roles}"/>
-            <c:forEach items="${roles}" var="role">
+            <c:forEach items="${roles}" var="roleArr">
                 <div class="custom-radio custom-control-inline">
                     <label>
-                        <input type="radio" name="role" value="${role}" checked>
-                            ${role}
+                        <input type="radio" name="role" value="${roleArr}">
+                            ${roleArr}
                     </label>
                 </div>
             </c:forEach>

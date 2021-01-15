@@ -58,6 +58,7 @@ public abstract class BaseDao {
                     throw new DaoException("Can't build object from database");
                 }
                 entity = creator.createEntity(resultSet);
+                entity.setId(id);
 
             }
         } catch (SQLException e) {
@@ -66,7 +67,7 @@ public abstract class BaseDao {
             closeSet(resultSet);
         }
 
-        return Optional.ofNullable(entity);
+         return Optional.ofNullable(entity);
     }
 
     protected <T extends Entity> Integer create(T entity, final String query, StatementFormer<T> former) throws InsertIdDataBaseException, DaoException {

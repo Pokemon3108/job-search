@@ -3,6 +3,7 @@ function validate(form) {
     let password = form["password"].value;
 
     let flag = true;
+    alert(111);
 
     if (!validateEmail(email)) {
         document.getElementById('emailError').innerHTML = 'Illegal email format. js';
@@ -27,7 +28,7 @@ function validateEmail(email) {
 function validatePassword(password) {
     // const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
     // return re.test(String(password));
-     return password.length>8;
+    return password.length > 8;
 }
 
 function hideElement(id) {
@@ -38,5 +39,28 @@ function hideElement(id) {
     }
 }
 
+function checkRadioButton(role) {
+    let counter=0;
+    let roles = document.getElementsByName("role");
+    for (let i=0; i<roles.length; ++i) {
+        if (document.getElementsByName("role")[i]===role) {
+            ++counter;
+            document.getElementsByName("role")[i].checked=true;
+        }
+    }
+
+    if (counter===0) {
+        document.getElementsByName("role")[0].checked=true;
+    }
+
+}
+
+// function checkRadioButton() {
+//     document.getElementsByName("role")[0].checked=true;
+// }
+
 hideElement('emailError');
-hideElement('passwordError')
+hideElement('passwordError');
+
+alert('${page}');
+

@@ -21,16 +21,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class UserServiceImpl extends UserService {
 
     @Override
-    public boolean addNewEntity(User entity) throws DaoException, InsertIdDataBaseException {
-        boolean isAdded = false;
+    public Integer addNewEntity(User entity) throws DaoException, InsertIdDataBaseException {
+        Integer id=null;
         UserDao userDao = transaction.createDao(DaoType.USER);
 
         if (userDao.read(entity.getEmail()).isEmpty()) {
             entity.setPassword(crypt(entity.getPassword()));
-            entity.setId(userDao.create(entity));
-            isAdded = true;
+            id = userDao.create(entity);
+            entity.setId(id);
+
         }
-        return isAdded;
+        return id;
     }
 
 

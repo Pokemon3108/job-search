@@ -25,6 +25,7 @@ public class CommandStorage {
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());
         postRequestMap.put(UriPattern.LOGOUT, new LogoutCommand());
         postRequestMap.put(UriPattern.DELETE_ACCOUNT, new DeleteAccountCommand());
+        postRequestMap.put(UriPattern.CHANGE_EMPLOYEE_CONTACT, new SaveContactEmployeeCommand());
         //TODO fill maps
     }
 

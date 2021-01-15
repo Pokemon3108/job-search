@@ -17,7 +17,7 @@ public abstract class BaseService<T> {
         this.transaction = transaction;
     }
 
-    public abstract boolean addNewEntity(T entity) throws DaoException, InsertIdDataBaseException;
+    public abstract Integer addNewEntity(T entity) throws DaoException, InsertIdDataBaseException;
 
     public abstract Optional<T> read(int id) throws DaoException, PoolException;
 
