@@ -49,7 +49,7 @@
                 </ul>
 
                 <form action="${pageContext.request.contextPath}/job/logout" method="post">
-                    <input type="submit" class="btn btn-success" value="Log out"/>
+                    <input type="submit" class="btn btn-success" value=<fmt:message key="logout" bundle="${ rb }" /> />
                 </form>
 
             </div>
@@ -61,15 +61,16 @@
             </button>
 <%--        </form>--%>
 
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-            <fmt:message key="change_lan" bundle="${ rb }"/>
-        </button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                <fmt:message key="change_lan" bundle="${ rb }"/>
+            </button>
 
     </nav>
 </header>
 
-<c:import url="/view/headers/delete-acc.jsp"/>
 <c:import url="/view/headers/localization.jsp"/>
+<c:import url="/view/headers/delete-acc.jsp"/>
+
 
 
 </body>

@@ -1,4 +1,4 @@
-package by.daryazalevskaya.finalproject.controller.command.post;
+package by.daryazalevskaya.finalproject.controller.command.get;
 
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;

@@ -1,6 +1,7 @@
 let button = document.getElementById("change_lan");
 button.addEventListener("click", getLanguage);
 
+
 function getLanguage() {
     let radios = document.getElementsByName('lang');
     let locale;

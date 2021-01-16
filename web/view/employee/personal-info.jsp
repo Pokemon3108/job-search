@@ -24,21 +24,44 @@
         <div class="row justify-content-center">
             <div class="col-6">
 
-                <form action="${pageContext.request.contextPath}/job/employee/changePersonalInfo" method="post" onsubmit="return validate(this);">
+                <form action="${pageContext.request.contextPath}/job/employee/changePersonalInfo" method="post"
+                      onsubmit="return validate(this);">
 
-<%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
+                    <%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
 
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="nameError"></div>
+
+                    <c:if test='${invalidName==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="invalid_name" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
 
                     <div class="form-group">
                         <label for="name"> <fmt:message key="name" bundle="${ rb }"/></label>
                         <input type="text" class="form-control" id="name" value="${info.name}" name="name" required>
                     </div>
 
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="surnameError"></div>
+
+                    <c:if test='${invalidSurname==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="invalid_surname" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
 
                     <div class="form-group">
                         <label for="surname"> <fmt:message key="surname" bundle="${ rb }"/></label>
                         <input type="text" class="form-control" id="surname" value="${info.surname}" name="surname">
                     </div>
+
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="birthdayError"></div>
+
+                    <c:if test='${invalidBirthday==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="invalid_birthday" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
 
                     <div class="form-group">
                         <label for="birthday"><fmt:message key="birthday" bundle="${ rb }"/></label>
@@ -48,8 +71,8 @@
                     <fmt:message key="gender" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="gender">
                         <c:forEach items="${genders}" var="genderArr">
-                            <option name="gender"  value="${genderArr}">
-                                <c:set var="g" value="${genderArr}" />
+                            <option name="gender" value="${genderArr}">
+                                <c:set var="g" value="${genderArr}"/>
                                 <fmt:message key="${fn:toLowerCase(g)}" bundle="${ rb }"/>
                             </option>
                         </c:forEach>
@@ -62,6 +85,14 @@
                         </c:forEach>
                     </select>
 
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="cityError"></div>
+
+                    <c:if test='${invalidCity==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="invalid_city" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
+
                     <div class="form-group">
                         <label for="city"><fmt:message key="city" bundle="${ rb }"/></label>
                         <input type="text" class="form-control" id="city" value="${info.city}" name="city">
@@ -69,8 +100,21 @@
 
                     <input type="hidden" name="id" value="${info.id}">
 
-                    <div><input type="submit" class="btn btn-success" value="Save changes"/></div>
+                    <div>
+                        <input type="submit" class="btn btn-success" value=
+                                <fmt:message key="save_change"
+                                             bundle="${ rb }"/>/>
+
+
+                    </div>
+
                 </form>
+
+                <button class="btn btn-secondary mt-1"
+                        onclick="window.location.href = '${pageContext.request.contextPath}/job/employee/resume';">
+                    <fmt:message key="cancel" bundle="${ rb }"/>
+                </button>
+
 
             </div>
         </div>

@@ -48,7 +48,6 @@ public class SaveContactEmployeeCommand implements ActionCommand {
 
                 ValidationCommand validationCommand = new ContactValidationCommand();
                 if (!validationCommand.isValid(request, response)) {
-//                    final String page = request.getParameter("page");
                     request.getServletContext().getRequestDispatcher(PagePath.CONTACT).forward(request, response);
                 } else {
 

@@ -23,7 +23,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         <fmt:message key="close" bundle="${ rb }"/></button>
                 </form>
-                <button type="button" class="btn btn-danger" id="change_lan"><fmt:message key="delete_acc"
+                <button type="button" class="btn btn-danger" id="delete_acc"><fmt:message key="delete_acc"
                                                                                            bundle="${ rb }"/></button>
             </div>
 

@@ -59,7 +59,6 @@
         </div>
 
 
-
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
             <fmt:message key="change_lan" bundle="${ rb }"/>
         </button>

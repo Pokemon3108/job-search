@@ -3,6 +3,7 @@ package by.daryazalevskaya.finalproject.controller.command.post;
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.controller.command.get.PersonalInfoGetCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ContactValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.PersonalInfoValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ValidationCommand;
@@ -14,10 +15,8 @@ import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.service.ContactService;
-import by.daryazalevskaya.finalproject.service.CountryService;
-import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
-import by.daryazalevskaya.finalproject.service.ResumeService;
+import by.daryazalevskaya.finalproject.model.type.Gender;
+import by.daryazalevskaya.finalproject.service.*;
 import by.daryazalevskaya.finalproject.service.impl.ContactServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.CountryServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.EmployeePersonalInfoServiceImpl;
@@ -50,10 +49,14 @@ public class SavePersonalInfoCommand implements ActionCommand {
                 EmployeePersonalInfoService infoService = new EmployeePersonalInfoServiceImpl();
                 infoService.setTransaction(transaction);
 
-//                ValidationCommand validationCommand = new PersonalInfoValidationCommand();
-//                if (!validationCommand.isValid(request, response)) {
-//                    request.getServletContext().getRequestDispatcher(PagePath.PERSONAL_INFO).forward(request, response);
-//                } else {
+                ValidationCommand validationCommand = new PersonalInfoValidationCommand();
+                if (!validationCommand.isValid(request, response)) {
+                    request.setAttribute("genders", Gender.values());
+                    CountryService countryService = new CountryServiceImpl();
+                    countryService.setTransaction(transaction);
+                    request.setAttribute("countries", new SortingService().sortCountriesByAlphabet(countryService.findAll()));
+                    request.getServletContext().getRequestDispatcher(PagePath.PERSONAL_INFO).forward(request, response);
+                } else {
 
                     EmployeePersonalInfoBuilder builder = new EmployeePersonalInfoBuilder();
                     EmployeePersonalInfo info = builder.build(request);
@@ -78,7 +81,8 @@ public class SavePersonalInfoCommand implements ActionCommand {
 
                     transaction.commit();
                     response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());
-              //  }
+
+                }
             }
 
         } catch (PoolException | InsertIdDataBaseException | DaoException | TransactionException e) {

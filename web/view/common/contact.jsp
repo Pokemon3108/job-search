@@ -16,10 +16,12 @@
     <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
         <c:import url="/view/headers/header-employee.jsp"/>
         <c:set var="post_path" value="${pageContext.request.contextPath}/job/employee/changeContact"/>
+        <c:set var="back_path" value="${pageContext.request.contextPath}/job/employee/resume"/>
     </c:when>
     <c:when test="${sessionScope.role eq 'EMPLOYER'}">
         <c:import url="/view/headers/header-employer.jsp"/>
         <c:set var="post_path" value="${pageContext.request.contextPath}/job/employer/changeContact"/>
+        <c:set var="back_path" value="${pageContext.request.contextPath}/job/employer/home"/>
     </c:when>
 </c:choose>
 
@@ -33,7 +35,7 @@
 
                 <form action="${post_path}" method="post" onsubmit="return validate(this);">
 
-<%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
+                    <%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="contactError"></div>
 
@@ -73,7 +75,14 @@
 
                     <input type="hidden" name="id" value="${contact.id}">
 
-                    <div><input type="submit" class="btn btn-success" value="Save changes"/></div>
+                    <div>
+                        <input type="submit" class="btn btn-success" value="Save changes"/>
+                        <form action="${back_path}">
+                            <button type="submit" class="btn btn-secondary">
+                                <fmt:message key="cancel" bundle="${ rb }"/>
+                            </button>
+                        </form>
+                    </div>
                 </form>
 
             </div>
