@@ -20,12 +20,14 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.EMPLOYEE_HOME, new ResumeGetCommand());
         getRequestMap.put(UriPattern.EMPLOYER_HOME, new EmployerHomeCommand());
         getRequestMap.put(UriPattern.CHANGE_EMPLOYEE_CONTACT, new ContactEmployeeGetCommand());
+        getRequestMap.put(UriPattern.CHANGE_EMPLOYEE_INFO, new PersonalInfoGetCommand());
 
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());
         postRequestMap.put(UriPattern.LOGOUT, new LogoutCommand());
         postRequestMap.put(UriPattern.DELETE_ACCOUNT, new DeleteAccountCommand());
         postRequestMap.put(UriPattern.CHANGE_EMPLOYEE_CONTACT, new SaveContactEmployeeCommand());
+        postRequestMap.put(UriPattern.CHANGE_EMPLOYEE_INFO, new SavePersonalInfoCommand());
         //TODO fill maps
     }
 

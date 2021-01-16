@@ -8,4 +8,5 @@ public class PagePath {
     public static final String EMPLOYER_HOME="/view/employer/home.jsp";
     public static final String CONTACT="/view/common/contact.jsp";
     public static final String ERROR505 = "/view/error505.jsp";
+    public static final String PERSONAL_INFO="/view/employee/personal-info.jsp";
 }

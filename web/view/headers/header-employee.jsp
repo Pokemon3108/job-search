@@ -55,11 +55,11 @@
             </div>
         </div>
 
-        <form action="${pageContext.request.contextPath}/job/delete" method="post">
-            <button type="submit" class="btn btn-danger mr-1">
+<%--        <form action="${pageContext.request.contextPath}/job/delete" method="post">--%>
+            <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
                 <fmt:message key="delete_acc" bundle="${ rb }"/>
             </button>
-        </form>
+<%--        </form>--%>
 
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
             <fmt:message key="change_lan" bundle="${ rb }"/>
@@ -68,7 +68,9 @@
     </nav>
 </header>
 
+<c:import url="/view/headers/delete-acc.jsp"/>
 <c:import url="/view/headers/localization.jsp"/>
+
 
 </body>
 

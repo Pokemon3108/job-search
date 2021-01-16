@@ -9,8 +9,8 @@ public class CountryCreator extends Creator<Country> {
     @Override
     public Country createEntity(ResultSet set) throws SQLException {
         return Country.builder()
-                .name(set.getString("name"))
                 .id(set.getInt("id"))
+                .name(set.getString("name"))
                 .build();
     }
 }

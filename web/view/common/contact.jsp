@@ -25,7 +25,7 @@
 
 
 <div class="container">
-    <h1 class="text-center my-sm-3">Contact</h1>
+    <h1 class="text-center my-sm-3"><fmt:message key="contact" bundle="${ rb }"/></h1>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -33,7 +33,7 @@
 
                 <form action="${post_path}" method="post" onsubmit="return validate(this);">
 
-                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">
+<%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="contactError"></div>
 
@@ -45,8 +45,7 @@
 
                     <div class="form-group">
                         <label for="number"> <fmt:message key="phone" bundle="${ rb }"/></label>
-                        <input type="text" class="form-control" id="number" value="${contact.telephone}" name="number"
-                               pattern="+{12}\d">
+                        <input type="text" class="form-control" id="number" value="${contact.telephone}" name="number">
                     </div>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="emailError"></div>

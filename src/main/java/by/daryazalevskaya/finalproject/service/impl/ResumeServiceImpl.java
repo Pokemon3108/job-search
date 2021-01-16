@@ -68,4 +68,10 @@ public class ResumeServiceImpl extends ResumeService {
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         resumeDao.createContact(resume);
     }
+
+    @Override
+    public void createPersonalInfo(Resume resume) throws DaoException {
+        ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
+        resumeDao.createPersonalInfo(resume);
+    }
 }

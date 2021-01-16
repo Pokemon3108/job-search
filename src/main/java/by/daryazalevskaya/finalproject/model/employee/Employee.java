@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Employee extends User {
 
-    public Employee(int id) {
+    public Employee(Integer id) {
         super(id);
     }
 

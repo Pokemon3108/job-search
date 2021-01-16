@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Language extends Entity {
 
-    public Language(int id) {
+    public Language(Integer id) {
         super.id=id;
     }
 

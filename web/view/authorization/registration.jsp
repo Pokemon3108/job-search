@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <fmt:setLocale value="${cookie.lang.value}" scope="session"/>
 <fmt:setBundle basename="property.pagecontent" var="rb"/>
@@ -27,7 +28,7 @@
     <form name="userInfo" action="${pageContext.request.contextPath}/job/registration" onsubmit="return validate(this);"
           method="post">
 
-        <input type="hidden" name="page" value="${pageContext.request.servletPath}">
+<%--        <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
 
         <c:if test='${invalidEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
@@ -69,12 +70,13 @@
         </div>
 
         <div class="form-group">
-            <c:set var="roles" value="${roles}"/>
+<%--            <c:set var="roles" value="${roles}"/>--%>
             <c:forEach items="${roles}" var="roleArr">
                 <div class="custom-radio custom-control-inline">
                     <label>
                         <input type="radio" name="role" value="${roleArr}">
-                            ${roleArr}
+                        <c:set var="r" value="${roleArr}" />
+                        <fmt:message key="${fn:toLowerCase(r)}" bundle="${ rb }"/>
                     </label>
                 </div>
             </c:forEach>

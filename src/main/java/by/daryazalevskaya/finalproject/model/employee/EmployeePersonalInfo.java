@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @SuperBuilder
 public class EmployeePersonalInfo extends Entity {
 
-    public EmployeePersonalInfo(int id) {
+    public EmployeePersonalInfo(Integer id) {
         super.id=id;
     }
 

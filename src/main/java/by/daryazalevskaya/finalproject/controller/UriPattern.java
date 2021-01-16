@@ -11,8 +11,8 @@ public enum UriPattern {
     EMPLOYER_HOME("/job/employer/home"),
     LOGOUT("/job/logout"),
     DELETE_ACCOUNT("/job/delete"),
-    CHANGE_EMPLOYEE_CONTACT("/job/employee/changeContact");
-//    SAVE_EMPLOYEE_CONTACT("/job/employee/saveContact");
+    CHANGE_EMPLOYEE_CONTACT("/job/employee/changeContact"),
+    CHANGE_EMPLOYEE_INFO("/job/employee/changePersonalInfo");
 
     UriPattern(String url) {
         this.url = url;

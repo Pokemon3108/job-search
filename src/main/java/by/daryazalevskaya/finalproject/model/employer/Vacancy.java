@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Vacancy extends Entity {
 
-    public Vacancy(int id) {
+    public Vacancy(Integer id) {
         super.id=id;
     }
 

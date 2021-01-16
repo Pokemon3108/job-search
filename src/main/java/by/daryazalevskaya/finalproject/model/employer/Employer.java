@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class Employer extends User {
 
-    public Employer(int id) {
+    public Employer(Integer id) {
         super.id=id;
     }
 

@@ -9,9 +9,12 @@ import java.util.List;
 
 public interface ResumeDao extends Dao<Resume> {
     List<Language> getResumeLanguages(int resumeId) throws DaoException;
+
     void deleteResumeLanguage(int resumeId) throws DaoException;
+
     void createContact(Resume resume) throws DaoException;
-//    void updateJobPreference(Resume resume);
+
+    void createPersonalInfo(Resume resume) throws DaoException;
 
 
 }

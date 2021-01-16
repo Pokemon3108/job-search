@@ -13,12 +13,20 @@ public class ResumeCreator extends Creator<Resume> {
     @Override
     public Resume createEntity(ResultSet set) throws SQLException {
         return Resume.builder()
-                .contact(new Contact(set.getInt("contact_id")))
+                .contact(new Contact(wasNull(set,"contact_id")))
                 .description(set.getString("prof_description"))
-                .jobPreference(new JobPreference(set.getInt("job_preference_id")))
-                .personalInfo(new EmployeePersonalInfo(set.getInt("personal_info_id")))
-                .user(new User(set.getInt("usr_id")))
+                .jobPreference(new JobPreference(wasNull(set, "job_preference_id")))
+                .personalInfo(new EmployeePersonalInfo((wasNull(set, "personal_info_id"))))
+                .user(new User(wasNull(set, "usr_id")))
                 .build();
 
+    }
+
+    private Integer wasNull(ResultSet resultSet, String columnName) throws SQLException {
+        Integer value=resultSet.getInt(columnName);
+        if (resultSet.wasNull()) {
+             value=null;
+        }
+        return value;
     }
 }

@@ -20,7 +20,5 @@ public class ChangeLocaleCommand implements ActionCommand {
         response.addCookie(new Cookie(cookieName, lang.getLanguage()));
 
         request.setAttribute("lang", lang.getLanguage());
-
-
     }
 }

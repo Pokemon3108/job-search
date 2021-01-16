@@ -12,4 +12,5 @@ public abstract class ResumeService  extends BaseService<Resume> {
     public abstract Integer createResume(Employee employee) throws DaoException, InsertIdDataBaseException;
     public abstract Optional<Resume> findResumeByUserId(Integer userId) throws PoolException, DaoException;
     public abstract void createContact(Resume resume) throws DaoException;
+    public abstract void createPersonalInfo(Resume resume) throws DaoException;
 }

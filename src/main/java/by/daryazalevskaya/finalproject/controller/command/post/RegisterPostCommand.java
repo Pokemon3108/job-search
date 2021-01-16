@@ -49,11 +49,10 @@ public class RegisterPostCommand implements ActionCommand {
                 actionCommand.execute(request, response);
 
             } else if (service.addNewEntity(user) == null) {
-                final String page = request.getParameter("page");
                 request.setAttribute("repeatedEmail", true);
                 request.setAttribute("email", user.getEmail());
                 request.setAttribute("role", user.getRole());
-                request.getServletContext().getRequestDispatcher(page).forward(request, response);
+                request.getServletContext().getRequestDispatcher(PagePath.REGISTRATION).forward(request, response);
 
             } else {
 

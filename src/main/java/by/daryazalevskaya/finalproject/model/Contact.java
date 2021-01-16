@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Contact extends Entity {
 
-    public Contact(int id) {
+    public Contact(Integer id) {
         super.id=id;
     }
 

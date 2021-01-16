@@ -5,5 +5,4 @@ import by.daryazalevskaya.finalproject.model.Country;
 
 public interface CountryDao extends Dao<Country> {
     Integer findIdByCountry(String country) throws DaoException;
-
 }

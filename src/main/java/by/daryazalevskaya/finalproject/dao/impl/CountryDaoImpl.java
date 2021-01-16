@@ -13,9 +13,9 @@ import java.util.Optional;
 @Log4j2
 public class CountryDaoImpl extends BaseDao implements CountryDao {
 
-    private static final String FIND_COUNTRY_BY_ID_QUERY = "SELECT * FROM country WHERE id =?";
+    private static final String FIND_COUNTRY_BY_ID_QUERY = "SELECT name FROM country WHERE id =?";
     private static final String FIND_ID_BY_COUNTRY_NAME_QUERY = "SELECT id FROM country WHERE name =?";
-    private static final String READ_ALL_QUERY = "SELECT * FROM employee";
+    private static final String READ_ALL_QUERY = "SELECT id,name FROM country";
 
     @Override
     public Integer findIdByCountry(String country) throws DaoException {

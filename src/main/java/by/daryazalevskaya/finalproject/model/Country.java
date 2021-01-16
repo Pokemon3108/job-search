@@ -1,5 +1,6 @@
 package by.daryazalevskaya.finalproject.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
@@ -8,13 +9,18 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class Country extends Entity {
-    public Country(int id) {
-        super.id = id;
+
+    public Country(Integer id, String name) {
+        super(id);
+        this.name = name;
     }
 
-    public Country(int id, String countryName) {
-        super.id = id;
-        this.name = countryName;
+    public Country(String name) {
+        this.name = name;
+    }
+
+    public Country(Integer id) {
+        this.id=id;
     }
 
     private String name;

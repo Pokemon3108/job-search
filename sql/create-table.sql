@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS contact
     skype     VARCHAR(50)
 );
 
-CREATE TYPE gender_type as enum ('Female', 'Male');
+CREATE TYPE gender_type as enum ('FEMALE', 'MALE');
 
 CREATE TABLE IF NOT EXISTS country
 (

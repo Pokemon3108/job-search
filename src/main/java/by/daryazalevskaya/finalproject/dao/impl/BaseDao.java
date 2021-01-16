@@ -32,6 +32,7 @@ public abstract class BaseDao {
         List<T> entities = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
                 if (creator == null) {
                     throw new DaoException("Can't build object from database");
@@ -39,7 +40,7 @@ public abstract class BaseDao {
                 entities.add(creator.createEntity(resultSet));
             }
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         } finally {
             closeSet(resultSet);
         }

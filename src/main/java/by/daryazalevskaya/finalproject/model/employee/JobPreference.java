@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class JobPreference extends Entity {
 
-    public JobPreference(int id) {
+    public JobPreference(Integer id) {
         super.id=id;
     }
 

@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Resume extends Entity {
 
-    public Resume(int id) {
+    public Resume(Integer id) {
         super.id=id;
     }
 
