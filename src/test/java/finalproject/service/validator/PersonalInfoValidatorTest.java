@@ -11,6 +11,6 @@ public class PersonalInfoValidatorTest {
     @Test
     public void testValidName() {
         String name="Darya";
-        Assert.assertTrue(validator.isValidName(name));
+        Assert.assertTrue(validator.isValidFirstName(name));
     }
 }

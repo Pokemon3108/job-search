@@ -97,7 +97,7 @@
                     <span></span>
                 </p>
             </div>
-            <a href="${pageContext.request.contextPath}/employee/resume/saveSkills" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changeSkills" class="btn btn-success">Edit</a>
         </div>
     </div>
 </div>

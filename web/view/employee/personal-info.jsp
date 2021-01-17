@@ -30,6 +30,7 @@
                     <%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="nameError"></div>
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="nameLengthError"></div>
 
                     <c:if test='${invalidName==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
@@ -43,6 +44,7 @@
                     </div>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="surnameError"></div>
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="surnameLengthError"></div>
 
                     <c:if test='${invalidSurname==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
@@ -86,6 +88,7 @@
                     </select>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="cityError"></div>
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="cityLengthError"></div>
 
                     <c:if test='${invalidCity==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">

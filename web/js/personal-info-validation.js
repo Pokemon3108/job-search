@@ -4,7 +4,6 @@ function selectList(name, value) {
 
     for (let i = 0; i < elements.length; ++i) {
         if (document.getElementsByName(name)[i].value === value) {
-            console.log('here');
             ++counter;
             document.getElementsByName(name)[i].selected = true;
         }
@@ -33,30 +32,43 @@ function validate(form) {
     let flag = true;
 
     if (!validateName(name)) {
-        console.log(1);
         document.getElementById('nameError').innerHTML = 'Name should contains only letters or -.';
         hideElement('nameError');
         flag = false;
     }
 
+    if (name.length>30) {
+        document.getElementById('nameLengthError').innerHTML = 'Name cannot be longer than 30 symbols.';
+        hideElement('nameLengthError');
+        flag = false;
+    }
 
     if (!validateName(surname)) {
-        console.log(2);
         document.getElementById('surnameError').innerHTML = 'Surname should contains only letters or -.';
         hideElement('surnameError');
         flag = false;
     }
 
+    if (surname.length>50) {
+        document.getElementById('nameLengthError').innerHTML = 'Surname cannot be longer than 50 symbols.';
+        hideElement('surnameLengthError');
+        flag = false;
+    }
+
 
     if (!validateName(city)) {
-        console.log(3);
         document.getElementById('cityError').innerHTML = 'City should contains only letters or -.';
         hideElement('cityError');
         flag = false;
     }
 
+    if (city.length>100) {
+        document.getElementById('cityLengthError').innerHTML = 'City cannot be longer than 100 symbols.';
+        hideElement('cityLengthError');
+        flag = false;
+    }
+
     if (!validateBirthday(birthday)) {
-        console.log(4);
         document.getElementById('birthdayError').innerHTML = 'Your birthday cannot be later, than today date.';
         hideElement('birthdayError');
         flag = false;
@@ -92,6 +104,9 @@ hideElement('nameError');
 hideElement('surnameError');
 hideElement('cityError');
 hideElement('birthdayError');
+hideElement('nameLengthError');
+hideElement('surnameLengthError');
+hideElement('cityLengthError');
 
 
 

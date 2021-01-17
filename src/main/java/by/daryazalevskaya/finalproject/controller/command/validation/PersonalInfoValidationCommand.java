@@ -18,15 +18,15 @@ public class PersonalInfoValidationCommand implements ValidationCommand {
         PersonalInfoValidator validator=new PersonalInfoValidator();
 
         int errors = 0;
-        if (!validator.isValidName(info.getName())) {
+        if (!validator.isValidFirstName(info.getName())) {
             ++errors;
             request.setAttribute("invalidName", true);
         }
-        if (!info.getSurname().isEmpty() && !validator.isValidName(info.getSurname())) {
+        if (!info.getSurname().isEmpty() && !validator.isValidSurname(info.getSurname() )) {
             ++errors;
             request.setAttribute("invalidSurname", true);
         }
-        if (!info.getCity().isEmpty() &&!validator.isValidName(info.getCity())) {
+        if (!info.getCity().isEmpty() &&!validator.isValidCity(info.getCity())) {
             ++errors;
             request.setAttribute("invalidCity", true);
         }

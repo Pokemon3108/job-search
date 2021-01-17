@@ -68,6 +68,8 @@
                                        required>
                     </div>
 
+                    <div class="alert alert-danger my-sm-3 " role="alert" id="skypeError"></div>
+
                     <div class="form-group">
                         <label for="skype">Skype</label>
                         <input type="text" class="form-control" id="skype" value="${contact.skype}" name="skype">
@@ -77,12 +79,13 @@
 
                     <div>
                         <input type="submit" class="btn btn-success" value="Save changes"/>
-                        <form action="${back_path}">
-                            <button type="submit" class="btn btn-secondary">
-                                <fmt:message key="cancel" bundle="${ rb }"/>
-                            </button>
-                        </form>
                     </div>
+                </form>
+
+                <form action="${back_path}">
+                    <button type="submit" class="btn btn-secondary">
+                        <fmt:message key="cancel" bundle="${ rb }"/>
+                    </button>
                 </form>
 
             </div>

@@ -8,7 +8,20 @@
 --        (2, 'EMPLOYEE', 'Parrot', '0a234cccbb1234567aa'),
 --        (3, 'EMPLOYER', 'Dasha', '01234567890123456789');
 
-
+INSERT INTO specialization_type (id, name) VALUES(1, 'Service industry');
+INSERT INTO specialization_type (id, name) VALUES(2, 'Sales');
+INSERT INTO specialization_type (id, name) VALUES(3, 'Education');
+INSERT INTO specialization_type (id, name) VALUES(4, 'Trading');
+INSERT INTO specialization_type (id, name) VALUES(5, 'Logistics');
+INSERT INTO specialization_type (id, name) VALUES(6, 'Transport');
+INSERT INTO specialization_type (id, name) VALUES(7, 'Catering');
+INSERT INTO specialization_type (id, name) VALUES(8, 'Hotel business');
+INSERT INTO specialization_type (id, name) VALUES(9, 'Beauty and health');
+INSERT INTO specialization_type (id, name) VALUES(10, 'Marketing and advertising');
+INSERT INTO specialization_type (id, name) VALUES(11, 'Finance and bookkeeping');
+INSERT INTO specialization_type (id, name) VALUES(12, 'Medicine');
+INSERT INTO specialization_type (id, name) VALUES(13, 'IT');
+INSERT INTO specialization_type (id, name) VALUES(14, 'Law');
 
 
 INSERT INTO country (id, name) VALUES (0, 'Russia');

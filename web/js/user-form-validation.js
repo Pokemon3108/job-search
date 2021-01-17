@@ -6,7 +6,7 @@ function validate(form) {
     alert(111);
 
     if (!validateEmail(email)) {
-        document.getElementById('emailError').innerHTML = 'Illegal email format. js';
+        document.getElementById('emailError').innerHTML = 'Illegal email format.';
         hideElement('emailError');
         flag = false;
     }
@@ -21,6 +21,9 @@ function validate(form) {
 }
 
 function validateEmail(email) {
+    if (email.length>255) {
+        return false;
+    }
     const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     return re.test(String(email).toLowerCase());
 }
@@ -55,12 +58,7 @@ function checkRadioButton(role) {
 
 }
 
-// function checkRadioButton() {
-//     document.getElementsByName("role")[0].checked=true;
-// }
-
 hideElement('emailError');
 hideElement('passwordError');
 
-alert('${page}');
 

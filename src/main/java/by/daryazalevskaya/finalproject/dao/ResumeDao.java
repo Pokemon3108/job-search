@@ -16,5 +16,6 @@ public interface ResumeDao extends Dao<Resume> {
 
     void createPersonalInfo(Resume resume) throws DaoException;
 
+    void updateSkills(Resume resume) throws DaoException;
 
 }
