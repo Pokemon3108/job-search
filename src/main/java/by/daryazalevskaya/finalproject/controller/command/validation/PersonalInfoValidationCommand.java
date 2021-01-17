@@ -37,7 +37,7 @@ public class PersonalInfoValidationCommand implements ValidationCommand {
 
         if (errors != 0) {
             request.setAttribute("info", info);
-            log.info("Invalid employee personal info format");
+            log.info("Invalid employee personal info format with id: "+request.getSession().getAttribute("user"));
             isValid = false;
         }
         return isValid;

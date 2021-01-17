@@ -45,6 +45,10 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
 
     private static final String CREATE_SKILLS="UPDATE resume SET prof_description=? WHERE id=?";
 
+    private static final String CREATE_JOB_PREFERENCE="UPDATE resume SET job_preference_id=? WHERE id=?";
+
+    //private static final String CREATE_LANGUAGES="INSERT INTO resume_languages (resume_id) VALUES (?)";
+
     @Override
     public Integer create(Resume entity) throws InsertIdDataBaseException, DaoException {
         ResultSet resultSet = null;
@@ -139,6 +143,16 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
+    }
+
+    @Override
+    public void createJobPreference(Resume resume) throws DaoException {
+        createField(resume.getJobPreference().getId(), resume.getId(), CREATE_JOB_PREFERENCE);
+    }
+
+    @Override
+    public void createLanguages(Resume resume) throws DaoException {
+
     }
 
     private void createField(int fieldId, int resumeId,  String query) throws DaoException {

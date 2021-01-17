@@ -9,7 +9,7 @@ public class VacancyStatementFormer extends StatementFormer<Vacancy> {
 
     @Override
     public void fillStatement(PreparedStatement statement, Vacancy entity) throws SQLException {
-        statement.setInt(1, entity.getPosition().getId());
+        statement.setString(1, entity.getPosition());
         statement.setString(2, entity.getCity());
         statement.setInt(3, entity.getMinExperience());
         statement.setString(4, entity.getSchedule().toString());

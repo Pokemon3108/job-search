@@ -80,4 +80,15 @@ public class ResumeServiceImpl extends ResumeService {
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         resumeDao.updateSkills(resume);
     }
+
+    @Override
+    public void createJobPreference(Resume resume) throws DaoException {
+        ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
+        resumeDao.createJobPreference(resume);
+    }
+
+    @Override
+    public void createLanguages(Resume resume) throws DaoException {
+
+    }
 }

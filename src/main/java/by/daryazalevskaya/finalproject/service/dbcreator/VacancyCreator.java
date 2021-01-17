@@ -1,6 +1,5 @@
 package by.daryazalevskaya.finalproject.service.dbcreator;
 
-import by.daryazalevskaya.finalproject.model.Position;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
@@ -18,7 +17,7 @@ public class VacancyCreator extends Creator<Vacancy> {
                 .requirements(set.getString("requirements"))
                 .employer(new Employer(set.getInt("employer_id")))
                 .schedule(Schedule.valueOf(set.getString("schedule_type")))
-                .position(new Position(set.getInt("position_id")))
+                .position(set.getString("position"))
                 .build();
     }
 }
