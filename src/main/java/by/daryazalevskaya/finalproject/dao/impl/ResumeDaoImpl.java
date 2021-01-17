@@ -3,10 +3,8 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.dbcreator.ResumeCreator;
 import by.daryazalevskaya.finalproject.service.sql.ResumeStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
@@ -137,7 +135,7 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     @Override
     public void updateSkills(Resume resume) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(CREATE_SKILLS)) {
-            statement.setString(1, resume.getDescription());
+            statement.setString(1, resume.getSkills());
             statement.setInt(2, resume.getId());
             statement.executeUpdate();
         } catch (SQLException e) {

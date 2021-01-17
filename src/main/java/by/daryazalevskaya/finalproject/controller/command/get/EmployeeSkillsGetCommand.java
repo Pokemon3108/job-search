@@ -36,7 +36,7 @@ public class EmployeeSkillsGetCommand implements ActionCommand {
                 ResumeService resumeService = new ResumeServiceImpl();
                 resumeService.setTransaction(transaction);
                 Optional<Resume> resume = resumeService.findResumeByUserId(userId);
-                resume.ifPresent(resume1 -> request.setAttribute("skills", resume1.getDescription()));
+                resume.ifPresent(resume1 -> request.setAttribute("skills", resume1.getSkills()));
 
                 transaction.commit();
                 request.getServletContext()

@@ -17,20 +17,25 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
 
     @Override
     public Integer addNewEntity(JobPreference entity) throws DaoException, InsertIdDataBaseException {
-        JobPreferenceDao jobPreferenceDao=transaction.createDao(DaoType.JOB_PREFERENCE);
+        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         return jobPreferenceDao.create(entity);
     }
 
     @Override
     public Optional<JobPreference> read(int id) throws DaoException, PoolException {
-        JobPreferenceDao jobPreferenceDao=transaction.createDao(DaoType.JOB_PREFERENCE);
-        return jobPreferenceDao.read(id);
+        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+        Optional<JobPreference> preference = jobPreferenceDao.read(id);
+        if (preference.isPresent()) {
+            Optional<Specialization> specialization = findSpecializationById(preference.get().getSpecialization().getId());
+            specialization.ifPresent(spec -> preference.get().setSpecialization(spec));
+        }
+        return preference;
     }
 
     @Override
     public void update(JobPreference entity) throws DaoException, PoolException, InsertIdDataBaseException {
-        JobPreferenceDao jobPreferenceDao=transaction.createDao(DaoType.JOB_PREFERENCE);
-         jobPreferenceDao.update(entity);
+        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+        jobPreferenceDao.update(entity);
     }
 
     @Override
@@ -45,19 +50,19 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
 
     @Override
     public Integer findIdBySpecialization(String specialization) throws DaoException {
-        JobPreferenceDao jobPreferenceDao=transaction.createDao(DaoType.JOB_PREFERENCE);
+        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         return jobPreferenceDao.findIdBySpecialization(specialization);
     }
 
     @Override
     public Optional<Specialization> findSpecializationById(int id) throws DaoException {
-        JobPreferenceDao jobPreferenceDao=transaction.createDao(DaoType.JOB_PREFERENCE);
+        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         return jobPreferenceDao.findSpecializationById(id);
     }
 
     @Override
     public List<Specialization> findAllSpecializations() throws DaoException {
-        JobPreferenceDao jobPreferenceDao=transaction.createDao(DaoType.JOB_PREFERENCE);
+        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         return jobPreferenceDao.findAllSpecializations();
     }
 }

@@ -9,6 +9,7 @@ import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.impl.EmployeePersonalInfoDaoImpl;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
+import by.daryazalevskaya.finalproject.service.CountryService;
 import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
 
 import java.util.List;
@@ -25,7 +26,14 @@ public class EmployeePersonalInfoServiceImpl extends EmployeePersonalInfoService
     @Override
     public Optional<EmployeePersonalInfo> read(int id) throws DaoException, PoolException {
         EmployeePersonalInfoDao dao=transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
-        return dao.read(id);
+        Optional<EmployeePersonalInfo> info= dao.read(id);
+        CountryDao countryDao=transaction.createDao(DaoType.COUNTRY);
+        if (info.isPresent()) {
+            Optional<Country> country=countryDao.read(info.get().getCountry().getId());
+            country.ifPresent(c->info.get().setCountry(c));
+        }
+
+        return info;
     }
 
     @Override
@@ -53,4 +61,6 @@ public class EmployeePersonalInfoServiceImpl extends EmployeePersonalInfoService
         CountryDao countryDao=transaction.createDao(DaoType.COUNTRY);
         return countryDao.findAll();
     }
+
+
 }

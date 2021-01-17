@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.Period;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -47,22 +48,26 @@ public class ResumeGetCommand implements ActionCommand {
                 resumeService.setTransaction(transaction);
                 Optional<Resume> resume = resumeService.findResumeByUserId(userId);
                 if (resume.isPresent()) {
-                    ContactService contactService=new ContactServiceImpl();
+                    ContactService contactService = new ContactServiceImpl();
                     contactService.setTransaction(transaction);
-                    Optional<Contact> contact=contactService.read(resume.get().getContact().getId());
+                    Optional<Contact> contact = contactService.read(resume.get().getContact().getId());
                     contact.ifPresent(contact1 -> resume.get().setContact(contact1));
 
-                    EmployeePersonalInfoService infoService=new EmployeePersonalInfoServiceImpl();
+                    EmployeePersonalInfoService infoService = new EmployeePersonalInfoServiceImpl();
                     infoService.setTransaction(transaction);
-                    Optional<EmployeePersonalInfo> info=infoService.read(resume.get().getPersonalInfo().getId());
-                    info.ifPresent(info1 -> resume.get().setPersonalInfo(info1));
-
-                    JobPreferenceService preferenceService=new JobPreferenceServiceImpl();
-                    preferenceService.setTransaction(transaction);
-                    Optional<JobPreference> preference=preferenceService.read(resume.get().getJobPreference().getId());
-                    preference.ifPresent(jobPreference -> {
-                        resume.get().setJobPreference(jobPreference);
+                    Optional<EmployeePersonalInfo> info = infoService.read(resume.get().getPersonalInfo().getId());
+                    info.ifPresent(info1 -> {
+                        resume.get().setPersonalInfo(info1);
+                        if (info1.getBirthday() != null) {
+                            request.setAttribute("age", infoService.countAge(info1.getBirthday()));
+                        }
                     });
+
+
+                    JobPreferenceService preferenceService = new JobPreferenceServiceImpl();
+                    preferenceService.setTransaction(transaction);
+                    Optional<JobPreference> preference = preferenceService.read(resume.get().getJobPreference().getId());
+                    preference.ifPresent(jobPreference -> resume.get().setJobPreference(jobPreference));
 
                     request.setAttribute("resume", resume.get());
 

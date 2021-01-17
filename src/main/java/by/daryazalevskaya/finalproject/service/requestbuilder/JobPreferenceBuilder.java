@@ -12,7 +12,7 @@ public class JobPreferenceBuilder implements RequestBuilder<JobPreference> {
     public JobPreference build(HttpServletRequest request) {
         String position = request.getParameter("position");
         String specializationName = request.getParameter("specialization");
-        String schedule1=request.getParameter("schedule");
+
         Schedule schedule = Schedule.valueOf(request.getParameter("schedule"));
         Currency currency=Currency.valueOf(request.getParameter("currency"));
 

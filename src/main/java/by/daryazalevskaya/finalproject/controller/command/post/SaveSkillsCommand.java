@@ -3,7 +3,6 @@ package by.daryazalevskaya.finalproject.controller.command.post;
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
-import by.daryazalevskaya.finalproject.controller.command.validation.ContactValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.SkillsValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ValidationCommand;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
@@ -48,7 +47,7 @@ public class SaveSkillsCommand implements ActionCommand {
                     Optional<Resume> resume = resumeService.findResumeByUserId(userId);
                     String skills = request.getParameter("skills");
 
-                    resume.ifPresent(resume1 -> resume1.setDescription(skills));
+                    resume.ifPresent(resume1 -> resume1.setSkills(skills));
                     if (resume.isPresent()) {
                         resumeService.updateSkills(resume.get());
                     }
