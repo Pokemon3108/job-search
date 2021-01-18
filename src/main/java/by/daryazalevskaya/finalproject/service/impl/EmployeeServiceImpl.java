@@ -35,7 +35,10 @@ public class EmployeeServiceImpl extends EmployeeService {
 
 
     @Override
-    public Optional<Employee> read(int id) throws DaoException, PoolException {
+    public Optional<Employee> read(Integer id) throws DaoException, PoolException {
+        if (id==null) {
+            return Optional.empty();
+        }
         Optional<Employee> employee;
         EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
         employee = employeeDao.read(id);

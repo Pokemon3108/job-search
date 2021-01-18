@@ -4,8 +4,11 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
+import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
+import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 
+import java.util.List;
 import java.util.Optional;
 
 public abstract class ResumeService  extends BaseService<Resume> {
@@ -15,5 +18,6 @@ public abstract class ResumeService  extends BaseService<Resume> {
     public abstract void createPersonalInfo(Resume resume) throws DaoException;
     public abstract void updateSkills(Resume resume) throws DaoException;
     public abstract void createJobPreference(Resume resume) throws DaoException;
-    public abstract void createLanguages(Resume resume) throws DaoException;
+    public abstract void createLanguage(Resume resume) throws DaoException;
 }
+

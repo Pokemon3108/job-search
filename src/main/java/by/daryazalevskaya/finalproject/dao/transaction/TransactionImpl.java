@@ -3,16 +3,7 @@ package by.daryazalevskaya.finalproject.dao.transaction;
 import by.daryazalevskaya.finalproject.dao.Dao;
 import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
-import by.daryazalevskaya.finalproject.dao.impl.BaseDao;
-import by.daryazalevskaya.finalproject.dao.impl.ContactDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.CountryDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.EmployeeDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.EmployeePersonalInfoDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.EmployerDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.JobPreferenceDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.ResumeDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.UserDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.VacancyDaoImpl;
+import by.daryazalevskaya.finalproject.dao.impl.*;
 import by.daryazalevskaya.finalproject.model.Entity;
 
 import java.sql.Connection;
@@ -40,6 +31,7 @@ public class TransactionImpl implements Transaction {
         daoMap.put(DaoType.RESUME, new ResumeDaoImpl());
         daoMap.put(DaoType.USER, new UserDaoImpl());
         daoMap.put(DaoType.VACANCY, new VacancyDaoImpl());
+        daoMap.put(DaoType.EMPLOYEE_LANGUAGE, new EmployeeLanguageDaoImpl());
     }
 
     @SuppressWarnings("unchecked")

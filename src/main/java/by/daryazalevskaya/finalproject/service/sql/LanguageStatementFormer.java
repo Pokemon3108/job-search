@@ -1,14 +1,14 @@
 package by.daryazalevskaya.finalproject.service.sql;
 
-import by.daryazalevskaya.finalproject.model.employee.Language;
+import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class LanguageStatementFormer extends StatementFormer<Language> {
+public class LanguageStatementFormer extends StatementFormer<EmployeeLanguage> {
     @Override
-    public void fillStatement(PreparedStatement statement, Language entity) throws SQLException {
-        statement.setString(1, entity.getName());
+    public void fillStatement(PreparedStatement statement, EmployeeLanguage entity) throws SQLException {
+        statement.setInt(1, entity.getName().getId());
         statement.setString(2, entity.getLevel().toString());
     }
 }

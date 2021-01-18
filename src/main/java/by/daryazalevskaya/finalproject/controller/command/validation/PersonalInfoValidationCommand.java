@@ -2,7 +2,7 @@ package by.daryazalevskaya.finalproject.controller.command.validation;
 
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.service.requestbuilder.EmployeePersonalInfoBuilder;
-import by.daryazalevskaya.finalproject.service.validator.PersonalInfoValidator;
+import by.daryazalevskaya.finalproject.service.validator.EmployeePersonalInfoValidator;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ public class PersonalInfoValidationCommand implements ValidationCommand {
         boolean isValid=true;
         EmployeePersonalInfoBuilder builder=new EmployeePersonalInfoBuilder();
         EmployeePersonalInfo info=builder.build(request);
-        PersonalInfoValidator validator=new PersonalInfoValidator();
+        EmployeePersonalInfoValidator validator=new EmployeePersonalInfoValidator();
 
         int errors = 0;
         if (!validator.isValidFirstName(info.getName())) {

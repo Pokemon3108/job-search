@@ -16,10 +16,10 @@ public class JobPreference extends Entity {
         super.id=id;
     }
 
-    private int salary;
+    private Integer salary;
     private Currency currency;
     private Specialization specialization;
     private Schedule schedule;
-    private int experience;
+    private Integer experience;
     private String position;
 }

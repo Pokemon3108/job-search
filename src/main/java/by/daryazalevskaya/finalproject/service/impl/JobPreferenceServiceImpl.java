@@ -5,7 +5,6 @@ import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Specialization;
 import by.daryazalevskaya.finalproject.service.JobPreferenceService;
@@ -22,7 +21,10 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
     }
 
     @Override
-    public Optional<JobPreference> read(int id) throws DaoException, PoolException {
+    public Optional<JobPreference> read(Integer id) throws DaoException, PoolException {
+        if (id==null) {
+            return Optional.empty();
+        }
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         Optional<JobPreference> preference = jobPreferenceDao.read(id);
         if (preference.isPresent()) {

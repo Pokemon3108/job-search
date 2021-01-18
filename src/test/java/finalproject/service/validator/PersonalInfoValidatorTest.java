@@ -1,12 +1,12 @@
 package finalproject.service.validator;
 
-import by.daryazalevskaya.finalproject.service.validator.PersonalInfoValidator;
+import by.daryazalevskaya.finalproject.service.validator.EmployeePersonalInfoValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PersonalInfoValidatorTest {
 
-    private PersonalInfoValidator validator=new PersonalInfoValidator();
+    private EmployeePersonalInfoValidator validator=new EmployeePersonalInfoValidator();
 
     @Test
     public void testValidName() {

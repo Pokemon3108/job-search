@@ -1,6 +1,5 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.Dao;
 import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.UserDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
@@ -36,7 +35,10 @@ public class UserServiceImpl extends UserService {
 
 
     @Override
-    public Optional<User> read(int id) throws DaoException {
+    public Optional<User> read(Integer id) throws DaoException {
+        if (id==null) {
+            return Optional.empty();
+        }
         Optional<User> user;
         UserDao userDao = transaction.createDao(DaoType.USER);
         user = userDao.read(id);

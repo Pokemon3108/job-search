@@ -28,7 +28,7 @@
     <form name="userInfo" action="${pageContext.request.contextPath}/job/registration" onsubmit="return validate(this);"
           method="post">
 
-<%--        <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
+        <%--        <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
 
         <c:if test='${invalidEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
@@ -47,7 +47,8 @@
 
         <div class="form-group">
             <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" value="${email}"
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+                   value="${email}"
                    placeholder=
                    <fmt:message key="email" bundle="${ rb }"/>
                            required>
@@ -70,12 +71,12 @@
         </div>
 
         <div class="form-group">
-<%--            <c:set var="roles" value="${roles}"/>--%>
+            <%--            <c:set var="roles" value="${roles}"/>--%>
             <c:forEach items="${roles}" var="roleArr">
                 <div class="custom-radio custom-control-inline">
                     <label>
                         <input type="radio" name="role" value="${roleArr}">
-                        <c:set var="r" value="${roleArr}" />
+                        <c:set var="r" value="${roleArr}"/>
                         <fmt:message key="${fn:toLowerCase(r)}" bundle="${ rb }"/>
                     </label>
                 </div>
@@ -86,6 +87,8 @@
     </form>
 
 </div>
+
+<%--<c:import url="/view/headers/footer.jsp"/>--%>
 </body>
 
 <script src=<c:url value="/js/user-form-validation.js"/>>

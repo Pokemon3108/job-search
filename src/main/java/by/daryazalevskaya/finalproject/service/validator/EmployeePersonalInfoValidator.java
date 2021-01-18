@@ -2,7 +2,7 @@ package by.daryazalevskaya.finalproject.service.validator;
 
 import java.time.LocalDate;
 
-public class PersonalInfoValidator extends Validator {
+public class EmployeePersonalInfoValidator extends Validator {
     private static final String NAME_PATTERN = "^[a-zа-я\\s\\-]+$";
     private static final int NAME_LENGTH = 30;
     private static final int SURNAME_LENGTH = 50;

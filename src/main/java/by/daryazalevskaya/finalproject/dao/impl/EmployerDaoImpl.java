@@ -23,7 +23,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
             "(user_id) VALUES (?)";
 
     private static final String UPDATE_QUERY = "UPDATE employer SET  " +
-            "company_name = ?, country=?, city=?, contact_id=? WHERE user_id=?";
+            "company_name = ?, country=?, city=? WHERE user_id=?";
 
 
     private static final String DELETE_QUERY = "DELETE FROM employer WHERE user_id =?";
@@ -34,8 +34,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
         Integer id = null;
 
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY)) {
-            StatementFormer<Employer> former = new EmployerStatementFormer();
-            former.fillStatement(statement, entity);
+            statement.setInt(1, entity.getId());
             int row=statement.executeUpdate();
 
             if (row!=0) {
@@ -59,7 +58,6 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
             StatementFormer<Employer> former = new EmployerStatementFormer();
             former.fillStatement(statement, entity);
-            statement.setInt(5, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);

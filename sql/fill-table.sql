@@ -23,6 +23,16 @@ INSERT INTO specialization_type (id, name) VALUES(12, 'Medicine');
 INSERT INTO specialization_type (id, name) VALUES(13, 'IT');
 INSERT INTO specialization_type (id, name) VALUES(14, 'Law');
 
+INSERT INTO language (id, name) VALUES(1, 'Russian');
+INSERT INTO language (id, name) VALUES(2, 'English');
+INSERT INTO language (id, name) VALUES(3, 'French');
+INSERT INTO language (id, name) VALUES(4, 'German');
+INSERT INTO language (id, name) VALUES(5, 'Italian');
+INSERT INTO language (id, name) VALUES(6, 'Chinese');
+INSERT INTO language (id, name) VALUES(7, 'Japanese');
+
+
+
 
 INSERT INTO country (id, name) VALUES (0, 'Russia');
 INSERT INTO country (id, name) VALUES (1, 'Ukraine');

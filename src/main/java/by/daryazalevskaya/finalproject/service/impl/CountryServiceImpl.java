@@ -6,7 +6,6 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.dao.impl.CountryDaoImpl;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.service.CountryService;
 
@@ -20,7 +19,10 @@ public class CountryServiceImpl extends CountryService {
     }
 
     @Override
-    public Optional<Country> read(int id) throws DaoException, PoolException {
+    public Optional<Country> read(Integer id) throws DaoException, PoolException {
+        if (id==null) {
+            return Optional.empty();
+        }
         CountryDao countryDao=transaction.createDao(DaoType.COUNTRY);
         return countryDao.read(id);
     }

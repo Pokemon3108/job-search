@@ -28,5 +28,5 @@ public class Resume extends Entity {
     private Contact contact;
     private EmployeePersonalInfo personalInfo;
     private JobPreference jobPreference;
-    private List<Language> languageList;
+    private EmployeeLanguage language;
 }

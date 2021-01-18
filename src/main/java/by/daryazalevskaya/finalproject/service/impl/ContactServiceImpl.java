@@ -21,7 +21,10 @@ public class ContactServiceImpl extends ContactService {
     }
 
     @Override
-    public Optional<Contact> read(int id) throws DaoException, PoolException {
+    public Optional<Contact> read(Integer id) throws DaoException, PoolException {
+        if (id==null) {
+            return Optional.empty();
+        }
         ContactDao contactDao=transaction.createDao(DaoType.CONTACT);
         return contactDao.read(id);
     }

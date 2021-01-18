@@ -23,13 +23,15 @@
             </h3>
             <c:if test="${resume.personalInfo!=null}">
 
-                <p>
-                    <strong><fmt:message key="fullname" bundle="${ rb }"/>: </strong>
-                    <span>${resume.personalInfo.name} ${resume.personalInfo.surname}</span>
-                </p>
+                <c:if test="${resume.personalInfo.name!=null}">
+                    <p>
+                        <strong><fmt:message key="fullname" bundle="${ rb }"/>: </strong>
+                        <span>${resume.personalInfo.name} ${resume.personalInfo.surname}</span>
+                    </p>
+                </c:if>
 
 
-                <c:if test="${resume.personalInfo.gender!=''}">
+                <c:if test="${resume.personalInfo.gender!=null}">
                     <p>
                         <strong><fmt:message key="gender" bundle="${ rb }"/>: </strong>
                         <span>
@@ -47,11 +49,11 @@
                 </c:if>
 
 
-                <c:if test="${resume.personalInfo.country!=''}">
+                <c:if test="${resume.personalInfo.country!=null}">
                     <p>
                         <strong><fmt:message key="living_place" bundle="${ rb }"/>: </strong>
                         <span>${resume.personalInfo.country.name}</span>
-                        <c:if test="${resume.personalInfo.city!=''}">
+                        <c:if test="${resume.personalInfo.city!=null}">
                             <span>, ${resume.personalInfo.city}</span>
                         </c:if>
                     </p>
@@ -59,7 +61,7 @@
             </c:if>
 
             <a href="${pageContext.request.contextPath}/job/employee/changePersonalInfo"
-               class="btn btn-success">Edit</a>
+               class="btn btn-success"><fmt:message key="edit" bundle="${ rb }"/></a>
         </div>
 
 
@@ -92,7 +94,9 @@
 
 
             </c:if>
-            <a href="${pageContext.request.contextPath}/job/employee/changeContact" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changeContact" class="btn btn-success">
+                <fmt:message key="edit" bundle="${ rb }"/>
+            </a>
         </div>
     </div>
 
@@ -102,14 +106,14 @@
 
             <c:if test="${resume.jobPreference!=null}">
 
-                <c:if test='${resume.jobPreference.position!=""}'>
+                <c:if test='${resume.jobPreference.position!=null}'>
                     <p>
                         <strong><fmt:message key="desired_position" bundle="${ rb }"/>: </strong>
                         <span> ${resume.jobPreference.position} </span>
                     </p>
                 </c:if>
 
-                <c:if test='${resume.jobPreference.specialization.name!=""}'>
+                <c:if test='${resume.jobPreference.specialization.name!=null}'>
                     <p>
                         <strong><fmt:message key="specialization" bundle="${ rb }"/>: </strong>
                         <span>${resume.jobPreference.specialization.name}</span>
@@ -125,13 +129,15 @@
                     </p>
                 </c:if>
 
-                <p>
-                    <strong><fmt:message key="schedule" bundle="${ rb }"/>: </strong>
-                    <span>
+                <c:if test='${resume.jobPreference.schedule!=null}'>
+                    <p>
+                        <strong><fmt:message key="schedule" bundle="${ rb }"/>: </strong>
+                        <span>
                         <c:set var="sch" value="${resume.jobPreference.schedule}"/>
                                 <fmt:message key="${fn:toLowerCase(sch)}" bundle="${ rb }"/>
                     </span>
-                </p>
+                    </p>
+                </c:if>
 
 
                 <c:if test='${resume.jobPreference.experience!=null}'>
@@ -146,7 +152,7 @@
             </c:if>
 
             <a href="${pageContext.request.contextPath}/job/employee/changeJobPreference"
-               class="btn btn-success">Edit</a>
+               class="btn btn-success"><fmt:message key="edit" bundle="${ rb }"/></a>
         </div>
 
         <div class="card-body border my-sm-3">
@@ -162,7 +168,9 @@
                     <span></span>
                 </p>
             </div>
-            <a href="${pageContext.request.contextPath}/job/employee/changeLanguage" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changeLanguage" class="btn btn-success">
+                <fmt:message key="edit" bundle="${ rb }"/>
+            </a>
         </div>
     </div>
 
@@ -177,7 +185,9 @@
                     <span>${resume.skills}</span>
                 </p>
             </c:if>
-            <a href="${pageContext.request.contextPath}/job/employee/changeSkills" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employee/changeSkills" class="btn btn-success">
+                <fmt:message key="edit" bundle="${ rb }"/>
+            </a>
         </div>
     </div>
 

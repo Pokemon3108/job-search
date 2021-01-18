@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.service.dbcreator;
 
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.User;
+import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
@@ -18,6 +19,7 @@ public class ResumeCreator extends Creator<Resume> {
                 .jobPreference(new JobPreference(wasNull(set, "job_preference_id")))
                 .personalInfo(new EmployeePersonalInfo((wasNull(set, "personal_info_id"))))
                 .user(new User(wasNull(set, "usr_id")))
+                .language(new EmployeeLanguage(wasNull(set, "language_id")))
                 .build();
 
     }

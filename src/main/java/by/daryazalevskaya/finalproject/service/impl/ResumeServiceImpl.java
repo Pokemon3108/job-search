@@ -5,9 +5,10 @@ import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
+import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
+import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
@@ -22,7 +23,10 @@ public class ResumeServiceImpl extends ResumeService {
     }
 
     @Override
-    public Optional<Resume> read(int id) throws DaoException, PoolException {
+    public Optional<Resume> read(Integer id) throws DaoException, PoolException {
+        if (id==null) {
+            return Optional.empty();
+        }
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         return resumeDao.read(id);
     }
@@ -88,7 +92,10 @@ public class ResumeServiceImpl extends ResumeService {
     }
 
     @Override
-    public void createLanguages(Resume resume) throws DaoException {
-
+    public void createLanguage(Resume resume) throws DaoException {
+        ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
+        resumeDao.createLanguage(resume);
     }
+
+
 }

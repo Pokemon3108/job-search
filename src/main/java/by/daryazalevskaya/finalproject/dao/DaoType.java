@@ -9,5 +9,6 @@ public enum DaoType {
     JOB_PREFERENCE,
     RESUME,
     USER,
+    EMPLOYEE_LANGUAGE,
     VACANCY;
 }

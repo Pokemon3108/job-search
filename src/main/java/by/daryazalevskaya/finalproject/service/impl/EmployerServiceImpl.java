@@ -27,13 +27,18 @@ public class EmployerServiceImpl extends EmployerService {
     }
 
     @Override
-    public Optional<Employer> read(int id) throws DaoException, PoolException {
-        return Optional.empty();
+    public Optional<Employer> read(Integer id) throws DaoException, PoolException {
+        if (id==null) {
+            return Optional.empty();
+        }
+        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+        return employerDao.read(id);
     }
 
     @Override
     public void update(Employer entity) throws DaoException, PoolException {
-
+        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+         employerDao.update(entity);
     }
 
     @Override

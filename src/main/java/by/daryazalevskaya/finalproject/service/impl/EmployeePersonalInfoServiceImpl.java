@@ -6,10 +6,8 @@ import by.daryazalevskaya.finalproject.dao.EmployeePersonalInfoDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.dao.impl.EmployeePersonalInfoDaoImpl;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
-import by.daryazalevskaya.finalproject.service.CountryService;
 import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
 
 import java.util.List;
@@ -24,7 +22,10 @@ public class EmployeePersonalInfoServiceImpl extends EmployeePersonalInfoService
     }
 
     @Override
-    public Optional<EmployeePersonalInfo> read(int id) throws DaoException, PoolException {
+    public Optional<EmployeePersonalInfo> read(Integer id) throws DaoException, PoolException {
+        if (id==null) {
+            return Optional.empty();
+        }
         EmployeePersonalInfoDao dao=transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
         Optional<EmployeePersonalInfo> info= dao.read(id);
         CountryDao countryDao=transaction.createDao(DaoType.COUNTRY);
