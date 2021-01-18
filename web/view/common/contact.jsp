@@ -78,7 +78,7 @@
                     <input type="hidden" name="id" value="${contact.id}">
 
                     <div>
-                        <input type="submit" class="btn btn-success" value="Save changes"/>
+                        <input type="submit" class="btn btn-success" value=" <fmt:message key="save_change" bundle="${ rb }"/>"/>
                     </div>
                 </form>
 

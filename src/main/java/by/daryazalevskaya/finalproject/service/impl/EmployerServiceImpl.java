@@ -7,7 +7,9 @@ import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
+import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.User;
+import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 
@@ -72,16 +74,10 @@ public class EmployerServiceImpl extends EmployerService {
         delete(userId);
     }
 
-//    @Override
-//    public void updateContact(int userId) {
-//
-//    }
-//
-//
-//    @Override
-//    public Optional<Contact> getContact(int userId) throws PoolException, DaoException {
-//        Optional<Employer> employer=read(userId);
-//        ContactService contactService=transaction.createDao(DaoType.CONTACT);
-//        return contactService.read(employer.get().getContact().getId());
-//    }
+    @Override
+    public void createContact(int employerId, Contact contact) throws DaoException {
+        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+        employerDao.createContact(employerId, contact.getId());
+    }
+
 }

@@ -46,8 +46,6 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY)) {
             statement.setInt(1, entity.getId());
             statement.setInt(2, entity.getResume().getId());
-//            StatementFormer<Employee> former = new EmployeeStatementFormer();
-//            former.fillStatement(statement, entity);
             int row=statement.executeUpdate();
 
             if (row!=0) {

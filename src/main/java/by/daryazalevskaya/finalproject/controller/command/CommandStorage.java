@@ -25,6 +25,7 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.CHANGE_JOB_PREFERENCE, new JobPreferenceGetCommand());
         getRequestMap.put(UriPattern.CHANGE_EMPLOYER_INFO, new EmployerInfoGetCommand());
         getRequestMap.put(UriPattern.CHANGE_LANGUAGE, new LanguageGetCommand());
+        getRequestMap.put(UriPattern.CHANGE_EMPLOYER_CONTACT, new EmployerGetContactCommand());
 
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());
@@ -36,6 +37,7 @@ public class CommandStorage {
         postRequestMap.put(UriPattern.CHANGE_JOB_PREFERENCE, new SaveJobPreferenceCommand());
         postRequestMap.put(UriPattern.CHANGE_EMPLOYER_INFO, new SaveEmployerInfoCommand());
         postRequestMap.put(UriPattern.CHANGE_LANGUAGE, new SaveEmployeeLanguageCommand());
+        postRequestMap.put(UriPattern.CHANGE_EMPLOYER_CONTACT, new SaveContactEmployerCommand());
         //TODO fill maps
     }
 

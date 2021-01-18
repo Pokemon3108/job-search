@@ -16,7 +16,8 @@ public enum UriPattern {
     CHANGE_EMPLOYEE_SKILLS("/job/employee/changeSkills"),
     CHANGE_JOB_PREFERENCE("/job/employee/changeJobPreference"),
     CHANGE_EMPLOYER_INFO("/job/employer/changeInfo"),
-    CHANGE_LANGUAGE("/job/employee/changeLanguage");
+    CHANGE_LANGUAGE("/job/employee/changeLanguage"),
+    CHANGE_EMPLOYER_CONTACT("/job/employer/changeContact");
 
     UriPattern(String url) {
         this.url = url;

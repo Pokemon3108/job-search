@@ -28,6 +28,8 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
 
     private static final String DELETE_QUERY = "DELETE FROM employer WHERE user_id =?";
 
+    private static final String CREATE_CONTACT="UPDATE employer SET contact_id=? WHERE user_id=?";
+
 
     @Override
     public Integer create(Employer entity) throws DaoException {
@@ -72,5 +74,16 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
     @Override
     public List<Employer> findAll() throws DaoException {
         return super.findAll(READ_ALL_QUERY, new EmployerCreator());
+    }
+
+    @Override
+    public void createContact(int employerId, int contactId) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(CREATE_CONTACT)) {
+            statement.setInt(1, contactId);
+            statement.setInt(2, employerId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 }

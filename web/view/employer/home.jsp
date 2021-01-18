@@ -58,7 +58,7 @@
             </c:if>
 
             <a href="${pageContext.request.contextPath}/job/employer/changeInfo"
-               class="btn btn-success">Edit</a>
+               class="btn btn-success"> <fmt:message key="edit" bundle="${ rb }"/></a>
         </div>
 
 
@@ -91,7 +91,9 @@
 
 
             </c:if>
-            <a href="${pageContext.request.contextPath}/job/employer/changeContact" class="btn btn-success">Edit</a>
+            <a href="${pageContext.request.contextPath}/job/employer/changeContact" class="btn btn-success">
+                <fmt:message key="edit" bundle="${ rb }"/>
+            </a>
         </div>
     </div>
 </div>
