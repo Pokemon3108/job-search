@@ -1,16 +1,12 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.ContactDao;
-import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.EmployeeDao;
-import by.daryazalevskaya.finalproject.dao.EmployeePersonalInfoDao;
-import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
-import by.daryazalevskaya.finalproject.dao.ResumeDao;
+import by.daryazalevskaya.finalproject.dao.*;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
+import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
@@ -36,7 +32,7 @@ public class EmployeeServiceImpl extends EmployeeService {
 
     @Override
     public Optional<Employee> read(Integer id) throws DaoException, PoolException {
-        if (id==null) {
+        if (id == null) {
             return Optional.empty();
         }
         Optional<Employee> employee;
@@ -61,16 +57,29 @@ public class EmployeeServiceImpl extends EmployeeService {
             Resume resume = resumeDao.read(employee.get().getResume().getId()).orElse(null);
 
             if (Objects.nonNull(resume)) {
-                JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-                jobPreferenceDao.delete(resume.getJobPreference().getId());
 
-                EmployeePersonalInfoDao employeePersonalInfoDao = transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
-                employeePersonalInfoDao.delete(resume.getPersonalInfo().getId());
+                if (resume.getJobPreference().getId() != null) {
+                    JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+                    jobPreferenceDao.delete(resume.getJobPreference().getId());
+                }
 
-                ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
-                contactDao.delete(resume.getContact().getId());
+                if (resume.getPersonalInfo().getId() != null) {
+                    EmployeePersonalInfoDao employeePersonalInfoDao = transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
+                    employeePersonalInfoDao.delete(resume.getPersonalInfo().getId());
+                }
 
-                resumeDao.deleteResumeLanguage(resume.getId());
+                if (resume.getContact().getId() != null) {
+                    ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
+                    contactDao.delete(resume.getContact().getId());
+                }
+
+                if (resume.getLanguage().getId()!=null) {
+                    EmployeeLanguageDao employeeLanguageDao=transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
+                    employeeLanguageDao.delete(resume.getLanguage().getId());
+                }
+
+                employeeDao.delete(id);
+                resumeDao.delete(resume.getId());
             }
 
             employeeDao.delete(id);

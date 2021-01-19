@@ -18,9 +18,6 @@ public class EmployerHomeCommand implements ActionCommand {
         HttpSession session = request.getSession(false);
 
         if (Objects.nonNull(session)) {
-
-
-
             request.getServletContext()
                     .getRequestDispatcher(PagePath.EMPLOYER_HOME)
                     .forward(request, response);

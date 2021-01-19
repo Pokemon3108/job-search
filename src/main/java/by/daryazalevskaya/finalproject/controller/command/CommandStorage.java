@@ -42,6 +42,7 @@ public class CommandStorage {
         postRequestMap.put(UriPattern.CHANGE_LANGUAGE, new SaveEmployeeLanguageCommand());
         postRequestMap.put(UriPattern.CHANGE_EMPLOYER_CONTACT, new SaveContactEmployerCommand());
         postRequestMap.put(UriPattern.SAVE_VACANCY_CHANGES, new SaveVacancyChangesCommand());
+        postRequestMap.put(UriPattern.DELETE_VACANCY, new DeleteVacancyCommand());
         //TODO fill maps
     }
 

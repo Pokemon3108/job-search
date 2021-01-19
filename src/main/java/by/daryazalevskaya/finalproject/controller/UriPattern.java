@@ -9,8 +9,8 @@ public enum UriPattern {
     CHANGE_LOCALE("/job/changeLocale"),
     EMPLOYEE_HOME("/job/employee/resume"),
     EMPLOYER_HOME("/job/employer/home"),
-    LOGOUT("/job/logout"),
-    DELETE_ACCOUNT("/job/delete"),
+    LOGOUT("/job/auth/logout"),
+    DELETE_ACCOUNT("/job/auth/delete"),
     CHANGE_EMPLOYEE_CONTACT("/job/employee/changeContact"),
     CHANGE_EMPLOYEE_INFO("/job/employee/changePersonalInfo"),
     CHANGE_EMPLOYEE_SKILLS("/job/employee/changeSkills"),
@@ -21,7 +21,8 @@ public enum UriPattern {
     OPEN_VACANCY("/job/employer/openVacancy"),
     EDIT_VACANCY("/job/employer/editVacancy"),
     VACANCY_LIST("/job/employer/vacancyList"),
-    SAVE_VACANCY_CHANGES("/job/employer/saveVacancyChanges");
+    SAVE_VACANCY_CHANGES("/job/employer/saveVacancyChanges"),
+    DELETE_VACANCY("/job/employer/deleteVacancy");
 
     UriPattern(String url) {
         this.url = url;

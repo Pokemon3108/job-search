@@ -30,10 +30,10 @@
                 </p>
 
                 <c:if test="${vacancy.salary!=null}">
-                <p>
-                    <strong><fmt:message key="salary" bundle="${ rb }"/>: </strong>
-                    <span>${vacancy.salary} ${vacancy.currency}</span>
-                </p>
+                    <p>
+                        <strong><fmt:message key="salary" bundle="${ rb }"/>: </strong>
+                        <span>${vacancy.salary} ${vacancy.currency}</span>
+                    </p>
                 </c:if>
 
                 <p>
@@ -59,6 +59,40 @@
                 </div>
 
             </form>
+
+
+            <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteVacancy">
+                <fmt:message key="delete_vacancy" bundle="${ rb }"/>
+            </button>
+
+            <div class="modal fade" id="deleteVacancy" tabindex="-1" role="dialog" aria-labelledby="deleteVacancyLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteVacancyLabel">
+                                <fmt:message key="sure" bundle="${ rb }"/></h5>
+                        </div>
+
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                <fmt:message key="close" bundle="${ rb }"/></button>
+
+
+                            <form action="${pageContext.request.contextPath}/job/employer/deleteVacancy" method="post">
+                                <input type="hidden" name="vacancyId" value="${vacancy.id}">
+                                <button type="submit" class="btn btn-danger" id="deleteVac">
+                                    <fmt:message key="delete_vacancy" bundle="${ rb }"/></button>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </c:forEach>
@@ -66,4 +100,6 @@
 </div>
 
 </body>
+
+
 </html>

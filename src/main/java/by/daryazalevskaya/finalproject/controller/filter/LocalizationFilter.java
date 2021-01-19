@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
-@WebFilter("/job/*")
+@WebFilter(filterName = "localizationFilter")
 public class LocalizationFilter implements Filter {
 
     final Localization DEFAULT_LANG = Localization.ENGLISH;
@@ -40,7 +40,7 @@ public class LocalizationFilter implements Filter {
             }
 
             servletRequest.setAttribute("localization", cookie.getValue());
-
+            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 }

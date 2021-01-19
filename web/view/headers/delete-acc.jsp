@@ -19,13 +19,16 @@
             </div>
 
             <div class="modal-footer">
-                <form action="${pageContext.request.contextPath}/job/delete" method="post">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        <fmt:message key="close" bundle="${ rb }"/></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <fmt:message key="close" bundle="${ rb }"/></button>
+
+
+                <form action="${pageContext.request.contextPath}/job/auth/delete" method="post">
+                    <button type="submit" class="btn btn-danger" id="delete_acc">
+                        <fmt:message key="delete_acc" bundle="${ rb }"/></button>
                 </form>
-                <button type="button" class="btn btn-danger" id="delete_acc"><fmt:message key="delete_acc"
-                                                                                           bundle="${ rb }"/></button>
             </div>
+
 
         </div>
     </div>

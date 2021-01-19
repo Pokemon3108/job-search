@@ -48,7 +48,7 @@
                     </li>
                 </ul>
 
-                <form action="${pageContext.request.contextPath}/job/logout" method="post">
+                <form action="${pageContext.request.contextPath}/job/auth/logout" method="post">
                     <input type="submit" class="btn btn-success" value=<fmt:message key="logout" bundle="${ rb }" /> />
                 </form>
 

@@ -19,6 +19,12 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     @Override
+    public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException {
+        VacancyDao dao = transaction.createDao(DaoType.VACANCY);
+        dao.deleteVacancyFromEmployeeVacancies(vacancyId);
+    }
+
+    @Override
     public Integer addNewEntity(Vacancy entity) throws DaoException, InsertIdDataBaseException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         return dao.create(entity);
@@ -41,7 +47,8 @@ public class VacancyServiceImpl extends VacancyService {
 
     @Override
     public void delete(int id) throws DaoException, PoolException {
-
+        VacancyDao dao = transaction.createDao(DaoType.VACANCY);
+        dao.delete(id);
     }
 
     @Override

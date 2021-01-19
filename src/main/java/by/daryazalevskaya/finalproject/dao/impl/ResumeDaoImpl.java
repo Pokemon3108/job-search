@@ -94,11 +94,6 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     }
 
     @Override
-    public void deleteResumeLanguage(int resumeId) throws DaoException {
-        delete(resumeId, DELETE_LANGUAGES_QUERY);
-    }
-
-    @Override
     public void createContact(Resume resume) throws DaoException {
         createField(resume.getContact().getId(), resume.getId(), CREATE_CONTACT);
     }

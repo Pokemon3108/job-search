@@ -8,14 +8,58 @@
 <!--        <welcome-file>/index.jsp</welcome-file>-->
 <!--    </welcome-file-list>-->
 
-<!--    <error-page>-->
-<!--        <error-code>404</error-code>-->
-<!--        <location>/view/error404.jsp</location>-->
-<!--    </error-page>-->
+    <error-page>
+        <error-code>403</error-code>
+        <location>/view/error/error403.jsp</location>
+    </error-page>
 
-<!--    <error-page>-->
-<!--        <error-code>500</error-code>-->
-<!--        <location>/view/error500.jsp</location>-->
-<!--    </error-page>-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/view/error/error404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/view/error/error500.jsp</location>
+    </error-page>
+
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/job/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>localizationFilter</filter-name>
+        <url-pattern>/job/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/job/auth/*</url-pattern>
+        <url-pattern>/job/employee/*</url-pattern>
+        <url-pattern>/job/employer/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>roleFilter</filter-name>
+        <url-pattern>/job/employee/*</url-pattern>
+        <url-pattern>/job/employer/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>actionFilter</filter-name>
+        <url-pattern>/job/*</url-pattern>
+    </filter-mapping>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Hidden jsp</web-resource-name>
+            <url-pattern>/view/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+        </auth-constraint>
+    </security-constraint>
+
+
 
 </web-app>

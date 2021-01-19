@@ -39,6 +39,8 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             "salary, schedule, duties, requirements,  position, currency, id FROM vacancy " +
             "WHERE employer_id=?";
 
+    private static final String DELETE_EMPLOYEE_VACANCY="DELETE FROM employee_vacancies WHERE vacancy_id=?";
+
     @Override
     public Integer create(Vacancy entity) throws InsertIdDataBaseException, DaoException {
         return super.create(entity, CREATE_QUERY, new VacancyStatementFormer());
@@ -101,5 +103,10 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
         }
 
         return entities;
+    }
+
+    @Override
+    public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException {
+        delete(vacancyId, DELETE_EMPLOYEE_VACANCY);
     }
 }

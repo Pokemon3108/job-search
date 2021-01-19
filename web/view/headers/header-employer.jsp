@@ -48,18 +48,11 @@
                     </li>
                 </ul>
 
-                <form action="${pageContext.request.contextPath}/job/logout" method="post">
+                <form action="${pageContext.request.contextPath}/job/auth/logout" method="post">
                     <button type="submit" class="btn btn-success mr-1">
                         <fmt:message key="logout" bundle="${ rb }"/>
                     </button>
                 </form>
-
-                <%--                <form action="${pageContext.request.contextPath}/job/delete" method="post">--%>
-                <%--                    <button type="submit" class="btn btn-danger ">--%>
-                <%--                        <fmt:message key="delete_acc" bundle="${ rb }"/>--%>
-                <%--                    </button>--%>
-                <%--                </form>--%>
-
             </div>
         </div>
 
