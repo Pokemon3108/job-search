@@ -31,7 +31,7 @@ public class RoleSecurityFilter implements Filter {
             Role role = (Role) session.getAttribute("role");
             if (!role.toString().toLowerCase().equals(roleUrl)) {
                 log.error(String.format("User with id %d has no authorities for this mapping.", session.getAttribute("user")));
-                httpResponse.sendError(404, "You haven't access on this page.");
+                httpResponse.sendError(404, "You haven't any access on this page.");
             } else {
                 filterChain.doFilter(servletRequest, servletResponse);
             }

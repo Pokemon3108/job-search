@@ -1,0 +1,17 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>ctg</short-name>
+    <uri>customtags</uri>
+
+    <tag>
+        <name>age</name>
+        <tag-class>by.daryazalevskaya.finalproject.tag.AgeTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>birthday</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

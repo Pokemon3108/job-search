@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setLocale value="${cookie.lang.value}" scope="session"/>
 <fmt:setBundle basename="property.pagecontent" var="rb"/>
 <html>
@@ -41,12 +42,8 @@
                     </p>
                 </c:if>
 
-                <c:if test="${age!=null}">
-                    <p>
-                        <strong><fmt:message key="age" bundle="${ rb }"/>: </strong>
-                        <span>${age} <fmt:message key="years" bundle="${ rb }"/></span>
-                    </p>
-                </c:if>
+
+                <ctg:age birthday="${resume.personalInfo.birthday}"/>
 
 
                 <c:if test="${resume.personalInfo.country!=null}">

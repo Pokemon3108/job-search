@@ -18,10 +18,10 @@
         <location>/view/error/error404.jsp</location>
     </error-page>
 
-    <error-page>
-        <error-code>500</error-code>
-        <location>/view/error/error500.jsp</location>
-    </error-page>
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/view/error/error500.jsp</location>-->
+<!--    </error-page>-->
 
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
@@ -59,6 +59,13 @@
         <auth-constraint>
         </auth-constraint>
     </security-constraint>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customtags</taglib-uri>
+            <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 
 
 
