@@ -37,6 +37,11 @@
                         </a>
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/vacancyList">
+                            <h5><fmt:message key="my_vacancies" bundle="${ rb }"/></h5>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/seeEmployee">
                             <h5><fmt:message key="see_employee" bundle="${ rb }"/></h5>
                         </a>
@@ -49,18 +54,18 @@
                     </button>
                 </form>
 
-<%--                <form action="${pageContext.request.contextPath}/job/delete" method="post">--%>
-<%--                    <button type="submit" class="btn btn-danger ">--%>
-<%--                        <fmt:message key="delete_acc" bundle="${ rb }"/>--%>
-<%--                    </button>--%>
-<%--                </form>--%>
+                <%--                <form action="${pageContext.request.contextPath}/job/delete" method="post">--%>
+                <%--                    <button type="submit" class="btn btn-danger ">--%>
+                <%--                        <fmt:message key="delete_acc" bundle="${ rb }"/>--%>
+                <%--                    </button>--%>
+                <%--                </form>--%>
 
             </div>
         </div>
 
-            <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
-                <fmt:message key="delete_acc" bundle="${ rb }"/>
-            </button>
+        <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
+            <fmt:message key="delete_acc" bundle="${ rb }"/>
+        </button>
 
 
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">

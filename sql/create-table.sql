@@ -115,14 +115,15 @@ CREATE TABLE employer
 
 CREATE TABLE vacancy
 (
-    id             SERIAL PRIMARY KEY,
-    position       VARCHAR(255),
-    city           VARCHAR(100),
-    min_experience INTEGER,
-    schedule       schedule_type,
-    duties         TEXT,
-    requirements   TEXT,
-    employer_id    INTEGER REFERENCES employer (user_id)
+    id           SERIAL PRIMARY KEY,
+    position     VARCHAR(255),
+    city         VARCHAR(100),
+    salary       INTEGER,
+    schedule     schedule_type,
+    currency     currency_type,
+    duties       TEXT,
+    requirements TEXT,
+    employer_id  INTEGER REFERENCES employer (user_id)
 );
 
 CREATE TABLE employee_vacancies

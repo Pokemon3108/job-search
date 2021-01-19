@@ -60,7 +60,9 @@
             <a href="${pageContext.request.contextPath}/job/employer/changeInfo"
                class="btn btn-success"> <fmt:message key="edit" bundle="${ rb }"/></a>
         </div>
+    </div>
 
+    <div class="card-deck">
 
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
@@ -97,6 +99,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

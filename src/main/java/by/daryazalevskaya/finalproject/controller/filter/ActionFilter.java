@@ -16,12 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Log4j2
-@WebFilter(urlPatterns = "/job/*", dispatcherTypes = DispatcherType.REQUEST)
+@WebFilter(urlPatterns = "/job/*")
 public class ActionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
         if (servletRequest instanceof HttpServletRequest) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 

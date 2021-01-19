@@ -9,7 +9,9 @@ import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.VacancyStatementFormer;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,18 +22,22 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     private static final String READ_BY_ID_QUERY = "SELECT * FROM vacancy WHERE id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO vacancy " +
-            "(position, city, min_experience, schedule, duties, requirements, employer_id)" +
-            " VALUES (?, ?, ?, ?::schedule_type, ?, ?, ?)";
+            "(position, city, salary, currency, schedule, duties, requirements, employer_id)" +
+            " VALUES (?, ?, ?, ?::currency_type, ?::schedule_type, ?, ?, ?)";
 
     private static final String UPDATE_QUERY = "UPDATE vacancy SET  " +
-            "position = ?, city=?, min_experience=?, " +
+            "position = ?, city=?, salary=?, currency=?::currency_type, " +
             "schedule=?::schedule_type, duties=?, requirements=?, employer_id=? WHERE id=?";
 
     private static final String DELETE_QUERY = "DELETE FROM vacancy WHERE id =?";
 
-    private static final String FIND_IN_RANGE="SELECT * FROM vacancy LIMIT ?,?";
+    private static final String FIND_IN_RANGE = "SELECT * FROM vacancy LIMIT ?,?";
 
-    private static final String COUNT="SELECT count(*) FROM vacancy";
+    private static final String COUNT = "SELECT count(*) FROM vacancy";
+
+    private static final String READ_BY_EMPLOYER_ID_QUERY = "SELECT city, " +
+            "salary, schedule, duties, requirements,  position, currency, id FROM vacancy " +
+            "WHERE employer_id=?";
 
     @Override
     public Integer create(Vacancy entity) throws InsertIdDataBaseException, DaoException {
@@ -48,7 +54,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
             StatementFormer<Vacancy> statementFormer = new VacancyStatementFormer();
             statementFormer.fillStatement(statement, entity);
-            statement.setInt(8, entity.getId());
+            statement.setInt(9, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -73,5 +79,27 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     @Override
     public int count() throws DaoException {
         return super.count(COUNT);
+    }
+
+    @Override
+    public List<Vacancy> findVacanciesByEmployerId(Integer id) throws DaoException {
+        ResultSet resultSet = null;
+
+        List<Vacancy> entities = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(READ_BY_EMPLOYER_ID_QUERY)) {
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                VacancyCreator creator=new VacancyCreator();
+                entities.add(creator.createEntity(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            closeSet(resultSet);
+        }
+
+        return entities;
     }
 }

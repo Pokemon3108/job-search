@@ -7,7 +7,7 @@ import by.daryazalevskaya.finalproject.model.type.Schedule;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class JobPreferenceBuilder implements RequestBuilder<JobPreference> {
+public class JobPreferenceBuilder implements RequestBuilder {
     @Override
     public JobPreference build(HttpServletRequest request) {
         String position = request.getParameter("position");

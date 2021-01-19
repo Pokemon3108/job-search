@@ -5,7 +5,7 @@ import by.daryazalevskaya.finalproject.model.type.Role;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class UserBuilder implements RequestBuilder<User> {
+public class UserBuilder implements RequestBuilder {
 
     @Override
     public User build(HttpServletRequest request) {

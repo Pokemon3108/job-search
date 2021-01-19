@@ -4,7 +4,7 @@ import by.daryazalevskaya.finalproject.model.Contact;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ContactBuilder implements RequestBuilder<Contact> {
+public class ContactBuilder implements RequestBuilder {
     @Override
     public Contact build(HttpServletRequest request) {
         String phone = request.getParameter("number");

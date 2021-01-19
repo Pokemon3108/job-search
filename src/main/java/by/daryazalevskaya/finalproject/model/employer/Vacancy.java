@@ -17,7 +17,6 @@ public class Vacancy extends Entity {
     }
 
     private String city;
-    private int minExperience;
     private Schedule schedule;
     private String duties;
     private String requirements;

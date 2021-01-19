@@ -13,4 +13,7 @@ public class PagePath {
     public static final String JOB_PREFERENCE = "/view/employee/job-preference.jsp";
     public static final String EMPLOYER_INFO = "/view/employer/employer-info.jsp";
     public static final String LANGUAGES = "/view/employee/language.jsp";
+    public static final String VACANCY_ERROR="/view/employer/vacancy-error.jsp";
+    public static final String VACANCY="/view/employer/vacancy.jsp";
+    public static final String VACANCY_LIST="/view/employer/vacancy-employer-list.jsp";
 }

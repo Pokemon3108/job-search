@@ -6,7 +6,7 @@ import by.daryazalevskaya.finalproject.model.employer.Employer;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class EmployerBuilder implements RequestBuilder<Employer> {
+public class EmployerBuilder implements RequestBuilder {
     @Override
     public Employer build(HttpServletRequest request) {
         Country country=new Country(Integer.parseInt(request.getParameter("country")));

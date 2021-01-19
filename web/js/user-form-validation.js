@@ -3,7 +3,6 @@ function validate(form) {
     let password = form["password"].value;
 
     let flag = true;
-    alert(111);
 
     if (!validateEmail(email)) {
         document.getElementById('emailError').innerHTML = 'Illegal email format.';

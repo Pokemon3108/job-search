@@ -17,7 +17,11 @@ public enum UriPattern {
     CHANGE_JOB_PREFERENCE("/job/employee/changeJobPreference"),
     CHANGE_EMPLOYER_INFO("/job/employer/changeInfo"),
     CHANGE_LANGUAGE("/job/employee/changeLanguage"),
-    CHANGE_EMPLOYER_CONTACT("/job/employer/changeContact");
+    CHANGE_EMPLOYER_CONTACT("/job/employer/changeContact"),
+    OPEN_VACANCY("/job/employer/openVacancy"),
+    EDIT_VACANCY("/job/employer/editVacancy"),
+    VACANCY_LIST("/job/employer/vacancyList"),
+    SAVE_VACANCY_CHANGES("/job/employer/saveVacancyChanges");
 
     UriPattern(String url) {
         this.url = url;
