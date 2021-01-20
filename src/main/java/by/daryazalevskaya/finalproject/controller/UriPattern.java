@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum UriPattern {
+    START("/"),
     LOGIN ("/job/login"),
     REGISTRATION("/job/registration"),
     CHANGE_LOCALE("/job/changeLocale"),
@@ -20,9 +21,10 @@ public enum UriPattern {
     CHANGE_EMPLOYER_CONTACT("/job/employer/changeContact"),
     OPEN_VACANCY("/job/employer/openVacancy"),
     EDIT_VACANCY("/job/employer/editVacancy"),
-    VACANCY_LIST("/job/employer/vacancyList"),
+    EMPLOYER_VACANCY_LIST("/job/employer/vacancyList"),
     SAVE_VACANCY_CHANGES("/job/employer/saveVacancyChanges"),
-    DELETE_VACANCY("/job/employer/deleteVacancy");
+    DELETE_VACANCY("/job/employer/deleteVacancy"),
+    SHOW_ALL_VACANCIES("/job/showAllVacancies");
 
     UriPattern(String url) {
         this.url = url;

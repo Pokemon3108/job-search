@@ -14,6 +14,7 @@ public class CommandStorage {
     private static Map<UriPattern, ActionCommand> postRequestMap = new EnumMap<>(UriPattern.class);
 
     private CommandStorage() {
+        getRequestMap.put(UriPattern.START, new LoadMainPageCommand());
         getRequestMap.put(UriPattern.REGISTRATION, new RegisterGetCommand());
         getRequestMap.put(UriPattern.CHANGE_LOCALE, new ChangeLocaleCommand());
         getRequestMap.put(UriPattern.LOGIN, new LoginGetCommand());
@@ -28,7 +29,8 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.CHANGE_EMPLOYER_CONTACT, new EmployerGetContactCommand());
         getRequestMap.put(UriPattern.OPEN_VACANCY, new OpenVacancyGetCommand());
         getRequestMap.put(UriPattern.EDIT_VACANCY, new EditVacancyCommand());
-        getRequestMap.put(UriPattern.VACANCY_LIST, new ShowEmployerVacanciesCommand());
+        getRequestMap.put(UriPattern.EMPLOYER_VACANCY_LIST, new ShowEmployerVacanciesCommand());
+        getRequestMap.put(UriPattern.SHOW_ALL_VACANCIES, new ShowAllVacanciesCommand());
 
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());

@@ -60,10 +60,6 @@ public class SavePersonalInfoCommand implements ActionCommand {
 
                     EmployeePersonalInfoBuilder builder = new EmployeePersonalInfoBuilder();
                     EmployeePersonalInfo info = builder.build(request);
-                    CountryService countryService = new CountryServiceImpl();
-                    countryService.setTransaction(transaction);
-                    Country country = new Country(countryService.findIdByCountry(info.getCountry().getName()), info.getCountry().getName());
-                    info.setCountry(country);
 
                     if (Objects.nonNull(info.getId())) {
                         infoService.update(info);
@@ -74,8 +70,7 @@ public class SavePersonalInfoCommand implements ActionCommand {
                         ResumeService resumeService = new ResumeServiceImpl();
                         resumeService.setTransaction(transaction);
                         Optional<Resume> resume = resumeService.findResumeByUserId(userId);
-                        resume.get().setPersonalInfo(info);
-                        resumeService.createPersonalInfo(resume.orElseThrow(DaoException::new));
+                        resumeService.createPersonalInfo(resume.orElseThrow(DaoException::new), info);
 
                     }
 

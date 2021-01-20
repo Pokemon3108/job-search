@@ -34,50 +34,41 @@ import java.util.Optional;
 public class PersonalInfoGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        try {
+            ResumeService resumeService = new ResumeServiceImpl();
+            resumeService.setTransaction(transaction);
+            Optional<Resume> resume = resumeService.findResumeByUserId(userId);
 
-        if (Objects.nonNull(session)) {
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            try {
-                ResumeService resumeService = new ResumeServiceImpl();
-                resumeService.setTransaction(transaction);
-                Optional<Resume> resume = resumeService.findResumeByUserId(userId);
+            EmployeePersonalInfoService infoService = new EmployeePersonalInfoServiceImpl();
+            infoService.setTransaction(transaction);
+            SortingService sortingService = new SortingService();
 
-                EmployeePersonalInfoService infoService= new EmployeePersonalInfoServiceImpl();
-                infoService.setTransaction(transaction);
-                SortingService sortingService=new SortingService();
+            CountryService countryService = new CountryServiceImpl();
+            countryService.setTransaction(transaction);
+            request.setAttribute("countries", sortingService.sortCountriesByAlphabet(countryService.findAll()));
 
-                CountryService countryService = new CountryServiceImpl();
-                countryService.setTransaction(transaction);
-                request.setAttribute("countries", sortingService.sortCountriesByAlphabet(countryService.findAll()));
-
-                EmployeePersonalInfo emptyInfo=resume.get().getPersonalInfo();
-                if (emptyInfo.getId()!=null) {
-                    Optional<EmployeePersonalInfo> fullInfo = infoService.read(emptyInfo.getId());
-                    Optional<Country> country=countryService.read(fullInfo.get().getCountry().getId());
-                    fullInfo.ifPresent(info -> {
-                        info.setCountry(country.get());
-                        request.setAttribute("info", info);
-                    });
-                }
-
-                request.setAttribute("genders", Gender.values());
-
-                transaction.commit();
-                request.getServletContext()
-                        .getRequestDispatcher(PagePath.PERSONAL_INFO)
-                        .forward(request, response);
-
-            } catch (DaoException | PoolException e) {
-                transaction.rollback();
-                log.error(e);
-                response.sendError(500);
-            } finally {
-                transaction.close();
+            EmployeePersonalInfo emptyInfo = resume.get().getPersonalInfo();
+            if (emptyInfo.getId() != null) {
+                Optional<EmployeePersonalInfo> fullInfo = infoService.read(emptyInfo.getId());
+                fullInfo.ifPresent(info -> request.setAttribute("info", info));
             }
 
+            request.setAttribute("genders", Gender.values());
+
+            transaction.commit();
+            request.getServletContext()
+                    .getRequestDispatcher(PagePath.PERSONAL_INFO)
+                    .forward(request, response);
+
+        } catch (DaoException | PoolException e) {
+            transaction.rollback();
+            log.error(e);
+            response.sendError(500);
+        } finally {
+            transaction.close();
         }
     }
 }

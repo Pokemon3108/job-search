@@ -66,31 +66,7 @@
             <h3 class="card-title">
                 <fmt:message key="contact" bundle="${ rb }"/>
             </h3>
-            <c:if test="${resume.contact!=null}">
-
-                <c:if test="${resume.contact.telephone!=null}">
-                    <p>
-                        <strong><fmt:message key="phone" bundle="${ rb }"/>: </strong>
-                        <span>${resume.contact.telephone}</span>
-                    </p>
-                </c:if>
-
-                <c:if test="${resume.contact.email!=null}">
-                    <p>
-                        <strong><fmt:message key="email" bundle="${ rb }"/>: </strong>
-                        <span>${resume.contact.email}</span>
-                    </p>
-                </c:if>
-
-                <c:if test="${resume.contact.email!=null}">
-                    <p>
-                        <strong>Skype: </strong>
-                        <span>${resume.contact.skype}</span>
-                    </p>
-                </c:if>
-
-
-            </c:if>
+            <ctg:contact contact="${resume.contact}"/>
             <a href="${pageContext.request.contextPath}/job/employee/changeContact" class="btn btn-success">
                 <fmt:message key="edit" bundle="${ rb }"/>
             </a>

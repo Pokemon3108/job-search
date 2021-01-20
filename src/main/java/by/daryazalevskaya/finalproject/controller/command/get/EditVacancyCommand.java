@@ -28,36 +28,32 @@ import java.util.Optional;
 public class EditVacancyCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
-
-        if (Objects.nonNull(session)) {
-            Integer vacancyId=Integer.parseInt(request.getParameter("vacancyId"));
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            VacancyService vacancyService=new VacancyServiceImpl();
-            vacancyService.setTransaction(transaction);
-            try {
-                Optional<Vacancy> vacancy=vacancyService.read(vacancyId);
-                if (vacancy.isPresent()) {
-                    request.setAttribute("schedules", Schedule.values());
-                    request.setAttribute("currencies", Currency.values());
-                    request.setAttribute("action", "edit");
-                    request.setAttribute("vacancy", vacancy.get());
-                    transaction.commit();
-                    request.getServletContext()
-                            .getRequestDispatcher(PagePath.VACANCY)
-                            .forward(request, response);
-                } else {
-                    transaction.rollback();
-                    response.sendError(404);
-                }
-            } catch (DaoException | PoolException e) {
+        Integer vacancyId = Integer.parseInt(request.getParameter("vacancyId"));
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        VacancyService vacancyService = new VacancyServiceImpl();
+        vacancyService.setTransaction(transaction);
+        try {
+            Optional<Vacancy> vacancy = vacancyService.read(vacancyId);
+            if (vacancy.isPresent()) {
+                request.setAttribute("schedules", Schedule.values());
+                request.setAttribute("currencies", Currency.values());
+                request.setAttribute("action", "edit");
+                request.setAttribute("vacancy", vacancy.get());
+                transaction.commit();
+                request.getServletContext()
+                        .getRequestDispatcher(PagePath.VACANCY)
+                        .forward(request, response);
+            } else {
                 transaction.rollback();
-                log.error(e);
-                response.sendError(500);
-            } finally {
-                transaction.close();
+                response.sendError(404);
             }
+        } catch (DaoException | PoolException e) {
+            transaction.rollback();
+            log.error(e);
+            response.sendError(500);
+        } finally {
+            transaction.close();
         }
     }
 }

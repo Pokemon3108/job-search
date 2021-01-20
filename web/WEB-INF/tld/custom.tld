@@ -14,4 +14,15 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>contact</name>
+        <tag-class>by.daryazalevskaya.finalproject.tag.ContactTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>contact</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

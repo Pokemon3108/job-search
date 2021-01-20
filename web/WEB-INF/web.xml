@@ -5,7 +5,7 @@
          version="4.0">
 
 <!--    <welcome-file-list>-->
-<!--        <welcome-file>/index.jsp</welcome-file>-->
+<!--        <welcome-file>/view/start.jsp</welcome-file>-->
 <!--    </welcome-file-list>-->
 
     <error-page>
@@ -18,10 +18,6 @@
         <location>/view/error/error404.jsp</location>
     </error-page>
 
-<!--    <error-page>-->
-<!--        <error-code>500</error-code>-->
-<!--        <location>/view/error/error500.jsp</location>-->
-<!--    </error-page>-->
 
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
@@ -30,6 +26,7 @@
 
     <filter-mapping>
         <filter-name>localizationFilter</filter-name>
+        <url-pattern>/</url-pattern>
         <url-pattern>/job/*</url-pattern>
     </filter-mapping>
 
@@ -49,6 +46,7 @@
     <filter-mapping>
         <filter-name>actionFilter</filter-name>
         <url-pattern>/job/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </filter-mapping>
     
     <security-constraint>
@@ -66,7 +64,6 @@
             <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
         </taglib>
     </jsp-config>
-
 
 
 </web-app>

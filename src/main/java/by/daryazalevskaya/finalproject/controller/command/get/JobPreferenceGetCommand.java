@@ -32,51 +32,40 @@ import java.util.Optional;
 public class JobPreferenceGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        try {
+            ResumeService resumeService = new ResumeServiceImpl();
+            resumeService.setTransaction(transaction);
+            Optional<Resume> resume = resumeService.findResumeByUserId(userId);
 
-        if (Objects.nonNull(session)) {
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            try {
-                ResumeService resumeService = new ResumeServiceImpl();
-                resumeService.setTransaction(transaction);
-                Optional<Resume> resume = resumeService.findResumeByUserId(userId);
+            JobPreferenceService jobPreferenceService = new JobPreferenceServiceImpl();
+            jobPreferenceService.setTransaction(transaction);
 
-                JobPreferenceService jobPreferenceService = new JobPreferenceServiceImpl();
-                jobPreferenceService.setTransaction(transaction);
-
-                if (resume.isPresent()) {
-                    JobPreference emptyPreference = resume.get().getJobPreference();
-                    if (emptyPreference.getId() != null) {
-                        Optional<JobPreference> fullPreference = jobPreferenceService.read(emptyPreference.getId());
-                        Optional<Specialization> specialization = jobPreferenceService
-                                .findSpecializationById(fullPreference.get().getSpecialization().getId());
-                        fullPreference.ifPresent(fullPreference1 -> {
-                            fullPreference1.setSpecialization(specialization.get());
-                            request.setAttribute("preference", fullPreference1);
-                        });
-
-                    }
+            if (resume.isPresent()) {
+                JobPreference emptyPreference = resume.get().getJobPreference();
+                if (emptyPreference.getId() != null) {
+                    Optional<JobPreference> fullPreference = jobPreferenceService.read(emptyPreference.getId());
+                    fullPreference.ifPresent(fullPreference1 -> request.setAttribute("preference", fullPreference1));
                 }
-
-                request.setAttribute("specializations", jobPreferenceService.findAllSpecializations());
-                request.setAttribute("currencies", Currency.values());
-                request.setAttribute("schedules", Schedule.values());
-
-                transaction.commit();
-                request.getServletContext()
-                        .getRequestDispatcher(PagePath.JOB_PREFERENCE)
-                        .forward(request, response);
-
-
-            } catch (DaoException | PoolException e) {
-                transaction.rollback();
-                log.error(e);
-                response.sendError(500);
-            } finally {
-                transaction.close();
             }
+
+            request.setAttribute("specializations", jobPreferenceService.findAllSpecializations());
+            request.setAttribute("currencies", Currency.values());
+            request.setAttribute("schedules", Schedule.values());
+
+            transaction.commit();
+            request.getServletContext()
+                    .getRequestDispatcher(PagePath.JOB_PREFERENCE)
+                    .forward(request, response);
+
+        } catch (DaoException | PoolException e) {
+            transaction.rollback();
+            log.error(e);
+            response.sendError(500);
+        } finally {
+            transaction.close();
         }
     }
 }

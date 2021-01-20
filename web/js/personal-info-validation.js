@@ -1,22 +1,3 @@
-function selectList(name, value) {
-    let elements = document.getElementsByName(name);
-
-    for (let i = 0; i < elements.length; ++i) {
-        if (document.getElementsByName(name)[i].value === value) {
-            document.getElementsByName(name)[i].selected = true;
-        }
-    }
-}
-
-
-function selectCountry(country) {
-    selectList("country", country);
-}
-
-function selectGender(gender) {
-    selectList("gender", gender);
-}
-
 function validate(form) {
     let name = form["name"].value;
     let surname = form["surname"].value;

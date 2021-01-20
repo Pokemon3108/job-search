@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setLocale value="${cookie.lang.value}" scope="session"/>
 <fmt:setBundle basename="property.pagecontent" var="rb"/>
 <html>
@@ -18,44 +19,29 @@
             <h3 class="card-title">
                 <fmt:message key="pers_info" bundle="${ rb }"/>
             </h3>
-            <c:if test="${resume.personalInfo!=null}">
 
-                <c:if test="${resume.personalInfo.name!=null}">
+
+                <c:if test="${employer.companyName!=null}">
                     <p>
-                        <strong><fmt:message key="fullname" bundle="${ rb }"/>: </strong>
-                        <span>${resume.personalInfo.name} ${resume.personalInfo.surname}</span>
+                        <strong><fmt:message key="company_name" bundle="${ rb }"/>: </strong>
+                        <span>${employer.companyName}</span>
                     </p>
                 </c:if>
 
 
-                <c:if test="${resume.personalInfo.gender!=null}">
+                <c:if test="${employer.country!=null}">
                     <p>
-                        <strong><fmt:message key="gender" bundle="${ rb }"/>: </strong>
-                        <span>
-                            <c:set var="gender" value="${resume.personalInfo.gender}"/>
-                         <fmt:message key="${fn:toLowerCase(gender)}" bundle="${ rb }"/>
-                        </span>
+                        <strong><fmt:message key="country" bundle="${ rb }"/>: </strong>
+                        <span>${employer.country.name}</span>
                     </p>
                 </c:if>
 
-                <c:if test="${age!=null}">
+                <c:if test="${employer.city!=null}">
                     <p>
-                        <strong><fmt:message key="age" bundle="${ rb }"/>: </strong>
-                        <span>${age} <fmt:message key="years" bundle="${ rb }"/></span>
+                        <strong><fmt:message key="city" bundle="${ rb }"/>: </strong>
+                        <span>${employer.city}</span>
                     </p>
                 </c:if>
-
-
-                <c:if test="${resume.personalInfo.country!=null}">
-                    <p>
-                        <strong><fmt:message key="living_place" bundle="${ rb }"/>: </strong>
-                        <span>${resume.personalInfo.country.name}</span>
-                        <c:if test="${resume.personalInfo.city!=null}">
-                            <span>, ${resume.personalInfo.city}</span>
-                        </c:if>
-                    </p>
-                </c:if>
-            </c:if>
 
             <a href="${pageContext.request.contextPath}/job/employer/changeInfo"
                class="btn btn-success"> <fmt:message key="edit" bundle="${ rb }"/></a>
@@ -68,31 +54,7 @@
             <h3 class="card-title">
                 <fmt:message key="contact" bundle="${ rb }"/>
             </h3>
-            <c:if test="${resume.contact!=null}">
-
-                <c:if test="${resume.contact.telephone!=null}">
-                    <p>
-                        <strong><fmt:message key="phone" bundle="${ rb }"/>: </strong>
-                        <span>${resume.contact.telephone}</span>
-                    </p>
-                </c:if>
-
-                <c:if test="${resume.contact.email!=null}">
-                    <p>
-                        <strong><fmt:message key="email" bundle="${ rb }"/>: </strong>
-                        <span>${resume.contact.email}</span>
-                    </p>
-                </c:if>
-
-                <c:if test="${resume.contact.email!=null}">
-                    <p>
-                        <strong>Skype: </strong>
-                        <span>${resume.contact.skype}</span>
-                    </p>
-                </c:if>
-
-
-            </c:if>
+            <ctg:contact contact="${employer.contact}"/>
             <a href="${pageContext.request.contextPath}/job/employer/changeContact" class="btn btn-success">
                 <fmt:message key="edit" bundle="${ rb }"/>
             </a>

@@ -60,7 +60,7 @@ public class SaveVacancyChangesCommand implements ActionCommand {
                     }
                     transaction.commit();
 
-                    response.sendRedirect(request.getContextPath() + UriPattern.VACANCY_LIST.getUrl());
+                    response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYER_VACANCY_LIST.getUrl());
                 }
             }
         } catch (DaoException | InsertIdDataBaseException | PoolException e) {

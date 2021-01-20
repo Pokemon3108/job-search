@@ -62,7 +62,6 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ConnectionException, TransactionException {
-        req.setAttribute("languages", Localization.values());
         ActionCommand command = (ActionCommand) req.getAttribute("command");
         if (command != null) {
             command.execute(req, resp);

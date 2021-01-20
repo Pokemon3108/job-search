@@ -15,10 +15,7 @@ import java.util.Objects;
 public class LogoutCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session=request.getSession(false);
-        if (Objects.nonNull(session)) {
-            request.getSession().invalidate();
-        }
-        response.sendRedirect(request.getContextPath()+ UriPattern.LOGIN.getUrl());
+        request.getSession().invalidate();
+        response.sendRedirect(request.getContextPath() + UriPattern.LOGIN.getUrl());
     }
 }

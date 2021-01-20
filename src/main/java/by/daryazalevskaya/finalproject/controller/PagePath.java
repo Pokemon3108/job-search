@@ -15,5 +15,7 @@ public class PagePath {
     public static final String LANGUAGES = "/view/employee/language.jsp";
     public static final String VACANCY_ERROR="/view/employer/vacancy-error.jsp";
     public static final String VACANCY="/view/employer/vacancy.jsp";
-    public static final String VACANCY_LIST="/view/employer/vacancy-employer-list.jsp";
+    public static final String VACANCY_EMPLOYER_LIST ="/view/employer/vacancy-employer-list.jsp";
+    public static final String START="/view/start.jsp";
+    public static final String ALL_VACANCIES="/view/common/all-vacancies.jsp";
 }

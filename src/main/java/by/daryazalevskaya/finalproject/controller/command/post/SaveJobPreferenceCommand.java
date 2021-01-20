@@ -59,8 +59,6 @@ public class SaveJobPreferenceCommand implements ActionCommand {
 
                     JobPreferenceBuilder builder = new JobPreferenceBuilder();
                     JobPreference preference = builder.build(request);
-                    preference.getSpecialization()
-                            .setId(jobPreferenceService.findIdBySpecialization(preference.getSpecialization().getName()));
 
                     if (Objects.nonNull(preference.getId())) {
                         jobPreferenceService.update(preference);
@@ -71,9 +69,7 @@ public class SaveJobPreferenceCommand implements ActionCommand {
                         ResumeService resumeService = new ResumeServiceImpl();
                         resumeService.setTransaction(transaction);
                         Optional<Resume> resume = resumeService.findResumeByUserId(userId);
-                        resume.get().setJobPreference(preference);
-                        resumeService.createJobPreference(resume.orElseThrow(DaoException::new));
-
+                        resumeService.createJobPreference(resume.orElseThrow(DaoException::new), preference);
                     }
 
                     transaction.commit();

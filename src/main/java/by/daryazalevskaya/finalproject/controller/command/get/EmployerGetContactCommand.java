@@ -35,37 +35,33 @@ import java.util.Optional;
 public class EmployerGetContactCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        try {
+            EmployerService employerService = new EmployerServiceImpl();
+            employerService.setTransaction(transaction);
+            Optional<Employer> employer = employerService.read(userId);
 
-        if (Objects.nonNull(session)) {
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            try {
-                ContactService contactService = new ContactServiceImpl();
-                contactService.setTransaction(transaction);
-                EmployerService employerService = new EmployerServiceImpl();
-                employerService.setTransaction(transaction);
-                Optional<Employer> employer = employerService.read(userId);
-
-                if (employer.isPresent() && employer.get().getContact() != null) {
-                    Optional<Contact> fullContact = contactService.read(employer.get().getContact().getId());
-                    fullContact.ifPresent(contact1 -> request.setAttribute("contact", contact1));
-                }
-
-                transaction.commit();
-                request.getServletContext()
-                        .getRequestDispatcher(PagePath.CONTACT)
-                        .forward(request, response);
-
-            } catch (DaoException | PoolException | TransactionException e) {
-                transaction.rollback();
-                log.error(e);
-                response.sendError(500);
-            } finally {
-                transaction.close();
+            ContactService contactService = new ContactServiceImpl();
+            contactService.setTransaction(transaction);
+            if (employer.isPresent() && employer.get().getContact() != null) {
+                Optional<Contact> fullContact = contactService.read(employer.get().getContact().getId());
+                fullContact.ifPresent(contact1 -> request.setAttribute("contact", contact1));
             }
 
+            transaction.commit();
+            request.getServletContext()
+                    .getRequestDispatcher(PagePath.CONTACT)
+                    .forward(request, response);
+
+        } catch (DaoException | PoolException | TransactionException e) {
+            transaction.rollback();
+            log.error(e);
+            response.sendError(500);
+        } finally {
+            transaction.close();
         }
+
     }
 }

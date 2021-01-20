@@ -5,16 +5,15 @@ import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
+import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.User;
-import by.daryazalevskaya.finalproject.model.employee.Employee;
-import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
-import by.daryazalevskaya.finalproject.model.employee.Language;
-import by.daryazalevskaya.finalproject.model.employee.Resume;
+import by.daryazalevskaya.finalproject.model.employee.*;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class ResumeServiceImpl extends ResumeService {
     @Override
@@ -68,31 +67,36 @@ public class ResumeServiceImpl extends ResumeService {
     }
 
     @Override
-    public void createContact(Resume resume) throws DaoException {
+    public void createContact(Resume resume, Contact contact) throws DaoException {
+        resume.setContact(contact);
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         resumeDao.createContact(resume);
     }
 
     @Override
-    public void createPersonalInfo(Resume resume) throws DaoException {
+    public void createPersonalInfo(Resume resume, EmployeePersonalInfo info) throws DaoException {
+        resume.setPersonalInfo(info);
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         resumeDao.createPersonalInfo(resume);
     }
 
     @Override
-    public void updateSkills(Resume resume) throws DaoException {
+    public void updateSkills(Resume resume, String skills) throws DaoException {
+        resume.setSkills(skills);
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         resumeDao.updateSkills(resume);
     }
 
     @Override
-    public void createJobPreference(Resume resume) throws DaoException {
+    public void createJobPreference(Resume resume, JobPreference preference) throws DaoException {
+        resume.setJobPreference(preference);
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         resumeDao.createJobPreference(resume);
     }
 
     @Override
-    public void createLanguage(Resume resume) throws DaoException {
+    public void createLanguage(Resume resume, EmployeeLanguage language) throws DaoException {
+        resume.setLanguage(language);
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         resumeDao.createLanguage(resume);
     }

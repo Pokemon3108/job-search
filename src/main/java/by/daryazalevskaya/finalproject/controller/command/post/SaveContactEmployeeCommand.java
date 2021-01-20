@@ -36,11 +36,8 @@ public class SaveContactEmployeeCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         TransactionFactory factory = new TransactionFactoryImpl();
         Transaction transaction = factory.createTransaction();
-        HttpSession session = request.getSession(false);
 
         try {
-            if (Objects.nonNull(session)) {
-
                 Integer userId = (Integer) request.getSession().getAttribute("user");
 
                 ContactService contactService = new ContactServiceImpl();
@@ -62,15 +59,12 @@ public class SaveContactEmployeeCommand implements ActionCommand {
                         ResumeService resumeService = new ResumeServiceImpl();
                         resumeService.setTransaction(transaction);
                         Optional<Resume> resume = resumeService.findResumeByUserId(userId);
-                        resume.get().setContact(contact);
-                        resumeService.createContact(resume.orElseThrow(DaoException::new));
-
+                        resumeService.createContact(resume.orElseThrow(DaoException::new), contact);
                     }
 
                     transaction.commit();
                     response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());
                 }
-            }
 
         } catch (PoolException  | InsertIdDataBaseException | DaoException | TransactionException e) {
             transaction.rollback();

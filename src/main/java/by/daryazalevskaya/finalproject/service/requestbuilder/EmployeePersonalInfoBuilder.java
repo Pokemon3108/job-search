@@ -20,8 +20,8 @@ public class EmployeePersonalInfoBuilder implements RequestBuilder {
             localDate = LocalDate.parse(strDate, formatter);
         }
 
-        String countryName=request.getParameter("country");
-        Country country=new Country(countryName);
+        Integer countryId=Integer.parseInt(request.getParameter("country"));
+        Country country=new Country(countryId);
 
         Gender gender = Gender.valueOf(request.getParameter("gender"));
         String city = request.getParameter("city");

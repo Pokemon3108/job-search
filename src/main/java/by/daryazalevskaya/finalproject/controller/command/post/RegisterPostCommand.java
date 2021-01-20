@@ -30,7 +30,6 @@ public class RegisterPostCommand implements ActionCommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-
         TransactionFactory factory = new TransactionFactoryImpl();
         Transaction transaction = factory.createTransaction();
 
@@ -55,13 +54,11 @@ public class RegisterPostCommand implements ActionCommand {
                 request.getServletContext().getRequestDispatcher(PagePath.REGISTRATION).forward(request, response);
 
             } else {
-
                 UserRoleCommonActionsService roleService = new UserRoleCommonActionsService(transaction);
                 roleService.createAccount(user);
 
                 response.sendRedirect(request.getContextPath() + UriPattern.LOGIN.getUrl());
                 transaction.commit();
-
             }
 
         } catch (DaoException | InsertIdDataBaseException e) {

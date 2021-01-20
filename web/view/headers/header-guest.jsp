@@ -11,7 +11,6 @@
     <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
     <link rel="stylesheet" href="<c:url value="/css/header.css"/>" type="text/css">
 </head>
 
@@ -24,7 +23,7 @@
 
         <div class="container header-container">
 
-            <a class="navbar-brand home" href="#">
+            <a class="navbar-brand home" href="${pageContext.request.contextPath}/">
                 <h3>Negotium</h3>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -35,28 +34,24 @@
             <div class="collapse navbar-collapse" id="show-vac">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/vacancy">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies">
                             <h5><fmt:message key="vacancies" bundle="${ rb }"/></h5>
                         </a>
                     </li>
                 </ul>
 
+                <form action="${pageContext.request.contextPath}/job/registration" method="get">
+                    <button type="submit" class="btn btn-success mr-1">
+                        <fmt:message key="register" bundle="${ rb }"/>
+                    </button>
+                </form>
+
                 <form action="${pageContext.request.contextPath}/job/login" method="get">
-                    <%--                    <input type="submit" class="btn btn-success mx-3" value=--%>
-                    <%--                    <fmt:message key="login" bundle="${ rb }"/>  />--%>
-                    <button type="submit" class="btn btn-success mx-3">
+                    <button type="submit" class="btn btn-success mr-1">
                         <fmt:message key="login" bundle="${ rb }"/>
                     </button>
                 </form>
 
-
-                <form action="${pageContext.request.contextPath}/job/registration" method="get">
-                    <%--                    <input type="submit" class="btn btn-success" value=--%>
-                    <%--                    <fmt:message key="register" bundle="${ rb }"/>/>--%>
-                    <button type="submit" class="btn btn-success mx-3">
-                        <fmt:message key="register" bundle="${ rb }"/>
-                    </button>
-                </form>
             </div>
 
         </div>

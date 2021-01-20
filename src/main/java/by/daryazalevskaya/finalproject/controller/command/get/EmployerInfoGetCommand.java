@@ -29,37 +29,32 @@ import java.util.Optional;
 public class EmployerInfoGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        try {
+            CountryService countryService = new CountryServiceImpl();
+            countryService.setTransaction(transaction);
+            SortingService sortingService = new SortingService();
+            request.setAttribute("countries", sortingService.sortCountriesByAlphabet(countryService.findAll()));
 
-        if (Objects.nonNull(session)) {
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            try {
-                CountryService countryService = new CountryServiceImpl();
-                countryService.setTransaction(transaction);
-                SortingService sortingService = new SortingService();
-                request.setAttribute("countries", sortingService.sortCountriesByAlphabet(countryService.findAll()));
+            Integer userId = (Integer) request.getSession().getAttribute("user");
+            EmployerService employerService = new EmployerServiceImpl();
+            employerService.setTransaction(transaction);
+            Optional<Employer> employer = employerService.read(userId);
+            employer.ifPresent(employer1 -> request.setAttribute("employer", employer.get()));
 
-                Integer userId = (Integer) request.getSession().getAttribute("user");
-                EmployerService employerService=new EmployerServiceImpl();
-                employerService.setTransaction(transaction);
-                Optional<Employer> employer=employerService.read(userId);
-                employer.ifPresent(employer1 -> request.setAttribute("employer", employer.get()));
+            transaction.commit();
 
-                transaction.commit();
-
-                request.getServletContext()
-                        .getRequestDispatcher(PagePath.EMPLOYER_INFO)
-                        .forward(request, response);
-            }  catch (DaoException | PoolException e) {
-                transaction.rollback();
-                log.error(e);
-                response.sendError(500);
-            } finally {
-                transaction.close();
-            }
-
-
+            request.getServletContext()
+                    .getRequestDispatcher(PagePath.EMPLOYER_INFO)
+                    .forward(request, response);
+        } catch (DaoException | PoolException e) {
+            transaction.rollback();
+            log.error(e);
+            response.sendError(500);
+        } finally {
+            transaction.close();
         }
+
     }
 }

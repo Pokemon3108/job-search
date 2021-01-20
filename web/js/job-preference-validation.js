@@ -8,9 +8,9 @@ function selectList(name, value) {
 }
 
 
-function selectSpecialization(specialization) {
-    selectList("specialization", specialization);
-}
+// function selectSpecialization(specialization) {
+//     selectList("specialization", specialization);
+// }
 
 function selectCurrency(currency) {
     selectList("currency", currency);

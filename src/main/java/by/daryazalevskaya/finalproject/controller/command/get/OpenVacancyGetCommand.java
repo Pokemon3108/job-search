@@ -28,33 +28,29 @@ import java.util.Optional;
 public class OpenVacancyGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        EmployerService employerService = new EmployerServiceImpl();
+        employerService.setTransaction(transaction);
+        try {
+            Optional<Employer> employer = employerService.read(userId);
+            if (employer.isPresent() && !employer.get().getCompanyName().isEmpty()) {
+                request.setAttribute("schedules", Schedule.values());
+                request.setAttribute("currencies", Currency.values());
+                request.setAttribute("action", "open");
+                request.getServletContext()
+                        .getRequestDispatcher(PagePath.VACANCY)
+                        .forward(request, response);
 
-        if (Objects.nonNull(session)) {
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            EmployerService employerService = new EmployerServiceImpl();
-            employerService.setTransaction(transaction);
-            try {
-                Optional<Employer> employer = employerService.read(userId);
-                if (employer.isPresent() && !employer.get().getCompanyName().isEmpty()) {
-                    request.setAttribute("schedules", Schedule.values());
-                    request.setAttribute("currencies", Currency.values());
-                    request.setAttribute("action", "open");
-                    request.getServletContext()
-                            .getRequestDispatcher(PagePath.VACANCY)
-                            .forward(request, response);
-
-                } else {
-                    request.getServletContext()
-                            .getRequestDispatcher(PagePath.VACANCY_ERROR)
-                            .forward(request, response);
-                }
-            } catch (DaoException | PoolException e) {
-                log.error(e);
-
+            } else {
+                request.getServletContext()
+                        .getRequestDispatcher(PagePath.VACANCY_ERROR)
+                        .forward(request, response);
             }
+        } catch (DaoException | PoolException e) {
+            log.error(e);
+
         }
     }
 }

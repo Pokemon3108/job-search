@@ -73,17 +73,37 @@
                     <fmt:message key="gender" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="gender">
                         <c:forEach items="${genders}" var="genderArr">
-                            <option name="gender" value="${genderArr}">
-                                <c:set var="g" value="${genderArr}"/>
-                                <fmt:message key="${fn:toLowerCase(g)}" bundle="${ rb }"/>
-                            </option>
+                            <c:if test="${info.gender==genderArr}">
+                                <option name="gender" value="${genderArr}" selected>
+                                    <c:set var="g" value="${genderArr}"/>
+                                    <fmt:message key="${fn:toLowerCase(g)}" bundle="${ rb }"/>
+                                </option>
+                            </c:if>
+                            <c:if test="${info.gender!=genderArr}">
+                                <option name="gender" value="${genderArr}">
+                                    <c:set var="g" value="${genderArr}"/>
+                                    <fmt:message key="${fn:toLowerCase(g)}" bundle="${ rb }"/>
+                                </option>
+                            </c:if>
                         </c:forEach>
                     </select>
+
+                    <%--                    <fmt:message key="country" bundle="${ rb }"/>--%>
+                    <%--                    <select class="form-select mb-2" name="country">--%>
+                    <%--                        <c:forEach items="${countries}" var="countryArr">--%>
+                    <%--                            <option name="country" value="${countryArr.name}">${countryArr.name}</option>--%>
+                    <%--                        </c:forEach>--%>
+                    <%--                    </select>--%>
 
                     <fmt:message key="country" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="country">
                         <c:forEach items="${countries}" var="countryArr">
-                            <option name="country" value="${countryArr.name}">${countryArr.name}</option>
+                            <c:if test="${info.country.id==countryArr.id}">
+                                <option name="country" value="${countryArr.id}" selected>${countryArr.name}</option>
+                            </c:if>
+                            <c:if test="${info.country.name!=countryArr.name}">
+                                <option name="country" value="${countryArr.id}">${countryArr.name}</option>
+                            </c:if>
                         </c:forEach>
                     </select>
 

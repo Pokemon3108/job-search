@@ -55,11 +55,9 @@ public class SaveEmployeeLanguageCommand implements ActionCommand {
                     resumeService.setTransaction(transaction);
                     Optional<Resume> resume = resumeService.findResumeByUserId(userId);
                     if (resume.isPresent()) {
-                        resume.get().setLanguage(language);
-                        resumeService.createLanguage(resume.get());
+                        resumeService.createLanguage(resume.get(), language);
                     }
                 }
-
 
                 transaction.commit();
                 response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());

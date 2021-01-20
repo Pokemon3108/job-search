@@ -24,12 +24,12 @@ public class RoleSecurityFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
 
             String uri = httpRequest.getServletPath();
-            final String start="/job";
-            String roleUrl = uri.substring(start.length()+1, uri.indexOf("/", start.length()+1));
+            final String start = "/job";
+            String roleUrl = uri.substring(start.length() + 1, uri.indexOf("/", start.length() + 1));
 
             HttpSession session = httpRequest.getSession(false);
             Role role = (Role) session.getAttribute("role");
-            if (!role.toString().toLowerCase().equals(roleUrl)) {
+            if (!role.toString().equalsIgnoreCase(roleUrl)) {
                 log.error(String.format("User with id %d has no authorities for this mapping.", session.getAttribute("user")));
                 httpResponse.sendError(404, "You haven't any access on this page.");
             } else {

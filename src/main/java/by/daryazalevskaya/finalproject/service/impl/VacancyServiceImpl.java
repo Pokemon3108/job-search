@@ -1,6 +1,7 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
 import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.dao.EmployerDao;
 import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
@@ -40,7 +41,7 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     @Override
-    public void update(Vacancy entity) throws DaoException, PoolException, InsertIdDataBaseException {
+    public void update(Vacancy entity) throws DaoException, PoolException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         dao.update(entity);
     }
@@ -53,6 +54,12 @@ public class VacancyServiceImpl extends VacancyService {
 
     @Override
     public List<Vacancy> findAll() throws DaoException, PoolException {
-        return null;
+        VacancyDao dao = transaction.createDao(DaoType.VACANCY);
+        List<Vacancy> vacancies= dao.findAll();
+        EmployerDao employerDao=transaction.createDao(DaoType.EMPLOYER);
+        for (Vacancy vacancy: vacancies) {
+            vacancy.setEmployer(employerDao.read(vacancy.getEmployer().getId()).get());
+        }
+        return vacancies;
     }
 }

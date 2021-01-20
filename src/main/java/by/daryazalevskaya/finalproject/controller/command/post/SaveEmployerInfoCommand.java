@@ -37,7 +37,6 @@ public class SaveEmployerInfoCommand implements ActionCommand {
                 if (!validationCommand.isValid(request,response)) {
                     request.getServletContext().getRequestDispatcher(PagePath.EMPLOYER_INFO).forward(request, response);
                 } else {
-
                     EmployerService employerService = new EmployerServiceImpl();
                     employerService.setTransaction(transaction);
 

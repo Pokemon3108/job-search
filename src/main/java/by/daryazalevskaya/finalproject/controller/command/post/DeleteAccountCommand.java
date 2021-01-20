@@ -25,32 +25,27 @@ import java.util.Objects;
 public class DeleteAccountCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        Role role = (Role) request.getSession().getAttribute("role");
 
-        if (Objects.nonNull(session)) {
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            Role role = (Role) request.getSession().getAttribute("role");
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        UserService userService = new UserServiceImpl();
+        userService.setTransaction(transaction);
 
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            UserService userService = new UserServiceImpl();
-            userService.setTransaction(transaction);
+        try {
+            UserRoleCommonActionsService service = new UserRoleCommonActionsService(transaction);
+            service.deleteAccount(userId, role);
+            userService.delete(userId);
 
-            try {
-                UserRoleCommonActionsService service = new UserRoleCommonActionsService(transaction);
-                service.deleteAccount(userId, role);
-                userService.delete(userId);
-
-                ActionCommand logoutCommand = new LogoutCommand();
-                logoutCommand.execute(request, response);
-                transaction.commit();
-            } catch (PoolException | DaoException e) {
-                log.error(e);
-                transaction.rollback();
-            } finally {
-                transaction.close();
-            }
+            ActionCommand logoutCommand = new LogoutCommand();
+            logoutCommand.execute(request, response);
+            transaction.commit();
+        } catch (PoolException | DaoException e) {
+            log.error(e);
+            transaction.rollback();
+        } finally {
+            transaction.close();
         }
-
     }
 }

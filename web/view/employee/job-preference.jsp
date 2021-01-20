@@ -15,7 +15,6 @@
 
 </head>
 <body onload="selectCurrency('${preference.currency}');
-        selectSpecialization('${preference.specialization.name}');
         selectSchedule('${preference.schedule}')">
 
 <c:import url="/view/headers/header-employee.jsp"/>
@@ -49,9 +48,16 @@
                     <fmt:message key="specialization" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="specialization">
                         <c:forEach items="${specializations}" var="specArr">
-                            <option name="specialization" value="${specArr.name}">
+                            <c:if test="${preference.specialization.id==specArr.id}">
+                            <option name="specialization" value="${specArr.id}" selected>
                                     ${specArr.name}
                             </option>
+                            </c:if>
+                            <c:if test="${preference.specialization.id!=specArr.id}">
+                                <option name="specialization" value="${specArr.id}">
+                                        ${specArr.name}
+                                </option>
+                            </c:if>
                         </c:forEach>
                     </select>
 

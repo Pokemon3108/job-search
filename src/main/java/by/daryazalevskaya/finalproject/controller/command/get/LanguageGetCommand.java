@@ -10,7 +10,6 @@ import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
 import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
-import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.model.type.LanguageLevel;
 import by.daryazalevskaya.finalproject.service.EmployeeLanguageService;
@@ -22,19 +21,13 @@ import lombok.extern.log4j.Log4j2;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Log4j2
 public class LanguageGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
-
-        if (Objects.nonNull(session)) {
             Integer userId = (Integer) request.getSession().getAttribute("user");
             TransactionFactory factory = new TransactionFactoryImpl();
             Transaction transaction = factory.createTransaction();
@@ -51,8 +44,7 @@ public class LanguageGetCommand implements ActionCommand {
                         userLanguage.ifPresent(employeeLanguage -> request.setAttribute("userLanguage", employeeLanguage));
                     }
 
-                    List<Language> allLanguages = employeeLanguageService.findAllLanguages();
-                    request.setAttribute("allLanguages", allLanguages);
+                    request.setAttribute("allLanguages", employeeLanguageService.findAllLanguages());
                     request.setAttribute("levels", LanguageLevel.values());
                 }
 
@@ -70,4 +62,4 @@ public class LanguageGetCommand implements ActionCommand {
             }
         }
     }
-}
+

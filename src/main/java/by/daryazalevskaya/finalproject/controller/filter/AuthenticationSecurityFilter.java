@@ -26,8 +26,7 @@ public class AuthenticationSecurityFilter implements Filter {
             if (session.getAttribute("user") == null) {
                 log.error("User wasn't authenticated");
                 httpResponse.sendRedirect(httpRequest.getContextPath() + UriPattern.LOGIN.getUrl());
-            }
-          else {
+            } else {
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         }

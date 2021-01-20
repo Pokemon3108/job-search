@@ -39,17 +39,14 @@ public class SaveSkillsCommand implements ActionCommand {
                 if (!validationCommand.isValid(request, response)) {
                     request.getServletContext().getRequestDispatcher(PagePath.SKILLS).forward(request, response);
                 } else {
-
                     Integer userId = (Integer) request.getSession().getAttribute("user");
 
                     ResumeService resumeService = new ResumeServiceImpl();
                     resumeService.setTransaction(transaction);
                     Optional<Resume> resume = resumeService.findResumeByUserId(userId);
                     String skills = request.getParameter("skills");
-
-                    resume.ifPresent(resume1 -> resume1.setSkills(skills));
                     if (resume.isPresent()) {
-                        resumeService.updateSkills(resume.get());
+                        resumeService.updateSkills(resume.get(), skills);
                     }
 
                     transaction.commit();

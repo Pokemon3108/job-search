@@ -26,31 +26,27 @@ import java.util.Optional;
 public class EmployeeSkillsGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        try {
+            ResumeService resumeService = new ResumeServiceImpl();
+            resumeService.setTransaction(transaction);
+            Optional<Resume> resume = resumeService.findResumeByUserId(userId);
+            resume.ifPresent(resume1 -> request.setAttribute("skills", resume1.getSkills()));
 
-        if (Objects.nonNull(session)) {
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            try {
-                ResumeService resumeService = new ResumeServiceImpl();
-                resumeService.setTransaction(transaction);
-                Optional<Resume> resume = resumeService.findResumeByUserId(userId);
-                resume.ifPresent(resume1 -> request.setAttribute("skills", resume1.getSkills()));
-
-                transaction.commit();
-                request.getServletContext()
-                        .getRequestDispatcher(PagePath.SKILLS)
-                        .forward(request, response);
-            } catch (DaoException | PoolException e) {
-                transaction.rollback();
-                log.error(e);
-                response.sendError(500);
-            } finally {
-                transaction.close();
-            }
-
+            transaction.commit();
+            request.getServletContext()
+                    .getRequestDispatcher(PagePath.SKILLS)
+                    .forward(request, response);
+        } catch (DaoException | PoolException e) {
+            transaction.rollback();
+            log.error(e);
+            response.sendError(500);
+        } finally {
+            transaction.close();
         }
+
     }
 }
 

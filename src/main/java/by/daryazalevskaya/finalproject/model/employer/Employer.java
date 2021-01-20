@@ -20,7 +20,6 @@ public class Employer extends User {
         super.id=id;
     }
 
-    //private User user;
     private String companyName;
     private Country country;
     private String city;

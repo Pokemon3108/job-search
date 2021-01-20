@@ -36,52 +36,39 @@ import java.util.Optional;
 public class ResumeGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        TransactionFactory factory = new TransactionFactoryImpl();
+        Transaction transaction = factory.createTransaction();
+        try {
+            ResumeService resumeService = new ResumeServiceImpl();
+            resumeService.setTransaction(transaction);
+            Optional<Resume> resume = resumeService.findResumeByUserId(userId);
+            if (resume.isPresent()) {
+                ContactService contactService = new ContactServiceImpl();
+                contactService.setTransaction(transaction);
+                Optional<Contact> contact = contactService.read(resume.get().getContact().getId());
+                contact.ifPresent(contact1 -> resume.get().setContact(contact1));
 
-        if (Objects.nonNull(session)) {
+                EmployeePersonalInfoService infoService = new EmployeePersonalInfoServiceImpl();
+                infoService.setTransaction(transaction);
+                Optional<EmployeePersonalInfo> info = infoService.read(resume.get().getPersonalInfo().getId());
+                info.ifPresent(info1 -> resume.get().setPersonalInfo(info1));
 
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            try {
-                ResumeService resumeService = new ResumeServiceImpl();
-                resumeService.setTransaction(transaction);
-                Optional<Resume> resume = resumeService.findResumeByUserId(userId);
-                if (resume.isPresent()) {
-                    ContactService contactService = new ContactServiceImpl();
-                    contactService.setTransaction(transaction);
-                    Optional<Contact> contact = contactService.read(resume.get().getContact().getId());
-                    contact.ifPresent(contact1 -> resume.get().setContact(contact1));
+                JobPreferenceService preferenceService = new JobPreferenceServiceImpl();
+                preferenceService.setTransaction(transaction);
+                Optional<JobPreference> preference = preferenceService.read(resume.get().getJobPreference().getId());
+                preference.ifPresent(jobPreference -> resume.get().setJobPreference(jobPreference));
 
-                    EmployeePersonalInfoService infoService = new EmployeePersonalInfoServiceImpl();
-                    infoService.setTransaction(transaction);
-                    Optional<EmployeePersonalInfo> info = infoService.read(resume.get().getPersonalInfo().getId());
-                    info.ifPresent(info1 -> {
-                        resume.get().setPersonalInfo(info1);
-                        if (info1.getBirthday() != null) {
-                            request.setAttribute("age", infoService.countAge(info1.getBirthday()));
-                        }
-                    });
-
-
-                    JobPreferenceService preferenceService = new JobPreferenceServiceImpl();
-                    preferenceService.setTransaction(transaction);
-                    Optional<JobPreference> preference = preferenceService.read(resume.get().getJobPreference().getId());
-                    preference.ifPresent(jobPreference -> resume.get().setJobPreference(jobPreference));
-
-                    request.setAttribute("resume", resume.get());
-
-                }
-
-                request.getServletContext()
-                        .getRequestDispatcher(PagePath.EMPLOYEE_HOME)
-                        .forward(request, response);
-
-            } catch (DaoException | PoolException ex) {
-                log.error(ex);
-                response.sendError(500);
+                request.setAttribute("resume", resume.get());
             }
 
+            request.getServletContext()
+                    .getRequestDispatcher(PagePath.EMPLOYEE_HOME)
+                    .forward(request, response);
+
+        } catch (DaoException | PoolException ex) {
+            log.error(ex);
+            response.sendError(500);
         }
     }
 }

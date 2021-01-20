@@ -34,11 +34,7 @@ public class SaveContactEmployerCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         TransactionFactory factory = new TransactionFactoryImpl();
         Transaction transaction = factory.createTransaction();
-        HttpSession session = request.getSession(false);
-
         try {
-            if (Objects.nonNull(session)) {
-
                 Integer userId = (Integer) request.getSession().getAttribute("user");
 
                 ContactService contactService = new ContactServiceImpl();
@@ -65,7 +61,6 @@ public class SaveContactEmployerCommand implements ActionCommand {
                     transaction.commit();
                     response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYER_HOME.getUrl());
                 }
-            }
 
         } catch (PoolException | InsertIdDataBaseException | DaoException | TransactionException e) {
             transaction.rollback();

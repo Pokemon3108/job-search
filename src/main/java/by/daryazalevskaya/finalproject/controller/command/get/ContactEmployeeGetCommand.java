@@ -32,19 +32,16 @@ import java.util.Optional;
 public class ContactEmployeeGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        HttpSession session = request.getSession(false);
-
-        if (Objects.nonNull(session)) {
             Integer userId = (Integer) request.getSession().getAttribute("user");
             TransactionFactory factory = new TransactionFactoryImpl();
             Transaction transaction = factory.createTransaction();
             try {
-                ContactService contactService = new ContactServiceImpl();
-                contactService.setTransaction(transaction);
                 ResumeService resumeService = new ResumeServiceImpl();
                 resumeService.setTransaction(transaction);
                 Optional<Resume> resume = resumeService.findResumeByUserId(userId);
 
+                ContactService contactService = new ContactServiceImpl();
+                contactService.setTransaction(transaction);
                 Contact emptyContact = resume.get().getContact();
 
                 if (emptyContact.getId()!=null) {
@@ -64,7 +61,5 @@ public class ContactEmployeeGetCommand implements ActionCommand {
             } finally {
                 transaction.close();
             }
-
-        }
     }
 }

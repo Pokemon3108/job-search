@@ -28,14 +28,11 @@ public class LoginPostCommand implements ActionCommand {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         if (Objects.nonNull(email) && Objects.nonNull(password)) {
-
             TransactionFactory factory = new TransactionFactoryImpl();
             Transaction transaction = factory.createTransaction();
             UserService service = new UserServiceImpl();
             service.setTransaction(transaction);
 
-           // UserValidationCommand validationCommand = new UserValidationCommand();
-           // validationCommand.execute(request, response);
             try {
                 if (!service.isValidLoginAndPassword(email, password)) {
                     transaction.commit();
@@ -45,8 +42,6 @@ public class LoginPostCommand implements ActionCommand {
                             .getRequestDispatcher(page)
                             .forward(request, response);
                 }
-
-
                 User user=service.findUserByEmail(email).get();
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user.getId());
