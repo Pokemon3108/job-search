@@ -8,6 +8,7 @@
 <head>
     <title>Vacancies</title>
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
+
 </head>
 <body>
 
@@ -63,7 +64,22 @@
             </form>
         </div>
     </c:forEach>
+
 </div>
+
+<%--<div class="container">--%>
+<%--    <div class="pagination p1">--%>
+<%--        <ul>--%>
+<%--            <a href="#"><li><</li></a>--%>
+<%--            <a class="is-active" href="#"><li>1</li></a>--%>
+<%--            <a href="${pageContext.request.contextPath}/job/showAllVacancies?page=${}"><li>2</li></a>--%>
+<%--            <a href="#"><li>3</li></a>--%>
+<%--            <a href="#"><li>></li></a>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+<c:import url="/view/headers/pagination.jsp"/>
 
 </body>
 </html>

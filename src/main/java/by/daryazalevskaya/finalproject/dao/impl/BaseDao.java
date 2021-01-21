@@ -175,12 +175,12 @@ public abstract class BaseDao {
 
     protected int count(final String query) throws DaoException {
         ResultSet resultSet = null;
-        int amount;
+        int amount=0;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             resultSet = statement.executeQuery();
-            ResultSetMetaData metaData = resultSet.getMetaData();
-
-            amount = metaData.getColumnCount();
+           if (resultSet.next()) {
+               amount=resultSet.getInt(1);
+           }
         } catch (SQLException e) {
             throw new DaoException();
         } finally {

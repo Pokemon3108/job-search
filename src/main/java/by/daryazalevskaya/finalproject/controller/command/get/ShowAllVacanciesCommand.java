@@ -25,8 +25,23 @@ public class ShowAllVacanciesCommand implements ActionCommand {
         ServiceFactory serviceFactory=new ServiceFactoryImpl();
         try {
             VacancyService vacancyService= (VacancyService) serviceFactory.createService(DaoType.VACANCY);
-            List<Vacancy> vacancies = vacancyService.findAll();
+            Integer page=1;
+            try {
+                if (request.getParameter("currentPage") != null) {
+                    page = Integer.parseInt(request.getParameter("currentPage"));
+                }
+            } catch (NumberFormatException ex) {
+                page=1;
+            }
+
+            final int VACANCY_AMOUNT_ON_PAGE=2;
+            List<Vacancy> vacancies = vacancyService.findInRange(VACANCY_AMOUNT_ON_PAGE, (page-1)*VACANCY_AMOUNT_ON_PAGE);
             request.setAttribute("vacancies", vacancies);
+            int maxPage=vacancyService.getVacanciesSize();
+
+            request.setAttribute("maxPage", maxPage/VACANCY_AMOUNT_ON_PAGE+1);
+            request.setAttribute("currentPage", request.getParameter("currentPage"));
+
             request.getRequestDispatcher(PagePath.ALL_VACANCIES).forward(request, response);
         } catch (DaoException e) {
             log.error(e);

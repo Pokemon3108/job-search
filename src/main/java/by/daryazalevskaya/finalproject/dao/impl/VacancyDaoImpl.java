@@ -31,7 +31,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String DELETE_QUERY = "DELETE FROM vacancy WHERE id =?";
 
-    private static final String FIND_IN_RANGE = "SELECT * FROM vacancy LIMIT ?,?";
+    private static final String FIND_IN_RANGE = "SELECT * FROM vacancy LIMIT ? OFFSET ?";
 
     private static final String COUNT = "SELECT count(*) FROM vacancy";
 

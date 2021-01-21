@@ -77,10 +77,29 @@ public class VacancyServiceImpl extends VacancyService {
     public List<Vacancy> findAll() throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         List<Vacancy> vacancies = dao.findAll();
+        fillVacancies(vacancies);
+        return vacancies;
+    }
+
+    @Override
+    public List<Vacancy> findInRange(int start, int end) throws DaoException {
+        VacancyDao dao = transaction.createDao(DaoType.VACANCY);
+        List<Vacancy> vacancies=dao.findFromTo(start, end);
+        fillVacancies(vacancies);
+        return vacancies;
+    }
+
+    private void fillVacancies(List<Vacancy> vacancies) throws DaoException {
         EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
         for (Vacancy vacancy : vacancies) {
             vacancy.setEmployer(employerDao.read(vacancy.getEmployer().getId()).get());
         }
-        return vacancies;
     }
+
+    @Override
+    public int getVacanciesSize() throws DaoException {
+        VacancyDao dao = transaction.createDao(DaoType.VACANCY);
+        return dao.count();
+    }
+
 }

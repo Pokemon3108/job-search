@@ -21,7 +21,7 @@
 
         <%--    ${pageContext.request.servletPath}--%>
 
-        <div class="container header-container">
+        <div class="container">
 
             <a class="navbar-brand home" href="${pageContext.request.contextPath}/">
                 <h3>Negotium</h3>
@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="show-vac">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies?currentPage=1">
                             <h5><fmt:message key="vacancies" bundle="${ rb }"/></h5>
                         </a>
                     </li>
@@ -54,11 +54,11 @@
 
             </div>
 
-        </div>
+            <button style="background-color: #F0E68C" type="button" class="btn " data-toggle="modal" data-target="#exampleModal">
+                <fmt:message key="change_lan" bundle="${ rb }"/>
+            </button>
 
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-            <fmt:message key="change_lan" bundle="${ rb }"/>
-        </button>
+        </div>
 
     </nav>
 </header>
