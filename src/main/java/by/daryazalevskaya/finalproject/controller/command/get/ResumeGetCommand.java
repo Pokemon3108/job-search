@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
@@ -17,6 +18,8 @@ import by.daryazalevskaya.finalproject.service.ContactService;
 import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
 import by.daryazalevskaya.finalproject.service.JobPreferenceService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import by.daryazalevskaya.finalproject.service.impl.ContactServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.EmployeePersonalInfoServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.JobPreferenceServiceImpl;
@@ -37,28 +40,12 @@ public class ResumeGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         Integer userId = (Integer) request.getSession().getAttribute("user");
-        TransactionFactory factory = new TransactionFactoryImpl();
-        Transaction transaction = factory.createTransaction();
+        ServiceFactory serviceFactory = new ServiceFactoryImpl();
         try {
-            ResumeService resumeService = new ResumeServiceImpl();
-            resumeService.setTransaction(transaction);
+            ResumeService resumeService = (ResumeService) serviceFactory.createService(DaoType.RESUME);
             Optional<Resume> resume = resumeService.findResumeByUserId(userId);
             if (resume.isPresent()) {
-                ContactService contactService = new ContactServiceImpl();
-                contactService.setTransaction(transaction);
-                Optional<Contact> contact = contactService.read(resume.get().getContact().getId());
-                contact.ifPresent(contact1 -> resume.get().setContact(contact1));
-
-                EmployeePersonalInfoService infoService = new EmployeePersonalInfoServiceImpl();
-                infoService.setTransaction(transaction);
-                Optional<EmployeePersonalInfo> info = infoService.read(resume.get().getPersonalInfo().getId());
-                info.ifPresent(info1 -> resume.get().setPersonalInfo(info1));
-
-                JobPreferenceService preferenceService = new JobPreferenceServiceImpl();
-                preferenceService.setTransaction(transaction);
-                Optional<JobPreference> preference = preferenceService.read(resume.get().getJobPreference().getId());
-                preference.ifPresent(jobPreference -> resume.get().setJobPreference(jobPreference));
-
+                resumeService.fillResume(resume.get());
                 request.setAttribute("resume", resume.get());
             }
 
@@ -66,9 +53,11 @@ public class ResumeGetCommand implements ActionCommand {
                     .getRequestDispatcher(PagePath.EMPLOYEE_HOME)
                     .forward(request, response);
 
-        } catch (DaoException | PoolException ex) {
+        } catch (DaoException  ex) {
             log.error(ex);
             response.sendError(500);
+        } finally {
+            serviceFactory.close();
         }
     }
 }

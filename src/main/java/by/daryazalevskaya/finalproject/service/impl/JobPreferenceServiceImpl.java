@@ -5,6 +5,7 @@ import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
+import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Specialization;
 import by.daryazalevskaya.finalproject.service.JobPreferenceService;
@@ -15,14 +16,19 @@ import java.util.Optional;
 public class JobPreferenceServiceImpl extends JobPreferenceService {
 
     @Override
-    public Integer addNewEntity(JobPreference entity) throws DaoException, InsertIdDataBaseException {
-        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-        return jobPreferenceDao.create(entity);
+    public Integer addNewJobPreference(JobPreference entity) throws DaoException, TransactionException {
+        try {
+            JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+            return jobPreferenceDao.create(entity);
+        } catch (DaoException | InsertIdDataBaseException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
+        }
     }
 
     @Override
-    public Optional<JobPreference> read(Integer id) throws DaoException, PoolException {
-        if (id==null) {
+    public Optional<JobPreference> read(Integer id) throws DaoException {
+        if (id == null) {
             return Optional.empty();
         }
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
@@ -35,20 +41,27 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
     }
 
     @Override
-    public void update(JobPreference entity) throws DaoException, PoolException, InsertIdDataBaseException {
-        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-        jobPreferenceDao.update(entity);
+    public void update(JobPreference entity) throws DaoException, TransactionException {
+        try {
+            JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+            jobPreferenceDao.update(entity);
+        } catch (DaoException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
+        }
     }
 
     @Override
-    public void delete(int id) throws DaoException, PoolException {
-
+    public void delete(int id) throws DaoException, TransactionException {
+        try {
+            JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+            jobPreferenceDao.delete(id);
+        } catch (DaoException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
+        }
     }
 
-    @Override
-    public List<JobPreference> findAll() throws DaoException, PoolException {
-        return null;
-    }
 
     @Override
     public Integer findIdBySpecialization(String specialization) throws DaoException {

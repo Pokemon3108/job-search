@@ -6,4 +6,6 @@ public interface TransactionFactory {
     Transaction createTransaction();
 
     void close() throws TransactionException;
+
+    void commit() throws TransactionException;
 }

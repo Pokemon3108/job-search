@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
@@ -13,6 +14,8 @@ import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import by.daryazalevskaya.finalproject.service.VacancyService;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import by.daryazalevskaya.finalproject.service.impl.VacancyServiceImpl;
 import lombok.extern.log4j.Log4j2;
 
@@ -29,10 +32,8 @@ public class EditVacancyCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         Integer vacancyId = Integer.parseInt(request.getParameter("vacancyId"));
-        TransactionFactory factory = new TransactionFactoryImpl();
-        Transaction transaction = factory.createTransaction();
-        VacancyService vacancyService = new VacancyServiceImpl();
-        vacancyService.setTransaction(transaction);
+        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+        VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
         try {
             Optional<Vacancy> vacancy = vacancyService.read(vacancyId);
             if (vacancy.isPresent()) {
@@ -40,20 +41,17 @@ public class EditVacancyCommand implements ActionCommand {
                 request.setAttribute("currencies", Currency.values());
                 request.setAttribute("action", "edit");
                 request.setAttribute("vacancy", vacancy.get());
-                transaction.commit();
                 request.getServletContext()
                         .getRequestDispatcher(PagePath.VACANCY)
                         .forward(request, response);
             } else {
-                transaction.rollback();
                 response.sendError(404);
             }
-        } catch (DaoException | PoolException e) {
-            transaction.rollback();
+        } catch (DaoException e) {
             log.error(e);
             response.sendError(500);
         } finally {
-            transaction.close();
+            serviceFactory.close();
         }
     }
 }

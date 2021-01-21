@@ -12,7 +12,6 @@ public class TransactionFactoryImpl implements TransactionFactory {
     private Connection connection;
 
     public TransactionFactoryImpl() throws ConnectionException {
-
         try {
             connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
@@ -33,6 +32,15 @@ public class TransactionFactoryImpl implements TransactionFactory {
         try {
             connection.close();
         } catch (SQLException e) {
+            throw new TransactionException(e);
+        }
+    }
+
+    @Override
+    public void commit() throws TransactionException {
+        try {
+            connection.commit();
+        } catch(SQLException e) {
             throw new TransactionException(e);
         }
     }

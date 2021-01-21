@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
@@ -15,6 +16,8 @@ import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.service.ContactService;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import by.daryazalevskaya.finalproject.service.impl.ContactServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.EmployeeServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.ResumeServiceImpl;
@@ -32,34 +35,29 @@ import java.util.Optional;
 public class ContactEmployeeGetCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-            Integer userId = (Integer) request.getSession().getAttribute("user");
-            TransactionFactory factory = new TransactionFactoryImpl();
-            Transaction transaction = factory.createTransaction();
-            try {
-                ResumeService resumeService = new ResumeServiceImpl();
-                resumeService.setTransaction(transaction);
-                Optional<Resume> resume = resumeService.findResumeByUserId(userId);
+        Integer userId = (Integer) request.getSession().getAttribute("user");
+        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+        try {
+            ResumeService resumeService = (ResumeService) serviceFactory.createService(DaoType.RESUME);
+            Optional<Resume> resume = resumeService.findResumeByUserId(userId);
 
-                ContactService contactService = new ContactServiceImpl();
-                contactService.setTransaction(transaction);
-                Contact emptyContact = resume.get().getContact();
+            ContactService contactService = (ContactService) serviceFactory.createService(DaoType.CONTACT);
+            Contact emptyContact = resume.get().getContact();
 
-                if (emptyContact.getId()!=null) {
-                    Optional<Contact> fullContact = contactService.read(emptyContact.getId());
-                    fullContact.ifPresent(contact1 -> request.setAttribute("contact", contact1));
-                }
-
-                transaction.commit();
-                request.getServletContext()
-                        .getRequestDispatcher(PagePath.CONTACT)
-                        .forward(request, response);
-
-            } catch (DaoException | PoolException | TransactionException e) {
-                transaction.rollback();
-                log.error(e);
-                response.sendError(500);
-            } finally {
-                transaction.close();
+            if (emptyContact.getId() != null) {
+                Optional<Contact> fullContact = contactService.read(emptyContact.getId());
+                fullContact.ifPresent(contact1 -> request.setAttribute("contact", contact1));
             }
+
+            request.getServletContext()
+                    .getRequestDispatcher(PagePath.CONTACT)
+                    .forward(request, response);
+
+        } catch (DaoException e) {
+            log.error(e);
+            response.sendError(500);
+        } finally {
+            serviceFactory.close();
+        }
     }
 }

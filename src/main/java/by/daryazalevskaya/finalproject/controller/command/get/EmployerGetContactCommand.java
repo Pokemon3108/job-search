@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
@@ -17,6 +18,8 @@ import by.daryazalevskaya.finalproject.service.ContactService;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import by.daryazalevskaya.finalproject.service.impl.ContactServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.EmployeeServiceImpl;
 import by.daryazalevskaya.finalproject.service.impl.EmployerServiceImpl;
@@ -36,31 +39,26 @@ public class EmployerGetContactCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         Integer userId = (Integer) request.getSession().getAttribute("user");
-        TransactionFactory factory = new TransactionFactoryImpl();
-        Transaction transaction = factory.createTransaction();
+        ServiceFactory serviceFactory = new ServiceFactoryImpl();
         try {
-            EmployerService employerService = new EmployerServiceImpl();
-            employerService.setTransaction(transaction);
+            EmployerService employerService = (EmployerService) serviceFactory.createService(DaoType.EMPLOYER);
             Optional<Employer> employer = employerService.read(userId);
 
-            ContactService contactService = new ContactServiceImpl();
-            contactService.setTransaction(transaction);
+            ContactService contactService = (ContactService) serviceFactory.createService(DaoType.CONTACT);
             if (employer.isPresent() && employer.get().getContact() != null) {
                 Optional<Contact> fullContact = contactService.read(employer.get().getContact().getId());
                 fullContact.ifPresent(contact1 -> request.setAttribute("contact", contact1));
             }
 
-            transaction.commit();
             request.getServletContext()
                     .getRequestDispatcher(PagePath.CONTACT)
                     .forward(request, response);
 
-        } catch (DaoException | PoolException | TransactionException e) {
-            transaction.rollback();
+        } catch (DaoException  e) {
             log.error(e);
             response.sendError(500);
         } finally {
-            transaction.close();
+            serviceFactory.close();
         }
 
     }

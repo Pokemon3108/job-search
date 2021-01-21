@@ -4,6 +4,7 @@ import by.daryazalevskaya.finalproject.dao.*;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
+import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
@@ -17,21 +18,25 @@ import java.util.Optional;
 
 public class EmployeeServiceImpl extends EmployeeService {
     @Override
-    public Integer addNewEntity(Employee entity) throws DaoException, InsertIdDataBaseException {
-        ResumeService resumeService = new ResumeServiceImpl();
-        resumeService.setTransaction(transaction);
-        Integer resumeId = resumeService.createResume(entity);
+    public Integer addNewEmployee(Employee employee) throws DaoException, TransactionException {
+        try {
+            ResumeService resumeService = new ResumeServiceImpl();
+            resumeService.setTransaction(transaction);
+            Integer resumeId = resumeService.createResume(employee);
 
-        entity.setResume(new Resume(resumeId));
+            employee.setResume(new Resume(resumeId));
 
-        EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
-        return employeeDao.create(entity);
-
+            EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
+            return employeeDao.create(employee);
+        } catch (DaoException | InsertIdDataBaseException ex) {
+            transaction.rollback();
+            throw  new DaoException(ex);
+        }
     }
 
 
     @Override
-    public Optional<Employee> read(Integer id) throws DaoException, PoolException {
+    public Optional<Employee> read(Integer id) throws DaoException {
         if (id == null) {
             return Optional.empty();
         }
@@ -42,65 +47,70 @@ public class EmployeeServiceImpl extends EmployeeService {
     }
 
     @Override
-    public void update(Employee entity) throws DaoException, PoolException {
-
-    }
-
-    @Override
-    public void delete(int id) throws DaoException, PoolException {
-        EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
-        Optional<Employee> employee = employeeDao.read(id);
-
-        if (employee.isPresent()) {
-
-            ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
-            Resume resume = resumeDao.read(employee.get().getResume().getId()).orElse(null);
-
-            if (Objects.nonNull(resume)) {
-
-                if (resume.getJobPreference().getId() != null) {
-                    JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-                    jobPreferenceDao.delete(resume.getJobPreference().getId());
-                }
-
-                if (resume.getPersonalInfo().getId() != null) {
-                    EmployeePersonalInfoDao employeePersonalInfoDao = transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
-                    employeePersonalInfoDao.delete(resume.getPersonalInfo().getId());
-                }
-
-                if (resume.getContact().getId() != null) {
-                    ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
-                    contactDao.delete(resume.getContact().getId());
-                }
-
-                if (resume.getLanguage().getId()!=null) {
-                    EmployeeLanguageDao employeeLanguageDao=transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
-                    employeeLanguageDao.delete(resume.getLanguage().getId());
-                }
-
-                employeeDao.delete(id);
-                resumeDao.delete(resume.getId());
-            }
-
-            employeeDao.delete(id);
+    public void update(Employee entity) throws DaoException, TransactionException {
+        try {
+            EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
+            employeeDao.update(entity);
+        } catch (DaoException ex) {
+            transaction.rollback();
+            throw  new DaoException(ex);
         }
     }
 
     @Override
-    public List<Employee> findAll() throws DaoException, PoolException {
-        return null;
+    public void delete(int id) throws DaoException, TransactionException {
+        try {
+            EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
+            Optional<Employee> employee = employeeDao.read(id);
+
+            if (employee.isPresent()) {
+
+                ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
+                Resume resume = resumeDao.read(employee.get().getResume().getId()).orElse(null);
+
+                if (Objects.nonNull(resume)) {
+
+                    if (resume.getJobPreference().getId() != null) {
+                        JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+                        jobPreferenceDao.delete(resume.getJobPreference().getId());
+                    }
+
+                    if (resume.getPersonalInfo().getId() != null) {
+                        EmployeePersonalInfoDao employeePersonalInfoDao = transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
+                        employeePersonalInfoDao.delete(resume.getPersonalInfo().getId());
+                    }
+
+                    if (resume.getContact().getId() != null) {
+                        ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
+                        contactDao.delete(resume.getContact().getId());
+                    }
+
+                    if (resume.getLanguage().getId() != null) {
+                        EmployeeLanguageDao employeeLanguageDao = transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
+                        employeeLanguageDao.delete(resume.getLanguage().getId());
+                    }
+
+                    employeeDao.delete(id);
+                    resumeDao.delete(resume.getId());
+                }
+
+                employeeDao.delete(id);
+            }
+        } catch (DaoException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
+        }
     }
 
     @Override
-    public void createUser(User user) throws InsertIdDataBaseException, DaoException {
+    public void createUser(User user) throws DaoException, TransactionException {
         Employee employee = new Employee(user.getId());
-        addNewEntity(employee);
+        addNewEmployee(employee);
     }
 
     @Override
-    public void deleteUser(int userId) throws PoolException, DaoException {
+    public void deleteUser(int userId) throws  DaoException, TransactionException {
         delete(userId);
     }
-
 
 }

@@ -13,13 +13,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class CountryServiceImpl extends CountryService {
-    @Override
-    public Integer addNewEntity(Country entity) throws DaoException, InsertIdDataBaseException {
-        throw new IllegalOperationException();
-    }
 
     @Override
-    public Optional<Country> read(Integer id) throws DaoException, PoolException {
+    public Optional<Country> read(Integer id) throws DaoException {
         if (id==null) {
             return Optional.empty();
         }
@@ -27,18 +23,9 @@ public class CountryServiceImpl extends CountryService {
         return countryDao.read(id);
     }
 
-    @Override
-    public void update(Country entity) throws DaoException, PoolException, InsertIdDataBaseException {
-        throw new IllegalOperationException();
-    }
 
     @Override
-    public void delete(int id) throws DaoException, PoolException {
-        throw new IllegalOperationException();
-    }
-
-    @Override
-    public List<Country> findAll() throws DaoException, PoolException {
+    public List<Country> findAll() throws DaoException {
         CountryDao countryDao=transaction.createDao(DaoType.COUNTRY);
         return countryDao.findAll();
     }

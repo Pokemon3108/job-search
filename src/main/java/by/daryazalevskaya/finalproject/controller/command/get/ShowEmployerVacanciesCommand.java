@@ -2,15 +2,14 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
-import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
-import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory;
-import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.VacancyService;
-import by.daryazalevskaya.finalproject.service.impl.VacancyServiceImpl;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -24,23 +23,19 @@ public class ShowEmployerVacanciesCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         Integer userId = (Integer) request.getSession().getAttribute("user");
-        TransactionFactory factory = new TransactionFactoryImpl();
-        Transaction transaction = factory.createTransaction();
-        VacancyService vacancyService = new VacancyServiceImpl();
-        vacancyService.setTransaction(transaction);
+        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+        VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
         try {
             List<Vacancy> vacancies = vacancyService.findVacanciesByEmployerId(userId);
             request.setAttribute("vacancies", vacancies);
-            transaction.commit();
             request.getServletContext()
                     .getRequestDispatcher(PagePath.VACANCY_EMPLOYER_LIST)
                     .forward(request, response);
         } catch (DaoException e) {
-            transaction.rollback();
             log.error(e);
             response.sendError(500);
         } finally {
-            transaction.close();
+            serviceFactory.close();
         }
     }
 }

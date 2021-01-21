@@ -4,6 +4,7 @@ import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.UserDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
+import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.impl.UserDaoImpl;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.UserService;
@@ -20,17 +21,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class UserServiceImpl extends UserService {
 
     @Override
-    public Integer addNewEntity(User entity) throws DaoException, InsertIdDataBaseException {
+    public Integer addNewUser(User entity) throws DaoException, TransactionException {
         Integer id=null;
-        UserDao userDao = transaction.createDao(DaoType.USER);
+        try {
+            UserDao userDao = transaction.createDao(DaoType.USER);
 
-        if (userDao.read(entity.getEmail()).isEmpty()) {
-            entity.setPassword(crypt(entity.getPassword()));
-            id = userDao.create(entity);
-            entity.setId(id);
-
+            if (userDao.read(entity.getEmail()).isEmpty()) {
+                entity.setPassword(crypt(entity.getPassword()));
+                id = userDao.create(entity);
+                entity.setId(id);
+            }
+            return id;
+        } catch (DaoException | InsertIdDataBaseException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
         }
-        return id;
     }
 
 
@@ -46,15 +51,25 @@ public class UserServiceImpl extends UserService {
     }
 
     @Override
-    public void update(User entity) throws DaoException {
-        UserDao userDao = transaction.createDao(DaoType.USER);
-        userDao.update(entity);
+    public void update(User entity) throws DaoException, TransactionException {
+        try {
+            UserDao userDao = transaction.createDao(DaoType.USER);
+            userDao.update(entity);
+        } catch (DaoException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
+        }
     }
 
     @Override
-    public void delete(int id) throws DaoException {
-        UserDao userDao = transaction.createDao(DaoType.USER);
-        userDao.delete(id);
+    public void delete(int id) throws DaoException, TransactionException {
+        try {
+            UserDao userDao = transaction.createDao(DaoType.USER);
+            userDao.delete(id);
+        } catch (DaoException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
+        }
     }
 
     @Override
