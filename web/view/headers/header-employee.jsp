@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies?currentPage=1">
                             <h5><fmt:message key="vacancies" bundle="${ rb }"/></h5>
                         </a>
                     </li>

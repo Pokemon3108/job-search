@@ -8,7 +8,6 @@
 <head>
     <title>Vacancies</title>
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
-
 </head>
 <body>
 
@@ -30,7 +29,7 @@
     <c:forEach var="vacancy" items="${vacancies}">
         <div class="card-body col mb-4 border my-sm-3">
 
-            <a style="color: darkblue" href="${pageContext.servletContext.contextPath}/vacancy?id=${vacancy.id}">
+            <a style="color: darkblue" href="${pageContext.servletContext.contextPath}/job/vacancy?id=${vacancy.id}">
                 <h3>${vacancy.position}</h3>
             </a>
 
@@ -54,30 +53,17 @@
                 <span>${vacancy.city}</span>
             </p>
 
-            <c:if test="sessionScope.role eq 'EMPLOYEE'">
-                <div>
-                    <button type="submit" class="btn btn-success">
-                        <fmt:message key="respond" bundle="${ rb }"/>
-                    </button>
-                </div>
-            </c:if>
-            </form>
+<%--            <c:if test="sessionScope.role eq 'EMPLOYEE'">--%>
+<%--                <div>--%>
+<%--                    <button type="submit" class="btn btn-success">--%>
+<%--                        <fmt:message key="respond" bundle="${ rb }"/>--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--            </c:if>--%>
         </div>
     </c:forEach>
 
 </div>
-
-<%--<div class="container">--%>
-<%--    <div class="pagination p1">--%>
-<%--        <ul>--%>
-<%--            <a href="#"><li><</li></a>--%>
-<%--            <a class="is-active" href="#"><li>1</li></a>--%>
-<%--            <a href="${pageContext.request.contextPath}/job/showAllVacancies?page=${}"><li>2</li></a>--%>
-<%--            <a href="#"><li>3</li></a>--%>
-<%--            <a href="#"><li>></li></a>--%>
-<%--        </ul>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <c:import url="/view/headers/pagination.jsp"/>
 

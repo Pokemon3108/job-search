@@ -6,6 +6,7 @@ import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
+import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 
@@ -48,7 +49,13 @@ public class VacancyServiceImpl extends VacancyService {
         }
         try {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-            return dao.read(id);
+            Optional<Vacancy> vacancy= dao.read(id);
+            if (vacancy.isPresent()) {
+                EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+                Optional<Employer> employer=employerDao.read(vacancy.get().getEmployer().getId());
+                employer.ifPresent(employer1 -> vacancy.get().setEmployer(employer1));
+            }
+            return vacancy;
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);

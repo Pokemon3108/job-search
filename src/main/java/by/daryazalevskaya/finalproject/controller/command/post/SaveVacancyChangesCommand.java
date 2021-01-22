@@ -45,7 +45,7 @@ public class SaveVacancyChangesCommand implements ActionCommand {
                 request.setAttribute("schedules", Schedule.values());
                 request.setAttribute("currencies", Currency.values());
                 request.setAttribute("action", action);
-                request.getServletContext().getRequestDispatcher(PagePath.VACANCY).forward(request, response);
+                request.getServletContext().getRequestDispatcher(PagePath.VACANCY_EDIT).forward(request, response);
             } else {
                 RequestBuilder builder = new VacancyBuilder();
                 Vacancy vacancy = builder.build(request);

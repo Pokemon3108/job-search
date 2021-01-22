@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/allVacancies">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies?currentPage=1">
                             <h6><fmt:message key="vacancies" bundle="${ rb }"/></h6>
                         </a>
                     </li>

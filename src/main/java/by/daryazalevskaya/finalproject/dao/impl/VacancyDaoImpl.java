@@ -27,7 +27,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String UPDATE_QUERY = "UPDATE vacancy SET  " +
             "position = ?, city=?, salary=?, currency=?::currency_type, " +
-            "schedule=?::schedule_type, duties=?, requirements=?, employer_id=? WHERE id=?";
+            "schedule=?::schedule_type, duties=?, requirements=?, employer_id=?, country=? WHERE id=?";
 
     private static final String DELETE_QUERY = "DELETE FROM vacancy WHERE id =?";
 

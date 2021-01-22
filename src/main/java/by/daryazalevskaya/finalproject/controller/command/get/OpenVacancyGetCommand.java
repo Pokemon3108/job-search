@@ -34,7 +34,7 @@ public class OpenVacancyGetCommand implements ActionCommand {
                 request.setAttribute("currencies", Currency.values());
                 request.setAttribute("action", "open");
                 request.getServletContext()
-                        .getRequestDispatcher(PagePath.VACANCY)
+                        .getRequestDispatcher(PagePath.VACANCY_EDIT)
                         .forward(request, response);
 
             } else {
