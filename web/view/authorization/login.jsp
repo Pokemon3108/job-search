@@ -11,7 +11,17 @@
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
-<c:import url="/view/headers/header-guest.jsp"/>
+<c:choose>
+    <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
+        <c:import url="/view/headers/header-employee.jsp"/>
+    </c:when>
+    <c:when test="${sessionScope.role eq 'EMPLOYER'}">
+        <c:import url="/view/headers/header-employer.jsp"/>
+    </c:when>
+    <c:when test="${sessionScope.role==null}">
+        <c:import url="/view/headers/header-guest.jsp"/>
+    </c:when>
+</c:choose>
 
 <div class="container">
     <h2 class="my-sm-3">
@@ -23,11 +33,18 @@
 
         <input type="hidden" name="page" value="${pageContext.request.servletPath}">
 
-        <c:if test='${loginError!=null}'>
+        <c:if test='${loginError==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
                 <fmt:message key="loginError" bundle="${ rb }"/>
             </p>
         </c:if>
+
+        <c:if test='${alreadyLogged==true}'>
+            <p class="alert alert-danger my-sm-3 " role="alert">
+                <fmt:message key="alreadyLogged" bundle="${ rb }"/>
+            </p>
+        </c:if>
+
 
         <div class="form-group">
             <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>

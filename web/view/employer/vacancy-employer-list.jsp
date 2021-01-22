@@ -62,7 +62,7 @@
 
 
             <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteVacancy">
-                <fmt:message key="delete_vacancy" bundle="${ rb }"/>
+                <fmt:message key="deleteVacancy" bundle="${ rb }"/>
             </button>
 
             <div class="modal fade" id="deleteVacancy" tabindex="-1" role="dialog" aria-labelledby="deleteVacancyLabel"
@@ -84,7 +84,7 @@
                             <form action="${pageContext.request.contextPath}/job/employer/deleteVacancy" method="post">
                                 <input type="hidden" name="vacancyId" value="${vacancy.id}">
                                 <button type="submit" class="btn btn-danger" id="deleteVac">
-                                    <fmt:message key="delete_vacancy" bundle="${ rb }"/></button>
+                                    <fmt:message key="deleteVacancy" bundle="${ rb }"/></button>
                             </form>
                         </div>
 

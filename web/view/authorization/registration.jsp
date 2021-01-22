@@ -17,12 +17,22 @@
 </head>
 <body onload="checkRadioButton(${role});">
 
-<c:import url="/view/headers/header-guest.jsp"/>
+<c:choose>
+    <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
+        <c:import url="/view/headers/header-employee.jsp"/>
+    </c:when>
+    <c:when test="${sessionScope.role eq 'EMPLOYER'}">
+        <c:import url="/view/headers/header-employer.jsp"/>
+    </c:when>
+    <c:when test="${sessionScope.role==null}">
+        <c:import url="/view/headers/header-guest.jsp"/>
+    </c:when>
+</c:choose>
 
 
 <div class="container">
     <h2 class="my-sm-3">
-        <fmt:message key="registration_title" bundle="${ rb }"/>
+        <fmt:message key="registrationTitle" bundle="${ rb }"/>
     </h2>
 
     <form name="userInfo" action="${pageContext.request.contextPath}/job/registration" onsubmit="return validate(this);"
@@ -32,13 +42,13 @@
 
         <c:if test='${invalidEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                <fmt:message key="invalid_email" bundle="${ rb }"/>
+                <fmt:message key="invalidEmail" bundle="${ rb }"/>
             </p>
         </c:if>
 
         <c:if test='${repeatedEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                <fmt:message key="repeated_email" bundle="${ rb }"/>
+                <fmt:message key="repeatedEmail" bundle="${ rb }"/>
             </p>
         </c:if>
 
@@ -57,7 +67,7 @@
 
         <c:if test='${invalidPassword==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                <fmt:message key="invali_password" bundle="${ rb }"/>
+                <fmt:message key="invaliPassword" bundle="${ rb }"/>
             </p>
         </c:if>
 
@@ -83,7 +93,7 @@
             </c:forEach>
         </div>
 
-        <button type="submit" class="btn btn-success"><fmt:message key="create_account" bundle="${ rb }"/></button>
+        <button type="submit" class="btn btn-success"><fmt:message key="createAccount" bundle="${ rb }"/></button>
     </form>
 
 </div>

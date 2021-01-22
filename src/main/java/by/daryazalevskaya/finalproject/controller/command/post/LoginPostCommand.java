@@ -35,17 +35,24 @@ public class LoginPostCommand implements ActionCommand {
             UserService service = (UserService) serviceFactory.createService(DaoType.USER);
             try {
                 if (!service.isValidLoginAndPassword(email, password)) {
-                    request.setAttribute("loginError", "loginError");
+                    request.setAttribute("loginError", true);
                     final String page = request.getParameter("page");
                     request.getServletContext()
                             .getRequestDispatcher(page)
                             .forward(request, response);
+                } else if (request.getSession(false) == null || request.getSession(false).getAttribute("user") != null) {
+                    request.setAttribute("alreadyLogged", true);
+                    final String page = request.getParameter("page");
+                    request.getServletContext()
+                            .getRequestDispatcher(page)
+                            .forward(request, response);
+                } else {
+                    User user = service.findUserByEmail(email).get();
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", user.getId());
+                    session.setAttribute("role", user.getRole());
+                    response.sendRedirect(request.getContextPath() + getRedirectPath(user.getRole()));
                 }
-                User user=service.findUserByEmail(email).get();
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user.getId());
-                session.setAttribute("role", user.getRole());
-                response.sendRedirect(request.getContextPath()+getRedirectPath(user.getRole()));
 
             } catch (DaoException e) {
                 log.error(e);
@@ -57,13 +64,13 @@ public class LoginPostCommand implements ActionCommand {
     }
 
     private String getRedirectPath(Role role) {
-        String path="";
+        String path = "";
         switch (role) {
             case EMPLOYEE:
-                path= "/job/employee/resume";
+                path = "/job/employee/resume";
                 break;
             case EMPLOYER:
-                path= "/job/employer/home";
+                path = "/job/employer/home";
                 break;
         }
         return path;

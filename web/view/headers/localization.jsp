@@ -15,7 +15,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="select_lan" bundle="${ rb }"/></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="selectLan" bundle="${ rb }"/></h5>
             </div>
 
                 <div class="modal-body">
@@ -36,7 +36,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><fmt:message key="close" bundle="${ rb }"/></button>
-                    <button type="button" class="btn btn-success" id="change_lan"><fmt:message key="save_change" bundle="${ rb }"/></button>
+                    <button type="button" class="btn btn-success" id="change_lan"><fmt:message key="saveChange" bundle="${ rb }"/></button>
                 </div>
 
         </div>

@@ -19,4 +19,5 @@ public class PagePath {
     public static final String START="/view/start.jsp";
     public static final String ALL_VACANCIES="/view/common/all-vacancies.jsp";
     public static final String VACANCY_SHOW="/view/common/vacancy-show.jsp";
+    public static final String EMPLOYEE_VACANCIES="/view/employee/employee-vacancies.jsp";
 }

@@ -31,7 +31,7 @@ public class ServiceFactoryImpl implements ServiceFactory {
     public ServiceFactoryImpl() throws ConnectionException {
         serviceMap.put(DaoType.CONTACT, new ContactServiceImpl());
         serviceMap.put(DaoType.COUNTRY, new CountryServiceImpl());
-        serviceMap.put(DaoType.EMPLOYEE, new EmployerServiceImpl());
+        serviceMap.put(DaoType.EMPLOYEE, new EmployeeServiceImpl());
         serviceMap.put(DaoType.EMPLOYEE_PERSONAL_INFO, new EmployeePersonalInfoServiceImpl());
         serviceMap.put(DaoType.EMPLOYER, new EmployerServiceImpl());
         serviceMap.put(DaoType.JOB_PREFERENCE, new JobPreferenceServiceImpl());

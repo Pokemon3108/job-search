@@ -17,7 +17,7 @@
 <c:import url="/view/headers/header-employer.jsp"/>
 
 <div class="container">
-    <h1 class="text-center my-sm-3"><fmt:message key="pers_info" bundle="${ rb }"/></h1>
+    <h1 class="text-center my-sm-3"><fmt:message key="persInfo" bundle="${ rb }"/></h1>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -28,12 +28,12 @@
 
                     <c:if test='${invalidCompany==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_company" bundle="${ rb }"/>
+                            <fmt:message key="invalidCompany" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
                     <div class="form-group">
-                        <label for="companyName"> <fmt:message key="company_name" bundle="${ rb }"/></label>
+                        <label for="companyName"> <fmt:message key="companyName" bundle="${ rb }"/></label>
                         <input type="text" class="form-control" id="companyName" value="${employer.companyName}"
                                name="companyName" minlength="3" maxlength="50" required>
                     </div>
@@ -53,7 +53,7 @@
 
                     <c:if test='${invalidCity==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_city" bundle="${ rb }"/>
+                            <fmt:message key="invalidCity" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -66,7 +66,7 @@
 
                     <div>
                         <input type="submit" class="btn btn-success mt-2" value=
-                                <fmt:message key="save_change"
+                                <fmt:message key="saveChange"
                                              bundle="${ rb }"/>/>
 
 

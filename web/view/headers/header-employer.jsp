@@ -33,12 +33,12 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/openVacancy">
-                            <h6><fmt:message key="open_vacancy" bundle="${ rb }"/></h6>
+                            <h6><fmt:message key="openVacancy" bundle="${ rb }"/></h6>
                         </a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/vacancyList">
-                            <h6><fmt:message key="my_vacancies" bundle="${ rb }"/></h6>
+                            <h6><fmt:message key="myVacancies" bundle="${ rb }"/></h6>
                         </a>
                     </li>
                     <li class="nav-item active">
@@ -48,7 +48,7 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/seeEmployee">
-                            <h6><fmt:message key="see_employee" bundle="${ rb }"/></h6>
+                            <h6><fmt:message key="seeEmployee" bundle="${ rb }"/></h6>
                         </a>
                     </li>
                 </ul>
@@ -62,12 +62,12 @@
         </div>
 
         <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
-            <fmt:message key="delete_acc" bundle="${ rb }"/>
+            <fmt:message key="deleteAcc" bundle="${ rb }"/>
         </button>
 
 
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-            <fmt:message key="change_lan" bundle="${ rb }"/>
+            <fmt:message key="changeLan" bundle="${ rb }"/>
         </button>
 
     </nav>

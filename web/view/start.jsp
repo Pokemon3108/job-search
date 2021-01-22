@@ -24,10 +24,10 @@
         <div class="col-12 col-md-7 col-lg-6 order-md-1 aos-init aos-animate" data-aos="fade-up">
             <h1 class="display-4 text-center text-md-left">
                 <fmt:message key="welcome" bundle="${ rb }"/>
-                <fmt:message key="to_the" bundle="${ rb }"/>
+                <fmt:message key="toThe" bundle="${ rb }"/>
                 Negotium!</h1>
             <p style="font-weight: 400;" class="lead text-center text-md-left mb-6 mb-lg-8">
-                <fmt:message key="start_info" bundle="${ rb }"/>
+                <fmt:message key="startInfo" bundle="${ rb }"/>
             </p>
 
             <div class="text-center text-md-left">

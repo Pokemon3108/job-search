@@ -14,28 +14,28 @@
 <c:import url="/view/headers/header-employee.jsp"/>
 
 <div class="container">
-    <h1 class="text-center my-sm-3"><fmt:message key="describe_yourself" bundle="${ rb }"/></h1>
+    <h1 class="text-center my-sm-3"><fmt:message key="describeYourself" bundle="${ rb }"/></h1>
 
     <form action="${pageContext.request.contextPath}/job/employee/changeSkills" method="post">
 
         <div class="alert alert-info" role="alert">
-            <fmt:message key="length_1000" bundle="${ rb }"/>
+            <fmt:message key="length1000" bundle="${ rb }"/>
         </div>
 
         <c:if test='${invalidSkills==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
-                <fmt:message key="long_skills" bundle="${ rb }"/>
+                <fmt:message key="longSkills" bundle="${ rb }"/>
             </p>
         </c:if>
 
         <div class="form-group">
-            <label for="skills"><fmt:message key="important_skills" bundle="${ rb }"/></label>
+            <label for="skills"><fmt:message key="importantSkills" bundle="${ rb }"/></label>
             <textarea class="form-control" id="skills" rows="3" name="skills" maxlength="1000">${skills}</textarea>
         </div>
 
         <div>
             <input type="submit" class="btn btn-success" value=
-                    <fmt:message key="save_change" bundle="${ rb }"/>/>
+                    <fmt:message key="saveChange" bundle="${ rb }"/>/>
         </div>
     </form>
 

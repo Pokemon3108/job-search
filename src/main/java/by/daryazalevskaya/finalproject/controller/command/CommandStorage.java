@@ -32,6 +32,7 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.EMPLOYER_VACANCY_LIST, new ShowEmployerVacanciesCommand());
         getRequestMap.put(UriPattern.SHOW_ALL_VACANCIES, new ShowAllVacanciesCommand());
         getRequestMap.put(UriPattern.VACANCY_FULL_SHOW, new FullVacancyDescriptionGetCommand());
+        getRequestMap.put(UriPattern.SHOW_EMPLOYEE_VACANCIES, new ShowEmployeeVacanciesCommand());
 
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());
@@ -46,7 +47,7 @@ public class CommandStorage {
         postRequestMap.put(UriPattern.CHANGE_EMPLOYER_CONTACT, new SaveContactEmployerCommand());
         postRequestMap.put(UriPattern.SAVE_VACANCY_CHANGES, new SaveVacancyChangesCommand());
         postRequestMap.put(UriPattern.DELETE_VACANCY, new DeleteVacancyCommand());
-        //TODO fill maps
+        postRequestMap.put(UriPattern.RESPOND_ON_VACANCY, new RespondVacancyCommand());
     }
 
     public static CommandStorage getInstance() {

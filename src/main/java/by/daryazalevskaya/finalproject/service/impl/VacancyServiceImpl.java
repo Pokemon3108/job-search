@@ -1,6 +1,7 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
 import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.dao.EmployeeDao;
 import by.daryazalevskaya.finalproject.dao.EmployerDao;
 import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
@@ -11,7 +12,9 @@ import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class VacancyServiceImpl extends VacancyService {
     @Override
@@ -49,10 +52,10 @@ public class VacancyServiceImpl extends VacancyService {
         }
         try {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-            Optional<Vacancy> vacancy= dao.read(id);
+            Optional<Vacancy> vacancy = dao.read(id);
             if (vacancy.isPresent()) {
                 EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-                Optional<Employer> employer=employerDao.read(vacancy.get().getEmployer().getId());
+                Optional<Employer> employer = employerDao.read(vacancy.get().getEmployer().getId());
                 employer.ifPresent(employer1 -> vacancy.get().setEmployer(employer1));
             }
             return vacancy;
@@ -91,7 +94,7 @@ public class VacancyServiceImpl extends VacancyService {
     @Override
     public List<Vacancy> findInRange(int start, int end) throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-        List<Vacancy> vacancies=dao.findFromTo(start, end);
+        List<Vacancy> vacancies = dao.findFromTo(start, end);
         fillVacancies(vacancies);
         return vacancies;
     }
@@ -107,6 +110,35 @@ public class VacancyServiceImpl extends VacancyService {
     public int getVacanciesSize() throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         return dao.count();
+    }
+
+    @Override
+    public void addEmployeeVacancy(int vacancyId, int employeeId) throws DaoException {
+        VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
+        if (!hasAlreadyRespond(vacancyId, employeeId)) {
+            vacancyDao.addEmployeeVacancy(vacancyId, employeeId);
+        }
+    }
+
+    @Override
+    public boolean hasAlreadyRespond(int vacancyId, int employeeId) throws DaoException {
+        List<Vacancy> vacancies = findEmployeeVacancies(employeeId);
+        return vacancies.stream().anyMatch(vacancy1 -> vacancy1.getId().equals(vacancyId));
+    }
+    
+    @Override
+    public List<Vacancy> findEmployeeVacancies(int employeeId) throws DaoException {
+        VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
+        List<Vacancy> vacancies= vacancyDao.getEmployeeVacancies(employeeId);
+        vacancies=vacancies.stream().map(vacancy -> {
+            try {
+                return vacancyDao.read(vacancy.getId()).get();
+            } catch (DaoException e) {
+               return null;
+            }
+        }).filter(Objects::nonNull).collect(Collectors.toList());
+        fillVacancies(vacancies);
+        return vacancies;
     }
 
 }

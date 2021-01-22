@@ -13,9 +13,9 @@
 
 <div class="container">
     <p style="font-size: 16px" class="font-weight-bold">
-        <fmt:message key="vacancy-error" bundle="${ rb }"/>
+        <fmt:message key="vacancyError" bundle="${ rb }"/>
         <a href="${pageContext.request.contextPath}/job/employer/changeInfo">
-            <fmt:message key="fill_company_info" bundle="${ rb }"/>
+            <fmt:message key="fillCompanyInfo" bundle="${ rb }"/>
         </a>
     </p>
 </div>

@@ -26,5 +26,11 @@ public abstract class VacancyService extends BaseService {
     public abstract List<Vacancy> findInRange(int start, int end) throws DaoException;
 
     public abstract int getVacanciesSize() throws DaoException;
+
+    public abstract void addEmployeeVacancy(int vacancyId, int employeeId) throws DaoException;
+
+    public abstract boolean hasAlreadyRespond(int vacancyId, int employeeId) throws DaoException;
+
+    public abstract List<Vacancy> findEmployeeVacancies(int employeeId) throws DaoException;
 }
 

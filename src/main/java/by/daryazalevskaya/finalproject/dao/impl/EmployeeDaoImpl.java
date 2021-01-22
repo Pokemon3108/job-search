@@ -30,25 +30,21 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
     private static final String DELETE_QUERY = "DELETE FROM employee WHERE user_id =?";
 
-    private static final String READ_VACANCIES_QUERY="SELECT * FROM employee_vacancies WHERE employee_id=?";
 
-    private static final String FIND_IN_RANGE="SELECT * FROM employee LIMIT ?,?";
+    private static final String FIND_IN_RANGE = "SELECT * FROM employee LIMIT ? OFFSET ?";
 
-    private static final String COUNT="SELECT count(*) FROM employee";
-
-    private static final String DELETE_VACANCIES_QUERY="DELETE employee_vacancies WHERE employee_id=?";
+    private static final String COUNT = "SELECT count(*) FROM employee";
 
 
     @Override
-    public Integer create(Employee entity) throws  DaoException {
+    public Integer create(Employee entity) throws DaoException {
         Integer id = null;
-
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY)) {
             statement.setInt(1, entity.getId());
             statement.setInt(2, entity.getResume().getId());
-            int row=statement.executeUpdate();
+            int row = statement.executeUpdate();
 
-            if (row!=0) {
+            if (row != 0) {
                 id = entity.getId();
             } else {
                 throw new DaoException("Can't create entity 'employer'");
@@ -79,25 +75,6 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
         return super.findAll(READ_ALL_QUERY, new EmployeeCreator());
     }
 
-    @Override
-    public List<Vacancy> getEmployeeVacancies(int employeeId) throws DaoException {
-        ResultSet resultSet = null;
-
-        List<Vacancy> entities = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(READ_VACANCIES_QUERY)) {
-            statement.setInt(1, employeeId);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                entities.add(new Vacancy(resultSet.getInt("id")));
-            }
-        } catch (SQLException e) {
-            throw new DaoException();
-        } finally {
-            closeSet(resultSet);
-        }
-
-        return entities;
-    }
 
     @Override
     public List<Employee> findFromTo(int start, int end) throws DaoException {
@@ -108,11 +85,5 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     public int count() throws DaoException {
         return super.count(COUNT);
     }
-
-    @Override
-    public void deleteEmployeeVacancies(int employeeId) throws DaoException {
-        super.delete(employeeId, DELETE_VACANCIES_QUERY);
-    }
-
 
 }

@@ -28,12 +28,12 @@
 
                     <c:if test='${invalidPosition==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_position" bundle="${ rb }"/>
+                            <fmt:message key="invalidPosition" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
                     <div class="form-group">
-                        <label for="position"> <fmt:message key="desired_position" bundle="${ rb }"/></label>
+                        <label for="position"> <fmt:message key="desiredPosition" bundle="${ rb }"/></label>
                         <input type="text" class="form-control" id="position" value="${vacancy.position}"
                                name="position" maxlength="255" minlength="3"
                                required>
@@ -44,7 +44,7 @@
 
                     <c:if test='${invalidCity==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_city" bundle="${ rb }"/>
+                            <fmt:message key="invalidCity" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -84,7 +84,7 @@
 
                     <c:if test='${invalidRequirements==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_requirements" bundle="${ rb }"/>
+                            <fmt:message key="invalidRequirements" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -95,7 +95,7 @@
 
                     <c:if test='${invalidDuties==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_duties" bundle="${ rb }"/>
+                            <fmt:message key="invalidDuties" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -110,7 +110,7 @@
 
                     <div>
                         <input type="submit" class="btn btn-success" value=
-                                <fmt:message key="save_change"
+                                <fmt:message key="saveChange"
                                              bundle="${ rb }"/>/>
                     </div>
 

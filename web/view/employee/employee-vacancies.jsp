@@ -10,18 +10,7 @@
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
-
-<c:choose>
-    <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
-        <c:import url="/view/headers/header-employee.jsp"/>
-    </c:when>
-    <c:when test="${sessionScope.role eq 'EMPLOYER'}">
-        <c:import url="/view/headers/header-employer.jsp"/>
-    </c:when>
-    <c:when test="${sessionScope.role==null}">
-        <c:import url="/view/headers/header-guest.jsp"/>
-    </c:when>
-</c:choose>
+<c:import url="/view/headers/header-employee.jsp"/>
 
 <div class="container">
     <h3 class="vacancy"><fmt:message key="vacancies" bundle="${ rb }"/></h3>
@@ -52,13 +41,10 @@
                 <strong><fmt:message key="city" bundle="${ rb }"/>: </strong>
                 <span>${vacancy.city}</span>
             </p>
-
         </div>
     </c:forEach>
 
 </div>
-
-<c:import url="/view/headers/pagination.jsp"/>
 
 </body>
 </html>

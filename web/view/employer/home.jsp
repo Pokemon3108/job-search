@@ -17,13 +17,13 @@
     <div class="card-deck">
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
-                <fmt:message key="pers_info" bundle="${ rb }"/>
+                <fmt:message key="persInfo" bundle="${ rb }"/>
             </h3>
 
 
                 <c:if test="${employer.companyName!=null}">
                     <p>
-                        <strong><fmt:message key="company_name" bundle="${ rb }"/>: </strong>
+                        <strong><fmt:message key="companyName" bundle="${ rb }"/>: </strong>
                         <span>${employer.companyName}</span>
                     </p>
                 </c:if>

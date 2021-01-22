@@ -20,7 +20,7 @@
 <c:import url="/view/headers/header-employee.jsp"/>
 
 <div class="container">
-    <h1 class="text-center my-sm-3"><fmt:message key="job_preference" bundle="${ rb }"/></h1>
+    <h1 class="text-center my-sm-3"><fmt:message key="jobPreference" bundle="${ rb }"/></h1>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -33,12 +33,12 @@
 
                     <c:if test='${invalidPosition==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_position" bundle="${ rb }"/>
+                            <fmt:message key="invalidPosition" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
                     <div class="form-group">
-                        <label for="position"> <fmt:message key="desired_position" bundle="${ rb }"/></label>
+                        <label for="position"> <fmt:message key="desiredPosition" bundle="${ rb }"/></label>
                         <input type="text" class="form-control" id="position" value="${preference.position}"
                                name="position"
                                required>
@@ -63,7 +63,7 @@
 
                     <c:if test='${invalidSalary==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_salary" bundle="${ rb }"/>
+                            <fmt:message key="invalidSalary" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -97,7 +97,7 @@
 
                     <c:if test='${invalidExperience==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_exper" bundle="${ rb }"/>
+                            <fmt:message key="invalidExper" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -115,7 +115,7 @@
 
                     <div>
                         <input type="submit" class="btn btn-success" value=
-                                <fmt:message key="save_change"
+                                <fmt:message key="saveChange"
                                              bundle="${ rb }"/>/>
                     </div>
 

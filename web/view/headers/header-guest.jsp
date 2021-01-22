@@ -19,8 +19,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <%--    ${pageContext.request.servletPath}--%>
-
         <div class="container">
 
             <a class="navbar-brand home" href="${pageContext.request.contextPath}/">
@@ -55,7 +53,7 @@
             </div>
 
             <button style="background-color: #F0E68C" type="button" class="btn " data-toggle="modal" data-target="#exampleModal">
-                <fmt:message key="change_lan" bundle="${ rb }"/>
+                <fmt:message key="changeLan" bundle="${ rb }"/>
             </button>
 
         </div>

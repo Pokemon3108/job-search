@@ -35,8 +35,8 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employee/myVacancies">
-                            <h5><fmt:message key="my_vacancies" bundle="${ rb }"/></h5>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employee/myVacancies?currentPage=1">
+                            <h5><fmt:message key="myVacancies" bundle="${ rb }"/></h5>
                         </a>
                     </li>
                     <li class="nav-item active">
@@ -55,12 +55,12 @@
 
 <%--        <form action="${pageContext.request.contextPath}/job/delete" method="post">--%>
             <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
-                <fmt:message key="delete_acc" bundle="${ rb }"/>
+                <fmt:message key="deleteAcc" bundle="${ rb }"/>
             </button>
 <%--        </form>--%>
 
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                <fmt:message key="change_lan" bundle="${ rb }"/>
+                <fmt:message key="changeLan" bundle="${ rb }"/>
             </button>
 
     </nav>

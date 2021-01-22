@@ -27,7 +27,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String UPDATE_QUERY = "UPDATE vacancy SET  " +
             "position = ?, city=?, salary=?, currency=?::currency_type, " +
-            "schedule=?::schedule_type, duties=?, requirements=?, employer_id=?, country=? WHERE id=?";
+            "schedule=?::schedule_type, duties=?, requirements=?, employer_id=? WHERE id=?";
 
     private static final String DELETE_QUERY = "DELETE FROM vacancy WHERE id =?";
 
@@ -40,6 +40,12 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             "WHERE employer_id=?";
 
     private static final String DELETE_EMPLOYEE_VACANCY="DELETE FROM employee_vacancies WHERE vacancy_id=?";
+
+    private static final String DELETE_EMPLOYEE_VACANCIES_QUERY = "DELETE employee_vacancies WHERE employee_id=?";
+
+    private static final String ADD_VACANCY_TO_EMPLOYEE_QUERY = "INSERT INTO employee_vacancies (vacancy_id, employee_id ) VALUES(?,?)";
+
+    private static final String READ_VACANCIES_QUERY = "SELECT (vacancy_id) FROM employee_vacancies WHERE employee_id=?";
 
     @Override
     public Integer create(Vacancy entity) throws InsertIdDataBaseException, DaoException {
@@ -108,5 +114,41 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     @Override
     public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException {
         delete(vacancyId, DELETE_EMPLOYEE_VACANCY);
+    }
+
+    @Override
+    public void addEmployeeVacancy(int vacancyId, int employeeId) throws DaoException {
+        try (PreparedStatement statement = connection.prepareStatement(ADD_VACANCY_TO_EMPLOYEE_QUERY)) {
+            statement.setInt(1, vacancyId);
+            statement.setInt(2, employeeId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public List<Vacancy> getEmployeeVacancies(int employeeId) throws DaoException {
+        ResultSet resultSet = null;
+
+        List<Vacancy> entities = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(READ_VACANCIES_QUERY)) {
+            statement.setInt(1, employeeId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                entities.add(new Vacancy(resultSet.getInt("vacancy_id")));
+            }
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
+            closeSet(resultSet);
+        }
+
+        return entities;
+    }
+
+    @Override
+    public void deleteEmployeeVacancies(int employeeId) throws DaoException {
+        super.delete(employeeId, DELETE_EMPLOYEE_VACANCIES_QUERY);
     }
 }

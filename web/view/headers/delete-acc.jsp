@@ -25,7 +25,7 @@
 
                 <form action="${pageContext.request.contextPath}/job/auth/delete" method="post">
                     <button type="submit" class="btn btn-danger" id="delete_acc">
-                        <fmt:message key="delete_acc" bundle="${ rb }"/></button>
+                        <fmt:message key="deleteAcc" bundle="${ rb }"/></button>
                 </form>
             </div>
 

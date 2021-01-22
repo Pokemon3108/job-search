@@ -41,7 +41,7 @@
 
                     <c:if test='${isInvalidTelephone==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_phone" bundle="${ rb }"/>
+                            <fmt:message key="invalidPhone" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -54,7 +54,7 @@
 
                     <c:if test='${invalidEmail==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalid_email" bundle="${ rb }"/>
+                            <fmt:message key="invalidEmail" bundle="${ rb }"/>
                         </p>
                     </c:if>
 
@@ -78,7 +78,7 @@
                     <input type="hidden" name="id" value="${contact.id}">
 
                     <div>
-                        <input type="submit" class="btn btn-success" value=" <fmt:message key="save_change" bundle="${ rb }"/>"/>
+                        <input type="submit" class="btn btn-success" value=" <fmt:message key="saveChange" bundle="${ rb }"/>"/>
                     </div>
                 </form>
 

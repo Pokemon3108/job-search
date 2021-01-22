@@ -20,7 +20,7 @@
     <div class="card-deck">
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
-                <fmt:message key="pers_info" bundle="${ rb }"/>
+                <fmt:message key="persInfo" bundle="${ rb }"/>
             </h3>
             <c:if test="${resume.personalInfo!=null}">
 
@@ -48,7 +48,7 @@
 
                 <c:if test="${resume.personalInfo.country!=null}">
                     <p>
-                        <strong><fmt:message key="living_place" bundle="${ rb }"/>: </strong>
+                        <strong><fmt:message key="livingPlace" bundle="${ rb }"/>: </strong>
                         <span>${resume.personalInfo.country.name}</span>
                         <c:if test="${resume.personalInfo.city!=null}">
                             <span>, ${resume.personalInfo.city}</span>
@@ -75,13 +75,13 @@
 
     <div class="card-deck">
         <div class="card-body border my-sm-3">
-            <h3 class="card-title"><fmt:message key="job_preference" bundle="${ rb }"/></h3>
+            <h3 class="card-title"><fmt:message key="jobPreference" bundle="${ rb }"/></h3>
 
             <c:if test="${resume.jobPreference!=null}">
 
                 <c:if test='${resume.jobPreference.position!=null}'>
                     <p>
-                        <strong><fmt:message key="desired_position" bundle="${ rb }"/>: </strong>
+                        <strong><fmt:message key="desiredPosition" bundle="${ rb }"/>: </strong>
                         <span> ${resume.jobPreference.position} </span>
                     </p>
                 </c:if>
@@ -130,7 +130,7 @@
 
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
-                <fmt:message key="foreign_language" bundle="${ rb }"/>
+                <fmt:message key="foreignLanguage" bundle="${ rb }"/>
             </h3>
             <div>
                 <p>

@@ -17,7 +17,7 @@
 
 
 <div class="container">
-    <h1 class="text-center my-sm-3"><fmt:message key="foreign_language" bundle="${ rb }"/></h1>
+    <h1 class="text-center my-sm-3"><fmt:message key="foreignLanguage" bundle="${ rb }"/></h1>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -54,7 +54,7 @@
 
                     <div>
                         <input type="submit" class="btn btn-success" value=
-                        <fmt:message key="save_change"
+                        <fmt:message key="saveChange"
                                      bundle="${ rb }"/>/>
                     </div>
 

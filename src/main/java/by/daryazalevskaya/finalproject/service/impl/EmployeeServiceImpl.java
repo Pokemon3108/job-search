@@ -9,6 +9,7 @@ import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
+import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
 
@@ -30,7 +31,7 @@ public class EmployeeServiceImpl extends EmployeeService {
             return employeeDao.create(employee);
         } catch (DaoException | InsertIdDataBaseException ex) {
             transaction.rollback();
-            throw  new DaoException(ex);
+            throw new DaoException(ex);
         }
     }
 
@@ -53,7 +54,7 @@ public class EmployeeServiceImpl extends EmployeeService {
             employeeDao.update(entity);
         } catch (DaoException ex) {
             transaction.rollback();
-            throw  new DaoException(ex);
+            throw new DaoException(ex);
         }
     }
 
@@ -109,7 +110,7 @@ public class EmployeeServiceImpl extends EmployeeService {
     }
 
     @Override
-    public void deleteUser(int userId) throws  DaoException, TransactionException {
+    public void deleteUser(int userId) throws DaoException, TransactionException {
         delete(userId);
     }
 

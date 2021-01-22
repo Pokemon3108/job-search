@@ -54,16 +54,15 @@
                                 </div>
                             </div>
                         </div>
-                        <c:if test="${sessionScope.role eq 'EMPLOYEE'}">
+                        <c:if test="${sessionScope.role eq 'EMPLOYEE' and respond!=true}">
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <form action="${pageContext.request.contextPath}/job/employer/respondVacancy" method="post">
-                                        <input type="hidden" name="vacancy_id" value="${vacancy.id}">
+                                    <form action="${pageContext.request.contextPath}/job/employee/respondVacancy" method="post">
+                                        <input type="hidden" name="vacancyId" value="${vacancy.id}">
                                         <button type="submit" class="btn btn-success mr-1">
                                             <fmt:message key="respond" bundle="${ rb }"/>
                                         </button>
                                     </form>
-
                                 </div>
                             </div>
                         </c:if>
@@ -83,7 +82,7 @@
             <div class="col-lg-4">
                 <div class="job_sumary">
                     <div class="summery_header">
-                        <h3><fmt:message key="job_summary" bundle="${ rb }"/></h3>
+                        <h3><fmt:message key="jobSummary" bundle="${ rb }"/></h3>
                     </div>
                     <div class="job_content">
                         <ul>
