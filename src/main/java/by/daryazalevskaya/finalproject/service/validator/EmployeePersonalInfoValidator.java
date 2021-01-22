@@ -7,6 +7,7 @@ public class EmployeePersonalInfoValidator extends Validator {
     private static final int NAME_LENGTH = 30;
     private static final int SURNAME_LENGTH = 50;
     private static final int CITY_LENGTH = 100;
+    private static final String CITY_REGEX = "^[a-zA-Zа-яА-Я\\s\\/\\-\\)\\(\\`\\.\\\"\\']+$";
 
     private boolean isValidName(String name, int length) {
         return (isValid(NAME_PATTERN, name.toLowerCase()) && name.length()<length);
@@ -17,7 +18,7 @@ public class EmployeePersonalInfoValidator extends Validator {
     }
 
     public boolean isValidCity(String city) {
-        return isValidName(city, CITY_LENGTH);
+        return (super.isValid(CITY_REGEX, city) && city.length() < CITY_LENGTH);
     }
 
     public boolean isValidFirstName(String name) {

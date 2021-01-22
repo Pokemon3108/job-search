@@ -125,7 +125,7 @@ public class VacancyServiceImpl extends VacancyService {
         List<Vacancy> vacancies = findEmployeeVacancies(employeeId);
         return vacancies.stream().anyMatch(vacancy1 -> vacancy1.getId().equals(vacancyId));
     }
-    
+
     @Override
     public List<Vacancy> findEmployeeVacancies(int employeeId) throws DaoException {
         VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);

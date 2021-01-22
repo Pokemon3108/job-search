@@ -53,7 +53,6 @@ public class ContactDaoImplTest {
     @Test(dataProvider = "contact")
     public void createTest(Contact contact) throws DaoException, InsertIdDataBaseException {
         Integer id = contactDao.create(contact);
-       //   this.id=id;
         Assert.assertNotNull(id);
     }
 

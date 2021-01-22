@@ -4,14 +4,14 @@ public class VacancyValidator extends Validator {
     private static final int CITY_LENGTH = 100;
     private static final int POSITION = 255;
     private static final int LONG_TEXT_LENGTH=2000;
-    private static final String CITY_REGEX = "[\\w\\-\\s]";
+    private static final String CITY_REGEX = "^[a-zA-Zа-яА-Я\\s\\/\\-\\)\\(\\`\\.\\\"\\']+$";
 
     public boolean isValidCity(String city) {
         return (super.isValid(CITY_REGEX, city) && city.length() < CITY_LENGTH);
     }
 
     public boolean isValidPosition(String position) {
-        return position.length()<LONG_TEXT_LENGTH;
+        return position.length()<POSITION;
     }
 
     public boolean isValidLongText(String text) {
