@@ -32,7 +32,12 @@ public class EmployeeLanguageServiceImpl extends EmployeeLanguageService {
             return Optional.empty();
         }
         EmployeeLanguageDao dao = transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
-        return dao.read(id);
+        Optional<EmployeeLanguage> employeeLanguage= dao.read(id);
+        if (employeeLanguage.isPresent()) {
+            Optional<Language> language = dao.findLanguageFromCatalog(employeeLanguage.get().getId());
+            language.ifPresent(lang->employeeLanguage.get().setName(lang));
+        }
+        return employeeLanguage;
     }
 
     @Override
@@ -47,7 +52,7 @@ public class EmployeeLanguageServiceImpl extends EmployeeLanguageService {
     }
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             EmployeeLanguageDao dao = transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
             dao.delete(id);

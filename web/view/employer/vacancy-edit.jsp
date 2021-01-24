@@ -26,6 +26,8 @@
                 <form action="${pageContext.request.contextPath}/job/employer/saveVacancyChanges" method="post"
                 onsubmit="return validateForm(this);">
 
+                    <p class="requiredField"><fmt:message key="required_field" bundle="${ rb }"/></p>
+
                     <c:if test='${invalidPosition==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
                             <fmt:message key="invalidPosition" bundle="${ rb }"/>
@@ -33,7 +35,7 @@
                     </c:if>
 
                     <div class="form-group">
-                        <label for="position"> <fmt:message key="desiredPosition" bundle="${ rb }"/></label>
+                        <label for="position"> <fmt:message key="desiredPosition" bundle="${ rb }"/> *</label>
                         <input type="text" class="form-control" id="position" value="${vacancy.position}"
                                name="position" maxlength="255" minlength="3"
                                required>
@@ -49,7 +51,7 @@
                     </c:if>
 
                     <div class="form-group">
-                        <label for="city"> <fmt:message key="city" bundle="${ rb }"/></label>
+                        <label for="city"> <fmt:message key="city" bundle="${ rb }"/> *</label>
                         <input type="text" class="form-control" id="city" value="${vacancy.city}"
                                name="city" maxlength="100" required>
                     </div>
@@ -89,7 +91,7 @@
                     </c:if>
 
                     <div class="form-group">
-                        <label for="requirements"><fmt:message key="requirements" bundle="${ rb }"/></label>
+                        <label for="requirements"><fmt:message key="requirements" bundle="${ rb }"/> *</label>
                         <textarea class="form-control" id="requirements" rows="3" name="requirements" maxlength="2000" required>${vacancy.requirements}</textarea>
                     </div>
 
@@ -100,7 +102,7 @@
                     </c:if>
 
                     <div class="form-group">
-                        <label for="duties"><fmt:message key="duties" bundle="${ rb }"/></label>
+                        <label for="duties"><fmt:message key="duties" bundle="${ rb }"/> *</label>
                         <textarea class="form-control" id="duties" rows="3" name="duties" maxlength="2000" required>${vacancy.duties}</textarea>
                     </div>
 

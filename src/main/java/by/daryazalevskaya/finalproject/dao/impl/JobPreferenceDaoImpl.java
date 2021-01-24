@@ -3,10 +3,8 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Specialization;
-import by.daryazalevskaya.finalproject.service.dbcreator.CountryCreator;
 import by.daryazalevskaya.finalproject.service.dbcreator.JobPreferenceCreator;
 import by.daryazalevskaya.finalproject.service.dbcreator.SpecializationCreator;
 import by.daryazalevskaya.finalproject.service.sql.JobPreferenceStatementFormer;
@@ -47,7 +45,7 @@ public class JobPreferenceDaoImpl extends BaseDao implements JobPreferenceDao {
     }
 
     @Override
-    public Optional<JobPreference> read(int id) throws DaoException {
+    public Optional<JobPreference> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new JobPreferenceCreator());
     }
 
@@ -64,7 +62,7 @@ public class JobPreferenceDaoImpl extends BaseDao implements JobPreferenceDao {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 

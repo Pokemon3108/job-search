@@ -18,19 +18,19 @@ public class VacancyValidationCommand implements ValidationCommand {
         VacancyValidator vacancyValidator=new VacancyValidator();
 
         boolean isValid=true;
-        if (vacancyValidator.isValidCity(vacancy.getCity())) {
+        if (!vacancyValidator.isValidCity(vacancy.getCity())) {
             isValid=false;
             request.setAttribute("invalidCity", true);
         }
-        if (vacancyValidator.isValidLongText(vacancy.getRequirements())) {
+        if (!vacancyValidator.isValidLongText(vacancy.getRequirements())) {
             isValid=false;
             request.setAttribute("invalidRequirements", true);
         }
-        if (vacancyValidator.isValidCity(vacancy.getDuties())) {
+        if (!vacancyValidator.isValidLongText(vacancy.getDuties())) {
             isValid=false;
             request.setAttribute("invalidDuties", true);
         }
-        if (vacancyValidator.isValidPosition(vacancy.getPosition())) {
+        if (!vacancyValidator.isValidPosition(vacancy.getPosition())) {
             isValid=false;
             request.setAttribute("invalidPosition", true);
         }

@@ -29,6 +29,8 @@
                 <form action="${pageContext.request.contextPath}/job/employee/changeJobPreference" method="post"
                       onsubmit="return validate(this);">
 
+                    <p class="requiredField"><fmt:message key="required_field" bundle="${ rb }"/></p>
+
                     <div class="alert alert-danger my-sm-3 " role="alert" id="positionError"></div>
 
                     <c:if test='${invalidPosition==true}'>
@@ -37,8 +39,9 @@
                         </p>
                     </c:if>
 
+
                     <div class="form-group">
-                        <label for="position"> <fmt:message key="desiredPosition" bundle="${ rb }"/></label>
+                        <label for="position"> <fmt:message key="desiredPosition" bundle="${ rb }"/> *</label>
                         <input type="text" class="form-control" id="position" value="${preference.position}"
                                name="position"
                                required>

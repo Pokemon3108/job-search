@@ -4,15 +4,10 @@ import by.daryazalevskaya.finalproject.dao.EmployeeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
-import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.dbcreator.EmployeeCreator;
-import by.daryazalevskaya.finalproject.service.sql.EmployeeStatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +51,7 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     }
 
     @Override
-    public Optional<Employee> read(int id) throws DaoException {
+    public Optional<Employee> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new EmployeeCreator());
     }
 
@@ -66,7 +61,7 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 

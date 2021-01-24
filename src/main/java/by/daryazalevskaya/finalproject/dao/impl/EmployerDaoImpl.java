@@ -9,6 +9,7 @@ import by.daryazalevskaya.finalproject.service.sql.EmployerStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,9 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
 
     private static final String DELETE_QUERY = "DELETE FROM employer WHERE user_id =?";
 
-    private static final String CREATE_CONTACT="UPDATE employer SET contact_id=? WHERE user_id=?";
+    private static final String CREATE_CONTACT = "UPDATE employer SET contact_id=? WHERE user_id=?";
+
+    private static final String FIND_EMPLOYER_BY_COMPANY_NAME = "SELECT user_id FROM employer WHERE company_name =?";
 
 
     @Override
@@ -37,9 +40,9 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
 
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY)) {
             statement.setInt(1, entity.getId());
-            int row=statement.executeUpdate();
+            int row = statement.executeUpdate();
 
-            if (row!=0) {
+            if (row != 0) {
                 id = entity.getId();
             } else {
                 throw new DaoException("Can't create entity 'employer'");
@@ -51,7 +54,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
     }
 
     @Override
-    public Optional<Employer> read(int id) throws DaoException {
+    public Optional<Employer> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new EmployerCreator());
     }
 
@@ -67,7 +70,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 
@@ -84,6 +87,25 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);
+        }
+    }
+
+    @Override
+    public Integer findUserIdByCompany(String company) throws DaoException {
+        ResultSet set = null;
+        try (PreparedStatement statement = connection.prepareStatement(FIND_EMPLOYER_BY_COMPANY_NAME)) {
+            statement.setString(1, company);
+            set = statement.executeQuery();
+            Integer id = null;
+            if (set.next()) {
+                id = set.getInt(1);
+            }
+
+            return id;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            closeSet(set);
         }
     }
 }

@@ -21,7 +21,7 @@
     <c:forEach var="vacancy" items="${vacancies}">
         <div class="card-body col mb-4 border my-sm-3">
             <form action="${pageContext.request.contextPath}/job/employer/editVacancy" method="get">
-
+                <input type="hidden" name="vacancyId" value="${vacancy.id}">
                 <h3 class="card-title">${vacancy.position}</h3>
 
                 <p>
@@ -50,7 +50,7 @@
                     <span>${vacancy.requirements}</span>
                 </p>
 
-                <input type="hidden" name="vacancyId" value="${vacancy.id}">
+
 
                 <div>
                     <button type="submit" class="btn btn-success">

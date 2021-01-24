@@ -33,12 +33,4 @@ public class VacancyCreator extends Creator<Vacancy> {
         return vacancy;
     }
 
-    private boolean existsColumn(ResultSet set, String columnName) throws SQLException {
-        ResultSetMetaData metaData = set.getMetaData();
-        for (int i = 1; i <= metaData.getColumnCount(); i++)
-            if (columnName.equals(metaData.getColumnName(i)))
-                return true;
-
-        return false;
-    }
 }

@@ -10,11 +10,16 @@ import java.sql.SQLException;
 public class EmployerCreator extends Creator<Employer> {
     @Override
     public Employer createEntity(ResultSet set) throws SQLException {
-        return Employer.builder()
+        Employer employer= Employer.builder()
                 .city(set.getString("city"))
-                .country(new Country(set.getInt("country")))
                 .companyName(set.getString("company_name"))
                 .contact(new Contact(set.getInt("contact_id")))
                 .build();
+
+        if (existsColumn(set, "country")) {
+            employer.setCountry(new Country(set.getInt("country")));
+        }
+
+        return employer;
     }
 }

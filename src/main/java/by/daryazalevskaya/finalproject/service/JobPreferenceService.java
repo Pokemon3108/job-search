@@ -13,7 +13,7 @@ import java.util.Optional;
 public abstract class JobPreferenceService extends BaseService {
     public abstract Integer findIdBySpecialization(String specialization) throws DaoException;
 
-    public abstract Optional<Specialization> findSpecializationById(int id) throws DaoException;
+    public abstract Optional<Specialization> findSpecializationById(Integer id) throws DaoException;
 
     public abstract List<Specialization> findAllSpecializations() throws DaoException;
 
@@ -23,6 +23,6 @@ public abstract class JobPreferenceService extends BaseService {
 
     public abstract void update(JobPreference preference) throws DaoException, TransactionException;
 
-    public abstract void delete(int id) throws DaoException, TransactionException;
+    public abstract void delete(Integer id) throws DaoException, TransactionException;
 
 }

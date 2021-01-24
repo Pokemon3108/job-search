@@ -14,5 +14,5 @@ public abstract class EmployeeService  extends UserRoleService {
 
     public abstract void update(Employee employee) throws DaoException, InsertIdDataBaseException, TransactionException;
 
-    public abstract void delete(int id) throws DaoException, TransactionException;
+    public abstract void delete(Integer id) throws DaoException, TransactionException;
 }

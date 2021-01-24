@@ -19,6 +19,8 @@ public abstract class EmployerService extends  UserRoleService{
 
     public abstract void update(Employer employer) throws DaoException, TransactionException;
 
-    public abstract void delete(int id) throws DaoException, TransactionException;
+    public abstract void delete(Integer id) throws DaoException, TransactionException;
+
+    public abstract boolean containsCompanyName(String company, Integer userId) throws DaoException;
 
 }

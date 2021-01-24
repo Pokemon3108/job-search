@@ -27,7 +27,7 @@
                 <form action="${pageContext.request.contextPath}/job/employee/changePersonalInfo" method="post"
                       onsubmit="return validate(this);">
 
-                    <%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
+                    <fmt:message key="required_field" bundle="${ rb }"/>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="nameError"></div>
                     <div class="alert alert-danger my-sm-3 " role="alert" id="nameLengthError"></div>
@@ -39,7 +39,7 @@
                     </c:if>
 
                     <div class="form-group">
-                        <label for="name"> <fmt:message key="name" bundle="${ rb }"/></label>
+                        <label for="name"> <fmt:message key="name" bundle="${ rb }"/> *</label>
                         <input type="text" class="form-control" id="name" value="${info.name}" name="name" required>
                     </div>
 
@@ -88,12 +88,6 @@
                         </c:forEach>
                     </select>
 
-                    <%--                    <fmt:message key="country" bundle="${ rb }"/>--%>
-                    <%--                    <select class="form-select mb-2" name="country">--%>
-                    <%--                        <c:forEach items="${countries}" var="countryArr">--%>
-                    <%--                            <option name="country" value="${countryArr.name}">${countryArr.name}</option>--%>
-                    <%--                        </c:forEach>--%>
-                    <%--                    </select>--%>
 
                     <fmt:message key="country" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="country">

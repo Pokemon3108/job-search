@@ -41,7 +41,7 @@ public class SaveVacancyChangesCommand implements ActionCommand {
 
             String action = request.getParameter("action");
             ValidationCommand validationCommand = new VacancyValidationCommand();
-            if (validationCommand.isValid(request, response)) {
+            if (!validationCommand.isValid(request, response)) {
                 request.setAttribute("schedules", Schedule.values());
                 request.setAttribute("currencies", Currency.values());
                 request.setAttribute("action", action);

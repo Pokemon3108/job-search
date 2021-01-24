@@ -1,12 +1,9 @@
 package by.daryazalevskaya.finalproject.service;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.employee.*;
-import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +27,7 @@ public abstract class ResumeService extends BaseService {
 
     public abstract void update(Resume resume) throws DaoException, TransactionException;
 
-    public abstract void delete(int id) throws DaoException, TransactionException;
+    public abstract void delete(Integer id) throws DaoException, TransactionException;
 
     public abstract List<Resume> findAll() throws DaoException;
 

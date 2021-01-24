@@ -1,5 +1,5 @@
 .container {
-    max-width: 700px !important;
+    max-width: 750px !important;
 }
 
 .card-body {
@@ -10,4 +10,13 @@
 .vacancy {
     margin: 1em auto 1em 2em;
     text-align: center;
+}
+
+.requiredField {
+    color: red;
+}
+
+.lang{
+    max-width: 5%;
+    margin-bottom: 0.5em;
 }

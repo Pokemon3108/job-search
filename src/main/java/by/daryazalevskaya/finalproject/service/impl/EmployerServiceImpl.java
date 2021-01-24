@@ -63,7 +63,7 @@ public class EmployerServiceImpl extends EmployerService {
     }
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
             Employer employer = employerDao.read(id).orElse(null);
@@ -82,6 +82,12 @@ public class EmployerServiceImpl extends EmployerService {
         }
     }
 
+    @Override
+    public boolean containsCompanyName(String company, Integer userId) throws DaoException {
+        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+        return employerDao.findUserIdByCompany(company)!=userId;
+    }
+
 
     @Override
     public void createUser(User user) throws DaoException, TransactionException {
@@ -90,7 +96,7 @@ public class EmployerServiceImpl extends EmployerService {
     }
 
     @Override
-    public void deleteUser(int userId) throws PoolException, DaoException, TransactionException {
+    public void deleteUser(Integer userId) throws PoolException, DaoException, TransactionException {
         delete(userId);
     }
 

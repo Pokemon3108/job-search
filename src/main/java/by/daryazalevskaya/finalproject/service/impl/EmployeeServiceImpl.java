@@ -3,17 +3,13 @@ package by.daryazalevskaya.finalproject.service.impl;
 import by.daryazalevskaya.finalproject.dao.*;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
-import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -59,7 +55,7 @@ public class EmployeeServiceImpl extends EmployeeService {
     }
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             EmployeeDao employeeDao = transaction.createDao(DaoType.EMPLOYEE);
             Optional<Employee> employee = employeeDao.read(id);
@@ -110,7 +106,7 @@ public class EmployeeServiceImpl extends EmployeeService {
     }
 
     @Override
-    public void deleteUser(int userId) throws DaoException, TransactionException {
+    public void deleteUser(Integer userId) throws DaoException, TransactionException {
         delete(userId);
     }
 

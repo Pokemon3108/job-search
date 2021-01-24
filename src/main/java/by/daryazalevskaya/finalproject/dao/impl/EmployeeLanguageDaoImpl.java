@@ -11,6 +11,7 @@ import by.daryazalevskaya.finalproject.service.sql.LanguageStatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -25,13 +26,15 @@ public class EmployeeLanguageDaoImpl extends BaseDao implements EmployeeLanguage
 
     private static final String FIND_ALL_LANGUAGES="SELECT id, name FROM language";
 
+    private static final String FIND_LANGUAGE_FROM_LANGUAGE_CATALOG_BY_ID="SELECT name, id FROM language WHERE id=?";
+
     @Override
     public Integer create(EmployeeLanguage entity) throws InsertIdDataBaseException, DaoException {
         return super.create(entity, CREATE_QUERY, new LanguageStatementFormer());
     }
 
     @Override
-    public Optional<EmployeeLanguage> read(int id) throws DaoException {
+    public Optional<EmployeeLanguage> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new EmployeeLanguageCreator());
     }
 
@@ -48,7 +51,7 @@ public class EmployeeLanguageDaoImpl extends BaseDao implements EmployeeLanguage
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 
@@ -60,5 +63,10 @@ public class EmployeeLanguageDaoImpl extends BaseDao implements EmployeeLanguage
     @Override
     public List<Language> findAllLanguages() throws DaoException {
         return super.findAll(FIND_ALL_LANGUAGES, new LanguageCreator());
+    }
+
+    @Override
+    public Optional<Language> findLanguageFromCatalog(Integer id) throws DaoException {
+        return super.readById(id, FIND_LANGUAGE_FROM_LANGUAGE_CATALOG_BY_ID,  new LanguageCreator());
     }
 }

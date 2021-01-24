@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS contact
 (
     id        SERIAL PRIMARY KEY,
     telephone VARCHAR(20),
-    email     VARCHAR(255),
+    email     VARCHAR(255) NOT NULL,
     skype     VARCHAR(50)
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS country
 CREATE TABLE IF NOT EXISTS employee_personal_info
 (
     id       SERIAL PRIMARY KEY,
-    name     VARCHAR(30),
+    name     VARCHAR(30) NOT NULL,
     surname  VARCHAR(50),
     birthday DATE,
     gender   gender_type,
@@ -106,7 +106,7 @@ CREATE TABLE employee
 CREATE TABLE employer
 (
     user_id      INTEGER REFERENCES usr (id),
-    company_name VARCHAR(50),
+    company_name VARCHAR(50) NOT NULL UNIQUE,
     country      INTEGER REFERENCES country (id),
     city         VARCHAR(100),
     contact_id   INTEGER REFERENCES contact (id),
@@ -116,13 +116,13 @@ CREATE TABLE employer
 CREATE TABLE vacancy
 (
     id           SERIAL PRIMARY KEY,
-    position     VARCHAR(255),
-    city         VARCHAR(100),
+    position     VARCHAR(255) NOT NULL,
+    city         VARCHAR(100) NOT NULL,
     salary       INTEGER,
     schedule     schedule_type,
     currency     currency_type,
-    duties       TEXT,
-    requirements TEXT,
+    duties       TEXT NOT NULL,
+    requirements TEXT NOT NULL,
     employer_id  INTEGER REFERENCES employer (user_id)
 );
 

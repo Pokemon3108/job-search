@@ -62,7 +62,7 @@ public class UserServiceImpl extends UserService {
     }
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             UserDao userDao = transaction.createDao(DaoType.USER);
             userDao.delete(id);

@@ -30,7 +30,7 @@ public class CountryDaoImpl extends BaseDao implements CountryDao {
     }
 
     @Override
-    public Optional<Country> read(int id) throws DaoException {
+    public Optional<Country> read(Integer id) throws DaoException {
         final String fieldName = "name";
         String countryName = findStringFieldById(id, FIND_COUNTRY_BY_ID_QUERY, fieldName);
         Country country = new Country(id, countryName);
@@ -43,7 +43,7 @@ public class CountryDaoImpl extends BaseDao implements CountryDao {
     }
 
     @Override
-    public void delete(int id)  {
+    public void delete(Integer id)  {
         throw new IllegalOperationException();
     }
 

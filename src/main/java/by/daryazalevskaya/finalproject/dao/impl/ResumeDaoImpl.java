@@ -67,7 +67,7 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     }
 
     @Override
-    public Optional<Resume> read(int id) throws DaoException {
+    public Optional<Resume> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new ResumeCreator());
     }
 
@@ -84,7 +84,7 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 

@@ -29,7 +29,7 @@ public class ContactDaoImpl extends BaseDao implements ContactDao {
     }
 
     @Override
-    public Optional<Contact> read(int id) throws DaoException {
+    public Optional<Contact> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new ContactCreator());
     }
 
@@ -46,7 +46,7 @@ public class ContactDaoImpl extends BaseDao implements ContactDao {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 

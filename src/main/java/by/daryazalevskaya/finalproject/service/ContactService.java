@@ -14,5 +14,5 @@ public abstract class ContactService  extends  BaseService  {
 
     public abstract void update(Contact vacancy) throws DaoException, TransactionException;
 
-    public abstract void delete(int id) throws DaoException, TransactionException;
+    public abstract void delete(Integer id) throws DaoException, TransactionException;
 }

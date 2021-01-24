@@ -133,13 +133,9 @@
                 <fmt:message key="foreignLanguage" bundle="${ rb }"/>
             </h3>
             <div>
-                <p>
-                    <span></span>
-                </p>
-                <p>
-                    <strong>Level: </strong>
-                    <span></span>
-                </p>
+                <%--                <i  class="fas fa-language"></i>--%>
+                <img class="lang" src="<c:url value="/img/translate.png"/>">
+                <span>${resume.language.name.name}, ${resume.language.level}</span>
             </div>
             <a href="${pageContext.request.contextPath}/job/employee/changeLanguage" class="btn btn-success">
                 <fmt:message key="edit" bundle="${ rb }"/>
@@ -154,7 +150,6 @@
             </h3>
             <c:if test='${resume.skills!=null}'>
                 <p>
-                    <strong><fmt:message key="skills" bundle="${ rb }"/>: </strong>
                     <span>${resume.skills}</span>
                 </p>
             </c:if>
@@ -166,4 +161,5 @@
 
 </div>
 </body>
+<script src="https://kit.fontawesome.com/8350b1f3e1.js" crossorigin="anonymous"></script>
 </html>

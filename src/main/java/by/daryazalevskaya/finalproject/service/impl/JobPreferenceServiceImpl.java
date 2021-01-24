@@ -52,7 +52,7 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
     }
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
             jobPreferenceDao.delete(id);
@@ -70,7 +70,7 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
     }
 
     @Override
-    public Optional<Specialization> findSpecializationById(int id) throws DaoException {
+    public Optional<Specialization> findSpecializationById(Integer id) throws DaoException {
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         return jobPreferenceDao.findSpecializationById(id);
     }

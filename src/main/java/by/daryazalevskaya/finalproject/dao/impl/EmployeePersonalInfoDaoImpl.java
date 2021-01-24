@@ -35,7 +35,7 @@ public class EmployeePersonalInfoDaoImpl extends BaseDao implements EmployeePers
     }
 
     @Override
-    public Optional<EmployeePersonalInfo> read(int id) throws DaoException {
+    public Optional<EmployeePersonalInfo> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new EmployeePersonalInfoCreator());
     }
 
@@ -52,7 +52,7 @@ public class EmployeePersonalInfoDaoImpl extends BaseDao implements EmployeePers
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 

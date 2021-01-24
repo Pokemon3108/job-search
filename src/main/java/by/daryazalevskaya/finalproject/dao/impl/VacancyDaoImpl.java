@@ -53,7 +53,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public Optional<Vacancy> read(int id) throws DaoException {
+    public Optional<Vacancy> read(Integer id) throws DaoException {
         return super.readById(id, READ_BY_ID_QUERY, new VacancyCreator());
     }
 
@@ -70,7 +70,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
     }
 

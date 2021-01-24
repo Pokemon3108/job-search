@@ -53,7 +53,7 @@ public class ContactServiceImpl extends ContactService {
 
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
             contactDao.delete(id);

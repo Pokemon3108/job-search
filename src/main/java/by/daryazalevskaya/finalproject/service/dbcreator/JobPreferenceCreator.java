@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public class JobPreferenceCreator extends Creator<JobPreference> {
 
-
     @Override
     public JobPreference createEntity(ResultSet set) throws SQLException {
         return JobPreference.builder()

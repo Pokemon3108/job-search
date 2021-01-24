@@ -1,11 +1,9 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.ContactDao;
 import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.User;
@@ -14,7 +12,6 @@ import by.daryazalevskaya.finalproject.service.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class ResumeServiceImpl extends ResumeService {
 
@@ -40,7 +37,7 @@ public class ResumeServiceImpl extends ResumeService {
     }
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
             resumeDao.delete(id);

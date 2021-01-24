@@ -35,7 +35,7 @@
 
                 <form action="${post_path}" method="post" onsubmit="return validate(this);">
 
-                    <%--                    <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
+                    <p class="requiredField"><fmt:message key="required_field" bundle="${ rb }"/></p>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="contactError"></div>
 
@@ -59,12 +59,11 @@
                     </c:if>
 
                     <div class="form-group">
-                        <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
+                        <label for="email"><fmt:message key="email" bundle="${ rb }"/> *</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                                value="${contact.email}"
                                name="email"
-                               placeholder=
-                               <fmt:message key="email" bundle="${ rb }"/>
+                               placeholder=<fmt:message key="email" bundle="${ rb }"/>
                                        required>
                     </div>
 

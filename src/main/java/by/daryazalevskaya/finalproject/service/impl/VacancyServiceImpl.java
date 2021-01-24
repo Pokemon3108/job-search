@@ -1,7 +1,6 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
 import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.EmployeeDao;
 import by.daryazalevskaya.finalproject.dao.EmployerDao;
 import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class VacancyServiceImpl extends VacancyService {
     @Override
-    public List<Vacancy> findVacanciesByEmployerId(int id) throws DaoException {
+    public List<Vacancy> findVacanciesByEmployerId(Integer id) throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         return dao.findVacanciesByEmployerId(id);
     }
@@ -78,7 +77,7 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(Integer id) throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         dao.delete(id);
     }
@@ -113,7 +112,7 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     @Override
-    public void addEmployeeVacancy(int vacancyId, int employeeId) throws DaoException {
+    public void addEmployeeVacancy(Integer vacancyId, Integer employeeId) throws DaoException {
         VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
         if (!hasAlreadyRespond(vacancyId, employeeId)) {
             vacancyDao.addEmployeeVacancy(vacancyId, employeeId);
@@ -121,13 +120,13 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     @Override
-    public boolean hasAlreadyRespond(int vacancyId, int employeeId) throws DaoException {
+    public boolean hasAlreadyRespond(Integer vacancyId, Integer employeeId) throws DaoException {
         List<Vacancy> vacancies = findEmployeeVacancies(employeeId);
         return vacancies.stream().anyMatch(vacancy1 -> vacancy1.getId().equals(vacancyId));
     }
 
     @Override
-    public List<Vacancy> findEmployeeVacancies(int employeeId) throws DaoException {
+    public List<Vacancy> findEmployeeVacancies(Integer employeeId) throws DaoException {
         VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
         List<Vacancy> vacancies= vacancyDao.getEmployeeVacancies(employeeId);
         vacancies=vacancies.stream().map(vacancy -> {

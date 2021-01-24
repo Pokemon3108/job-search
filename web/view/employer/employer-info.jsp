@@ -10,7 +10,7 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <%--    <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">--%>
+        <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
 
@@ -25,6 +25,7 @@
 
                 <form action="${pageContext.request.contextPath}/job/employer/changeInfo" method="post">
 
+                    <p class="requiredField"><fmt:message key="required_field" bundle="${ rb }"/></p>
 
                     <c:if test='${invalidCompany==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
@@ -32,8 +33,14 @@
                         </p>
                     </c:if>
 
+                    <c:if test='${repeatedCompany==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="repeatedCompany" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
+
                     <div class="form-group">
-                        <label for="companyName"> <fmt:message key="companyName" bundle="${ rb }"/></label>
+                        <label for="companyName"> <fmt:message key="companyName" bundle="${ rb }"/> *</label>
                         <input type="text" class="form-control" id="companyName" value="${employer.companyName}"
                                name="companyName" minlength="3" maxlength="50" required>
                     </div>

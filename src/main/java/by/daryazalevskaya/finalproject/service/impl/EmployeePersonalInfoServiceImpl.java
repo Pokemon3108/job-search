@@ -60,7 +60,7 @@ public class EmployeePersonalInfoServiceImpl extends EmployeePersonalInfoService
     }
 
     @Override
-    public void delete(int id) throws DaoException, TransactionException {
+    public void delete(Integer id) throws DaoException, TransactionException {
         try {
             EmployeePersonalInfoDao dao = transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
             dao.delete(id);
