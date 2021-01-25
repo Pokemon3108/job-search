@@ -25,19 +25,21 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Log4j2
-public class LoginPostCommand implements ActionCommand {
+public class LoginPostCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         if (Objects.nonNull(email) && Objects.nonNull(password)) {
-            ServiceFactory serviceFactory = new ServiceFactoryImpl();
             UserService service = (UserService) serviceFactory.createService(DaoType.USER);
             try {
+                final String page = request.getParameter("page");
                 if (!service.isValidLoginAndPassword(email, password)) {
                     request.setAttribute("loginError", true);
+                    request.getServletContext().getRequestDispatcher(page).forward(request, response);
                 } else if (request.getSession(false) == null || request.getSession(false).getAttribute("user") != null) {
                     request.setAttribute("alreadyLogged", true);
+                    request.getServletContext().getRequestDispatcher(page).forward(request, response);
                 } else {
                     User user = service.findUserByEmail(email).get();
                     HttpSession session = request.getSession();
@@ -46,17 +48,9 @@ public class LoginPostCommand implements ActionCommand {
                     response.sendRedirect(request.getContextPath() + getRedirectPath(user.getRole()));
                 }
 
-                //if something was wrong
-                final String page = request.getParameter("page");
-                request.getServletContext()
-                        .getRequestDispatcher(page)
-                        .forward(request, response);
-
             } catch (DaoException e) {
                 log.error(e);
                 response.sendError(500);
-            } finally {
-                serviceFactory.close();
             }
         }
     }

@@ -17,20 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Log4j2
-public class RespondVacancyCommand implements ActionCommand {
+public class RespondVacancyCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
         try {
             vacancyService.addEmployeeVacancy(Integer.parseInt(request.getParameter("vacancyId")),
                     (int)request.getSession().getAttribute("user"));
             request.getServletContext().getRequestDispatcher(PagePath.EMPLOYEE_HOME).forward(request, response);
-        } catch (DaoException ex) {
+        } catch (DaoException | TransactionException ex) {
             log.error(ex);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

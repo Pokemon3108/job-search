@@ -31,6 +31,8 @@
     <form name="userInfo" action="${pageContext.request.contextPath}/job/login"
           method="post">
 
+        <p class="requiredField"><fmt:message key="required_field" bundle="${ rb }"/></p>
+
         <input type="hidden" name="page" value="${pageContext.request.servletPath}">
 
         <c:if test='${loginError==true}'>
@@ -47,7 +49,7 @@
 
 
         <div class="form-group">
-            <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
+            <label for="email"><fmt:message key="email" bundle="${ rb }"/> *</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
                    placeholder=<fmt:message key="email" bundle="${ rb }"/>
                            required>
@@ -55,7 +57,7 @@
 
 
         <div class="form-group">
-            <label for="password"><fmt:message key="password" bundle="${ rb }"/></label>
+            <label for="password"><fmt:message key="password" bundle="${ rb }"/> *</label>
             <input type="password" class="form-control" id="password" placeholder=<fmt:message key="password" bundle="${ rb }"/> name="password"
                    required>
         </div>

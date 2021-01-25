@@ -17,4 +17,12 @@ public abstract class Creator<T> {
 
         return false;
     }
+
+    protected Integer wasNull(ResultSet resultSet, String columnName) throws SQLException {
+        Integer value=resultSet.getInt(columnName);
+        if (resultSet.wasNull()) {
+            value=null;
+        }
+        return value;
+    }
 }

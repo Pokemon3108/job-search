@@ -1,13 +1,8 @@
 package by.daryazalevskaya.finalproject.controller.command.validation;
 
-import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
-import by.daryazalevskaya.finalproject.service.EmployerService;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import by.daryazalevskaya.finalproject.service.requestbuilder.EmployerBuilder;
 import by.daryazalevskaya.finalproject.service.validator.EmployerInfoValidator;
 import lombok.extern.log4j.Log4j2;
@@ -32,22 +27,6 @@ public class EmployerInfoValidationCommand implements ValidationCommand {
         if (!validator.isValidCompanyName(employer.getCompanyName())) {
             isValid = false;
             request.setAttribute("invalidCompany", true);
-        }
-
-        ServiceFactory serviceFactory = null;
-        try {
-            serviceFactory = new ServiceFactoryImpl();
-            EmployerService employerService = (EmployerService) serviceFactory.createService(DaoType.EMPLOYER);
-            if (employerService.containsCompanyName(employer.getCompanyName(), employer.getId())) {
-                isValid = false;
-                request.setAttribute("repeatedCompany", true);
-            }
-        } catch (ConnectionException ex) {
-            throw new DaoException(ex);
-        } finally {
-            if (serviceFactory != null) {
-                serviceFactory.close();
-            }
         }
 
         if (!isValid) {

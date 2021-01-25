@@ -19,56 +19,58 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <%--    ${pageContext.request.servletPath}--%>
-
-        <div class="container header-container">
-
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/job/employer/home">Negotium</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class=" header-container">
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/job/employer/home">Negotium</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <ul class="navbar-nav  header-links">
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/openVacancy">
-                            <h6><fmt:message key="openVacancy" bundle="${ rb }"/></h6>
+                            <h5><fmt:message key="openVacancy" bundle="${ rb }"/></h5>
                         </a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/vacancyList">
-                            <h6><fmt:message key="myVacancies" bundle="${ rb }"/></h6>
+                            <h5><fmt:message key="myVacancies" bundle="${ rb }"/></h5>
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies?currentPage=1">
-                            <h6><fmt:message key="vacancies" bundle="${ rb }"/></h6>
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/job/showAllVacancies?currentPage=1">
+                            <h5><fmt:message key="vacancies" bundle="${ rb }"/></h5>
                         </a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/seeEmployee">
-                            <h6><fmt:message key="seeEmployee" bundle="${ rb }"/></h6>
+                            <h5><fmt:message key="seeEmployee" bundle="${ rb }"/></h5>
                         </a>
                     </li>
                 </ul>
 
-                <form action="${pageContext.request.contextPath}/job/auth/logout" method="post">
-                    <button type="submit" class="btn btn-success mr-1">
-                        <fmt:message key="logout" bundle="${ rb }"/>
+
+
+                    <form action="${pageContext.request.contextPath}/job/auth/logout" method="post">
+                        <button type="submit" class="btn btn-success mr-1 ml-5">
+                            <fmt:message key="logout" bundle="${ rb }"/>
+                        </button>
+                    </form>
+
+                    <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
+                        <fmt:message key="deleteAcc" bundle="${ rb }"/>
                     </button>
-                </form>
+
+
+                    <button type="button" class="btn lang-button" data-toggle="modal" data-target="#exampleModal">
+                        <fmt:message key="changeLan" bundle="${ rb }"/>
+                    </button>
+
             </div>
         </div>
 
-        <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
-            <fmt:message key="deleteAcc" bundle="${ rb }"/>
-        </button>
-
-
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-            <fmt:message key="changeLan" bundle="${ rb }"/>
-        </button>
 
     </nav>
 </header>

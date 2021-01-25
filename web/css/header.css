@@ -13,3 +13,19 @@ body {
 .home {
     margin-right: 2em !important;
 }
+
+.lang-button {
+    background-color: #F0E68C;
+}
+
+.lang-button:hover {
+    background-color: #FFDAB9;
+}
+
+.container {
+    max-width: 750px !important;
+}
+
+.header-container {
+    margin: 0 auto;
+}

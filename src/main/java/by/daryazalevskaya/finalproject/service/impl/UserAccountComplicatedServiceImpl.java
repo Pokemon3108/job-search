@@ -13,7 +13,7 @@ import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 
 public class UserAccountComplicatedServiceImpl extends UserAccountComplicatedService {
     @Override
-    public boolean isRegistered(User user) throws DaoException, InsertIdDataBaseException, TransactionException {
+    public void register(User user) throws DaoException, InsertIdDataBaseException, TransactionException {
         UserService service = new UserServiceImpl();
         service.setTransaction(transaction);
         try {
@@ -25,10 +25,8 @@ public class UserAccountComplicatedServiceImpl extends UserAccountComplicatedSer
                 roleService.createUser(user);
             }
             transaction.commit();
-            return userId!=null;
         } catch (ConnectionException ex) {
             throw new DaoException(ex);
         }
-
     }
 }

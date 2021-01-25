@@ -2,17 +2,14 @@ package by.daryazalevskaya.finalproject.controller.command;
 
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
-import lombok.Setter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Setter
-public abstract class ActionCommand {
-    protected ServiceFactory serviceFactory;
+public interface CommandManager {
+    void execute(ActionCommand command, HttpServletRequest request, HttpServletResponse response) throws ConnectionException, TransactionException, ServletException, IOException;
 
-    public  abstract void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+    void close() throws TransactionException;
 }

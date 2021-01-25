@@ -3,17 +3,12 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.model.type.LanguageLevel;
 import by.daryazalevskaya.finalproject.service.EmployeeLanguageService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -23,11 +18,10 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Log4j2
-public class LanguageGetCommand implements ActionCommand {
+public class LanguageGetCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer userId = (Integer) request.getSession().getAttribute("user");
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
         try {
             ResumeService resumeService = (ResumeService) serviceFactory.createService(DaoType.RESUME);
 
@@ -51,8 +45,6 @@ public class LanguageGetCommand implements ActionCommand {
         } catch (DaoException  e) {
             log.error(e);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

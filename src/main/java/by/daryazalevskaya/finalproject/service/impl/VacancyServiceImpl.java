@@ -60,7 +60,6 @@ public class VacancyServiceImpl extends VacancyService {
             transaction.rollback();
             throw new DaoException(ex);
         }
-
     }
 
     @Override

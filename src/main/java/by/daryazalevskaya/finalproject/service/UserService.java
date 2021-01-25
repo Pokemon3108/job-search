@@ -23,4 +23,6 @@ public abstract class UserService extends BaseService {
     public abstract boolean isValidLoginAndPassword(String email, String password) throws DaoException;
 
     public abstract Optional<User> findUserByEmail(String email) throws DaoException;
+
+    public abstract boolean userExists(String email) throws DaoException;
 }

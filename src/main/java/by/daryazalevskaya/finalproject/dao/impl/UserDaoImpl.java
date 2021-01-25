@@ -75,6 +75,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
     }
 
+
     @Override
     public List<User> findAll() throws DaoException {
         return super.findAll(READ_ALL_QUERY, new UserCreator());

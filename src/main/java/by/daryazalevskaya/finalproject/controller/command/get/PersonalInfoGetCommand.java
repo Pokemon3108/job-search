@@ -25,11 +25,10 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Log4j2
-public class PersonalInfoGetCommand implements ActionCommand {
+public class PersonalInfoGetCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer userId = (Integer) request.getSession().getAttribute("user");
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
         try {
             ResumeService resumeService = (ResumeService) serviceFactory.createService(DaoType.RESUME);
             Optional<Resume> resume = resumeService.findResumeByUserId(userId);
@@ -55,8 +54,6 @@ public class PersonalInfoGetCommand implements ActionCommand {
         } catch (DaoException  e) {
             log.error(e);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

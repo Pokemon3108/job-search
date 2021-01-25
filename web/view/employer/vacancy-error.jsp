@@ -7,12 +7,14 @@
 <html>
 <head>
     <title>Vacancy error</title>
+
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
 <c:import url="/view/headers/header-employer.jsp"/>
 
 <div class="container">
-    <p style="font-size: 16px" class="font-weight-bold">
+    <p  class="font-weight-bold vacancy-error">
         <fmt:message key="vacancyError" bundle="${ rb }"/>
         <a href="${pageContext.request.contextPath}/job/employer/changeInfo">
             <fmt:message key="fillCompanyInfo" bundle="${ rb }"/>

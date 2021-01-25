@@ -20,10 +20,9 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Log4j2
-public class FullVacancyDescriptionGetCommand implements ActionCommand {
+public class FullVacancyDescriptionGetCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
         try {
             Integer id = null;
@@ -46,11 +45,9 @@ public class FullVacancyDescriptionGetCommand implements ActionCommand {
             request.getServletContext().getRequestDispatcher(PagePath.VACANCY_SHOW).forward(request, response);
         } catch (NumberFormatException ex) {
             response.sendError(404);
-        } catch (DaoException ex) {
+        } catch (DaoException | TransactionException ex) {
             log.error(ex);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

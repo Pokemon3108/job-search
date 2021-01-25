@@ -23,11 +23,9 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Log4j2
-public class SaveSkillsCommand implements ActionCommand {
+public class SaveSkillsCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
-
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             ValidationCommand validationCommand = new SkillsValidationCommand();
             if (!validationCommand.isValid(request, response)) {
@@ -45,13 +43,9 @@ public class SaveSkillsCommand implements ActionCommand {
                 response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());
             }
 
-        } catch (DaoException  ex) {
+        } catch (DaoException | TransactionException ex) {
             log.error(ex);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
-
-
     }
 }

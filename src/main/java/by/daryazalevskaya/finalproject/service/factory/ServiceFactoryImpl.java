@@ -15,11 +15,10 @@ import java.util.Map;
 
 public class ServiceFactoryImpl implements ServiceFactory {
 
-    private Map<DaoType, BaseService> serviceMap = new EnumMap<>(DaoType.class);
-    private Map<Role, UserRoleService> userRoleServiceMap = new EnumMap<>(Role.class);
-    private TransactionFactory transactionFactory;
+    private static Map<DaoType, BaseService> serviceMap = new EnumMap<>(DaoType.class);
+    private static Map<Role, UserRoleService> userRoleServiceMap = new EnumMap<>(Role.class);
 
-    public ServiceFactoryImpl() throws ConnectionException {
+    static {
         serviceMap.put(DaoType.CONTACT, new ContactServiceImpl());
         serviceMap.put(DaoType.COUNTRY, new CountryServiceImpl());
         serviceMap.put(DaoType.EMPLOYEE, new EmployeeServiceImpl());
@@ -37,8 +36,16 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
         userRoleServiceMap.put(Role.EMPLOYEE, new EmployeeServiceImpl());
         userRoleServiceMap.put(Role.EMPLOYER, new EmployerServiceImpl());
+    }
 
-        this.transactionFactory = new TransactionFactoryImpl();
+    private TransactionFactory transactionFactory;
+
+    public ServiceFactoryImpl(TransactionFactory factory) {
+        this.transactionFactory = factory;
+    }
+
+    public ServiceFactoryImpl() throws ConnectionException {
+        this.transactionFactory=new TransactionFactoryImpl();
     }
 
     @Override
@@ -50,14 +57,14 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     @Override
     public UserRoleService createService(Role role) {
-        UserRoleService roleService=userRoleServiceMap.get(role);
+        UserRoleService roleService = userRoleServiceMap.get(role);
         roleService.setTransaction(transactionFactory.createTransaction());
         return roleService;
     }
 
     @Override
     public void close() throws TransactionException {
-        transactionFactory.commit();
+      //  transactionFactory.commit();
         transactionFactory.close();
     }
 }

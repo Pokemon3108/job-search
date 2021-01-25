@@ -1,12 +1,9 @@
 package finalproject.dao.impl;
 
-import by.daryazalevskaya.finalproject.dao.CountryDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.dao.impl.ContactDaoImpl;
 import by.daryazalevskaya.finalproject.dao.impl.CountryDaoImpl;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
-import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;

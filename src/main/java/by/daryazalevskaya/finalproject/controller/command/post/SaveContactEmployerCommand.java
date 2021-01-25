@@ -10,11 +10,7 @@ import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
-import by.daryazalevskaya.finalproject.service.ContactService;
-import by.daryazalevskaya.finalproject.service.EmployerService;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
-import by.daryazalevskaya.finalproject.service.impl.ResumeComplicatedServiceImpl;
+import by.daryazalevskaya.finalproject.service.ResumeComplicatedService;
 import by.daryazalevskaya.finalproject.service.requestbuilder.ContactBuilder;
 import lombok.extern.log4j.Log4j2;
 
@@ -22,13 +18,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 @Log4j2
-public class SaveContactEmployerCommand implements ActionCommand {
+public class SaveContactEmployerCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Integer userId = (Integer) request.getSession().getAttribute("user");
 
@@ -39,17 +33,15 @@ public class SaveContactEmployerCommand implements ActionCommand {
                 ContactBuilder contactBuilder = new ContactBuilder();
                 Contact contact = contactBuilder.build(request);
 
-                ResumeComplicatedServiceImpl complicatedService=
-                        (ResumeComplicatedServiceImpl) serviceFactory.createService(DaoType.COMPLICATED_EMPLOYER);
+                ResumeComplicatedService complicatedService=
+                        (ResumeComplicatedService) serviceFactory.createService(DaoType.COMPLICATED_EMPLOYER);
                 complicatedService.saveContact(userId, contact);
                 response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYER_HOME.getUrl());
             }
 
-        } catch (DaoException | TransactionException e) {
+        } catch (DaoException | TransactionException  e) {
             log.error(e);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

@@ -59,7 +59,8 @@ public class ContactDaoImplTest {
 
     @DataProvider(name = "contactRead")
     public Object[][] createReadContact() {
-        final int id=1;
+        //should be in database before read test
+        final int id=2;
         Contact contact = Contact.builder()
                 .telephone("+375295395676")
                 .email("parrot@gmail.com")
@@ -82,7 +83,8 @@ public class ContactDaoImplTest {
 
     @DataProvider(name = "contactForDelete")
     public Object[][] createContactForDelete() {
-        final int id=2;
+        //should be in database before delete test
+        final int id=3;
         Contact contact = Contact.builder()
                 .telephone("+74956789898")
                 .email("qwerty@outlook.com")
@@ -105,7 +107,8 @@ public class ContactDaoImplTest {
 
     @DataProvider(name = "contactForUpdate")
     public Object[][] createContactForUpdate() {
-        final int id=3;
+        //should be in database before update test
+        final int id=4;
         Contact contact = Contact.builder()
                 .telephone("+375295989090")
                 .email("qwerty@gmail.com")

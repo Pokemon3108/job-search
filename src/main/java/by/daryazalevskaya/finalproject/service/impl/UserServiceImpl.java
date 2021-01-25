@@ -116,4 +116,9 @@ public class UserServiceImpl extends UserService {
         UserDao userDao = transaction.createDao(DaoType.USER);
         return userDao.read(email);
     }
+
+    @Override
+    public boolean userExists(String email) throws DaoException {
+        return findUserByEmail(email).isPresent();
+    }
 }

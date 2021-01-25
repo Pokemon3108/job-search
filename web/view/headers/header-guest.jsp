@@ -19,17 +19,16 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <div class="container">
-
-            <a class="navbar-brand home" href="${pageContext.request.contextPath}/">
-                <h3>Negotium</h3>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="header-container">
 
             <div class="collapse navbar-collapse" id="show-vac">
+                <a class="navbar-brand home" href="${pageContext.request.contextPath}/">
+                    <h3>Negotium</h3>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/job/showAllVacancies?currentPage=1">
@@ -52,7 +51,7 @@
 
             </div>
 
-            <button style="background-color: #F0E68C" type="button" class="btn " data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn lang-button" data-toggle="modal" data-target="#exampleModal">
                 <fmt:message key="changeLan" bundle="${ rb }"/>
             </button>
 

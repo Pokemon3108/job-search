@@ -25,10 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Log4j2
-public class SaveJobPreferenceCommand implements ActionCommand {
+public class SaveJobPreferenceCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Integer userId = (Integer) request.getSession().getAttribute("user");
             JobPreferenceService jobPreferenceService = (JobPreferenceService) serviceFactory.createService(DaoType.JOB_PREFERENCE);
@@ -50,12 +49,9 @@ public class SaveJobPreferenceCommand implements ActionCommand {
                 response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());
             }
 
-
-        } catch (DaoException  e) {
+        } catch (DaoException | TransactionException  e) {
             log.error(e);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

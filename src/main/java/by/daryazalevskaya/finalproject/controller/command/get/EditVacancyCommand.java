@@ -28,11 +28,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Log4j2
-public class EditVacancyCommand implements ActionCommand {
+public class EditVacancyCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer vacancyId = Integer.parseInt(request.getParameter("vacancyId"));
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
         VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
         try {
             Optional<Vacancy> vacancy = vacancyService.read(vacancyId);
@@ -47,11 +46,9 @@ public class EditVacancyCommand implements ActionCommand {
             } else {
                 response.sendError(404);
             }
-        } catch (DaoException e) {
+        } catch (DaoException | TransactionException e) {
             log.error(e);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

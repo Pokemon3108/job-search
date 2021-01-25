@@ -1,6 +1,6 @@
-.container {
-    max-width: 750px !important;
-}
+/*.container {*/
+/*    max-width: 750px !important;*/
+/*}*/
 
 .card-body {
     background-color: #AFEEEE !important;
@@ -20,3 +20,10 @@
     max-width: 5%;
     margin-bottom: 0.5em;
 }
+
+.vacancy-error {
+    font-size: 18px;
+    margin-top: 1.5em;
+}
+
+

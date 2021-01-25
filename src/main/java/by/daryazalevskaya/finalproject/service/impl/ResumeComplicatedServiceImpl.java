@@ -1,7 +1,5 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
@@ -9,13 +7,18 @@ import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.service.*;
+import by.daryazalevskaya.finalproject.service.ContactService;
+import by.daryazalevskaya.finalproject.service.EmployeeLanguageService;
+import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
+import by.daryazalevskaya.finalproject.service.JobPreferenceService;
+import by.daryazalevskaya.finalproject.service.ResumeComplicatedService;
+import by.daryazalevskaya.finalproject.service.ResumeService;
 
 import java.util.Objects;
 import java.util.Optional;
 
 public class ResumeComplicatedServiceImpl extends ResumeComplicatedService {
-    public void saveEmployeePersonalInfo(Integer userId, JobPreference preference) throws ConnectionException, TransactionException, DaoException {
+    public void saveEmployeePersonalInfo(Integer userId, JobPreference preference) throws  TransactionException, DaoException {
         JobPreferenceService jobPreferenceService=new JobPreferenceServiceImpl();
         jobPreferenceService.setTransaction(transaction);
         if (Objects.nonNull(preference.getId())) {

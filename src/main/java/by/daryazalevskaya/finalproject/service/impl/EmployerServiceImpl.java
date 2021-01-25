@@ -37,7 +37,7 @@ public class EmployerServiceImpl extends EmployerService {
         EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
         Optional<Employer> employer = employerDao.read(id);
         if (employer.isPresent()) {
-            if (Objects.nonNull(employer.get().getCountry())) {
+            if (Objects.nonNull(employer.get().getCountry().getId())) {
                 CountryDao countryDao = transaction.createDao(DaoType.COUNTRY);
                 Optional<Country> country = countryDao.read(employer.get().getCountry().getId());
                 country.ifPresent(c -> employer.get().setCountry(c));

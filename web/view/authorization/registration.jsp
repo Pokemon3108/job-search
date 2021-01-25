@@ -38,7 +38,7 @@
     <form name="userInfo" action="${pageContext.request.contextPath}/job/registration" onsubmit="return validate(this);"
           method="post">
 
-        <%--        <input type="hidden" name="page" value="${pageContext.request.servletPath}">--%>
+        <p class="requiredField"><fmt:message key="required_field" bundle="${ rb }"/></p>
 
         <c:if test='${invalidEmail==true}'>
             <p class="alert alert-danger my-sm-3 " role="alert">
@@ -56,7 +56,7 @@
         <div class="alert alert-danger my-sm-3 " role="alert" id="emailError"></div>
 
         <div class="form-group">
-            <label for="email"><fmt:message key="email" bundle="${ rb }"/></label>
+            <label for="email"><fmt:message key="email" bundle="${ rb }"/> *</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
                    value="${email}"
                    placeholder=
@@ -74,18 +74,22 @@
         <p class="alert alert-danger my-sm-3 " role="alert" id="passwordError"></p>
 
         <div class="form-group">
-            <label for="password"><fmt:message key="password" bundle="${ rb }"/></label>
+            <label for="password"><fmt:message key="password" bundle="${ rb }"/> *</label>
             <input type="password" class="form-control" id="password" name="password" placeholder=
             <fmt:message key="password" bundle="${ rb }"/>
                     required>
         </div>
 
         <div class="form-group">
-            <%--            <c:set var="roles" value="${roles}"/>--%>
             <c:forEach items="${roles}" var="roleArr">
                 <div class="custom-radio custom-control-inline">
                     <label>
-                        <input type="radio" name="role" value="${roleArr}">
+                        <c:if test="${roleArr==role}">
+                        <input type="radio" name="role" value="${roleArr}" checked>
+                        </c:if>
+                        <c:if test="${roleArr!=role}">
+                            <input type="radio" name="role" value="${roleArr}">
+                        </c:if>
                         <c:set var="r" value="${roleArr}"/>
                         <fmt:message key="${fn:toLowerCase(r)}" bundle="${ rb }"/>
                     </label>

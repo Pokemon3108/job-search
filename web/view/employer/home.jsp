@@ -29,7 +29,7 @@
                 </c:if>
 
 
-                <c:if test="${employer.country!=null}">
+                <c:if test="${employer.country.id!=null}">
                     <p>
                         <strong><fmt:message key="country" bundle="${ rb }"/>: </strong>
                         <span>${employer.country.name}</span>

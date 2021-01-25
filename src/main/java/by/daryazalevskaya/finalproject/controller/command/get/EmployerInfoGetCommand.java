@@ -29,10 +29,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Log4j2
-public class EmployerInfoGetCommand implements ActionCommand {
+public class EmployerInfoGetCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             CountryService countryService = (CountryService) serviceFactory.createService(DaoType.COUNTRY);
             SortingService sortingService = new SortingService();
@@ -49,9 +48,6 @@ public class EmployerInfoGetCommand implements ActionCommand {
         } catch (DaoException e) {
             log.error(e);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
-
     }
 }

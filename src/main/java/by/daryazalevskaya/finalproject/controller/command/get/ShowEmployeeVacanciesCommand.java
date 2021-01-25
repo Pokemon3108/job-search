@@ -19,10 +19,9 @@ import java.io.IOException;
 import java.util.List;
 
 @Log4j2
-public class ShowEmployeeVacanciesCommand implements ActionCommand {
+public class ShowEmployeeVacanciesCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
-        ServiceFactory serviceFactory=new ServiceFactoryImpl();
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VacancyService vacancyService= (VacancyService) serviceFactory.createService(DaoType.VACANCY);
         try {
             List<Vacancy> vacancies = vacancyService.findEmployeeVacancies((Integer) request.getSession().getAttribute("user"));
@@ -31,8 +30,6 @@ public class ShowEmployeeVacanciesCommand implements ActionCommand {
         } catch (DaoException ex) {
             log.error(ex);
             response.sendError(500);
-        } finally {
-            serviceFactory.close();
         }
     }
 }

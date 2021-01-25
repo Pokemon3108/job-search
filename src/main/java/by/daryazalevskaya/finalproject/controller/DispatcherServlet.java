@@ -1,11 +1,15 @@
 package by.daryazalevskaya.finalproject.controller;
 
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
+import by.daryazalevskaya.finalproject.controller.command.CommandManager;
+import by.daryazalevskaya.finalproject.controller.command.CommandManagerFactory;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
-import by.daryazalevskaya.finalproject.model.Localization;
+import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
+import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -62,12 +66,21 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ConnectionException, TransactionException {
-        ActionCommand command = (ActionCommand) req.getAttribute("command");
-        if (command != null) {
-            command.execute(req, resp);
-        } else {
-             resp.sendError(404);
+        CommandManager commandManager = CommandManagerFactory.getManager(getFactory());
+        try {
+            ActionCommand command = (ActionCommand) req.getAttribute("command");
+            if (command != null) {
+                commandManager.execute(command, req, resp);
+            } else {
+                resp.sendError(404);
+            }
+        } finally {
+            commandManager.close();
         }
+    }
+
+    public ServiceFactory getFactory() throws ConnectionException {
+        return new ServiceFactoryImpl(new TransactionFactoryImpl());
     }
 
     @Override

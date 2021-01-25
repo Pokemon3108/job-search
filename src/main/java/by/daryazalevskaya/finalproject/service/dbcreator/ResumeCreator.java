@@ -24,11 +24,4 @@ public class ResumeCreator extends Creator<Resume> {
 
     }
 
-    private Integer wasNull(ResultSet resultSet, String columnName) throws SQLException {
-        Integer value=resultSet.getInt(columnName);
-        if (resultSet.wasNull()) {
-             value=null;
-        }
-        return value;
-    }
 }

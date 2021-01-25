@@ -3,18 +3,9 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
-import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
-import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory;
-import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.service.EmployerService;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
-import by.daryazalevskaya.finalproject.service.impl.EmployerServiceImpl;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -24,11 +15,10 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Log4j2
-public class EmployerHomeCommand implements ActionCommand {
+public class EmployerHomeCommand extends ActionCommand {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer userId= (Integer) request.getSession().getAttribute("user");
-        ServiceFactory serviceFactory = new ServiceFactoryImpl();
         EmployerService employerService = (EmployerService) serviceFactory.createService(DaoType.EMPLOYER);
         try {
             Optional<Employer> employer = employerService.read(userId);
@@ -40,8 +30,6 @@ public class EmployerHomeCommand implements ActionCommand {
         } catch (DaoException  e) {
             log.error(e);
             response.sendError(500, "Database error.");
-        } finally {
-            serviceFactory.close();
         }
     }
 }

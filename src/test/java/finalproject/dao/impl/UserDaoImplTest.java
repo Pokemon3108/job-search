@@ -59,18 +59,19 @@ public class UserDaoImplTest {
 
     @DataProvider(name = "userRead")
     public Object[][] createUserForRead() {
-        final int id=1;
-        User user = User.builder().password("01234567890123456789")
+        //database should contain usr with id=5 and with such fields
+        final int id=5;
+        User user = User.builder().password("01234567890123456789"+"1".repeat(44))
                 .role(Role.EMPLOYEE)
-                .email("pokemon")
+                .email("pokemon31")
                 .id(id)
                 .build();
-        return new Object[][]{{user, id}};
+        return new Object[][]{{user,  id}};
     }
 
     @Test(dataProvider = "userRead")
     public void readNameTest(User user, int id) throws DaoException, NoEntityInDataBaseException {
-        final String username = "pokemon";
+        final String username = "pokemon31";
         User userFromDB = userDao.read(username).orElseThrow(NoEntityInDataBaseException::new);
         Assert.assertEquals(user, userFromDB);
     }
@@ -89,10 +90,11 @@ public class UserDaoImplTest {
 
     @DataProvider(name = "updatedUser")
     public Object[][] createUpdatedUser() {
-        final  int id=3;
-        User user = User.builder().password("01234567890123456789")
+        //database should contain usr with id=6 and with such fields
+        final  int id=6;
+        User user = User.builder().password("01234567890123456789"+"1".repeat(44))
                 .role(Role.EMPLOYER)
-                .email("Dasha")
+                .email("Dasha@tut.by")
                 .id(id)
                 .build();
         return new Object[][]{{user, id}};
@@ -105,15 +107,16 @@ public class UserDaoImplTest {
         User userFromDB = userDao.read(email).orElseThrow(NoEntityInDataBaseException::new);
         userFromDB.setEmail(newEmail);
 
-        userDao.update(user);
+        userDao.update(userFromDB);
         Optional<User> updatedUserFromDB = userDao.read(id);
-        Assert.assertEquals(updatedUserFromDB.get(), user);
+        Assert.assertEquals(updatedUserFromDB.get(), userFromDB);
     }
 
 
     @Test
     public void deleteTest() throws DaoException {
-        final int id=3;
+        //database should contain usr with id=7
+        final int id=7;
         userDao.delete(id);
         Assert.assertTrue(userDao.read(id).isEmpty());
     }
