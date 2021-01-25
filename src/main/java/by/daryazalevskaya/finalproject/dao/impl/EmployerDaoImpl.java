@@ -59,7 +59,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
     }
 
     @Override
-    public void update(Employer entity) throws DaoException, IllegalOperationException {
+    public void update(Employer entity) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
             StatementFormer<Employer> former = new EmployerStatementFormer();
             former.fillStatement(statement, entity);

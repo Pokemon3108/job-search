@@ -11,6 +11,7 @@ import by.daryazalevskaya.finalproject.model.employee.*;
 import by.daryazalevskaya.finalproject.service.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ResumeServiceImpl extends ResumeService {
@@ -131,6 +132,7 @@ public class ResumeServiceImpl extends ResumeService {
             resume.setSkills(skills);
             ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
             resumeDao.updateSkills(resume);
+            transaction.commit();
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);

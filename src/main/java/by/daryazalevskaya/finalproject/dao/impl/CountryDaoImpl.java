@@ -39,11 +39,13 @@ public class CountryDaoImpl extends BaseDao implements CountryDao {
 
     @Override
     public void update(Country entity)  {
+        log.error("Can't update table 'country'");
         throw new IllegalOperationException();
     }
 
     @Override
     public void delete(Integer id)  {
+        log.error("Can't delete entity from table 'country'");
         throw new IllegalOperationException();
     }
 

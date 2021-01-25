@@ -11,6 +11,12 @@ import java.util.Optional;
 public abstract class ResumeService extends BaseService {
     public abstract Integer createResume(Employee employee) throws DaoException, TransactionException;
 
+    public abstract Optional<Resume> read(Integer id) throws DaoException, TransactionException;
+
+    public abstract void update(Resume resume) throws DaoException, TransactionException;
+
+    public abstract void delete(Integer id) throws DaoException, TransactionException;
+
     public abstract Optional<Resume> findResumeByUserId(Integer userId) throws  DaoException;
 
     public abstract void createContact(Resume resume, Contact contact) throws DaoException, TransactionException;
@@ -22,12 +28,6 @@ public abstract class ResumeService extends BaseService {
     public abstract void createJobPreference(Resume resume, JobPreference preference) throws DaoException, TransactionException;
 
     public abstract void createLanguage(Resume resume, EmployeeLanguage language) throws DaoException, TransactionException;
-
-    public abstract Optional<Resume> read(Integer id) throws DaoException, TransactionException;
-
-    public abstract void update(Resume resume) throws DaoException, TransactionException;
-
-    public abstract void delete(Integer id) throws DaoException, TransactionException;
 
     public abstract List<Resume> findAll() throws DaoException;
 

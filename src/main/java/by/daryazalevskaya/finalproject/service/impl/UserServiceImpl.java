@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class UserServiceImpl extends UserService {
 
     @Override
-    public Integer addNewUser(User entity) throws DaoException, TransactionException {
+    public Integer createUser(User entity) throws DaoException, TransactionException {
         Integer id=null;
         try {
             UserDao userDao = transaction.createDao(DaoType.USER);

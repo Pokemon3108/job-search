@@ -12,6 +12,7 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.User;
+import by.daryazalevskaya.finalproject.service.UserAccountComplicatedService;
 import by.daryazalevskaya.finalproject.service.UserRoleService;
 import by.daryazalevskaya.finalproject.service.UserService;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
@@ -43,19 +44,18 @@ public class RegisterPostCommand implements ActionCommand {
                 ActionCommand actionCommand = new RegisterGetCommand();
                 actionCommand.execute(request, response);
 
-            } else if (service.addNewUser(user) == null) {
-                request.setAttribute("repeatedEmail", true);
-                request.setAttribute("email", user.getEmail());
-                ActionCommand actionCommand = new RegisterGetCommand();
-                actionCommand.execute(request, response);
-
             } else {
-                UserService userService= (UserService) serviceFactory.createService(DaoType.USER);
-                userService.addNewUser(user);
-                UserRoleService roleService=serviceFactory.createService(user.getRole());
-                roleService.createUser(user);
+                UserAccountComplicatedService userAccountService=
+                        (UserAccountComplicatedService) serviceFactory.createService(DaoType.USER_ACCOUNT);
 
-                response.sendRedirect(request.getContextPath() + UriPattern.LOGIN.getUrl());
+                if (!userAccountService.isRegistered(user)) {
+                    request.setAttribute("repeatedEmail", true);
+                    request.setAttribute("email", user.getEmail());
+                    ActionCommand actionCommand = new RegisterGetCommand();
+                    actionCommand.execute(request, response);
+                } else {
+                    response.sendRedirect(request.getContextPath() + UriPattern.LOGIN.getUrl());
+                }
             }
 
         } catch (DaoException | InsertIdDataBaseException e) {

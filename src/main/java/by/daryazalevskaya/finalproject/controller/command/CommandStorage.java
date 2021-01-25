@@ -39,7 +39,7 @@ public class CommandStorage {
         postRequestMap.put(UriPattern.LOGOUT, new LogoutCommand());
         postRequestMap.put(UriPattern.DELETE_ACCOUNT, new DeleteAccountCommand());
         postRequestMap.put(UriPattern.CHANGE_EMPLOYEE_CONTACT, new SaveContactEmployeeCommand());
-        postRequestMap.put(UriPattern.CHANGE_EMPLOYEE_INFO, new SavePersonalInfoCommand());
+        postRequestMap.put(UriPattern.CHANGE_EMPLOYEE_INFO, new SaveEmployeePersonalInfoCommand());
         postRequestMap.put(UriPattern.CHANGE_EMPLOYEE_SKILLS, new SaveSkillsCommand());
         postRequestMap.put(UriPattern.CHANGE_JOB_PREFERENCE, new SaveJobPreferenceCommand());
         postRequestMap.put(UriPattern.CHANGE_EMPLOYER_INFO, new SaveEmployerInfoCommand());

@@ -13,6 +13,7 @@ import by.daryazalevskaya.finalproject.service.ContactService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
+import by.daryazalevskaya.finalproject.service.impl.ResumeComplicatedServiceImpl;
 import by.daryazalevskaya.finalproject.service.requestbuilder.ContactBuilder;
 import lombok.extern.log4j.Log4j2;
 
@@ -30,7 +31,6 @@ public class SaveContactEmployeeCommand implements ActionCommand {
         ServiceFactory serviceFactory = new ServiceFactoryImpl();
         try {
                 Integer userId = (Integer) request.getSession().getAttribute("user");
-                ContactService contactService = (ContactService) serviceFactory.createService(DaoType.CONTACT);
                 ValidationCommand validationCommand = new ContactValidationCommand();
                 if (!validationCommand.isValid(request, response)) {
                     request.getServletContext().getRequestDispatcher(PagePath.CONTACT).forward(request, response);
@@ -38,16 +38,9 @@ public class SaveContactEmployeeCommand implements ActionCommand {
 
                     ContactBuilder contactBuilder = new ContactBuilder();
                     Contact contact = contactBuilder.build(request);
-                    if (Objects.nonNull(contact.getId())) {
-                        contactService.update(contact);
-                    } else {
-                        Integer contactId = contactService.addNewContact(contact);
-                        contact.setId(contactId);
-
-                        ResumeService resumeService = (ResumeService) serviceFactory.createService(DaoType.RESUME);
-                        Optional<Resume> resume = resumeService.findResumeByUserId(userId);
-                        resumeService.createContact(resume.orElseThrow(DaoException::new), contact);
-                    }
+                    ResumeComplicatedServiceImpl complicatedService=
+                            (ResumeComplicatedServiceImpl) serviceFactory.createService(DaoType.COMPLICATED_RESUME);
+                    complicatedService.saveContact(userId, contact);
 
                     response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());
                 }

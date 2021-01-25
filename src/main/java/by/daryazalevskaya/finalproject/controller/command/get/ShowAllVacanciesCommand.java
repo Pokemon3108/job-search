@@ -25,7 +25,7 @@ public class ShowAllVacanciesCommand implements ActionCommand {
         ServiceFactory serviceFactory=new ServiceFactoryImpl();
         try {
             VacancyService vacancyService= (VacancyService) serviceFactory.createService(DaoType.VACANCY);
-            Integer page=1;
+            int page=1;
             try {
                 if (request.getParameter("currentPage") != null) {
                     page = Integer.parseInt(request.getParameter("currentPage"));

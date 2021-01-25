@@ -8,7 +8,7 @@ import by.daryazalevskaya.finalproject.model.employee.Employee;
 import java.util.Optional;
 
 public abstract class EmployeeService  extends UserRoleService {
-    public abstract Integer addNewEmployee(Employee employee) throws DaoException, TransactionException;
+    public abstract Integer createEmployee(Employee employee) throws DaoException, TransactionException;
 
     public abstract Optional<Employee> read(Integer id) throws DaoException;
 

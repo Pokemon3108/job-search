@@ -18,7 +18,7 @@ import java.util.Optional;
 public class EmployerServiceImpl extends EmployerService {
 
     @Override
-    public Integer addNewEmployer(Employer entity) throws DaoException, TransactionException {
+    public Integer createEmployer(Employer entity) throws DaoException, TransactionException {
         try {
             EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
             employerDao.create(entity);
@@ -56,6 +56,7 @@ public class EmployerServiceImpl extends EmployerService {
         try {
             EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
             employerDao.update(entity);
+            transaction.commit();
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);
@@ -82,28 +83,29 @@ public class EmployerServiceImpl extends EmployerService {
         }
     }
 
-    @Override
-    public boolean containsCompanyName(String company, Integer userId) throws DaoException {
-        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-        return employerDao.findUserIdByCompany(company)!=userId;
-    }
-
 
     @Override
     public void createUser(User user) throws DaoException, TransactionException {
         Employer employer = new Employer(user.getId());
-        addNewEmployer(employer);
+        createEmployer(employer);
     }
 
     @Override
     public void deleteUser(Integer userId) throws PoolException, DaoException, TransactionException {
         delete(userId);
+        transaction.commit();
     }
 
     @Override
     public void createContact(int employerId, Contact contact) throws DaoException {
         EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
         employerDao.createContact(employerId, contact.getId());
+    }
+
+    @Override
+    public boolean containsCompanyName(String company, Integer userId) throws DaoException {
+        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+        return employerDao.findUserIdByCompany(company)!=userId;
     }
 
 }

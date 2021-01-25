@@ -18,7 +18,7 @@ import java.util.Optional;
 
 public class EmployeePersonalInfoServiceImpl extends EmployeePersonalInfoService {
     @Override
-    public Integer addNewPersonalInfo(EmployeePersonalInfo entity) throws DaoException, TransactionException {
+    public Integer createPersonalInfo(EmployeePersonalInfo entity) throws DaoException, TransactionException {
         try {
             EmployeePersonalInfoDao dao = transaction.createDao(DaoType.EMPLOYEE_PERSONAL_INFO);
             return dao.create(entity);

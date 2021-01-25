@@ -13,7 +13,7 @@ import java.util.Optional;
 public abstract class EmployeeLanguageService extends BaseService {
     public abstract List<Language> findAllLanguages() throws DaoException;
 
-    public abstract Integer addNewLanguage(EmployeeLanguage language) throws DaoException, TransactionException;
+    public abstract Integer createLanguage(EmployeeLanguage language) throws DaoException, TransactionException;
 
     public abstract Optional<EmployeeLanguage> read(Integer id) throws DaoException;
 

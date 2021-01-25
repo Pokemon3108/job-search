@@ -13,7 +13,7 @@ import java.util.Optional;
 public abstract class EmployerService extends  UserRoleService{
     public abstract void createContact(int employerId, Contact contact) throws DaoException;
 
-    public abstract Integer addNewEmployer(Employer  employer) throws DaoException, TransactionException;
+    public abstract Integer createEmployer(Employer  employer) throws DaoException, TransactionException;
 
     public abstract Optional<Employer> read(Integer id) throws DaoException;
 

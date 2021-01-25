@@ -11,12 +11,12 @@ import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.service.EmployeeLanguageService;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Supplier;
 
 public class EmployeeLanguageServiceImpl extends EmployeeLanguageService {
     @Override
-    public Integer addNewLanguage(EmployeeLanguage language) throws DaoException, TransactionException {
+    public Integer createLanguage(EmployeeLanguage language) throws DaoException, TransactionException {
         try {
             EmployeeLanguageDao dao = transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
             return dao.create(language);
@@ -34,7 +34,7 @@ public class EmployeeLanguageServiceImpl extends EmployeeLanguageService {
         EmployeeLanguageDao dao = transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
         Optional<EmployeeLanguage> employeeLanguage= dao.read(id);
         if (employeeLanguage.isPresent()) {
-            Optional<Language> language = dao.findLanguageFromCatalog(employeeLanguage.get().getId());
+            Optional<Language> language = dao.findLanguageFromCatalog(employeeLanguage.get().getName().getId());
             language.ifPresent(lang->employeeLanguage.get().setName(lang));
         }
         return employeeLanguage;

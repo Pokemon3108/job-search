@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Log4j2
+
 public class ContactDaoImpl extends BaseDao implements ContactDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM contact";

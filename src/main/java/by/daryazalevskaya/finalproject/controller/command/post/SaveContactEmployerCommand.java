@@ -14,6 +14,7 @@ import by.daryazalevskaya.finalproject.service.ContactService;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
+import by.daryazalevskaya.finalproject.service.impl.ResumeComplicatedServiceImpl;
 import by.daryazalevskaya.finalproject.service.requestbuilder.ContactBuilder;
 import lombok.extern.log4j.Log4j2;
 
@@ -31,24 +32,16 @@ public class SaveContactEmployerCommand implements ActionCommand {
         try {
             Integer userId = (Integer) request.getSession().getAttribute("user");
 
-            ContactService contactService = (ContactService) serviceFactory.createService(DaoType.CONTACT);
-
             ValidationCommand validationCommand = new ContactValidationCommand();
             if (!validationCommand.isValid(request, response)) {
                 request.getServletContext().getRequestDispatcher(PagePath.CONTACT).forward(request, response);
             } else {
                 ContactBuilder contactBuilder = new ContactBuilder();
                 Contact contact = contactBuilder.build(request);
-                if (Objects.nonNull(contact.getId())) {
-                    contactService.update(contact);
-                } else {
-                    Integer contactId = contactService.addNewContact(contact);
-                    contact.setId(contactId);
 
-                    EmployerService employerService = (EmployerService) serviceFactory.createService(DaoType.EMPLOYER);
-                    employerService.createContact(userId, contact);
-
-                }
+                ResumeComplicatedServiceImpl complicatedService=
+                        (ResumeComplicatedServiceImpl) serviceFactory.createService(DaoType.COMPLICATED_EMPLOYER);
+                complicatedService.saveContact(userId, contact);
                 response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYER_HOME.getUrl());
             }
 

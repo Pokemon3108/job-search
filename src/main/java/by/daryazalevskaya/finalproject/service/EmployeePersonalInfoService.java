@@ -15,7 +15,7 @@ import java.util.Optional;
 public abstract class EmployeePersonalInfoService extends BaseService {
     public abstract List<Country> getCountries() throws DaoException;
 
-    public abstract Integer addNewPersonalInfo(EmployeePersonalInfo info) throws DaoException, TransactionException;
+    public abstract Integer createPersonalInfo(EmployeePersonalInfo info) throws DaoException, TransactionException;
 
     public abstract Optional<EmployeePersonalInfo> read(Integer id) throws DaoException;
 

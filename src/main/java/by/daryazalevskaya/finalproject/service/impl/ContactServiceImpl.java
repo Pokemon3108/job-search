@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class ContactServiceImpl extends ContactService {
     @Override
-    public Integer addNewContact(Contact entity) throws DaoException, TransactionException {
+    public Integer createContact(Contact entity) throws DaoException, TransactionException {
         try {
             ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
             return contactDao.create(entity);

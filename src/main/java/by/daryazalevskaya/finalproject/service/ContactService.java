@@ -8,7 +8,7 @@ import by.daryazalevskaya.finalproject.model.Contact;
 import java.util.Optional;
 
 public abstract class ContactService  extends  BaseService  {
-    public abstract Integer addNewContact(Contact contact) throws DaoException, TransactionException;
+    public abstract Integer createContact(Contact contact) throws DaoException, TransactionException;
 
     public abstract Optional<Contact> read(Integer id) throws DaoException;
 

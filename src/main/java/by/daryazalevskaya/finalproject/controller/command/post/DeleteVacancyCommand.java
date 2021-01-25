@@ -6,6 +6,7 @@ import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
+import by.daryazalevskaya.finalproject.service.VacancyComplicatedService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
@@ -21,11 +22,10 @@ public class DeleteVacancyCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ConnectionException, TransactionException {
         ServiceFactory serviceFactory = new ServiceFactoryImpl();
-        VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
+        VacancyComplicatedService vacancyService = (VacancyComplicatedService) serviceFactory.createService(DaoType.COMPLICATED_VACANCY);
         try {
             Integer vacancyId = Integer.parseInt(request.getParameter("vacancyId"));
-            vacancyService.deleteVacancyFromEmployeeVacancies(vacancyId);
-            vacancyService.delete(vacancyId);
+            vacancyService.deleteVacancy(vacancyId);
             response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYER_VACANCY_LIST.getUrl());
 
         } catch (DaoException e) {

@@ -8,16 +8,7 @@ import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
 import by.daryazalevskaya.finalproject.model.type.Role;
 import by.daryazalevskaya.finalproject.service.BaseService;
 import by.daryazalevskaya.finalproject.service.UserRoleService;
-import by.daryazalevskaya.finalproject.service.impl.ContactServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.CountryServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.EmployeeLanguageServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.EmployeePersonalInfoServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.EmployeeServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.EmployerServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.JobPreferenceServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.ResumeServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.UserServiceImpl;
-import by.daryazalevskaya.finalproject.service.impl.VacancyServiceImpl;
+import by.daryazalevskaya.finalproject.service.impl.*;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -39,6 +30,10 @@ public class ServiceFactoryImpl implements ServiceFactory {
         serviceMap.put(DaoType.USER, new UserServiceImpl());
         serviceMap.put(DaoType.VACANCY, new VacancyServiceImpl());
         serviceMap.put(DaoType.EMPLOYEE_LANGUAGE, new EmployeeLanguageServiceImpl());
+        serviceMap.put(DaoType.COMPLICATED_RESUME, new ResumeComplicatedServiceImpl());
+        serviceMap.put(DaoType.COMPLICATED_EMPLOYER, new EmployerComplicatedServiceImpl());
+        serviceMap.put(DaoType.COMPLICATED_VACANCY, new VacancyComplicatedServiceImpl());
+        serviceMap.put(DaoType.USER_ACCOUNT, new UserAccountComplicatedServiceImpl());
 
         userRoleServiceMap.put(Role.EMPLOYEE, new EmployeeServiceImpl());
         userRoleServiceMap.put(Role.EMPLOYER, new EmployerServiceImpl());

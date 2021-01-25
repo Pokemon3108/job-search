@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class EmployeeServiceImpl extends EmployeeService {
     @Override
-    public Integer addNewEmployee(Employee employee) throws DaoException, TransactionException {
+    public Integer createEmployee(Employee employee) throws DaoException, TransactionException {
         try {
             ResumeService resumeService = new ResumeServiceImpl();
             resumeService.setTransaction(transaction);
@@ -102,12 +102,13 @@ public class EmployeeServiceImpl extends EmployeeService {
     @Override
     public void createUser(User user) throws DaoException, TransactionException {
         Employee employee = new Employee(user.getId());
-        addNewEmployee(employee);
+        createEmployee(employee);
     }
 
     @Override
     public void deleteUser(Integer userId) throws DaoException, TransactionException {
         delete(userId);
+        transaction.commit();
     }
 
 }

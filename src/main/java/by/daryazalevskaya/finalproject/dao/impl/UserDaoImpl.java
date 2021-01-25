@@ -26,26 +26,6 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     private static final String CREATE_QUERY = "INSERT INTO usr (email, password,role) VALUES (?, ?, ?::user_role)";
     private static final String DELETE_QUERY = "DELETE FROM usr WHERE id =?";
 
-    @Override
-    public Optional<User> read(String email) throws DaoException {
-        ResultSet resultSet = null;
-        User user = null;
-        try (PreparedStatement statement = connection.prepareStatement(READ_LOGIN_QUERY)) {
-            statement.setString(1, email);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                Creator<User> creator = new UserCreator();
-                user = creator.createEntity(resultSet);
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            closeSet(resultSet);
-        }
-
-        return Optional.ofNullable(user);
-
-    }
 
     @Override
     public Integer create(User entity) throws InsertIdDataBaseException, DaoException {
@@ -72,6 +52,27 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     @Override
     public void delete(Integer id) throws DaoException {
         delete(id, DELETE_QUERY);
+    }
+
+    @Override
+    public Optional<User> read(String email) throws DaoException {
+        ResultSet resultSet = null;
+        User user = null;
+        try (PreparedStatement statement = connection.prepareStatement(READ_LOGIN_QUERY)) {
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Creator<User> creator = new UserCreator();
+                user = creator.createEntity(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            closeSet(resultSet);
+        }
+
+        return Optional.ofNullable(user);
+
     }
 
     @Override

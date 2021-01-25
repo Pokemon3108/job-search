@@ -36,16 +36,8 @@ public class LoginPostCommand implements ActionCommand {
             try {
                 if (!service.isValidLoginAndPassword(email, password)) {
                     request.setAttribute("loginError", true);
-                    final String page = request.getParameter("page");
-                    request.getServletContext()
-                            .getRequestDispatcher(page)
-                            .forward(request, response);
                 } else if (request.getSession(false) == null || request.getSession(false).getAttribute("user") != null) {
                     request.setAttribute("alreadyLogged", true);
-                    final String page = request.getParameter("page");
-                    request.getServletContext()
-                            .getRequestDispatcher(page)
-                            .forward(request, response);
                 } else {
                     User user = service.findUserByEmail(email).get();
                     HttpSession session = request.getSession();
@@ -53,6 +45,12 @@ public class LoginPostCommand implements ActionCommand {
                     session.setAttribute("role", user.getRole());
                     response.sendRedirect(request.getContextPath() + getRedirectPath(user.getRole()));
                 }
+
+                //if something was wrong
+                final String page = request.getParameter("page");
+                request.getServletContext()
+                        .getRequestDispatcher(page)
+                        .forward(request, response);
 
             } catch (DaoException e) {
                 log.error(e);

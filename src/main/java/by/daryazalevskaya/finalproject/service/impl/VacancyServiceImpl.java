@@ -16,28 +16,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class VacancyServiceImpl extends VacancyService {
-    @Override
-    public List<Vacancy> findVacanciesByEmployerId(Integer id) throws DaoException {
-        VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-        return dao.findVacanciesByEmployerId(id);
-    }
 
     @Override
-    public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException, TransactionException {
+    public Integer createVacancy(Vacancy vacancy) throws DaoException, TransactionException {
         try {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-            dao.deleteVacancyFromEmployeeVacancies(vacancyId);
-        } catch (DaoException ex) {
-            transaction.rollback();
-            throw new DaoException(ex);
-        }
-    }
-
-    @Override
-    public Integer addNewVacancy(Vacancy vacancy) throws DaoException, TransactionException {
-        try {
-            VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-            return dao.create(vacancy);
+            Integer vacancyId= dao.create(vacancy);
+            transaction.commit();
+            return vacancyId;
         } catch (DaoException | InsertIdDataBaseException ex) {
             transaction.rollback();
             throw new DaoException(ex);
@@ -69,6 +55,7 @@ public class VacancyServiceImpl extends VacancyService {
         try {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
             dao.update(vacancy);
+            transaction.commit();
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);
@@ -80,6 +67,23 @@ public class VacancyServiceImpl extends VacancyService {
     public void delete(Integer id) throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         dao.delete(id);
+    }
+
+    @Override
+    public List<Vacancy> findVacanciesByEmployerId(Integer id) throws DaoException {
+        VacancyDao dao = transaction.createDao(DaoType.VACANCY);
+        return dao.findVacanciesByEmployerId(id);
+    }
+
+    @Override
+    public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException, TransactionException {
+        try {
+            VacancyDao dao = transaction.createDao(DaoType.VACANCY);
+            dao.deleteVacancyFromEmployeeVacancies(vacancyId);
+        } catch (DaoException ex) {
+            transaction.rollback();
+            throw new DaoException(ex);
+        }
     }
 
     @Override
@@ -112,10 +116,16 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     @Override
-    public void addEmployeeVacancy(Integer vacancyId, Integer employeeId) throws DaoException {
+    public void addEmployeeVacancy(Integer vacancyId, Integer employeeId) throws DaoException, TransactionException {
         VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
         if (!hasAlreadyRespond(vacancyId, employeeId)) {
-            vacancyDao.addEmployeeVacancy(vacancyId, employeeId);
+            try {
+                vacancyDao.addEmployeeVacancy(vacancyId, employeeId);
+                transaction.commit();
+            } catch (DaoException ex) {
+                transaction.rollback();
+                throw new DaoException(ex);
+            }
         }
     }
 

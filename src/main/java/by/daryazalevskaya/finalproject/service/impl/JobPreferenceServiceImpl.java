@@ -16,7 +16,7 @@ import java.util.Optional;
 public class JobPreferenceServiceImpl extends JobPreferenceService {
 
     @Override
-    public Integer addNewJobPreference(JobPreference entity) throws DaoException, TransactionException {
+    public Integer createJobPreference(JobPreference entity) throws DaoException, TransactionException {
         try {
             JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
             return jobPreferenceDao.create(entity);
