@@ -60,10 +60,10 @@ public class UserDaoImplTest {
     @DataProvider(name = "userRead")
     public Object[][] createUserForRead() {
         //database should contain usr with id=5 and with such fields
-        final int id=5;
+        final int id=1;
         User user = User.builder().password("01234567890123456789"+"1".repeat(44))
                 .role(Role.EMPLOYEE)
-                .email("pokemon31")
+                .email("pokemon31@gmail.com")
                 .id(id)
                 .build();
         return new Object[][]{{user,  id}};
@@ -71,7 +71,7 @@ public class UserDaoImplTest {
 
     @Test(dataProvider = "userRead")
     public void readNameTest(User user, int id) throws DaoException, NoEntityInDataBaseException {
-        final String username = "pokemon31";
+        final String username = "pokemon31@gmail.com";
         User userFromDB = userDao.read(username).orElseThrow(NoEntityInDataBaseException::new);
         Assert.assertEquals(user, userFromDB);
     }
@@ -91,18 +91,13 @@ public class UserDaoImplTest {
     @DataProvider(name = "updatedUser")
     public Object[][] createUpdatedUser() {
         //database should contain usr with id=6 and with such fields
-        final  int id=6;
-        User user = User.builder().password("01234567890123456789"+"1".repeat(44))
-                .role(Role.EMPLOYER)
-                .email("Dasha@tut.by")
-                .id(id)
-                .build();
-        return new Object[][]{{user, id}};
+        final int id=2;
+        final String email="Dasha@tut.by";
+        return new Object[][]{{email, id}};
     }
 
     @Test(dataProvider = "updatedUser")
-    public void updateTest(User user, int id) throws DaoException, NoEntityInDataBaseException {
-        final String email = "Dasha@tut.by";
+    public void updateTest(String email, int id) throws DaoException, NoEntityInDataBaseException {
         final String newEmail = "MyLogin@tut.by";
         User userFromDB = userDao.read(email).orElseThrow(NoEntityInDataBaseException::new);
         userFromDB.setEmail(newEmail);
@@ -116,7 +111,7 @@ public class UserDaoImplTest {
     @Test
     public void deleteTest() throws DaoException {
         //database should contain usr with id=7
-        final int id=7;
+        final int id=3;
         userDao.delete(id);
         Assert.assertTrue(userDao.read(id).isEmpty());
     }
