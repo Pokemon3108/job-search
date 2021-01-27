@@ -33,4 +33,20 @@ public interface VacancyDao extends Dao<Vacancy> {
     List<Vacancy> readVacanciesByPositionAndSpecializationId(String position, Integer specializationId, int limit, int offset) throws DaoException;
 
     List<Vacancy> readVacanciesBySpecializationIdAndCountryIdAndPosition(Integer specializationId, Integer countryId, String position, int limit, int offset) throws DaoException;
+
+    Integer countVacanciesBySpecializationId(Integer specializationId) throws DaoException;
+
+    Integer countVacanciesByCountryId(Integer countryId) throws DaoException;
+
+    Integer countVacanciesByPosition(String position) throws DaoException;
+
+    Integer countVacanciesBySpecializationIdAndCountryId(Integer specializationId, Integer countryId) throws DaoException;
+
+    Integer countVacanciesByPositionAndCountryId(String position, Integer countryId) throws DaoException;
+
+    Integer countVacanciesByPositionAndSpecializationId(String position, Integer specializationId) throws DaoException;
+
+    Integer countVacanciesBySpecializationIdAndCountryIdAndPosition(Integer specializationId, Integer countryId, String position) throws DaoException;
+
+
 }

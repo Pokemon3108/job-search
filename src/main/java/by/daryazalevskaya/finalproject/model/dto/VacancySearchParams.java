@@ -1,6 +1,5 @@
 package by.daryazalevskaya.finalproject.model.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,14 +13,18 @@ public class VacancySearchParams {
     private String position;
 
     public boolean isEmptyCountry() {
-        return Objects.nonNull(countryId);
+        return Objects.isNull(countryId);
     }
 
     public boolean isEmptySpecialization() {
-        return Objects.nonNull(specializationId);
+        return Objects.isNull(specializationId);
     }
 
     public boolean isEmptyPosition() {
-        return position.isEmpty();
+        return (position==null || position.isEmpty());
+    }
+
+    public boolean isEmptyFull() {
+        return isEmptyCountry() && isEmptyPosition() && isEmptySpecialization();
     }
 }

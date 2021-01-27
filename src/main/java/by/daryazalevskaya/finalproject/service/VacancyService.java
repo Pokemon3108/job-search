@@ -35,5 +35,7 @@ public abstract class VacancyService extends BaseService {
     public abstract void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException, TransactionException;
 
     public abstract List<Vacancy> readVacancyByParams(VacancySearchParams params, int limit, int offset) throws DaoException;
+
+    public abstract Integer countVacanciesByParams(VacancySearchParams params) throws DaoException;
 }
 

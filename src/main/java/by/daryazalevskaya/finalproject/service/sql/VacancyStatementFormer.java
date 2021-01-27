@@ -19,6 +19,9 @@ public class VacancyStatementFormer extends StatementFormer<Vacancy> {
         statement.setInt(8, entity.getEmployer().getId());
         statement.setInt(9, entity.getCountry().getId());
         statement.setInt(10, entity.getSpecialization().getId());
-        statement.setInt(11, entity.getId());
+
+        if (entity.getId() != null) {
+            statement.setInt(11, entity.getId());
+        }
     }
 }

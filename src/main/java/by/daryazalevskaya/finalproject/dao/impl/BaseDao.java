@@ -165,7 +165,7 @@ public abstract class BaseDao {
                 entities.add(creator.createEntity(resultSet));
             }
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         } finally {
             closeSet(resultSet);
         }
@@ -182,7 +182,7 @@ public abstract class BaseDao {
                amount=resultSet.getInt(1);
            }
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         } finally {
             closeSet(resultSet);
         }

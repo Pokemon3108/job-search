@@ -200,4 +200,33 @@ public class VacancyServiceImpl extends VacancyService {
         return new ArrayList<>();
     }
 
+    @Override
+    public Integer countVacanciesByParams(VacancySearchParams params) throws DaoException {
+        VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
+
+        if (!params.isEmptyCountry() && params.isEmptySpecialization() && params.isEmptyPosition()) {
+            return vacancyDao.countVacanciesByCountryId(params.getCountryId());
+        }
+        if (!params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
+            return vacancyDao.countVacanciesBySpecializationIdAndCountryId(params.getSpecializationId(), params.getCountryId());
+        }
+        if (!params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.countVacanciesBySpecializationIdAndCountryIdAndPosition
+                    (params.getSpecializationId(),params.getCountryId(), params.getPosition());
+        }
+        if (!params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.countVacanciesByPositionAndCountryId(params.getPosition(), params.getCountryId());
+        }
+        if (params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
+            return vacancyDao.countVacanciesBySpecializationId(params.getSpecializationId());
+        }
+        if (params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.countVacanciesByPositionAndSpecializationId(params.getPosition(), params.getSpecializationId());
+        }
+        if (params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.countVacanciesByPosition(params.getPosition());
+        }
+        return null;
+    }
+
 }

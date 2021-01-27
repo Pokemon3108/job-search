@@ -5,6 +5,9 @@ import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.dao.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
+import by.daryazalevskaya.finalproject.service.CountryService;
+import by.daryazalevskaya.finalproject.service.JobPreferenceService;
+import by.daryazalevskaya.finalproject.service.SortingService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 import lombok.extern.log4j.Log4j2;
 
@@ -32,10 +35,17 @@ public class ShowAllVacanciesCommand extends ActionCommand {
             final int VACANCY_AMOUNT_ON_PAGE = 2;
             List<Vacancy> vacancies = vacancyService.findInRange(VACANCY_AMOUNT_ON_PAGE, (page - 1) * VACANCY_AMOUNT_ON_PAGE);
             request.setAttribute("vacancies", vacancies);
-            int maxPage = vacancyService.getVacanciesAmount();
 
+            CountryService countryService = (CountryService) serviceFactory.createService(DaoType.COUNTRY);
+            request.setAttribute("countries", new SortingService().sortCountriesByAlphabet(countryService.findAll()));
+
+            JobPreferenceService preferenceService= (JobPreferenceService) serviceFactory.createService(DaoType.JOB_PREFERENCE);
+            request.setAttribute("specializations", preferenceService.findAllSpecializations());
+
+            int maxPage = vacancyService.getVacanciesAmount();
             request.setAttribute("maxPage", maxPage / VACANCY_AMOUNT_ON_PAGE + 1);
             request.setAttribute("currentPage", request.getParameter("currentPage"));
+            request.setAttribute("action", "show");
 
             request.getRequestDispatcher(PagePath.ALL_VACANCIES).forward(request, response);
         } catch (DaoException e) {

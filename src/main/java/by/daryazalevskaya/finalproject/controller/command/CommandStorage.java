@@ -33,6 +33,7 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.SHOW_ALL_VACANCIES, new ShowAllVacanciesCommand());
         getRequestMap.put(UriPattern.VACANCY_FULL_SHOW, new FullVacancyDescriptionGetCommand());
         getRequestMap.put(UriPattern.SHOW_EMPLOYEE_VACANCIES, new ShowEmployeeVacanciesCommand());
+        getRequestMap.put(UriPattern.FILTER_VACANCIES, new FilterVacanciesCommand());
 
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());
@@ -48,7 +49,7 @@ public class CommandStorage {
         postRequestMap.put(UriPattern.SAVE_VACANCY_CHANGES, new SaveVacancyChangesCommand());
         postRequestMap.put(UriPattern.DELETE_VACANCY, new DeleteVacancyCommand());
         postRequestMap.put(UriPattern.RESPOND_ON_VACANCY, new RespondVacancyCommand());
-        postRequestMap.put(UriPattern.FILTER_VACANCIES, new FilterVacanciesCommand());
+
     }
 
     public static CommandStorage getInstance() {
