@@ -87,6 +87,9 @@ public class EmployeeServiceImpl extends EmployeeService {
                         employeeLanguageDao.delete(resume.getLanguage().getId());
                     }
 
+                    VacancyDao vacancyDao=transaction.createDao(DaoType.VACANCY);
+                    vacancyDao.deleteEmployeeVacanciesByEmployeeId(id);
+
                     employeeDao.delete(id);
                     resumeDao.delete(resume.getId());
                 }

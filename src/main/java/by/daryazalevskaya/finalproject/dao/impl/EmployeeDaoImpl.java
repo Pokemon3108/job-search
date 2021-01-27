@@ -25,7 +25,6 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
     private static final String DELETE_QUERY = "DELETE FROM employee WHERE user_id =?";
 
-
     private static final String FIND_IN_RANGE = "SELECT * FROM employee LIMIT ? OFFSET ?";
 
     private static final String COUNT = "SELECT count(*) FROM employee";

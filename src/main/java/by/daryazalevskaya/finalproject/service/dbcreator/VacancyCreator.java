@@ -1,12 +1,13 @@
 package by.daryazalevskaya.finalproject.service.dbcreator;
 
+import by.daryazalevskaya.finalproject.model.Country;
+import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class VacancyCreator extends Creator<Vacancy> {
@@ -16,11 +17,28 @@ public class VacancyCreator extends Creator<Vacancy> {
                 .city(set.getString("city"))
                 .salary(set.getInt("salary"))
                 .currency(Currency.valueOf(set.getString("currency")))
-                .duties(set.getString("duties"))
-                .requirements(set.getString("requirements"))
-                .schedule(Schedule.valueOf(set.getString("schedule")))
                 .position(set.getString("position"))
                 .build();
+
+        if (existsColumn(set, "specialization_id")) {
+            vacancy.setSpecialization(new Specialization(wasNull(set, "specialization_id")));
+        }
+
+        if (existsColumn(set, "country_id")) {
+            vacancy.setCountry(new Country(set.getInt("country_id")));
+        }
+
+        if (existsColumn(set, "schedule")) {
+            vacancy.setSchedule(Schedule.valueOf(set.getString("schedule")));
+        }
+
+        if (existsColumn(set, "duties")) {
+            vacancy.setDuties(set.getString("duties"));
+        }
+
+        if (existsColumn(set, "requirements")) {
+            vacancy.setRequirements(set.getString("requirements"));
+        }
 
         if (existsColumn(set, "employer_id")) {
             vacancy.setEmployer(new Employer(set.getInt("employer_id")));

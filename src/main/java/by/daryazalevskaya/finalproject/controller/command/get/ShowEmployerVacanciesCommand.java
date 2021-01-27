@@ -21,7 +21,7 @@ public class ShowEmployerVacanciesCommand extends ActionCommand {
         Integer userId = (Integer) request.getSession().getAttribute("user");
         VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
         try {
-            List<Vacancy> vacancies = vacancyService.findVacanciesByEmployerId(userId);
+            List<Vacancy> vacancies = vacancyService.readVacanciesByEmployerId(userId);
             request.setAttribute("vacancies", vacancies);
             request.getServletContext()
                     .getRequestDispatcher(PagePath.VACANCY_EMPLOYER_LIST)

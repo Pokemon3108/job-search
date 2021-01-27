@@ -1,6 +1,8 @@
 package by.daryazalevskaya.finalproject.model.employer;
 
+import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.Entity;
+import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import lombok.Data;
@@ -24,4 +26,6 @@ public class Vacancy extends Entity {
     private String position;
     private int salary;
     private Currency currency;
+    private Country country;
+    private Specialization specialization;
 }

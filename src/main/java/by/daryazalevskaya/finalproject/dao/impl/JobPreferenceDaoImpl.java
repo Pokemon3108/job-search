@@ -4,7 +4,7 @@ import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
-import by.daryazalevskaya.finalproject.model.employee.Specialization;
+import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.service.dbcreator.JobPreferenceCreator;
 import by.daryazalevskaya.finalproject.service.dbcreator.SpecializationCreator;
 import by.daryazalevskaya.finalproject.service.sql.JobPreferenceStatementFormer;

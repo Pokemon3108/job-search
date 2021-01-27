@@ -1,7 +1,7 @@
 package by.daryazalevskaya.finalproject.service.dbcreator;
 
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
-import by.daryazalevskaya.finalproject.model.employee.Specialization;
+import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 
@@ -18,7 +18,7 @@ public class JobPreferenceCreator extends Creator<JobPreference> {
                 .experience(set.getInt("experience"))
                 .currency(Currency.valueOf(set.getString("currency")))
                 .schedule(Schedule.valueOf(set.getString("schedule")))
-                .specialization(new Specialization(set.getInt("specialization_id")))
+                .specialization(new Specialization(wasNull(set, "specialization_id")))
                 .build();
     }
 }

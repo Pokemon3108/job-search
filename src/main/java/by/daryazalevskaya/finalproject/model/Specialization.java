@@ -1,6 +1,6 @@
-package by.daryazalevskaya.finalproject.model.employee;
+package by.daryazalevskaya.finalproject.model;
 
-import by.daryazalevskaya.finalproject.model.Entity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;

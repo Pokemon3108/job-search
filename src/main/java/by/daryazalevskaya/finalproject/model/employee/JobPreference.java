@@ -1,6 +1,7 @@
 package by.daryazalevskaya.finalproject.model.employee;
 
 import by.daryazalevskaya.finalproject.model.Entity;
+import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import lombok.Data;

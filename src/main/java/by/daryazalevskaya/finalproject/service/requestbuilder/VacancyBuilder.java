@@ -1,5 +1,7 @@
 package by.daryazalevskaya.finalproject.service.requestbuilder;
 
+import by.daryazalevskaya.finalproject.model.Country;
+import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.model.type.Currency;
@@ -16,7 +18,8 @@ public class VacancyBuilder implements RequestBuilder {
         Currency currency=Currency.valueOf(request.getParameter("currency"));
         String requirements=request.getParameter("requirements");
         String duties=request.getParameter("duties");
-
+        Integer specialization = Integer.parseInt(request.getParameter("specialization"));
+        Country country=new Country(Integer.parseInt(request.getParameter("country")));
         Integer userId = (Integer) request.getSession().getAttribute("user");
 
         Vacancy vacancy=Vacancy.builder()
@@ -27,6 +30,8 @@ public class VacancyBuilder implements RequestBuilder {
                 .schedule(schedule)
                 .position(position)
                 .employer(new Employer(userId))
+                .specialization(new Specialization(specialization))
+                .country(country)
                 .build();
 
         if (!request.getParameter("salary").isEmpty()) {

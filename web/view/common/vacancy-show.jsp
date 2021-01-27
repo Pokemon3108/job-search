@@ -26,7 +26,7 @@
 </c:choose>
 
 <div class="job_details_area">
-    <div class="container">
+    <div class="vacancy-container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="job_details_header">

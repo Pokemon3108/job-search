@@ -44,7 +44,7 @@ public class UserDaoImplTest {
     public Object[][] createUser() {
         User user = User.builder().password("$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.1111")
                 .role(Role.EMPLOYEE)
-                .email("zdashka@tut.by")
+                .email("zdashka31@tut.by")
                 .build();
         return new Object[][]{{user}};
     }

@@ -48,6 +48,7 @@ public class CommandStorage {
         postRequestMap.put(UriPattern.SAVE_VACANCY_CHANGES, new SaveVacancyChangesCommand());
         postRequestMap.put(UriPattern.DELETE_VACANCY, new DeleteVacancyCommand());
         postRequestMap.put(UriPattern.RESPOND_ON_VACANCY, new RespondVacancyCommand());
+        postRequestMap.put(UriPattern.FILTER_VACANCIES, new FilterVacanciesCommand());
     }
 
     public static CommandStorage getInstance() {

@@ -38,23 +38,22 @@
                 </ul>
 
                 <form action="${pageContext.request.contextPath}/job/registration" method="get">
-                    <button type="submit" class="btn btn-success mr-1">
+                    <button type="submit" class="btn btn-success mr-1 ml-5">
                         <fmt:message key="register" bundle="${ rb }"/>
                     </button>
                 </form>
 
                 <form action="${pageContext.request.contextPath}/job/login" method="get">
-                    <button type="submit" class="btn btn-success mr-1">
+                    <button type="submit" class="btn btn-success mr-1 ">
                         <fmt:message key="login" bundle="${ rb }"/>
                     </button>
                 </form>
 
+                <button type="button" class="btn lang-button" data-toggle="modal" data-target="#exampleModal">
+                    <fmt:message key="changeLan" bundle="${ rb }"/>
+                </button>
+
             </div>
-
-            <button type="button" class="btn lang-button" data-toggle="modal" data-target="#exampleModal">
-                <fmt:message key="changeLan" bundle="${ rb }"/>
-            </button>
-
         </div>
 
     </nav>

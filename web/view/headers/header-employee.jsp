@@ -46,21 +46,21 @@
                 </ul>
 
                 <form action="${pageContext.request.contextPath}/job/auth/logout" method="post">
-                    <input type="submit" class="btn btn-success" value=<fmt:message key="logout" bundle="${ rb }" /> />
+                    <button type="submit" class="btn btn-success mr-1 ml-5">
+                        <fmt:message key="logout" bundle="${ rb }"/>
+                    </button>
                 </form>
+
+                <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
+                    <fmt:message key="deleteAcc" bundle="${ rb }"/>
+                </button>
+
+                <button type="button" class="btn lang-button" data-toggle="modal" data-target="#exampleModal">
+                    <fmt:message key="changeLan" bundle="${ rb }"/>
+                </button>
 
             </div>
         </div>
-
-<%--        <form action="${pageContext.request.contextPath}/job/delete" method="post">--%>
-            <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteModel">
-                <fmt:message key="deleteAcc" bundle="${ rb }"/>
-            </button>
-<%--        </form>--%>
-
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                <fmt:message key="changeLan" bundle="${ rb }"/>
-            </button>
 
     </nav>
 </header>

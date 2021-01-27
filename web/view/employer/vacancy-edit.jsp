@@ -34,12 +34,40 @@
                         </p>
                     </c:if>
 
+                    <fmt:message key="specialization" bundle="${ rb }"/>
+                    <select class="form-select mb-2" name="specialization">
+                        <c:forEach items="${specializations}" var="specArr">
+                            <c:if test="${preference.specialization.id==specArr.id}">
+                                <option name="specialization" value="${specArr.id}" selected>
+                                        ${specArr.name}
+                                </option>
+                            </c:if>
+                            <c:if test="${preference.specialization.id!=specArr.id}">
+                                <option name="specialization" value="${specArr.id}">
+                                        ${specArr.name}
+                                </option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+
                     <div class="form-group">
                         <label for="position"> <fmt:message key="desiredPosition" bundle="${ rb }"/> *</label>
                         <input type="text" class="form-control" id="position" value="${vacancy.position}"
                                name="position" maxlength="255" minlength="3"
                                required>
                     </div>
+
+                    <fmt:message key="country" bundle="${ rb }"/>
+                    <select class="form-select mb-2" name="country">
+                        <c:forEach items="${countries}" var="countryArr">
+                            <c:if test="${employer.country.id==countryArr.id}">
+                                <option name="country" value="${countryArr.id}" selected>${countryArr.name}</option>
+                            </c:if>
+                            <c:if test="${employer.country.name!=countryArr.name}">
+                                <option name="country" value="${countryArr.id}">${countryArr.name}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="cityError"></div>
 

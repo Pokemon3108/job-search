@@ -2,7 +2,7 @@ package by.daryazalevskaya.finalproject.dao;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
-import by.daryazalevskaya.finalproject.model.employee.Specialization;
+import by.daryazalevskaya.finalproject.model.Specialization;
 
 import java.util.List;
 import java.util.Optional;

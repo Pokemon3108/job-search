@@ -1,7 +1,7 @@
 package by.daryazalevskaya.finalproject.service.dbcreator;
 
 
-import by.daryazalevskaya.finalproject.model.employee.Specialization;
+import by.daryazalevskaya.finalproject.model.Specialization;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

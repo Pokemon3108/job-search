@@ -5,6 +5,7 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.dbcreator.VacancyCreator;
+import by.daryazalevskaya.finalproject.service.sql.SearchVacancyFormer;
 import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 import by.daryazalevskaya.finalproject.service.sql.VacancyStatementFormer;
 
@@ -17,35 +18,67 @@ import java.util.Optional;
 
 public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
-    private static final String READ_ALL_QUERY = "SELECT * FROM vacancy";
+    private static final String READ_ALL_QUERY = "SELECT city," +
+            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy";
 
-    private static final String READ_BY_ID_QUERY = "SELECT * FROM vacancy WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT city," +
+            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy WHERE id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO vacancy " +
-            "(position, city, salary, currency, schedule, duties, requirements, employer_id)" +
-            " VALUES (?, ?, ?, ?::currency_type, ?::schedule_type, ?, ?, ?)";
+            "(position, city, salary, currency, schedule, duties, requirements, employer_id, country_id, specialization_id)" +
+            " VALUES (?, ?, ?, ?::currency_type, ?::schedule_type, ?, ?, ?, ?, ?)";
 
     private static final String UPDATE_QUERY = "UPDATE vacancy SET  " +
             "position = ?, city=?, salary=?, currency=?::currency_type, " +
-            "schedule=?::schedule_type, duties=?, requirements=?, employer_id=? WHERE id=?";
+            "schedule=?::schedule_type, duties=?, requirements=?, employer_id=?, country_id=?, specialization_id=? WHERE id=?";
 
     private static final String DELETE_QUERY = "DELETE FROM vacancy WHERE id =?";
 
-    private static final String FIND_IN_RANGE = "SELECT * FROM vacancy LIMIT ? OFFSET ?";
+    private static final String FIND_IN_RANGE = "SELECT city" +
+            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy LIMIT ? OFFSET ?";
 
     private static final String COUNT = "SELECT count(*) FROM vacancy";
 
     private static final String READ_BY_EMPLOYER_ID_QUERY = "SELECT city, " +
-            "salary, schedule, duties, requirements,  position, currency, id FROM vacancy " +
+            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy " +
             "WHERE employer_id=?";
 
-    private static final String DELETE_EMPLOYEE_VACANCY="DELETE FROM employee_vacancies WHERE vacancy_id=?";
+    private static final String READ_VACANCIES_BY_SPECIALIZATION_ID = "SELECT city, " +
+            "salary, position, currency, id  FROM vacancy " +
+            "WHERE specialization_id=?";
+
+    private static final String READ_VACANCIES_BY_COUNTRY_ID = "SELECT city, " +
+            "salary, position, currency, id  FROM vacancy " +
+            "WHERE country_id=? LIMIT ? OFFSET ?";
+
+    private static final String READ_VACANCIES_BY_POSITION = "SELECT city, " +
+            "salary, position, currency, id  FROM vacancy " +
+            "WHERE position=? LIMIT ? OFFSET ?";
+
+    private static final String READ_VACANCIES_BY_SPECIALIZATION_ID_AND_COUNTRY_ID = "SELECT city, " +
+            "salary, position, currency, id  FROM vacancy " +
+            "WHERE specialization_id=? AND country_id=? LIMIT ? OFFSET ? ";
+
+    private static final String READ_VACANCIES_POSITION_AND_BY_SPECIALIZATION_ID = "SELECT city, " +
+            "salary, position, currency, id  FROM vacancy " +
+            "WHERE position=? AND specialization_id=? LIMIT ? OFFSET ?";
+
+    private static final String READ_VACANCIES_BY_POSITION_AND_COUNTRY_ID = "SELECT city, " +
+            "salary, position, currency, id  FROM vacancy " +
+            "WHERE position=? AND country_id=? LIMIT ? OFFSET ?";
+
+    private static final String READ_VACANCIES_BY_COUNTRY_ID_AND_POSITION_AND_SPECIALIZATION_ID = "SELECT city, " +
+            "salary, position, currency, id  FROM vacancy " +
+            "WHERE country_id=? AND position=? AND specialization_id=? LIMIT ? OFFSET ?";
+
+    private static final String DELETE_EMPLOYEE_VACANCY = "DELETE FROM employee_vacancies WHERE vacancy_id=?";
 
     private static final String DELETE_EMPLOYEE_VACANCIES_QUERY = "DELETE employee_vacancies WHERE employee_id=?";
 
     private static final String ADD_VACANCY_TO_EMPLOYEE_QUERY = "INSERT INTO employee_vacancies (vacancy_id, employee_id ) VALUES(?,?)";
 
-    private static final String READ_VACANCIES_QUERY = "SELECT (vacancy_id) FROM employee_vacancies WHERE employee_id=?";
+    private static final String READ_EMPLOYEE_VACANCIES_QUERY = "SELECT (vacancy_id) FROM employee_vacancies WHERE employee_id=?";
+
 
     @Override
     public Integer create(Vacancy entity) throws InsertIdDataBaseException, DaoException {
@@ -62,7 +95,6 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
             StatementFormer<Vacancy> statementFormer = new VacancyStatementFormer();
             statementFormer.fillStatement(statement, entity);
-            statement.setInt(9, entity.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -90,7 +122,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public List<Vacancy> findVacanciesByEmployerId(Integer id) throws DaoException {
+    public List<Vacancy> readVacanciesByEmployerId(Integer id) throws DaoException {
         ResultSet resultSet = null;
 
         List<Vacancy> entities = new ArrayList<>();
@@ -99,7 +131,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                VacancyCreator creator=new VacancyCreator();
+                VacancyCreator creator = new VacancyCreator();
                 entities.add(creator.createEntity(resultSet));
             }
         } catch (SQLException e) {
@@ -112,12 +144,12 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException {
+    public void deleteEmployeeVacanciesByVacancyId(Integer vacancyId) throws DaoException {
         delete(vacancyId, DELETE_EMPLOYEE_VACANCY);
     }
 
     @Override
-    public void addEmployeeVacancy(int vacancyId, int employeeId) throws DaoException {
+    public void addEmployeeVacancy(Integer vacancyId, Integer employeeId) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(ADD_VACANCY_TO_EMPLOYEE_QUERY)) {
             statement.setInt(1, vacancyId);
             statement.setInt(2, employeeId);
@@ -128,18 +160,18 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public List<Vacancy> getEmployeeVacancies(int employeeId) throws DaoException {
+    public List<Vacancy> readEmployeeVacancies(Integer employeeId) throws DaoException {
         ResultSet resultSet = null;
 
         List<Vacancy> entities = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(READ_VACANCIES_QUERY)) {
+        try (PreparedStatement statement = connection.prepareStatement(READ_EMPLOYEE_VACANCIES_QUERY)) {
             statement.setInt(1, employeeId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 entities.add(new Vacancy(resultSet.getInt("vacancy_id")));
             }
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         } finally {
             closeSet(resultSet);
         }
@@ -148,7 +180,86 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public void deleteEmployeeVacancies(int employeeId) throws DaoException {
+    public void deleteEmployeeVacanciesByEmployeeId(Integer employeeId) throws DaoException {
         super.delete(employeeId, DELETE_EMPLOYEE_VACANCIES_QUERY);
+    }
+
+    private List<Vacancy> readVacancyByParam(SearchVacancyFormer createStatement, final String query) throws DaoException {
+        ResultSet resultSet = null;
+
+        List<Vacancy> entities = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            createStatement.fillStatement(statement);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+               VacancyCreator creator=new VacancyCreator();
+               entities.add(creator.createEntity(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            closeSet(resultSet);
+        }
+
+        return entities;
+    }
+
+    @Override
+    public List<Vacancy> readVacanciesBySpecializationId(Integer specializationId, int limit, int offset) throws DaoException {
+        SearchVacancyFormer createStatement = (statement -> statement.setInt(1, specializationId));
+        return readVacancyByParam(createStatement, READ_VACANCIES_BY_SPECIALIZATION_ID);
+    }
+
+    @Override
+    public List<Vacancy> readVacanciesByCountryId(Integer countryId, int limit, int offset) throws DaoException {
+        SearchVacancyFormer createStatement = (statement -> statement.setInt(1, countryId));
+        return readVacancyByParam(createStatement, READ_VACANCIES_BY_COUNTRY_ID);
+    }
+
+    @Override
+    public List<Vacancy> readVacanciesByPosition(String position, int limit, int offset) throws DaoException {
+        SearchVacancyFormer createStatement = (statement -> statement.setString(1, position));
+        return readVacancyByParam(createStatement, READ_VACANCIES_BY_POSITION);
+    }
+
+    @Override
+    public List<Vacancy> readVacanciesBySpecializationIdAndCountryId
+            (Integer specializationId, Integer countryId, int limit, int offset) throws DaoException {
+        SearchVacancyFormer createStatement = (statement -> {
+            statement.setInt(1, specializationId);
+            statement.setInt(2, countryId);
+        });
+        return readVacancyByParam(createStatement, READ_VACANCIES_BY_SPECIALIZATION_ID_AND_COUNTRY_ID);
+    }
+
+    @Override
+    public List<Vacancy> readVacanciesByPositionAndCountryId
+            (String position, Integer countryId, int limit, int offset) throws DaoException {
+        SearchVacancyFormer createStatement = (statement -> {
+            statement.setString(1, position);
+            statement.setInt(2, countryId);
+        });
+        return readVacancyByParam(createStatement, READ_VACANCIES_BY_POSITION_AND_COUNTRY_ID);
+    }
+
+    @Override
+    public List<Vacancy> readVacanciesByPositionAndSpecializationId
+            (String position, Integer specializationId, int limit, int offset) throws DaoException {
+        SearchVacancyFormer createStatement = (statement -> {
+            statement.setString(1, position);
+            statement.setInt(2, specializationId);
+        });
+        return readVacancyByParam(createStatement, READ_VACANCIES_POSITION_AND_BY_SPECIALIZATION_ID);
+    }
+
+    @Override
+    public List<Vacancy> readVacanciesBySpecializationIdAndCountryIdAndPosition
+            (Integer specializationId, Integer countryId, String position, int limit, int offset) throws DaoException {
+        SearchVacancyFormer createStatement = (statement -> {
+            statement.setInt(1, countryId);
+            statement.setString(2, position);
+            statement.setInt(3, specializationId);
+        });
+        return readVacancyByParam(createStatement, READ_VACANCIES_BY_COUNTRY_ID_AND_POSITION_AND_SPECIALIZATION_ID);
     }
 }

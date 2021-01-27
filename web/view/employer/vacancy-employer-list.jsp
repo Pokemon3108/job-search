@@ -22,11 +22,15 @@
         <div class="card-body col mb-4 border my-sm-3">
             <form action="${pageContext.request.contextPath}/job/employer/editVacancy" method="get">
                 <input type="hidden" name="vacancyId" value="${vacancy.id}">
-                <h3 class="card-title">${vacancy.position}</h3>
 
+                <h3 class="card-title">${vacancy.position}</h3>
                 <p>
-                    <strong><fmt:message key="city" bundle="${ rb }"/>: </strong>
-                    <span>${vacancy.city}</span>
+                    <strong><fmt:message key="specialization" bundle="${ rb }"/>: </strong>
+                    <span>${vacancy.specialization.name}</span>
+                </p>
+                <p>
+                    <strong><fmt:message key="location" bundle="${ rb }"/>: </strong>
+                    <span>${vacancy.country.name}, ${vacancy.city}</span>
                 </p>
 
                 <c:if test="${vacancy.salary!=null}">

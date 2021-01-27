@@ -86,6 +86,10 @@ ul {
     background-color: #AFEEEE ;
 }
 
+.vacancy-container {
+    max-width: 900px !important;
+}
+
 .job_details_area {
     padding-top: 20px;
     padding-bottom: 200px;

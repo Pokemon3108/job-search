@@ -13,6 +13,9 @@ import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
+import by.daryazalevskaya.finalproject.service.CountryService;
+import by.daryazalevskaya.finalproject.service.JobPreferenceService;
+import by.daryazalevskaya.finalproject.service.SortingService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
@@ -36,6 +39,12 @@ public class EditVacancyCommand extends ActionCommand {
         try {
             Optional<Vacancy> vacancy = vacancyService.read(vacancyId);
             if (vacancy.isPresent()) {
+                JobPreferenceService jobPreferenceService = (JobPreferenceService) serviceFactory.createService(DaoType.JOB_PREFERENCE);
+                request.setAttribute("specializations", jobPreferenceService.findAllSpecializations());
+
+                CountryService countryService = (CountryService) serviceFactory.createService(DaoType.COUNTRY);
+                request.setAttribute("countries", new SortingService().sortCountriesByAlphabet(countryService.findAll()));
+
                 request.setAttribute("schedules", Schedule.values());
                 request.setAttribute("currencies", Currency.values());
                 request.setAttribute("action", "edit");

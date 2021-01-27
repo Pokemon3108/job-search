@@ -123,6 +123,8 @@ CREATE TABLE vacancy
     currency     currency_type,
     duties       TEXT NOT NULL,
     requirements TEXT NOT NULL,
+    country_id      INTEGER REFERENCES country (id),
+    specialization_id INTEGER REFERENCES specialization_type (id),
     employer_id  INTEGER REFERENCES employer (user_id)
 );
 
@@ -131,7 +133,6 @@ CREATE TABLE employee_vacancies
     id          SERIAL PRIMARY KEY,
     employee_id INTEGER REFERENCES employee (user_id),
     vacancy_id  INTEGER REFERENCES vacancy (id)
-
 );
 
 

@@ -1,6 +1,5 @@
 package by.daryazalevskaya.finalproject.model.employee;
 
-import by.daryazalevskaya.finalproject.model.Entity;
 import by.daryazalevskaya.finalproject.model.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

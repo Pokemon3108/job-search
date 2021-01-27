@@ -27,3 +27,5 @@
 2021-01-26 22:38:03.451 INFO [main] [by.daryazalevskaya.finalproject.dao.pool.ConnectionPool.getConnection(ConnectionPool.java:72)] - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
 2021-01-26 22:39:13.302 INFO [main] [by.daryazalevskaya.finalproject.dao.pool.ConnectionPool.getConnection(ConnectionPool.java:72)] - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
 2021-01-26 22:42:40.034 INFO [main] [by.daryazalevskaya.finalproject.dao.pool.ConnectionPool.getConnection(ConnectionPool.java:72)] - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2021-01-26 23:29:34.652 INFO [main] [by.daryazalevskaya.finalproject.dao.pool.ConnectionPool.getConnection(ConnectionPool.java:72)] - Connection was received from pool. Current pool size: 1 used connections; 9 free connection
+2021-01-26 23:30:28.662 INFO [main] [by.daryazalevskaya.finalproject.dao.pool.ConnectionPool.getConnection(ConnectionPool.java:72)] - Connection was received from pool. Current pool size: 1 used connections; 9 free connection

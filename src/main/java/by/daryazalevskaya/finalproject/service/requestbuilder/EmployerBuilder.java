@@ -1,6 +1,5 @@
 package by.daryazalevskaya.finalproject.service.requestbuilder;
 
-import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 

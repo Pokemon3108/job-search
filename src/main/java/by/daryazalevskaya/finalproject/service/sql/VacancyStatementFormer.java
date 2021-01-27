@@ -17,5 +17,8 @@ public class VacancyStatementFormer extends StatementFormer<Vacancy> {
         statement.setString(6, entity.getDuties());
         statement.setString(7, entity.getRequirements());
         statement.setInt(8, entity.getEmployer().getId());
+        statement.setInt(9, entity.getCountry().getId());
+        statement.setInt(10, entity.getSpecialization().getId());
+        statement.setInt(11, entity.getId());
     }
 }

@@ -1,15 +1,17 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.EmployerDao;
-import by.daryazalevskaya.finalproject.dao.VacancyDao;
+import by.daryazalevskaya.finalproject.dao.*;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
+import by.daryazalevskaya.finalproject.model.Country;
+import by.daryazalevskaya.finalproject.model.Specialization;
+import by.daryazalevskaya.finalproject.model.dto.VacancySearchParams;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,7 +23,7 @@ public class VacancyServiceImpl extends VacancyService {
     public Integer createVacancy(Vacancy vacancy) throws DaoException, TransactionException {
         try {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-            Integer vacancyId= dao.create(vacancy);
+            Integer vacancyId = dao.create(vacancy);
             transaction.commit();
             return vacancyId;
         } catch (DaoException | InsertIdDataBaseException ex) {
@@ -39,9 +41,7 @@ public class VacancyServiceImpl extends VacancyService {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
             Optional<Vacancy> vacancy = dao.read(id);
             if (vacancy.isPresent()) {
-                EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-                Optional<Employer> employer = employerDao.read(vacancy.get().getEmployer().getId());
-                employer.ifPresent(employer1 -> vacancy.get().setEmployer(employer1));
+                fillVacancy(vacancy.get());
             }
             return vacancy;
         } catch (DaoException ex) {
@@ -69,16 +69,20 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     @Override
-    public List<Vacancy> findVacanciesByEmployerId(Integer id) throws DaoException {
+    public List<Vacancy> readVacanciesByEmployerId(Integer id) throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-        return dao.findVacanciesByEmployerId(id);
+        List<Vacancy> vacancies = dao.readVacanciesByEmployerId(id);
+        for (Vacancy vacancy : vacancies) {
+            fillVacancy(vacancy);
+        }
+        return vacancies;
     }
 
     @Override
     public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException, TransactionException {
         try {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-            dao.deleteVacancyFromEmployeeVacancies(vacancyId);
+            dao.deleteEmployeeVacanciesByVacancyId(vacancyId);
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);
@@ -89,7 +93,9 @@ public class VacancyServiceImpl extends VacancyService {
     public List<Vacancy> findAll() throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         List<Vacancy> vacancies = dao.findAll();
-        fillVacancies(vacancies);
+        for (Vacancy vacancy : vacancies) {
+            fillVacancy(vacancy);
+        }
         return vacancies;
     }
 
@@ -97,19 +103,14 @@ public class VacancyServiceImpl extends VacancyService {
     public List<Vacancy> findInRange(int start, int end) throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         List<Vacancy> vacancies = dao.findFromTo(start, end);
-        fillVacancies(vacancies);
+        for (Vacancy vacancy : vacancies) {
+            fillVacancy(vacancy);
+        }
         return vacancies;
     }
 
-    private void fillVacancies(List<Vacancy> vacancies) throws DaoException {
-        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-        for (Vacancy vacancy : vacancies) {
-            vacancy.setEmployer(employerDao.read(vacancy.getEmployer().getId()).get());
-        }
-    }
-
     @Override
-    public int getVacanciesSize() throws DaoException {
+    public int getVacanciesAmount() throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
         return dao.count();
     }
@@ -130,23 +131,73 @@ public class VacancyServiceImpl extends VacancyService {
 
     @Override
     public boolean hasAlreadyRespond(Integer vacancyId, Integer employeeId) throws DaoException {
-        List<Vacancy> vacancies = findEmployeeVacancies(employeeId);
+        List<Vacancy> vacancies = readEmployeeVacancies(employeeId);
         return vacancies.stream().anyMatch(vacancy1 -> vacancy1.getId().equals(vacancyId));
     }
 
     @Override
-    public List<Vacancy> findEmployeeVacancies(Integer employeeId) throws DaoException {
+    public List<Vacancy> readEmployeeVacancies(Integer employeeId) throws DaoException {
         VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
-        List<Vacancy> vacancies= vacancyDao.getEmployeeVacancies(employeeId);
-        vacancies=vacancies.stream().map(vacancy -> {
+        List<Vacancy> vacancies = vacancyDao.readEmployeeVacancies(employeeId);
+        vacancies = vacancies.stream().map(vacancy -> {
             try {
-                return vacancyDao.read(vacancy.getId()).get();
+                Vacancy vacancy1 = vacancyDao.read(vacancy.getId()).get();
+                fillVacancy(vacancy1);
+                return vacancy1;
             } catch (DaoException e) {
-               return null;
+                return null;
             }
         }).filter(Objects::nonNull).collect(Collectors.toList());
-        fillVacancies(vacancies);
         return vacancies;
+    }
+
+    private void fillVacancy(Vacancy vacancy) throws DaoException {
+        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+        Optional<Employer> employer = employerDao.read(vacancy.getEmployer().getId());
+        employer.ifPresent(vacancy::setEmployer);
+
+        JobPreferenceDao preferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+        Optional<Specialization> specialization = preferenceDao.findSpecializationById(vacancy.getSpecialization().getId());
+        specialization.ifPresent(vacancy::setSpecialization);
+
+        CountryDao countryDao = transaction.createDao(DaoType.COUNTRY);
+        Optional<Country> country = countryDao.read(vacancy.getCountry().getId());
+        country.ifPresent(vacancy::setCountry);
+    }
+
+    @Override
+    public List<Vacancy> readVacancyByParams(VacancySearchParams params, int limit, int offset) throws DaoException {
+        VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
+
+        if (!params.isEmptyCountry() && params.isEmptySpecialization() && params.isEmptyPosition()) {
+            return vacancyDao.readVacanciesByCountryId
+                    (params.getCountryId(), limit, offset);
+        }
+        if (!params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
+            return vacancyDao.readVacanciesBySpecializationIdAndCountryId
+                    (params.getSpecializationId(), params.getCountryId(), limit, offset);
+        }
+        if (!params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.readVacanciesBySpecializationIdAndCountryIdAndPosition
+                    (params.getSpecializationId(), params.getCountryId(), params.getPosition(), limit, offset);
+        }
+        if (!params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.readVacanciesByPositionAndCountryId
+                    (params.getPosition(), params.getCountryId(), limit, offset);
+        }
+        if (params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
+            return vacancyDao.readVacanciesBySpecializationId
+                    (params.getSpecializationId(), limit, offset);
+        }
+        if (params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.readVacanciesByPositionAndSpecializationId
+                    (params.getPosition(), params.getSpecializationId(), limit, offset);
+        }
+        if (params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
+            return vacancyDao.readVacanciesByPosition
+                    (params.getPosition(), limit, offset);
+        }
+        return new ArrayList<>();
     }
 
 }

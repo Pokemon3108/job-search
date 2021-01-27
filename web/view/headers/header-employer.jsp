@@ -19,7 +19,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <div class=" header-container">
+        <div class="header-container">
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/job/employer/home">Negotium</a>
@@ -50,8 +50,6 @@
                         </a>
                     </li>
                 </ul>
-
-
 
                     <form action="${pageContext.request.contextPath}/job/auth/logout" method="post">
                         <button type="submit" class="btn btn-success mr-1 ml-5">

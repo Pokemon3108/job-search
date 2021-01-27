@@ -32,7 +32,7 @@ public class ShowAllVacanciesCommand extends ActionCommand {
             final int VACANCY_AMOUNT_ON_PAGE = 2;
             List<Vacancy> vacancies = vacancyService.findInRange(VACANCY_AMOUNT_ON_PAGE, (page - 1) * VACANCY_AMOUNT_ON_PAGE);
             request.setAttribute("vacancies", vacancies);
-            int maxPage = vacancyService.getVacanciesSize();
+            int maxPage = vacancyService.getVacanciesAmount();
 
             request.setAttribute("maxPage", maxPage / VACANCY_AMOUNT_ON_PAGE + 1);
             request.setAttribute("currentPage", request.getParameter("currentPage"));
