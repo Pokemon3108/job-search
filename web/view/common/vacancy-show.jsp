@@ -32,12 +32,12 @@
                 <div class="job_details_header">
                     <div class="single_jobs d-flex justify-content-between">
                         <div class="jobs_left d-flex align-items-center">
-
                             <div class="jobs_conetent">
                                 <h4>${vacancy.position}</h4>
                                 <div class="links_locat d-flex align-items-center">
                                     <div class="location">
-                                        <p><i class="fa fa-map-marker"></i>${vacancy.city}
+                                        <p><i class="fa fa-map-marker"></i>
+                                            ${vacancy.city}
                                         </p>
                                     </div>
                                     <div class="location">
@@ -48,16 +48,19 @@
                                     </div>
                                     <div class="location">
                                         <p><i class="fas fa-building"></i>
-                                            ${vacancy.employer.companyName}
+                                            <a href="#" onclick="$('#companyModal').modal({keyboard: false});">${vacancy.employer.companyName}</a>
+
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <c:if test="${sessionScope.role eq 'EMPLOYEE' and respond!=true}">
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <form action="${pageContext.request.contextPath}/job/employee/respondVacancy" method="post">
+                                    <form action="${pageContext.request.contextPath}/job/employee/respondVacancy"
+                                          method="post">
                                         <input type="hidden" name="vacancyId" value="${vacancy.id}">
                                         <button type="submit" class="btn btn-success mr-1">
                                             <fmt:message key="respond" bundle="${ rb }"/>
@@ -99,11 +102,12 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
+<c:import url="/view/employer/employer-modal.jsp"/>
 
 <script src="https://kit.fontawesome.com/8350b1f3e1.js" crossorigin="anonymous"></script>
 

@@ -14,4 +14,11 @@ public class VacancyComplicatedServiceImpl extends VacancyComplicatedService {
         vacancyService.delete(vacancyId);
         transaction.commit();
     }
+
+    public void deleteEmployeeVacancy(Integer vacancyId) throws TransactionException, DaoException {
+        VacancyService vacancyService=new VacancyServiceImpl();
+        vacancyService.setTransaction(transaction);
+        vacancyService.deleteVacancyFromEmployeeVacancies(vacancyId);
+        transaction.commit();
+    }
 }

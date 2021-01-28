@@ -9,7 +9,7 @@
     <title>Title</title>
 </head>
 <body>
-<!-- Modal -->
+
 <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
      aria-hidden="true">
     <div class="modal-dialog">

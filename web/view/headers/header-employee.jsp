@@ -22,7 +22,7 @@
         <div class="header-container">
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/job/employer/resume">Negotium</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/job/employee/resume">Negotium</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

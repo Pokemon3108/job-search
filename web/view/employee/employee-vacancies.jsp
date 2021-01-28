@@ -41,7 +41,15 @@
                 <strong><fmt:message key="city" bundle="${ rb }"/>: </strong>
                 <span>${vacancy.city}</span>
             </p>
+
+            <form action="${pageContext.request.contextPath}/job/employee/deleteRespondedVacancy" method="post">
+                <input type="hidden" name="vacancyId" value="${vacancy.id}">
+                <button type="submit" class="btn btn-danger mr-1">
+                    <fmt:message key="deleteVacancy" bundle="${ rb }"/>
+                </button>
+            </form>
         </div>
+
     </c:forEach>
 
 </div>

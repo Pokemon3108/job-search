@@ -9,6 +9,7 @@ import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.dto.VacancySearchParams;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
+import by.daryazalevskaya.finalproject.service.EmployerService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 
 import java.util.ArrayList;
@@ -152,8 +153,10 @@ public class VacancyServiceImpl extends VacancyService {
     }
 
     private void fillVacancy(Vacancy vacancy) throws DaoException {
-        EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-        Optional<Employer> employer = employerDao.read(vacancy.getEmployer().getId());
+        EmployerService employerService=new EmployerServiceImpl();
+        employerService.setTransaction(transaction);
+       // EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
+        Optional<Employer> employer = employerService.read(vacancy.getEmployer().getId());
         employer.ifPresent(vacancy::setEmployer);
 
         if (vacancy.getSpecialization() != null) {

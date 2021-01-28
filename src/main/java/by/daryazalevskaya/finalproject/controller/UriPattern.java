@@ -27,8 +27,9 @@ public enum UriPattern {
     SHOW_ALL_VACANCIES("/job/showAllVacancies"),
     VACANCY_FULL_SHOW("/job/vacancy"),
     RESPOND_ON_VACANCY("/job/employee/respondVacancy"),
-    SHOW_EMPLOYEE_VACANCIES("/job/employee/myVacancies"),
-    FILTER_VACANCIES("/job/filterVacancies");
+    EMPLOYEE_VACANCIES("/job/employee/myVacancies"),
+    FILTER_VACANCIES("/job/filterVacancies"),
+    DELETE_EMPLOYEE_VACANCY("/job/employee/deleteRespondedVacancy");
 
     UriPattern(String url) {
         this.url = url;
