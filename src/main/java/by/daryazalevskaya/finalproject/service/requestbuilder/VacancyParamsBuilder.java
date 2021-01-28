@@ -11,12 +11,12 @@ public class VacancyParamsBuilder implements RequestBuilder {
         String position=request.getParameter("position");
         VacancySearchParams params=new VacancySearchParams();
         params.setPosition(position);
-        if (request.getParameter("country_id")!=null) {
-            Integer countryId=Integer.parseInt(request.getParameter("country_id"));
+        if (request.getParameter("countryId")!="") {
+            Integer countryId=Integer.parseInt(request.getParameter("countryId"));
             params.setCountryId(countryId);
         }
-        if (request.getParameter("specialization_id")!=null) {
-            Integer specializationId=Integer.parseInt(request.getParameter("specialization_id"));
+        if (request.getParameter("specializationId")!="") {
+            Integer specializationId=Integer.parseInt(request.getParameter("specializationId"));
             params.setSpecializationId(specializationId);
         }
         return params;

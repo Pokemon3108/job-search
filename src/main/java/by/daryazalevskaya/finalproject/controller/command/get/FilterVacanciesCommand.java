@@ -33,7 +33,6 @@ public class FilterVacanciesCommand extends ActionCommand {
             command.setServiceFactory(serviceFactory);
             command.execute(request, response);
         } else {
-
             VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
             int page = 1;
 
@@ -46,17 +45,13 @@ public class FilterVacanciesCommand extends ActionCommand {
             }
 
             try {
-                if (request.getParameter("currentPage") != null) {
-                    page = Integer.parseInt(request.getParameter("currentPage"));
-                }
-
                 final int VACANCY_AMOUNT_ON_PAGE = 2;
                 List<Vacancy> vacancies = vacancyService.readVacancyByParams(params, VACANCY_AMOUNT_ON_PAGE, (page - 1) * VACANCY_AMOUNT_ON_PAGE);
                 request.setAttribute("vacancies", vacancies);
 
                 Integer maxPage = vacancyService.countVacanciesByParams(params);
                 log.debug(maxPage);
-                request.setAttribute("maxPage", maxPage / VACANCY_AMOUNT_ON_PAGE + 1);
+                request.setAttribute("maxPage", Math.ceil(maxPage / VACANCY_AMOUNT_ON_PAGE));
 
                 CountryService countryService = (CountryService) serviceFactory.createService(DaoType.COUNTRY);
                 request.setAttribute("countries", new SortingService().sortCountriesByAlphabet(countryService.findAll()));
@@ -65,6 +60,8 @@ public class FilterVacanciesCommand extends ActionCommand {
                 request.setAttribute("specializations", preferenceService.findAllSpecializations());
 
                 request.setAttribute("vacancyParams", params);
+
+                log.debug("Current page: ",request.getParameter("currentPage") );
                 request.setAttribute("currentPage", request.getParameter("currentPage"));
                 request.setAttribute("action", "filter");
 

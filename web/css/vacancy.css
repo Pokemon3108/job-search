@@ -88,6 +88,7 @@ ul {
 
 .vacancy-container {
     max-width: 900px !important;
+    margin: 0 auto;
 }
 
 .job_details_area {

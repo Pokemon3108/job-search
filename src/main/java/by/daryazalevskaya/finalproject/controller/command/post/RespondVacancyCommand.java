@@ -1,14 +1,11 @@
 package by.daryazalevskaya.finalproject.controller.command.post;
 
-import by.daryazalevskaya.finalproject.controller.PagePath;
+import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.service.VacancyService;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -24,7 +21,7 @@ public class RespondVacancyCommand extends ActionCommand {
         try {
             vacancyService.addEmployeeVacancy(Integer.parseInt(request.getParameter("vacancyId")),
                     (int)request.getSession().getAttribute("user"));
-            request.getServletContext().getRequestDispatcher(PagePath.EMPLOYEE_HOME).forward(request, response);
+            response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());
         } catch (DaoException | TransactionException ex) {
             log.error(ex);
             response.sendError(500);

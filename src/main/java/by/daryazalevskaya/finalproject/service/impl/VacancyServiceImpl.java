@@ -156,48 +156,57 @@ public class VacancyServiceImpl extends VacancyService {
         Optional<Employer> employer = employerDao.read(vacancy.getEmployer().getId());
         employer.ifPresent(vacancy::setEmployer);
 
-        JobPreferenceDao preferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-        Optional<Specialization> specialization = preferenceDao.findSpecializationById(vacancy.getSpecialization().getId());
-        specialization.ifPresent(vacancy::setSpecialization);
+        if (vacancy.getSpecialization() != null) {
+            JobPreferenceDao preferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
+            Optional<Specialization> specialization = preferenceDao.findSpecializationById(vacancy.getSpecialization().getId());
+            specialization.ifPresent(vacancy::setSpecialization);
+        }
 
-        CountryDao countryDao = transaction.createDao(DaoType.COUNTRY);
-        Optional<Country> country = countryDao.read(vacancy.getCountry().getId());
-        country.ifPresent(vacancy::setCountry);
+        if (vacancy.getCountry() != null) {
+            CountryDao countryDao = transaction.createDao(DaoType.COUNTRY);
+            Optional<Country> country = countryDao.read(vacancy.getCountry().getId());
+            country.ifPresent(vacancy::setCountry);
+        }
     }
 
     @Override
     public List<Vacancy> readVacancyByParams(VacancySearchParams params, int limit, int offset) throws DaoException {
         VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
-
+        List<Vacancy> vacancyList = new ArrayList<>();
         if (!params.isEmptyCountry() && params.isEmptySpecialization() && params.isEmptyPosition()) {
-            return vacancyDao.readVacanciesByCountryId
+            vacancyList = vacancyDao.readVacanciesByCountryId
                     (params.getCountryId(), limit, offset);
         }
         if (!params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
-            return vacancyDao.readVacanciesBySpecializationIdAndCountryId
+            vacancyList = vacancyDao.readVacanciesBySpecializationIdAndCountryId
                     (params.getSpecializationId(), params.getCountryId(), limit, offset);
         }
         if (!params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
-            return vacancyDao.readVacanciesBySpecializationIdAndCountryIdAndPosition
+            vacancyList = vacancyDao.readVacanciesBySpecializationIdAndCountryIdAndPosition
                     (params.getSpecializationId(), params.getCountryId(), params.getPosition(), limit, offset);
         }
         if (!params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
-            return vacancyDao.readVacanciesByPositionAndCountryId
+            vacancyList = vacancyDao.readVacanciesByPositionAndCountryId
                     (params.getPosition(), params.getCountryId(), limit, offset);
         }
         if (params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
-            return vacancyDao.readVacanciesBySpecializationId
+            vacancyList = vacancyDao.readVacanciesBySpecializationId
                     (params.getSpecializationId(), limit, offset);
         }
         if (params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
-            return vacancyDao.readVacanciesByPositionAndSpecializationId
+            vacancyList = vacancyDao.readVacanciesByPositionAndSpecializationId
                     (params.getPosition(), params.getSpecializationId(), limit, offset);
         }
         if (params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
-            return vacancyDao.readVacanciesByPosition
+            vacancyList = vacancyDao.readVacanciesByPosition
                     (params.getPosition(), limit, offset);
         }
-        return new ArrayList<>();
+
+        for (Vacancy vacancy : vacancyList) {
+            fillVacancy(vacancy);
+        }
+
+        return vacancyList;
     }
 
     @Override
@@ -212,7 +221,7 @@ public class VacancyServiceImpl extends VacancyService {
         }
         if (!params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
             return vacancyDao.countVacanciesBySpecializationIdAndCountryIdAndPosition
-                    (params.getSpecializationId(),params.getCountryId(), params.getPosition());
+                    (params.getSpecializationId(), params.getCountryId(), params.getPosition());
         }
         if (!params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
             return vacancyDao.countVacanciesByPositionAndCountryId(params.getPosition(), params.getCountryId());
