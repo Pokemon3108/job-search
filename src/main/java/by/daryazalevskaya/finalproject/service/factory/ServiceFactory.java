@@ -1,6 +1,6 @@
 package by.daryazalevskaya.finalproject.service.factory;
 
-import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.type.Role;
 import by.daryazalevskaya.finalproject.service.BaseService;

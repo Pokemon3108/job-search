@@ -1,4 +1,4 @@
-\c job_search;
+-- \c job_search;
 
 CREATE TABLE IF NOT EXISTS contact
 (
@@ -42,19 +42,13 @@ CREATE TABLE IF NOT EXISTS specialization_type
     name VARCHAR(128)
 );
 
--- CREATE TABLE desired_position_type
--- (
---     id   SERIAL      NOT NULL PRIMARY KEY,
---     name VARCHAR(255) NOT NULL
--- );
-
-CREATE TYPE schedule_type as enum ('remote_job', 'full_day', 'part_time');
+CREATE TYPE schedule_type as enum ('REMOTE_JOB', 'FULL_DAY', 'PART_TIME');
 CREATE TYPE currency_type as enum ('USD', 'EUR', 'BYN');
 
 CREATE TABLE IF NOT EXISTS job_preference
 (
     id                SERIAL PRIMARY KEY,
-    desired_position  VARCHAR(255),
+    position          VARCHAR(255),
     salary            INTEGER,
     currency          currency_type,
     specialization_id INTEGER REFERENCES specialization_type (id),
@@ -115,17 +109,17 @@ CREATE TABLE employer
 
 CREATE TABLE vacancy
 (
-    id           SERIAL PRIMARY KEY,
-    position     VARCHAR(255) NOT NULL,
-    city         VARCHAR(100) NOT NULL,
-    salary       INTEGER,
-    schedule     schedule_type,
-    currency     currency_type,
-    duties       TEXT NOT NULL,
-    requirements TEXT NOT NULL,
-    country_id      INTEGER REFERENCES country (id),
+    id                SERIAL PRIMARY KEY,
+    position          VARCHAR(255) NOT NULL,
+    city              VARCHAR(100) NOT NULL,
+    salary            INTEGER,
+    schedule          schedule_type,
+    currency          currency_type,
+    duties            TEXT         NOT NULL,
+    requirements      TEXT         NOT NULL,
+    country_id        INTEGER REFERENCES country (id),
     specialization_id INTEGER REFERENCES specialization_type (id),
-    employer_id  INTEGER REFERENCES employer (user_id)
+    employer_id       INTEGER REFERENCES employer (user_id)
 );
 
 CREATE TABLE employee_vacancies

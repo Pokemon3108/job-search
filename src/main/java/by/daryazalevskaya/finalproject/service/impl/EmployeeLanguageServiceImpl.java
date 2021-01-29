@@ -1,18 +1,15 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.EmployeeLanguageDao;
-import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.service.EmployeeLanguageService;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 public class EmployeeLanguageServiceImpl extends EmployeeLanguageService {
     @Override

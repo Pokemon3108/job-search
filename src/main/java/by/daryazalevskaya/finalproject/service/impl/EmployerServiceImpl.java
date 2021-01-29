@@ -9,6 +9,7 @@ import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 
 import java.util.Objects;

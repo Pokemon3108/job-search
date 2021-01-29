@@ -7,6 +7,7 @@ import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.EmployeeService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
 

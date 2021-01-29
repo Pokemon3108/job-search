@@ -9,11 +9,11 @@ import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.type.Role;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -21,24 +21,30 @@ import java.util.ResourceBundle;
 public class UserDaoImplTest {
     private UserDaoImpl userDao = new UserDaoImpl();
 
-    @BeforeTest
-    public void createConnection() throws PoolException {
+    private Connection connection;
+
+    private String url;
+    private String userName;
+    private String password;
+
+    @BeforeClass
+    public void initParams() {
         ResourceBundle resource = ResourceBundle.getBundle("database");
-        String url = resource.getString("db.url");
-        String user = resource.getString("db.user");
-        String pass = resource.getString("db.password");
-        String driver = resource.getString("db.driver");
-        int poolSizeMax = Integer.parseInt(resource.getString("db.poolMaxSize"));
-        int startPoolSize = Integer.parseInt(resource.getString("db.poolStartSize"));
-        int timeout = Integer.parseInt(resource.getString("db.connectionTimeout"));
-
-        ConnectionPool.getInstance().init(driver,
-                url, user, pass, startPoolSize, poolSizeMax, timeout);
-        Connection connection = ConnectionPool.getInstance().getConnection();
-        userDao.setConnection(connection);
-
+        url = resource.getString("db.url");
+        userName = resource.getString("db.user");
+        password = resource.getString("db.password");
     }
 
+    @BeforeMethod
+    public void createConnection() throws SQLException {
+        connection= DriverManager.getConnection(url, userName, password);
+        userDao.setConnection(connection);
+    }
+
+    @AfterMethod
+    public void closeConnection() throws SQLException {
+        connection.close();
+    }
 
     @DataProvider(name = "user")
     public Object[][] createUser() {
@@ -52,14 +58,13 @@ public class UserDaoImplTest {
 
     @Test(dataProvider = "user")
     public void createTest(User user) throws DaoException, InsertIdDataBaseException {
-        int id = userDao.create(user);
+        Integer id = userDao.create(user);
         Assert.assertNotNull(id);
     }
 
 
     @DataProvider(name = "userRead")
     public Object[][] createUserForRead() {
-        //database should contain usr with id=5 and with such fields
         final int id=1;
         User user = User.builder().password("01234567890123456789"+"1".repeat(44))
                 .role(Role.EMPLOYEE)
@@ -82,15 +87,9 @@ public class UserDaoImplTest {
         Assert.assertEquals(user, userFromDB.orElseThrow(NoEntityInDataBaseException::new));
     }
 
-    @Test
-    public void findAllTest() throws DaoException {
-        Assert.assertTrue(userDao.findAll().size() != 0);
-    }
-
 
     @DataProvider(name = "updatedUser")
     public Object[][] createUpdatedUser() {
-        //database should contain usr with id=6 and with such fields
         final int id=2;
         final String email="Dasha@tut.by";
         return new Object[][]{{email, id}};
@@ -110,10 +109,14 @@ public class UserDaoImplTest {
 
     @Test
     public void deleteTest() throws DaoException {
-        //database should contain usr with id=7
         final int id=3;
         userDao.delete(id);
         Assert.assertTrue(userDao.read(id).isEmpty());
+    }
+
+    @Test
+    public void findAllTest() throws DaoException {
+        Assert.assertTrue(userDao.findAll().size() != 0);
     }
 
 }

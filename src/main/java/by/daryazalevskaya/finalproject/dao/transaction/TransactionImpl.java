@@ -1,7 +1,7 @@
 package by.daryazalevskaya.finalproject.dao.transaction;
 
 import by.daryazalevskaya.finalproject.dao.Dao;
-import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.impl.*;
 import by.daryazalevskaya.finalproject.model.Entity;

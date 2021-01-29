@@ -35,7 +35,6 @@ public class DispatcherServlet extends HttpServlet {
         int startPoolSize = Integer.parseInt(resource.getString("db.poolStartSize"));
         int timeout = Integer.parseInt(resource.getString("db.connectionTimeout"));
 
-
         try {
             ConnectionPool.getInstance().init(driver,
                     url, user, pass, startPoolSize, poolSizeMax, timeout);

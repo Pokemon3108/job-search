@@ -8,36 +8,41 @@ import by.daryazalevskaya.finalproject.dao.impl.ContactDaoImpl;
 import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.Contact;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ContactDaoImplTest {
     private ContactDaoImpl contactDao = new ContactDaoImpl();
 
+    private Connection connection;
 
-    @BeforeTest
-    public void createConnection() throws PoolException {
+    private String url;
+    private String userName;
+    private String password;
+
+    @BeforeClass
+    public void initParams() {
         ResourceBundle resource = ResourceBundle.getBundle("database");
-        String url = resource.getString("db.url");
-        String user = resource.getString("db.user");
-        String pass = resource.getString("db.password");
-        String driver = resource.getString("db.driver");
-        int poolSizeMax = Integer.parseInt(resource.getString("db.poolMaxSize"));
-        int startPoolSize = Integer.parseInt(resource.getString("db.poolStartSize"));
-        int timeout = Integer.parseInt(resource.getString("db.connectionTimeout"));
-
-        ConnectionPool.getInstance().init(driver,
-                url, user, pass, startPoolSize, poolSizeMax, timeout);
-        Connection connection = ConnectionPool.getInstance().getConnection();
-        contactDao.setConnection(connection);
-
+        url = resource.getString("db.url");
+        userName = resource.getString("db.user");
+        password = resource.getString("db.password");
     }
 
+    @BeforeMethod
+    public void createConnection() throws SQLException {
+        connection= DriverManager.getConnection(url, userName, password);
+        contactDao.setConnection(connection);
+    }
+
+    @AfterMethod
+    public void closeConnection() throws SQLException {
+        connection.close();
+    }
 
     @DataProvider(name = "contact")
     public Object[][] createContact() {
@@ -59,7 +64,6 @@ public class ContactDaoImplTest {
 
     @DataProvider(name = "contactRead")
     public Object[][] createReadContact() {
-        //should be in database before read test
         final int id=2;
         Contact contact = Contact.builder()
                 .telephone("+375295395676")
@@ -83,7 +87,6 @@ public class ContactDaoImplTest {
 
     @DataProvider(name = "contactForDelete")
     public Object[][] createContactForDelete() {
-        //should be in database before delete test
         final int id=3;
         Contact contact = Contact.builder()
                 .telephone("+74956789898")

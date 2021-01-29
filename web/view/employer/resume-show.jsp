@@ -98,7 +98,8 @@
         </section>
 
         <section class="section summary-section">
-            <h2 class="section-title"><i class="fas fa-hammer"></i><fmt:message key="skills" bundle="${ rb }"/></h2>
+            <h2 class="section-title"><i class="fas fa-hammer mr-2"></i>
+                <fmt:message key="skills" bundle="${ rb }"/></h2>
             <div class="summary">
                 <p>${resume.skills}</p>
             </div>

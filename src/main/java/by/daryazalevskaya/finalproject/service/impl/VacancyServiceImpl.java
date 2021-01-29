@@ -9,6 +9,7 @@ import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.dto.VacancySearchParams;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 
@@ -161,7 +162,7 @@ public class VacancyServiceImpl extends VacancyService {
 
         if (vacancy.getSpecialization() != null) {
             JobPreferenceDao preferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-            Optional<Specialization> specialization = preferenceDao.findSpecializationById(vacancy.getSpecialization().getId());
+            Optional<Specialization> specialization = preferenceDao.readSpecializationById(vacancy.getSpecialization().getId());
             specialization.ifPresent(vacancy::setSpecialization);
         }
 

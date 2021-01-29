@@ -1,17 +1,13 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
 import by.daryazalevskaya.finalproject.dao.ContactDao;
-import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.VacancyDao;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
-import by.daryazalevskaya.finalproject.model.Entity;
 import by.daryazalevskaya.finalproject.service.ContactService;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 

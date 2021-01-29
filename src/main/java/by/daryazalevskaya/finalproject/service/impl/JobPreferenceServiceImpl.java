@@ -1,6 +1,6 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
@@ -65,18 +65,18 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
     @Override
     public Integer findIdBySpecialization(String specialization) throws DaoException {
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-        return jobPreferenceDao.findIdBySpecialization(specialization);
+        return jobPreferenceDao.readIdBySpecialization(specialization);
     }
 
     @Override
     public Optional<Specialization> findSpecializationById(Integer id) throws DaoException {
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-        return jobPreferenceDao.findSpecializationById(id);
+        return jobPreferenceDao.readSpecializationById(id);
     }
 
     @Override
     public List<Specialization> findAllSpecializations() throws DaoException {
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
-        return jobPreferenceDao.findAllSpecializations();
+        return jobPreferenceDao.readAllSpecializations();
     }
 }

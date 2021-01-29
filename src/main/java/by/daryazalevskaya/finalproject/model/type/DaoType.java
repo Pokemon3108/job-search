@@ -1,4 +1,4 @@
-package by.daryazalevskaya.finalproject.dao;
+package by.daryazalevskaya.finalproject.model.type;
 
 public enum DaoType {
     CONTACT,

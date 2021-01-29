@@ -39,7 +39,6 @@ public class JobPreferenceDaoImpl extends BaseDao implements JobPreferenceDao {
 
     @Override
     public Integer create(JobPreference entity) throws InsertIdDataBaseException, DaoException {
-
         StatementFormer<JobPreference> statementFormer=new JobPreferenceStatementFormer();
         return super.create(entity, CREATE_QUERY, statementFormer);
     }
@@ -72,21 +71,24 @@ public class JobPreferenceDaoImpl extends BaseDao implements JobPreferenceDao {
     }
 
     @Override
-    public Integer findIdBySpecialization(String specialization) throws DaoException {
+    public Integer readIdBySpecialization(String specialization) throws DaoException {
         final String fieldName = "id";
         return findIdByField(specialization, FIND_SPEC_ID_QUERY, fieldName);
     }
 
     @Override
-    public Optional<Specialization> findSpecializationById(int id) throws DaoException {
+    public Optional<Specialization> readSpecializationById(int id) throws DaoException {
         final String name = "name";
-        String countryName = findStringFieldById(id, FIND_SPEC_BY_ID_QUERY, name);
-        Specialization specialization = new Specialization(id, countryName);
+        String specName = findStringFieldById(id, FIND_SPEC_BY_ID_QUERY, name);
+        if (specName.isEmpty()) {
+            return Optional.empty();
+        }
+        Specialization specialization = new Specialization(id, specName);
         return Optional.of(specialization);
     }
 
     @Override
-    public List<Specialization> findAllSpecializations() throws DaoException {
+    public List<Specialization> readAllSpecializations() throws DaoException {
         return super.findAll(FIND_ALL_SPEC_QUERY, new SpecializationCreator());
     }
 }

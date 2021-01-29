@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface JobPreferenceDao extends Dao<JobPreference> {
-    Integer findIdBySpecialization(String specialization) throws DaoException;
+    Integer readIdBySpecialization(String specialization) throws DaoException;
 
-    Optional<Specialization> findSpecializationById(int id) throws DaoException;
+    Optional<Specialization> readSpecializationById(int id) throws DaoException;
 
-
-    List<Specialization> findAllSpecializations() throws DaoException;
+    List<Specialization> readAllSpecializations() throws DaoException;
 }

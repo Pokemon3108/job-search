@@ -23,30 +23,30 @@ public class CountryDaoImpl extends BaseDao implements CountryDao {
         return findIdByField(country, FIND_ID_BY_COUNTRY_NAME_QUERY, fieldName);
     }
 
-
     @Override
     public Integer create(Country entity)  {
-        throw new IllegalOperationException();
+        throw new IllegalOperationException("Can't create entity in table 'country'");
     }
 
     @Override
     public Optional<Country> read(Integer id) throws DaoException {
         final String fieldName = "name";
         String countryName = findStringFieldById(id, FIND_COUNTRY_BY_ID_QUERY, fieldName);
+        if (countryName.isEmpty()) {
+            return Optional.empty();
+        }
         Country country = new Country(id, countryName);
         return Optional.of(country);
     }
 
     @Override
     public void update(Country entity)  {
-        log.error("Can't update table 'country'");
-        throw new IllegalOperationException();
+        throw new IllegalOperationException("Can't update table 'country'");
     }
 
     @Override
     public void delete(Integer id)  {
-        log.error("Can't delete entity from table 'country'");
-        throw new IllegalOperationException();
+        throw new IllegalOperationException("Can't delete entity from table 'country'");
     }
 
     @Override

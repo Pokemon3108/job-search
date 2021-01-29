@@ -7,7 +7,7 @@ import by.daryazalevskaya.finalproject.controller.command.get.RegisterGetCommand
 import by.daryazalevskaya.finalproject.controller.command.validation.RepeatedUserCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.UserValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ValidationCommand;
-import by.daryazalevskaya.finalproject.dao.DaoType;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;

@@ -2,11 +2,8 @@ package by.daryazalevskaya.finalproject.controller.command.get;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
-import by.daryazalevskaya.finalproject.dao.DaoType;
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
-import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.model.type.Gender;
@@ -14,8 +11,6 @@ import by.daryazalevskaya.finalproject.service.CountryService;
 import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
 import by.daryazalevskaya.finalproject.service.ResumeService;
 import by.daryazalevskaya.finalproject.service.SortingService;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
-import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
