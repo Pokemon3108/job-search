@@ -23,7 +23,7 @@ public class UserValidationCommand implements ValidationCommand {
             ++errors;
             request.setAttribute("invalidEmail", true);
         }
-        if (!validator.isPasswordValid(user.getPassword())) {
+        if (!validator.isValidPassword(user.getPassword())) {
             ++errors;
             request.setAttribute("invalidPassword", true);
         }

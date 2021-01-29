@@ -28,9 +28,9 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-    // const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
-    // return re.test(String(password));
-    return password.length > 8;
+     const re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/;
+     return re.test(String(password));
+  //  return password.length > 8;
 }
 
 function hideElement(id) {

@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 
-public class PersonalInfoValidatorTest {
+public class EmployeePersonalInfoValidatorTest {
 
     private EmployeePersonalInfoValidator validator=new EmployeePersonalInfoValidator();
 

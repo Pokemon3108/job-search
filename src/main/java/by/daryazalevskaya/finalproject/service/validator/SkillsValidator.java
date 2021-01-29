@@ -7,7 +7,7 @@ package by.daryazalevskaya.finalproject.service.validator;
  * @version 1.0
  */
 public class SkillsValidator extends Validator {
-    private static final int SKILLS_LENGTH = 1000;
+    private static final int SKILLS_LENGTH = 2000;
     private static final String NOT_TAG_REGEX = "[^<>*]+$";
 
     /**
@@ -16,6 +16,6 @@ public class SkillsValidator extends Validator {
      * @return true if validation is successful, else - false
      */
     public boolean isValidSkills(String skills) {
-        return (super.isValid(NOT_TAG_REGEX, skills) && skills.length() < SKILLS_LENGTH);
+        return (super.isValid(NOT_TAG_REGEX, skills) && skills.length() <= SKILLS_LENGTH);
     }
 }

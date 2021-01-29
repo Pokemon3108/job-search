@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * @version 1.0
  */
 public class UserValidator extends Validator {
-    private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\\w\\s]).{8,}";
+    private static final String PASSWORD_REGEX = "(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}";
     private static final String EMAIL_PATTERN =
          "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 
@@ -19,12 +19,10 @@ public class UserValidator extends Validator {
      * @param password string of company name
      * @return true if password correct, else - false
      */
-    public boolean isPasswordValid(String password) {
-//        Pattern pattern = Pattern.compile(PASSWORD_REGEX);
-//        Matcher matcher = pattern.matcher(password);
-//        return matcher.matches();
-        //TODO password
-       return password.length()>8;
+    public boolean isValidPassword(String password) {
+        Pattern pattern = Pattern.compile(PASSWORD_REGEX);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
     }
 
     /**

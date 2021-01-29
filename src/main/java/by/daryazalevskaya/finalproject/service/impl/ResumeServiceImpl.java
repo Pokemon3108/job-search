@@ -56,7 +56,8 @@ public class ResumeServiceImpl extends ResumeService {
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
         List<Resume> resumeList = resumeDao.findAll();
         resumeList = resumeList.stream().filter(resume -> resume.getPersonalInfo().getId() != null
-                && resume.getJobPreference().getId() != null).collect(Collectors.toList());
+                && resume.getJobPreference().getId() != null
+                && (resume.getSkills()!=null || !resume.getSkills().isEmpty())).collect(Collectors.toList());
         for (Resume resume : resumeList) {
             fillResume(resume);
         }

@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <label for="skills"><fmt:message key="importantSkills" bundle="${ rb }"/></label>
-            <textarea class="form-control" id="skills" rows="3" name="skills" maxlength="1000">${skills}</textarea>
+            <textarea class="form-control" id="skills" rows="3" name="skills" maxlength="2000" required>${skills}</textarea>
         </div>
 
         <div>
