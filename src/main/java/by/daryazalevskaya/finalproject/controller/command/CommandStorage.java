@@ -34,6 +34,8 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.VACANCY_FULL_SHOW, new FullVacancyDescriptionGetCommand());
         getRequestMap.put(UriPattern.EMPLOYEE_VACANCIES, new ShowEmployeeVacanciesCommand());
         getRequestMap.put(UriPattern.FILTER_VACANCIES, new FilterVacanciesCommand());
+        getRequestMap.put(UriPattern.SHOW_RESUME, new ShowResumeCommand());
+        getRequestMap.put(UriPattern.EMPLOYEE_LIST, new ShowAllResumesCommand());
 
         postRequestMap.put(UriPattern.REGISTRATION, new RegisterPostCommand());
         postRequestMap.put(UriPattern.LOGIN, new LoginPostCommand());

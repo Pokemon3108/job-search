@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<c:import url="/view/headers/header-guest.jsp"/>
+<c:import url="/view/imports/header-guest.jsp"/>
 
 
 <div class="container">
@@ -41,6 +41,8 @@
         </div>
     </div>
 </div>
+
+<c:import url="/view/imports/footer.jsp"/>
 
 <script src=<c:url value="/js/language.js"/>>
 </script>

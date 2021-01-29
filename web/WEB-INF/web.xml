@@ -8,15 +8,7 @@
 <!--        <welcome-file>/view/start.jsp</welcome-file>-->
 <!--    </welcome-file-list>-->
 
-    <error-page>
-        <error-code>403</error-code>
-        <location>/view/error/error403.jsp</location>
-    </error-page>
-
-    <error-page>
-        <error-code>404</error-code>
-        <location>/view/error/error404.jsp</location>
-    </error-page>
+<!--   .-->
 
 
     <filter-mapping>
@@ -49,14 +41,14 @@
         <url-pattern>/</url-pattern>
     </filter-mapping>
     
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Hidden jsp</web-resource-name>
-            <url-pattern>/view/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-        </auth-constraint>
-    </security-constraint>
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>Hidden jsp</web-resource-name>-->
+<!--            <url-pattern>/view/*</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
 
     <jsp-config>
         <taglib>

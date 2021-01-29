@@ -18,9 +18,11 @@ import java.util.Optional;
 public class ResumeDaoImpl extends BaseDao implements ResumeDao {
 
 
-    private static final String READ_ALL_QUERY = "SELECT * FROM resume";
+    private static final String READ_ALL_QUERY = "SELECT id , prof_description, usr_id, contact_id," +
+            " personal_info_id, job_preference_id, language_id FROM resume";
 
-    private static final String READ_BY_ID_QUERY = "SELECT * FROM resume WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT id , prof_description, usr_id, contact_id, " +
+            "personal_info_id, job_preference_id, language_id FROM resume WHERE id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO resume " +
             "(usr_id) VALUES (?)";

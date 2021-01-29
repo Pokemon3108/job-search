@@ -14,12 +14,12 @@
 
 <c:choose>
     <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
-        <c:import url="/view/headers/header-employee.jsp"/>
+        <c:import url="/view/imports/header-employee.jsp"/>
         <c:set var="post_path" value="${pageContext.request.contextPath}/job/employee/changeContact"/>
         <c:set var="back_path" value="${pageContext.request.contextPath}/job/employee/resume"/>
     </c:when>
     <c:when test="${sessionScope.role eq 'EMPLOYER'}">
-        <c:import url="/view/headers/header-employer.jsp"/>
+        <c:import url="/view/imports/header-employer.jsp"/>
         <c:set var="post_path" value="${pageContext.request.contextPath}/job/employer/changeContact"/>
         <c:set var="back_path" value="${pageContext.request.contextPath}/job/employer/home"/>
     </c:when>
@@ -91,7 +91,7 @@
         </div>
     </div>
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 
 <script src=<c:url value="/js/contact-form-validation.js"/>>

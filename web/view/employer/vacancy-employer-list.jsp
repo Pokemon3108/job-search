@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<c:import url="/view/headers/header-employer.jsp"/>
+<c:import url="/view/imports/header-employer.jsp"/>
 
 <div class="container">
     <h3 class="vacancy"><fmt:message key="vacancies" bundle="${ rb }"/></h3>
@@ -102,7 +102,7 @@
     </c:forEach>
 
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 
 

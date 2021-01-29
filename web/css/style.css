@@ -1,6 +1,14 @@
-/*.container {*/
-/*    max-width: 750px !important;*/
-/*}*/
+
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
+footer {
+    margin-top: 1rem;
+    text-align: center;
+}
 
 .card-body {
     background-color: #AFEEEE !important;
@@ -25,5 +33,17 @@
     font-size: 18px;
     margin-top: 1.5em;
 }
+
+.resume-list-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.center {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 
 

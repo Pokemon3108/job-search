@@ -8,17 +8,16 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="script" href="<c:url value="/js/language.js"/>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
 
-<footer class="bg-light text-center text-lg-start">
+<footer class="text-center text-lg-start">
 
     <div class="text-center p-3" style="background-color: #40E0D0">
         <c:forEach items="${languages}" var="lang">
-            <a class="text-dark"  href="${pageContext.request.contextPath}/job/changeLocale?lang=${lang}" > <fmt:message key="${lang.viewName}" bundle="${ rb }"/></a>
+            <a class="text-dark font-weight-bold" onclick="changeLangByLink('${lang}');" href="#" > <fmt:message key="${lang.viewName}" bundle="${ rb }"/></a>
         </c:forEach>
 
         <p>

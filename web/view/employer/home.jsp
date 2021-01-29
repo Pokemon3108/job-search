@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
-<c:import url="/view/headers/header-employer.jsp"/>
+<c:import url="/view/imports/header-employer.jsp"/>
 
 <div class="container">
     <div class="card-deck">
@@ -61,7 +61,7 @@
         </div>
     </div>
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 
 </body>
 </html>

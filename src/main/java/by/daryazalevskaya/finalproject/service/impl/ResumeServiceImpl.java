@@ -11,8 +11,8 @@ import by.daryazalevskaya.finalproject.model.employee.*;
 import by.daryazalevskaya.finalproject.service.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ResumeServiceImpl extends ResumeService {
 
@@ -22,8 +22,11 @@ public class ResumeServiceImpl extends ResumeService {
             return Optional.empty();
         }
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
-        return resumeDao.read(id);
-
+        Optional<Resume> resume = resumeDao.read(id);
+        if (resume.isPresent()) {
+            fillResume(resume.get());
+        }
+        return resume;
     }
 
     @Override
@@ -51,12 +54,18 @@ public class ResumeServiceImpl extends ResumeService {
     @Override
     public List<Resume> findAll() throws DaoException {
         ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
-        return resumeDao.findAll();
+        List<Resume> resumeList = resumeDao.findAll();
+        resumeList = resumeList.stream().filter(resume -> resume.getPersonalInfo().getId() != null
+                && resume.getJobPreference().getId() != null).collect(Collectors.toList());
+        for (Resume resume : resumeList) {
+            fillResume(resume);
+        }
+        return resumeList;
     }
 
     @Override
     public void fillResume(Resume resume) throws DaoException {
-        ContactService contactService=new ContactServiceImpl();
+        ContactService contactService = new ContactServiceImpl();
         contactService.setTransaction(transaction);
         Optional<Contact> contact = contactService.read(resume.getContact().getId());
         contact.ifPresent(resume::setContact);
@@ -71,9 +80,9 @@ public class ResumeServiceImpl extends ResumeService {
         Optional<JobPreference> preference = preferenceService.read(resume.getJobPreference().getId());
         preference.ifPresent(resume::setJobPreference);
 
-        EmployeeLanguageService languageService=new EmployeeLanguageServiceImpl();
+        EmployeeLanguageService languageService = new EmployeeLanguageServiceImpl();
         languageService.setTransaction(transaction);
-        Optional<EmployeeLanguage> language=languageService.read(resume.getLanguage().getId());
+        Optional<EmployeeLanguage> language = languageService.read(resume.getLanguage().getId());
         language.ifPresent(resume::setLanguage);
     }
 
@@ -91,7 +100,7 @@ public class ResumeServiceImpl extends ResumeService {
     }
 
     @Override
-    public Optional<Resume> findResumeByUserId(Integer userId) throws  DaoException {
+    public Optional<Resume> findResumeByUserId(Integer userId) throws DaoException {
         EmployeeService employeeService = new EmployeeServiceImpl();
         employeeService.setTransaction(transaction);
         Optional<Employee> employee = employeeService.read(userId);

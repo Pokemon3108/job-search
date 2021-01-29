@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<c:import url="/view/headers/header-employer.jsp"/>
+<c:import url="/view/imports/header-employer.jsp"/>
 
 <div class="container">
     <h1 class="text-center my-sm-3"><fmt:message key="persInfo" bundle="${ rb }"/></h1>
@@ -92,6 +92,6 @@
     </div>
 </div>
 
-
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 </html>

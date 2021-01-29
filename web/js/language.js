@@ -11,7 +11,10 @@ function getLanguage() {
             locale=radio.value;
         }
     }
+    changeLangByLink(locale);
+}
 
+function changeLangByLink(locale) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         location.reload();

@@ -65,8 +65,8 @@
     </nav>
 </header>
 
-<c:import url="/view/headers/localization.jsp"/>
-<c:import url="/view/headers/delete-acc.jsp"/>
+<c:import url="/view/imports/localization.jsp"/>
+<c:import url="/view/imports/delete-acc.jsp"/>
 
 
 

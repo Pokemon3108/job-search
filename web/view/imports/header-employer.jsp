@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/seeEmployee">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/job/employer/seeEmployees">
                             <h5><fmt:message key="seeEmployee" bundle="${ rb }"/></h5>
                         </a>
                     </li>
@@ -73,8 +73,8 @@
     </nav>
 </header>
 
-<c:import url="/view/headers/delete-acc.jsp"/>
-<c:import url="/view/headers/localization.jsp"/>
+<c:import url="/view/imports/delete-acc.jsp"/>
+<c:import url="/view/imports/localization.jsp"/>
 
 </body>
 

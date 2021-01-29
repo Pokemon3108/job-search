@@ -16,13 +16,13 @@
 
 <c:choose>
     <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
-        <c:import url="/view/headers/header-employee.jsp"/>
+        <c:import url="/view/imports/header-employee.jsp"/>
     </c:when>
     <c:when test="${sessionScope.role eq 'EMPLOYER'}">
-        <c:import url="/view/headers/header-employer.jsp"/>
+        <c:import url="/view/imports/header-employer.jsp"/>
     </c:when>
     <c:when test="${sessionScope.role==null}">
-        <c:import url="/view/headers/header-guest.jsp"/>
+        <c:import url="/view/imports/header-guest.jsp"/>
     </c:when>
 </c:choose>
 
@@ -77,8 +77,6 @@
                         <button class="btn btn-success" value="1" name="currentPage" >
                             <fmt:message key="search" bundle="${ rb }"/>
                         </button>
-<%--                        <input type="submit" class="btn btn-success" value=--%>
-<%--                                <fmt:message key="search" bundle="${ rb }"/> />--%>
                     </div>
 
                 </div>
@@ -126,13 +124,13 @@
                 <c:set var="paginationPath" scope="session" value="/job/filterVacancies?currentPage=" />
             </c:if>
 
-            <c:import url="/view/headers/pagination.jsp"/>
+            <c:import url="/view/imports/pagination.jsp"/>
             </form>
         </div>
 
     </div>
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 
 </body>
 </html>

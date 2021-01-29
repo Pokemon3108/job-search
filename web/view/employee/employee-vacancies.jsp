@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css">
 </head>
 <body>
-<c:import url="/view/headers/header-employee.jsp"/>
+<c:import url="/view/imports/header-employee.jsp"/>
 
 <div class="container">
     <h3 class="vacancy"><fmt:message key="vacancies" bundle="${ rb }"/></h3>
@@ -53,6 +53,6 @@
     </c:forEach>
 
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 </html>

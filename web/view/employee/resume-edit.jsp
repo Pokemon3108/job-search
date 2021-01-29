@@ -13,7 +13,7 @@
 <body>
 
 
-<c:import url="/view/headers/header-employee.jsp"/>
+<c:import url="/view/imports/header-employee.jsp"/>
 
 
 <div class="container">
@@ -160,6 +160,7 @@
     </div>
 
 </div>
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 <script src="https://kit.fontawesome.com/8350b1f3e1.js" crossorigin="anonymous"></script>
 </html>

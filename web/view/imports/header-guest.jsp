@@ -17,7 +17,7 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
 
         <div class="header-container">
 
@@ -59,7 +59,7 @@
     </nav>
 </header>
 
-<c:import url="/view/headers/localization.jsp"/>
+<c:import url="/view/imports/localization.jsp"/>
 
 </body>
 

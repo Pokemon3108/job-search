@@ -8,12 +8,13 @@
 <html>
 <head>
     <title>Resume</title>
-    <link id="theme-style" rel="stylesheet" href="/css/resume.css">
+    <link rel="stylesheet" href="<c:url value="/css/resume.css"/>" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
 
+<c:import url="/view/imports/header-employer.jsp"/>
 <div class="wrapper">
     <div class="sidebar-wrapper">
         <div class="profile-container">
@@ -39,9 +40,10 @@
                     <li class="email"><i class="fa fa-envelope"></i><a
                             href="mailto: ${resume.contact.email}">${resume.contact.email}</a>
                     </li>
-                    <li class="phone"><i class="fa fa-phone"></i><a href="tel:${resume.contact.telephone}">${resume.contact.telephone}</a></li>
+                    <li class="phone"><i class="fa fa-phone"></i><a
+                            href="tel:${resume.contact.telephone}">${resume.contact.telephone}</a></li>
                     <c:if test="${resume.contact.skype!=null}">
-                    <li class="skype"><i class="fa fa-skype"></i><a href="#" target="_blank">${resume.contact.skype}</a></li>
+                        <li class="skype"><i class="fa fa-skype"></i>${resume.contact.skype}</li>
                     </c:if>
                 </c:if>
             </ul>
@@ -64,6 +66,7 @@
             <div class="summary">
                 <c:if test="${resume.personalInfo.gender!=null}">
                     <c:set var="gender" value="${resume.personalInfo.gender}"/>
+                    <strong> <fmt:message key="gender" bundle="${ rb }"/></strong>;
                     <fmt:message key="${fn:toLowerCase(gender)}" bundle="${ rb }"/>
                 </c:if>
                 <ctg:age birthday="${resume.personalInfo.birthday}"/>
@@ -74,15 +77,18 @@
             <h2 class="section-title"><i class="fa fa-user"></i><fmt:message key="jobPreference" bundle="${ rb }"/></h2>
             <div class="summary">
                 <ul>
-                    <li><fmt:message key="specialization" bundle="${ rb }"/> ${resume.jobPreference.specialization}</li>
+                    <li>
+                        <strong><fmt:message key="specialization" bundle="${ rb }"/> </strong>
+                        ${resume.jobPreference.specialization.name}</li>
                     <li>
                         <c:if test='${resume.jobPreference.salary!=null}'>
-                            <fmt:message key="salary" bundle="${ rb }"/>:
+                            <strong><fmt:message key="salary" bundle="${ rb }"/>:</strong>
                             ${resume.jobPreference.salary} ${resume.jobPreference.currency}
                         </c:if>
                     </li>
                     <li>
-                        <c:if test='${resume.jobPreference.experience!=null}'>:
+                        <c:if test='${resume.jobPreference.experience!=null}'>
+                            <strong> <fmt:message key="experience" bundle="${ rb }"/>: </strong>
                             ${resume.jobPreference.experience}
                             <fmt:message key="years" bundle="${ rb }"/>
                         </c:if>
@@ -101,7 +107,7 @@
 
     </div>
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 
 <script src="https://kit.fontawesome.com/8350b1f3e1.js" crossorigin="anonymous"></script>

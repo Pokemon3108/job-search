@@ -15,7 +15,7 @@
 </head>
 <body onload="selectCountry('${info.country.name}'); selectGender('${info.gender}')">
 
-<c:import url="/view/headers/header-employee.jsp"/>
+<c:import url="/view/imports/header-employee.jsp"/>
 
 <div class="container">
     <h1 class="text-center my-sm-3"><fmt:message key="persInfo" bundle="${ rb }"/></h1>
@@ -137,7 +137,7 @@
         </div>
     </div>
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 
 <script src=<c:url value="/js/personal-info-validation.js"/>>

@@ -17,7 +17,7 @@
 <body onload="selectCurrency('${preference.currency}');
         selectSchedule('${preference.schedule}')">
 
-<c:import url="/view/headers/header-employee.jsp"/>
+<c:import url="/view/imports/header-employee.jsp"/>
 
 <div class="container">
     <h1 class="text-center my-sm-3"><fmt:message key="jobPreference" bundle="${ rb }"/></h1>
@@ -136,7 +136,7 @@
 </div>
 
 </body>
-
+<c:import url="/view/imports/footer.jsp"/>
 <script src=<c:url value="/js/job-preference-validation.js"/>>
 </script>
 

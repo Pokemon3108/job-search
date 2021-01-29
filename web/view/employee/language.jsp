@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<c:import url="/view/headers/header-employee.jsp"/>
+<c:import url="/view/imports/header-employee.jsp"/>
 
 
 <div class="container">
@@ -70,6 +70,6 @@
     </div>
 </div>
 
-
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 </html>

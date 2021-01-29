@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<c:import url="/view/headers/header-employer.jsp"/>
+<c:import url="/view/imports/header-employer.jsp"/>
 
 <div class="container">
     <h1 class="text-center my-sm-3"><fmt:message key="vacancy" bundle="${ rb }"/></h1>
@@ -156,7 +156,7 @@
         </div>
     </div>
 </div>
-
+<c:import url="/view/imports/footer.jsp"/>
 <script src=<c:url value="/js/vacancy-form-validation.js"/>>
 </script>
 

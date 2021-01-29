@@ -19,13 +19,13 @@
 
 <c:choose>
     <c:when test="${sessionScope.role eq 'EMPLOYEE'}">
-        <c:import url="/view/headers/header-employee.jsp"/>
+        <c:import url="/view/imports/header-employee.jsp"/>
     </c:when>
     <c:when test="${sessionScope.role eq 'EMPLOYER'}">
-        <c:import url="/view/headers/header-employer.jsp"/>
+        <c:import url="/view/imports/header-employer.jsp"/>
     </c:when>
     <c:when test="${sessionScope.role==null}">
-        <c:import url="/view/headers/header-guest.jsp"/>
+        <c:import url="/view/imports/header-guest.jsp"/>
     </c:when>
 </c:choose>
 
@@ -102,7 +102,7 @@
 
 </div>
 
-<%--<c:import url="/view/headers/footer.jsp"/>--%>
+<c:import url="/view/imports/footer.jsp"/>
 </body>
 
 <script src=<c:url value="/js/user-form-validation.js"/>>
