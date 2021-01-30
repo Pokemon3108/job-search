@@ -2,7 +2,6 @@ package by.daryazalevskaya.finalproject.dao.impl;
 
 import by.daryazalevskaya.finalproject.dao.EmployerDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import by.daryazalevskaya.finalproject.service.dbcreator.EmployerCreator;
 import by.daryazalevskaya.finalproject.service.sql.EmployerStatementFormer;
@@ -80,7 +79,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
     }
 
     @Override
-    public void createContact(int employerId, int contactId) throws DaoException {
+    public void createContact(Integer employerId, Integer contactId) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(CREATE_CONTACT)) {
             statement.setInt(1, contactId);
             statement.setInt(2, employerId);
@@ -91,7 +90,7 @@ public class EmployerDaoImpl extends BaseDao implements EmployerDao {
     }
 
     @Override
-    public Integer findUserIdByCompany(String company) throws DaoException {
+    public Integer readUserIdByCompany(String company) throws DaoException {
         ResultSet set = null;
         try (PreparedStatement statement = connection.prepareStatement(FIND_EMPLOYER_BY_COMPANY_NAME)) {
             statement.setString(1, company);

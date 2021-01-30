@@ -20,6 +20,11 @@ public class EmployeeLanguage extends Entity {
         this.level=level;
     }
 
+    public EmployeeLanguage(Language name, LanguageLevel level) {
+        this.name=name;
+        this.level=level;
+    }
+
     private Language name;
     private LanguageLevel level;
 }

@@ -1,20 +1,19 @@
 package finalproject.dao.impl;
 
-import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.NoEntityInDataBaseException;
 import by.daryazalevskaya.finalproject.dao.impl.JobPreferenceDaoImpl;
-import by.daryazalevskaya.finalproject.model.Contact;
-import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.Specialization;
-import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.type.Currency;
-import by.daryazalevskaya.finalproject.model.type.Role;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -90,7 +89,6 @@ public class JobPreferenceDaoImplTest {
     public void readTest(JobPreference preference, Integer id) throws DaoException {
         Assert.assertEquals(preference, dao.read(id).get());
     }
-
 
     @Test
     public void updateTest() throws DaoException, NoEntityInDataBaseException {

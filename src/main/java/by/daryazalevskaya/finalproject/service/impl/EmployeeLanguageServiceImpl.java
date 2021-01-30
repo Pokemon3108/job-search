@@ -31,7 +31,7 @@ public class EmployeeLanguageServiceImpl extends EmployeeLanguageService {
         EmployeeLanguageDao dao = transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
         Optional<EmployeeLanguage> employeeLanguage= dao.read(id);
         if (employeeLanguage.isPresent()) {
-            Optional<Language> language = dao.findLanguageFromCatalog(employeeLanguage.get().getName().getId());
+            Optional<Language> language = dao.readLanguageFromCatalog(employeeLanguage.get().getName().getId());
             language.ifPresent(lang->employeeLanguage.get().setName(lang));
         }
         return employeeLanguage;
@@ -62,6 +62,6 @@ public class EmployeeLanguageServiceImpl extends EmployeeLanguageService {
     @Override
     public List<Language> findAllLanguages() throws DaoException {
         EmployeeLanguageDao dao = transaction.createDao(DaoType.EMPLOYEE_LANGUAGE);
-        return dao.findAllLanguages();
+        return dao.readAllLanguages();
     }
 }

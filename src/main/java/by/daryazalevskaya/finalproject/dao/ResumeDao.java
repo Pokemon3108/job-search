@@ -17,6 +17,6 @@ public interface ResumeDao extends Dao<Resume> {
 
     void createJobPreference(Resume resume) throws DaoException;
 
-    void createLanguage(Resume resume) throws DaoException;
+    void createEmployeeLanguage(Resume resume) throws DaoException;
 
 }

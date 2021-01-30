@@ -106,7 +106,7 @@ public class EmployerServiceImpl extends EmployerService {
     @Override
     public boolean containsCompanyName(String company, Integer userId) throws DaoException {
         EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-        return employerDao.findUserIdByCompany(company)!=userId;
+        return employerDao.readUserIdByCompany(company)!=userId;
     }
 
 }

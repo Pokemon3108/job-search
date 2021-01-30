@@ -100,7 +100,7 @@ CREATE TABLE employee
 CREATE TABLE employer
 (
     user_id      INTEGER REFERENCES usr (id),
-    company_name VARCHAR(50) NOT NULL UNIQUE,
+    company_name VARCHAR(50)  UNIQUE,
     country      INTEGER REFERENCES country (id),
     city         VARCHAR(100),
     contact_id   INTEGER REFERENCES contact (id),

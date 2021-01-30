@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeLanguageDao extends Dao<EmployeeLanguage> {
-    List<Language> findAllLanguages() throws DaoException;
+    List<Language> readAllLanguages() throws DaoException;
 
-    Optional<Language> findLanguageFromCatalog(Integer id) throws DaoException;
+    Optional<Language> readLanguageFromCatalog(Integer id) throws DaoException;
 }

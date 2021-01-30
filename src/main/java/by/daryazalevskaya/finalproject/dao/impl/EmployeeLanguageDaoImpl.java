@@ -19,7 +19,7 @@ public class EmployeeLanguageDaoImpl extends BaseDao implements EmployeeLanguage
 
     private static final String READ_ALL_RESUME_LANGUAGES_QUERY = "SELECT level, language_id FROM resume_languages";
     private static final String UPDATE_QUERY = "UPDATE resume_languages SET  language_id = ?, level=?::lang_level WHERE id=?";
-    private static final String READ_BY_ID_QUERY = "SELECT language_id, level FROM resume_languages WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT language_id, level, id FROM resume_languages WHERE id=?";
     private static final String CREATE_QUERY = "INSERT INTO resume_languages (language_id, level) VALUES (?, ?::lang_level)";
     private static final String DELETE_QUERY = "DELETE FROM resume_languages WHERE id =?";
 
@@ -60,12 +60,12 @@ public class EmployeeLanguageDaoImpl extends BaseDao implements EmployeeLanguage
     }
 
     @Override
-    public List<Language> findAllLanguages() throws DaoException {
+    public List<Language> readAllLanguages() throws DaoException {
         return super.findAll(FIND_ALL_LANGUAGES, new LanguageCreator());
     }
 
     @Override
-    public Optional<Language> findLanguageFromCatalog(Integer id) throws DaoException {
+    public Optional<Language> readLanguageFromCatalog(Integer id) throws DaoException {
         return super.readById(id, FIND_LANGUAGE_FROM_LANGUAGE_CATALOG_BY_ID,  new LanguageCreator());
     }
 }

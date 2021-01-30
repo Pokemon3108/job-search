@@ -166,7 +166,7 @@ public class ResumeServiceImpl extends ResumeService {
         try {
             resume.setLanguage(language);
             ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
-            resumeDao.createLanguage(resume);
+            resumeDao.createEmployeeLanguage(resume);
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);

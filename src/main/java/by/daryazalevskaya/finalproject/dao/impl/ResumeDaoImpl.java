@@ -2,6 +2,7 @@ package by.daryazalevskaya.finalproject.dao.impl;
 
 import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
+import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.service.dbcreator.ResumeCreator;
@@ -74,15 +75,8 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     }
 
     @Override
-    public void update(Resume entity) throws DaoException {
-        try (PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
-            StatementFormer<Resume> former = new ResumeStatementFormer();
-            former.fillStatement(statement, entity);
-            statement.setInt(6, entity.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
+    public void update(Resume entity) {
+        throw new IllegalOperationException("Can't change foreign keys in table 'resume'. Update runs by part.");
     }
 
     @Override
@@ -122,7 +116,7 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
     }
 
     @Override
-    public void createLanguage(Resume resume) throws DaoException {
+    public void createEmployeeLanguage(Resume resume) throws DaoException {
         createField(resume.getLanguage().getId(), resume.getId(), CREATE_LANGUAGE);
     }
 
