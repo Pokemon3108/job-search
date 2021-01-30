@@ -7,10 +7,7 @@ import by.daryazalevskaya.finalproject.dao.impl.ResumeDaoImpl;
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.User;
-import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
-import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
-import by.daryazalevskaya.finalproject.model.employee.JobPreference;
-import by.daryazalevskaya.finalproject.model.employee.Resume;
+import by.daryazalevskaya.finalproject.model.employee.*;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import org.testng.Assert;
@@ -53,7 +50,7 @@ public class ResumeDaoImplTest {
     @DataProvider(name = "resume")
     public Object[][] createResume() {
         Resume resume=Resume.builder()
-                .user(new User(4))
+                .employee(new Employee(4))
                 .build();
         return new Object[][]{{resume}};
     }
@@ -73,7 +70,7 @@ public class ResumeDaoImplTest {
                 .skills("Good")
                 .jobPreference(new JobPreference(5))
                 .personalInfo(new EmployeePersonalInfo(2))
-                .user(new User(1))
+                .employee(new Employee(1))
                 .language(new EmployeeLanguage(1))
                 .id(id)
                 .build();

@@ -65,6 +65,27 @@ VALUES (1, 1),
 
 
 
+INSERT INTO vacancy(id, position, city, salary, schedule, currency, duties, requirements, country_id, specialization_id,
+                    employer_id)
+VALUES (1, 'Teacher', 'Minsk', 100, 'FULL_DAY', 'EUR', 'teach math', 'high education', 12, 2, 3),
+       (2, 'Software developer', 'Moscow', 3600, 'PART_TIME', 'USD', 'My name is...', 'Good job', 2, 13, 6),
+       (3, 'Doctor', 'Warsaw', 500, 'PART_TIME', 'EUR', 'traet patients', 'high education', 5, 12, 6),
+       (4, 'Builder', 'Munchen', 789, 'FULL_DAY', 'EUR', 'build house', 'education', 34, 11, 3),
+       (5, 'Head engineer', 'Minsk', 230, 'FULL_DAY', 'BYN', 'create embedded systems', 'high education', 12, 12, 8),
+       (6, 'Lead engineer', 'Boston', 6000, 'FULL_DAY', 'USD', 'create systems with arduino', 'experience 5+ years, high education', 12, 12, 8),
+       (7, 'Senior developer', 'Boston', 6000, 'REMOTE_JOB', 'USD', 'create systems with python', 'experience 5+ years, high education', 12, 12, 8),
+       (8, 'Head engineer', 'Moscow', 500, 'FULL_DAY', 'USD', 'create embedded systems', 'high education', 12, 12, 8);
+
+SELECT setval('vacancy_id_seq', (SELECT MAX(id) from vacancy));
+
+
+INSERT INTO employee_vacancies(id, employee_id, vacancy_id)
+VALUES (1, 1, 1),
+       (2, 1, 2),
+       (3, 4, 1);
+
+
+
 
 
 

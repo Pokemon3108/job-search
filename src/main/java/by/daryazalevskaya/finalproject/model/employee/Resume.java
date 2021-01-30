@@ -23,7 +23,7 @@ public class Resume extends Entity {
 
     private LocalDate update;
     private String skills;
-    private User user;
+    private Employee employee;
     private Contact contact;
     private EmployeePersonalInfo personalInfo;
     private JobPreference jobPreference;

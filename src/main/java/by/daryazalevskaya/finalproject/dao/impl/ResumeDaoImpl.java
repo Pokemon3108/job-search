@@ -52,7 +52,7 @@ public class ResumeDaoImpl extends BaseDao implements ResumeDao {
         Integer id = null;
 
         try (PreparedStatement statement = connection.prepareStatement(CREATE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, entity.getUser().getId());
+            statement.setInt(1, entity.getEmployee().getId());
             statement.executeUpdate();
 
             resultSet = statement.getGeneratedKeys();

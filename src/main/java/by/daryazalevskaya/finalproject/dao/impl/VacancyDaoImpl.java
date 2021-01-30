@@ -45,7 +45,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String READ_VACANCIES_BY_SPECIALIZATION_ID = "SELECT city, " +
             "salary, position, currency, id  FROM vacancy " +
-            "WHERE specialization_id=?";
+            "WHERE specialization_id=? LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_SPEC = "SELECT count(*) FROM vacancy WHERE specialization_id=?";
 
@@ -84,7 +84,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             "WHERE country_id=? AND position=? AND specialization_id=? LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_COUNTRY_AND_POSITION_AND_SPECIALIZATION
-            = "SELECT count(*) FROM vacancy WHERE country_id=? AND position=? AND specialization_id=? LIMIT ? OFFSET ?";
+            = "SELECT count(*) FROM vacancy WHERE country_id=? AND position=? AND specialization_id=?";
 
     private static final String DELETE_EMPLOYEE_VACANCY = "DELETE FROM employee_vacancies WHERE vacancy_id=?";
 
@@ -365,7 +365,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
         SearchVacancyFormer former = (statement -> {
             statement.setInt(1, countryId);
             statement.setString(2, position);
-            statement.setInt(3, countryId);
+            statement.setInt(3, specializationId);
         });
         return countByParam(former, COUNT_BY_COUNTRY_AND_POSITION_AND_SPECIALIZATION);
     }

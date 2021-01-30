@@ -92,7 +92,7 @@ public class ResumeServiceImpl extends ResumeService {
         try {
             ResumeDao resumeDao = transaction.createDao(DaoType.RESUME);
             Resume resume = new Resume();
-            resume.setUser(new User(employee.getId()));
+            resume.setEmployee(employee);
             return resumeDao.create(resume);
         } catch (DaoException | InsertIdDataBaseException ex) {
             transaction.rollback();
