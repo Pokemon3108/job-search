@@ -20,7 +20,7 @@ public class DeleteEmployeeVacancy extends ActionCommand {
         VacancyComplicatedService service= (VacancyComplicatedService) serviceFactory.createService(DaoType.COMPLICATED_VACANCY);
         Integer vacancyId = Integer.parseInt(request.getParameter("vacancyId"));
         try {
-            service.deleteVacancy(vacancyId);
+            service.deleteEmployeeVacancy(vacancyId);
             response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_VACANCIES.getUrl());
         } catch (DaoException | TransactionException e) {
             log.error(e);

@@ -28,10 +28,10 @@
                     <fmt:message key="lang" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="language">
                         <c:forEach items="${allLanguages}" var="langArr">
-                            <c:if test="${userLanguage.id==langArr.id}">
+                            <c:if test="${userLanguage.name.id==langArr.id}">
                                 <option name="language" value="${langArr.id}" selected>${langArr.name}</option>
                             </c:if>
-                            <c:if test="${language.id!=langArr.id}">
+                            <c:if test="${userLanguage.id!=langArr.id}">
                                 <option name="language" value="${langArr.id}">${langArr.name}</option>
                             </c:if>>
                         </c:forEach>

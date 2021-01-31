@@ -1,4 +1,4 @@
-\c job_search;
+\c job_search_test;
 
 CREATE TABLE IF NOT EXISTS contact
 (

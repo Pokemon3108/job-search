@@ -1,14 +1,18 @@
+
 package finalproject.dao.impl;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.impl.VacancyDaoImpl;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class VacancyDaoImplTest {
@@ -49,7 +53,7 @@ public class VacancyDaoImplTest {
         return new Object[][]{
                 {3, 2},
                 {6, 2},
-                {8, 1}
+                {8, 4}
         };
     }
 
@@ -75,18 +79,46 @@ public class VacancyDaoImplTest {
     @DataProvider(name = "vacanciesBySpecializations")
     public Object[][] vacanciesAmountBySpec() {
         return new Object[][]{
-                {12, 2},
+                {12, 5},
                 {2, 1},
                 {1, 0}
         };
     }
 
     @Test(dataProvider = "vacanciesBySpecializations")
-    public void readVacanciesBySpecializationIdTest(Integer specializationId, int amount) throws DaoException {
-        final int limit = 999;
-        final int offset = 0;
-        Assert.assertEquals(dao.readVacanciesBySpecializationId(specializationId, limit, offset).size(), amount);
+    public void countVacanciesBySpecializationIdTest(Integer specializationId, Integer amount) throws DaoException {
+        Assert.assertEquals(dao.countVacanciesBySpecializationId(specializationId), amount);
     }
+
+
+    @DataProvider(name = "vacanciesByCountry")
+    public Object[][] vacanciesAmountByCountry() {
+        return new Object[][]{
+                {12, 5},
+                {34, 1},
+                {1, 0}
+        };
+    }
+
+    @Test(dataProvider = "vacanciesByCountry")
+    public void countVacanciesByCountryIdTest(Integer countryId, Integer amount) throws DaoException {
+        Assert.assertEquals(dao.countVacanciesByCountryId(countryId), amount);
+    }
+
+    @DataProvider(name = "vacanciesByPosition")
+    public Object[][] vacanciesAmountByPosition() {
+        return new Object[][]{
+                {"Teacher", 1},
+                {"Head engineer", 2},
+                {"Master", 0}
+        };
+    }
+
+    @Test(dataProvider = "vacanciesByPosition")
+    public void countVacanciesByPositionTest(String position, Integer amount) throws DaoException {
+        Assert.assertEquals(dao.countVacanciesByPosition(position), amount);
+    }
+
 
     @DataProvider(name = "vacanciesBySpecializationsAndCountry")
     public Object[][] vacanciesAmountBySpecAndCountry() {
@@ -96,9 +128,40 @@ public class VacancyDaoImplTest {
         };
     }
 
+
     @Test(dataProvider = "vacanciesBySpecializationsAndCountry")
     public void countVacanciesBySpecializationIdAndCountryIdTest(Integer specializationId, Integer countryId, Integer amount) throws DaoException {
         Assert.assertEquals(dao.countVacanciesBySpecializationIdAndCountryId(specializationId, countryId), amount);
+    }
+
+    @DataProvider(name = "vacanciesByPositionAndCountry")
+    public Object[][] vacanciesAmountByPositionAndCountry() {
+        return new Object[][]{
+                {"Head engineer", 12, 2},
+                {"Doctor", 5, 1},
+                {"House keeping manager", 5, 0}
+        };
+    }
+
+    @Test(dataProvider = "vacanciesByPositionAndCountry")
+    public void countVacanciesByPositionAndCountryIdTest(String position, Integer countryId, Integer amount) throws DaoException {
+        Assert.assertEquals(dao.countVacanciesByPositionAndCountryId(position, countryId), amount);
+    }
+
+    @DataProvider(name = "vacanciesByPositionAndSpec")
+    public Object[][] vacanciesByPositionAndSpecializationId() {
+        return new Object[][]{
+                {"Doctor", 12, 1},
+                {"Head engineer", 12, 2},
+                {"Builder", 11, 1},
+                {"Doctor", 11, 0},
+
+        };
+    }
+
+    @Test(dataProvider = "vacanciesByPositionAndSpec")
+    public void countVacanciesByPositionAndSpecializationIdTest(String position, Integer specId, Integer amount) throws DaoException {
+        Assert.assertEquals(dao.countVacanciesByPositionAndSpecializationId(position, specId), amount);
     }
 
     @DataProvider(name = "vacanciesBySpecializationsAndCountryAndPosition")
