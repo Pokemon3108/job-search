@@ -58,7 +58,7 @@ To start, you can register or get access to functional of non-authorized users.
 ___
 ## Database structure
 
-![](https://github.com/Pokemon3108/job-search/readme/db_structure.png "Job_search_db")
+![](https://github.com/Pokemon3108/job-search/blob/master/readme/db-structure.png "Job_search_db")
 ___
 ## Technologies
 
