@@ -1,19 +1,12 @@
 package finalproject.dao.impl;
 
-import by.daryazalevskaya.finalproject.dao.EmployeePersonalInfoDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.NoEntityInDataBaseException;
-import by.daryazalevskaya.finalproject.dao.impl.CountryDaoImpl;
 import by.daryazalevskaya.finalproject.dao.impl.EmployeePersonalInfoDaoImpl;
 import by.daryazalevskaya.finalproject.model.Country;
-import by.daryazalevskaya.finalproject.model.Specialization;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
-import by.daryazalevskaya.finalproject.model.employee.JobPreference;
-import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Gender;
-import by.daryazalevskaya.finalproject.model.type.Schedule;
-import lombok.Data;
 import org.testng.Assert;
 import org.testng.annotations.*;
 

@@ -44,7 +44,7 @@ public class EmployeeDaoImplTest {
     }
 
     @DataProvider(name = "employeeCreate")
-    public Object[][] createEmployer() {
+    public Object[][] createEmployee() {
         final Integer userId = 1;
         Employee employee = new Employee(userId);
         employee.setResume(new Resume(1));

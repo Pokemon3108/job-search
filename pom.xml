@@ -7,6 +7,9 @@
     <groupId>org.example</groupId>
     <artifactId>final-project</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>finalproject</name>
+    <packaging>war</packaging>
+
     <build>
         <plugins>
             <plugin>
@@ -16,6 +19,11 @@
                     <source>13</source>
                     <target>13</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
             </plugin>
         </plugins>
     </build>
