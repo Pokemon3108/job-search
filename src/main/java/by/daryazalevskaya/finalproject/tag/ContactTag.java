@@ -1,7 +1,7 @@
 package by.daryazalevskaya.finalproject.tag;
 
 import by.daryazalevskaya.finalproject.model.Contact;
-import by.daryazalevskaya.finalproject.service.LocaleService;
+import by.daryazalevskaya.finalproject.service.utils.LocaleService;
 import lombok.Setter;
 
 import javax.servlet.jsp.JspException;

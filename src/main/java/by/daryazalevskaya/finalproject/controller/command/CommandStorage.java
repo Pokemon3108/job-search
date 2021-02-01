@@ -1,8 +1,15 @@
 package by.daryazalevskaya.finalproject.controller.command;
 
 import by.daryazalevskaya.finalproject.controller.UriPattern;
-import by.daryazalevskaya.finalproject.controller.command.get.*;
-import by.daryazalevskaya.finalproject.controller.command.post.*;
+import by.daryazalevskaya.finalproject.controller.command.allRoles.ChangeLocaleCommand;
+import by.daryazalevskaya.finalproject.controller.command.allRoles.FilterVacanciesCommand;
+import by.daryazalevskaya.finalproject.controller.command.allRoles.FullVacancyDescriptionGetCommand;
+import by.daryazalevskaya.finalproject.controller.command.allRoles.ShowAllVacanciesCommand;
+import by.daryazalevskaya.finalproject.controller.command.employee.*;
+import by.daryazalevskaya.finalproject.controller.command.employer.*;
+import by.daryazalevskaya.finalproject.controller.command.guest.*;
+import by.daryazalevskaya.finalproject.controller.command.user.DeleteAccountCommand;
+import by.daryazalevskaya.finalproject.controller.command.user.LogoutCommand;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -18,14 +25,14 @@ public class CommandStorage {
         getRequestMap.put(UriPattern.REGISTRATION, new RegisterGetCommand());
         getRequestMap.put(UriPattern.CHANGE_LOCALE, new ChangeLocaleCommand());
         getRequestMap.put(UriPattern.LOGIN, new LoginGetCommand());
-        getRequestMap.put(UriPattern.EMPLOYEE_HOME, new ResumeGetCommand());
+        getRequestMap.put(UriPattern.EMPLOYEE_HOME, new EmployeeResumeGetCommand());
         getRequestMap.put(UriPattern.EMPLOYER_HOME, new EmployerHomeCommand());
         getRequestMap.put(UriPattern.CHANGE_EMPLOYEE_CONTACT, new ContactEmployeeGetCommand());
         getRequestMap.put(UriPattern.CHANGE_EMPLOYEE_INFO, new PersonalInfoGetCommand());
-        getRequestMap.put(UriPattern.CHANGE_EMPLOYEE_SKILLS, new EmployeeSkillsGetCommand());
+        getRequestMap.put(UriPattern.CHANGE_EMPLOYEE_SKILLS, new SkillsEmployeeGetCommand());
         getRequestMap.put(UriPattern.CHANGE_JOB_PREFERENCE, new JobPreferenceGetCommand());
         getRequestMap.put(UriPattern.CHANGE_EMPLOYER_INFO, new EmployerInfoGetCommand());
-        getRequestMap.put(UriPattern.CHANGE_LANGUAGE, new LanguageGetCommand());
+        getRequestMap.put(UriPattern.CHANGE_LANGUAGE, new EmployeeLanguageGetCommand());
         getRequestMap.put(UriPattern.CHANGE_EMPLOYER_CONTACT, new EmployerGetContactCommand());
         getRequestMap.put(UriPattern.OPEN_VACANCY, new OpenVacancyGetCommand());
         getRequestMap.put(UriPattern.EDIT_VACANCY, new EditVacancyCommand());

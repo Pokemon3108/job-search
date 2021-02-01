@@ -5,8 +5,8 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.service.dbcreator.EmployeePersonalInfoCreator;
-import by.daryazalevskaya.finalproject.service.sql.EmployeeInfoStatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.EmployeeInfoStatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

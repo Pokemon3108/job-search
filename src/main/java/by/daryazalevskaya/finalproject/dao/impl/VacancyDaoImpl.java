@@ -5,9 +5,9 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.service.dbcreator.VacancyCreator;
-import by.daryazalevskaya.finalproject.service.sql.SearchVacancyFormer;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.VacancyStatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.SearchVacancyFormer;
+import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.VacancyStatementFormer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

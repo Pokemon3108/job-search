@@ -7,8 +7,8 @@ import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.service.dbcreator.EmployeeLanguageCreator;
 import by.daryazalevskaya.finalproject.service.dbcreator.LanguageCreator;
-import by.daryazalevskaya.finalproject.service.sql.LanguageStatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.LanguageStatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

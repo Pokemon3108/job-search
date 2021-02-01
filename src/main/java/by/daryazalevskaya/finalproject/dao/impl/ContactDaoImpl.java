@@ -5,9 +5,8 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.service.dbcreator.ContactCreator;
-import by.daryazalevskaya.finalproject.service.sql.ContactStatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
-import lombok.extern.log4j.Log4j2;
+import by.daryazalevskaya.finalproject.service.statements.ContactStatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,9 +16,9 @@ import java.util.Optional;
 
 public class ContactDaoImpl extends BaseDao implements ContactDao {
 
-    private static final String READ_ALL_QUERY = "SELECT * FROM contact";
+    private static final String READ_ALL_QUERY = "SELECT id, telephone, email, skype FROM contact";
     private static final String UPDATE_QUERY = "UPDATE contact SET  telephone = ?, email=?, skype=? WHERE id=?";
-    private static final String READ_BY_ID_QUERY = "SELECT * FROM contact WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT id, telephone, email, skype FROM contact WHERE id=?";
     private static final String CREATE_QUERY = "INSERT INTO contact (telephone, email, skype) VALUES (?, ?, ?)";
     private static final String DELETE_QUERY = "DELETE FROM contact WHERE id =?";
 

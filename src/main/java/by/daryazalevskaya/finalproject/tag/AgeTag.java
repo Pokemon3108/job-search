@@ -1,7 +1,7 @@
 package by.daryazalevskaya.finalproject.tag;
 
 import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
-import by.daryazalevskaya.finalproject.service.LocaleService;
+import by.daryazalevskaya.finalproject.service.utils.LocaleService;
 import by.daryazalevskaya.finalproject.service.impl.EmployeePersonalInfoServiceImpl;
 import lombok.Setter;
 

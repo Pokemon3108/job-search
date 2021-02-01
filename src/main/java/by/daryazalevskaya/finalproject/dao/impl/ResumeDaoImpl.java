@@ -6,8 +6,6 @@ import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
 import by.daryazalevskaya.finalproject.service.dbcreator.ResumeCreator;
-import by.daryazalevskaya.finalproject.service.sql.ResumeStatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

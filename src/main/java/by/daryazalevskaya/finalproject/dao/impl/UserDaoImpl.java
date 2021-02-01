@@ -6,8 +6,8 @@ import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.service.dbcreator.Creator;
 import by.daryazalevskaya.finalproject.service.dbcreator.UserCreator;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
-import by.daryazalevskaya.finalproject.service.sql.UserStatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.UserStatementFormer;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.PreparedStatement;

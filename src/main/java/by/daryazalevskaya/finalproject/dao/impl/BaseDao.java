@@ -4,13 +4,12 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.model.Entity;
 import by.daryazalevskaya.finalproject.service.dbcreator.Creator;
-import by.daryazalevskaya.finalproject.service.sql.StatementFormer;
+import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
