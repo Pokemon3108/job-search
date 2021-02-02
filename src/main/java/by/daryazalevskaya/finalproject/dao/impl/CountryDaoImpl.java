@@ -10,6 +10,9 @@ import lombok.extern.log4j.Log4j2;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Country dao is a dao for access to country database
+ */
 @Log4j2
 public class CountryDaoImpl extends BaseDao implements CountryDao {
 
@@ -18,7 +21,7 @@ public class CountryDaoImpl extends BaseDao implements CountryDao {
     private static final String READ_ALL_QUERY = "SELECT id,name FROM country";
 
     @Override
-    public Integer findIdByCountry(String country) throws DaoException {
+    public Integer readIdByCountry(String country) throws DaoException {
         final String fieldName = "id";
         return findIdByField(country, FIND_ID_BY_COUNTRY_NAME_QUERY, fieldName);
     }

@@ -30,6 +30,6 @@ public class CountryServiceImpl extends CountryService {
     @Override
     public Integer findIdByCountry(String country) throws DaoException {
         CountryDao countryDao=transaction.createDao(DaoType.COUNTRY);
-        return countryDao.findIdByCountry(country);
+        return countryDao.readIdByCountry(country);
     }
 }

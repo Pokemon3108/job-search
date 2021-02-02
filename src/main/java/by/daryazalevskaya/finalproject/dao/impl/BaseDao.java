@@ -17,34 +17,20 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * The type Base dao is a base implementation of crud-operations for dao
+ */
 @Log4j2
 public abstract class BaseDao {
+
     protected Connection connection;
 
+    /**
+     * Sets connection.
+     * @param connection the connection
+     */
     public void setConnection(Connection connection) {
         this.connection = connection;
-    }
-
-    protected <T extends Entity> List<T> findAll(final String query, Creator<T> creator) throws DaoException {
-        ResultSet resultSet = null;
-
-        List<T> entities = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                if (creator == null) {
-                    throw new DaoException("Can't build object from database");
-                }
-                entities.add(creator.createEntity(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        } finally {
-            closeSet(resultSet);
-        }
-
-        return entities;
     }
 
     protected <T extends Entity> Optional<T> readById(Integer id, final String query, Creator<T> creator) throws DaoException {
@@ -82,7 +68,7 @@ public abstract class BaseDao {
             if (resultSet.next()) {
                 id = resultSet.getInt(1);
             } else {
-                throw new InsertIdDataBaseException("There is no auto incremented index after trying to add record into table usr");
+                throw new InsertIdDataBaseException("There is no auto incremented index after trying to add record");
             }
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -93,6 +79,7 @@ public abstract class BaseDao {
     }
 
 
+
     protected void delete(Integer id, final String query) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
@@ -101,6 +88,30 @@ public abstract class BaseDao {
             throw new DaoException(e);
         }
     }
+
+
+    protected <T extends Entity> List<T> findAll(final String query, Creator<T> creator) throws DaoException {
+        ResultSet resultSet = null;
+
+        List<T> entities = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                if (creator == null) {
+                    throw new DaoException("Can't build object from database");
+                }
+                entities.add(creator.createEntity(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        } finally {
+            closeSet(resultSet);
+        }
+
+        return entities;
+    }
+
 
     protected String findStringFieldById(Integer id, final String query, final String fieldName) throws DaoException {
         ResultSet resultSet = null;
@@ -119,6 +130,7 @@ public abstract class BaseDao {
 
         return field;
     }
+
 
     protected Integer findIdByField(String field, final String query, final String fieldName) throws DaoException {
         ResultSet resultSet = null;
@@ -139,6 +151,7 @@ public abstract class BaseDao {
 
     }
 
+
     protected void closeSet(ResultSet set) {
         try {
             if (Objects.nonNull(set)) {
@@ -148,6 +161,7 @@ public abstract class BaseDao {
             log.error(e);
         }
     }
+
 
     protected <T extends Entity> List<T> findInRange(final String query, Creator<T> creator, int start, int end) throws DaoException {
         ResultSet resultSet = null;

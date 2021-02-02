@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Optional;
 
 
+/**
+ * The type Contact dao is dao for access to contact table in database
+ */
 public class ContactDaoImpl extends BaseDao implements ContactDao {
 
     private static final String READ_ALL_QUERY = "SELECT id, telephone, email, skype FROM contact";
