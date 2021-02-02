@@ -71,13 +71,30 @@
             </p>
         </c:if>
 
+        <c:if test='${differentPassword==true}'>
+            <p class="alert alert-danger my-sm-3 " role="alert">
+                <fmt:message key="differentPassword" bundle="${ rb }"/>
+            </p>
+        </c:if>
+
         <p class="alert alert-danger my-sm-3 " role="alert" id="passwordError"></p>
 
         <div class="form-group">
-            <label for="password"><fmt:message key="password" bundle="${ rb }"/> *</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder=
-            <fmt:message key="password" bundle="${ rb }"/>
-                    required>
+            <div class="password">
+                <label for="password"><fmt:message key="password" bundle="${ rb }"/> *</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder=
+                <fmt:message key="password" bundle="${ rb }"/>  required>
+                <a href="#" class="password-control" onclick="return show_hide_password(this, 'password');"></a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="password">
+                <label for="confirm-password"><fmt:message key="confirm_password" bundle="${ rb }"/> *</label>
+                <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder=
+                <fmt:message key="confirm_password" bundle="${ rb }"/>  required>
+                <a href="#" class="password-control" onclick="return show_hide_password(this, 'confirm-password');"></a>
+            </div>
         </div>
 
         <div class="form-group">
@@ -85,7 +102,7 @@
                 <div class="custom-radio custom-control-inline">
                     <label>
                         <c:if test="${roleArr==role}">
-                        <input type="radio" name="role" value="${roleArr}" checked>
+                            <input type="radio" name="role" value="${roleArr}" checked>
                         </c:if>
                         <c:if test="${roleArr!=role}">
                             <input type="radio" name="role" value="${roleArr}">

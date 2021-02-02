@@ -1,3 +1,6 @@
+hideElement('emailError');
+hideElement('passwordError');
+
 function validate(form) {
     let email = form["email"].value;
     let password = form["password"].value;
@@ -12,6 +15,12 @@ function validate(form) {
 
     if (!validatePassword(password)) {
         document.getElementById('passwordError').innerHTML = 'Invalid password format. It should contains 1 number, 1 capital, 1 lowercase letter and at least 8 symbols. js';
+        hideElement('passwordError');
+        flag = false;
+    }
+
+    if (!comparePasswords()) {
+        document.getElementById('passwordError').innerHTML = 'The values entered for password and confirm password do not match. Please, enter the same password for both fields.';
         hideElement('passwordError');
         flag = false;
     }
@@ -57,7 +66,26 @@ function checkRadioButton(role) {
 
 }
 
-hideElement('emailError');
-hideElement('passwordError');
+function show_hide_password(target, id){
+    let input = document.getElementById(id);
+    if (input.getAttribute('type') == 'password') {
+        target.classList.add('view');
+        input.setAttribute('type', 'text');
+    } else {
+        target.classList.remove('view');
+        input.setAttribute('type', 'password');
+    }
+    return false;
+}
+
+function comparePasswords() {
+    let areEquals=true;
+    let password=document.getElementById("password").value;
+    let confirmedPassword=document.getElementById("confirm-password").value;
+
+    if (password!=confirmedPassword) areEquals=false;
+    return areEquals;
+}
+
 
 

@@ -23,7 +23,7 @@ public class RepeatedCompanyNameCommand implements ValidationCommand {
         try {
             serviceFactory = new ServiceFactoryImpl();
             EmployerService employerService = (EmployerService) serviceFactory.createService(DaoType.EMPLOYER);
-            if (employerService.containsCompanyName(employer.getCompanyName(), employer.getId())) {
+            if (employerService.isRepeatedCompanyName(employer.getCompanyName(), employer.getId())) {
                 isValid=false;
                 request.setAttribute("repeatedCompany", true);
             }

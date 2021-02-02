@@ -47,14 +47,12 @@ public class EmployeePersonalInfoServiceTest {
         EmployeePersonalInfo info=EmployeePersonalInfo.builder()
                 .name("Mike")
                 .gender(Gender.MALE)
-                .country(new Country(countryId))
+                .country(country)
                 .birthday(LocalDate.of(1999, 12,12))
                 .id(3)
                 .build();
         Mockito.when(infoDao.read(id)).thenReturn(Optional.of(info));
         Mockito.when(countryDao.read(countryId)).thenReturn(Optional.of(country));
-
-        info.setCountry(country);
 
         Assert.assertEquals(Optional.of(info), service.read(id));
 
@@ -65,7 +63,7 @@ public class EmployeePersonalInfoServiceTest {
         final Integer countryId=90;
         Country country=new Country(countryId, "USA");
 
-        final Integer id=3;
+        final Integer id=null;
         Mockito.when(infoDao.read(id)).thenReturn(Optional.empty());
         Mockito.when(countryDao.read(countryId)).thenReturn(Optional.of(country));
 

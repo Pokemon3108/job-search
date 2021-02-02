@@ -21,6 +21,6 @@ public abstract class EmployerService extends  UserRoleService{
 
     public abstract void delete(Integer id) throws DaoException, TransactionException;
 
-    public abstract boolean containsCompanyName(String company, Integer userId) throws DaoException;
+    public abstract boolean isRepeatedCompanyName(String company, Integer userId) throws DaoException;
 
 }

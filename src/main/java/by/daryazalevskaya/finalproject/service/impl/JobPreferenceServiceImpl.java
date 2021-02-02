@@ -33,7 +33,7 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         Optional<JobPreference> preference = jobPreferenceDao.read(id);
         if (preference.isPresent()) {
-            Optional<Specialization> specialization = findSpecializationById(preference.get().getSpecialization().getId());
+            Optional<Specialization> specialization = readSpecializationById(preference.get().getSpecialization().getId());
             specialization.ifPresent(spec -> preference.get().setSpecialization(spec));
         }
         return preference;
@@ -63,13 +63,16 @@ public class JobPreferenceServiceImpl extends JobPreferenceService {
 
 
     @Override
-    public Integer findIdBySpecialization(String specialization) throws DaoException {
+    public Integer readIdBySpecializationName(String specialization) throws DaoException {
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         return jobPreferenceDao.readIdBySpecialization(specialization);
     }
 
     @Override
-    public Optional<Specialization> findSpecializationById(Integer id) throws DaoException {
+    public Optional<Specialization> readSpecializationById(Integer id) throws DaoException {
+        if (id==null) {
+            return Optional.empty();
+        }
         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
         return jobPreferenceDao.readSpecializationById(id);
     }

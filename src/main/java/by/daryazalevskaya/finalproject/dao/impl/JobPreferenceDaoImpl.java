@@ -77,9 +77,9 @@ public class JobPreferenceDaoImpl extends BaseDao implements JobPreferenceDao {
     }
 
     @Override
-    public Optional<Specialization> readSpecializationById(int id) throws DaoException {
+    public Optional<Specialization> readSpecializationById(Integer id) throws DaoException {
         final String name = "name";
-        String specName = findStringFieldById(id, FIND_SPEC_BY_ID_QUERY, name);
+        String specName = super.findStringFieldById(id, FIND_SPEC_BY_ID_QUERY, name);
         if (specName.isEmpty()) {
             return Optional.empty();
         }

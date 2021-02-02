@@ -47,7 +47,7 @@ public abstract class BaseDao {
         return entities;
     }
 
-    protected <T extends Entity> Optional<T> readById(int id, final String query, Creator<T> creator) throws DaoException {
+    protected <T extends Entity> Optional<T> readById(Integer id, final String query, Creator<T> creator) throws DaoException {
         ResultSet resultSet = null;
         T entity = null;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -93,7 +93,7 @@ public abstract class BaseDao {
     }
 
 
-    protected void delete(int id, final String query) throws DaoException {
+    protected void delete(Integer id, final String query) throws DaoException {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -102,7 +102,7 @@ public abstract class BaseDao {
         }
     }
 
-    protected String findStringFieldById(int id, final String query, final String fieldName) throws DaoException {
+    protected String findStringFieldById(Integer id, final String query, final String fieldName) throws DaoException {
         ResultSet resultSet = null;
         String field = "";
         try (PreparedStatement statement = connection.prepareStatement(query)) {

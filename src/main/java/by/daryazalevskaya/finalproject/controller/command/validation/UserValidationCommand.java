@@ -18,17 +18,21 @@ public class UserValidationCommand implements ValidationCommand {
         User user = builder.build(request);
         UserValidator validator = new UserValidator();
 
-        int errors = 0;
+
         if (!validator.isValidEmail(user.getEmail())) {
-            ++errors;
+            isValid=false;
             request.setAttribute("invalidEmail", true);
         }
         if (!validator.isValidPassword(user.getPassword())) {
-            ++errors;
+            isValid=false;
             request.setAttribute("invalidPassword", true);
         }
+        if (!request.getParameter("confirm-password").equals(user.getPassword())) {
+            isValid=false;
+            request.setAttribute("differentPassword", true);
+        }
 
-        if (errors != 0) {
+        if (!isValid) {
             log.info("Invalid contact format");
             isValid = false;
         }

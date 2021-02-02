@@ -18,9 +18,9 @@ public abstract class JobPreferenceService extends BaseService {
 
     public abstract void delete(Integer id) throws DaoException, TransactionException;
 
-    public abstract Integer findIdBySpecialization(String specialization) throws DaoException;
+    public abstract Integer readIdBySpecializationName(String specialization) throws DaoException;
 
-    public abstract Optional<Specialization> findSpecializationById(Integer id) throws DaoException;
+    public abstract Optional<Specialization> readSpecializationById(Integer id) throws DaoException;
 
     public abstract List<Specialization> findAllSpecializations() throws DaoException;
 
