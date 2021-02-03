@@ -8,32 +8,29 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The interface Job preference dao.
+ * The interface Job preference dao defines operations with job preference table and specialization table
  */
 public interface JobPreferenceDao extends Dao<JobPreference> {
     /**
-     * Read id by specialization integer.
-     *
-     * @param specialization the specialization
-     * @return the integer
-     * @throws DaoException the dao exception
+     * Read id by specialization name
+     * @param specialization the specialization name
+     * @return the id of specialization
+     * @throws DaoException the dao exception is thrown when occures error with access to database
      */
     Integer readIdBySpecialization(String specialization) throws DaoException;
 
     /**
-     * Read specialization by id optional.
-     *
-     * @param id the id
-     * @return the optional
-     * @throws DaoException the dao exception
+     * Read specialization by id
+     * @param id the id of specialization
+     * @return the {@code Specialization} object found by id
+     * @throws DaoException the dao exception is thrown when occures error with access to database
      */
     Optional<Specialization> readSpecializationById(Integer id) throws DaoException;
 
     /**
-     * Read all specializations list.
-     *
-     * @return the list
-     * @throws DaoException the dao exception
+     * Read all specializations from specializations catalog
+     * @return the list of specializations
+     * @throws DaoException the dao exception is thrown when occures error with access to database
      */
     List<Specialization> readAllSpecializations() throws DaoException;
 }

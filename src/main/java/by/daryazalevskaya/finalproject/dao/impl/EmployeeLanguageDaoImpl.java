@@ -15,6 +15,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Employee language dao for access to employee and languages in resume tables
+ */
 public class EmployeeLanguageDaoImpl extends BaseDao implements EmployeeLanguageDao {
 
     private static final String READ_ALL_RESUME_LANGUAGES_QUERY = "SELECT level, language_id FROM resume_languages";

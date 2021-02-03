@@ -11,11 +11,15 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * The type Employee dao is a dao for access to employee database and employee languages
+ */
 public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
-    private static final String READ_ALL_QUERY = "SELECT * FROM employee";
+    private static final String READ_ALL_QUERY = "SELECT resume_id, user_id FROM employee";
 
-    private static final String READ_BY_ID_QUERY = "SELECT * FROM employee WHERE user_id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT resume_id, user_id FROM employee WHERE user_id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO employee " +
             "(user_id, resume_id) VALUES (?, ?)";
@@ -25,7 +29,7 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
     private static final String DELETE_QUERY = "DELETE FROM employee WHERE user_id =?";
 
-    private static final String FIND_IN_RANGE = "SELECT * FROM employee LIMIT ? OFFSET ?";
+    private static final String FIND_IN_RANGE = "SELECT resume_id, user_id FROM employee LIMIT ? OFFSET ?";
 
     private static final String COUNT = "SELECT count(*) FROM employee";
 
@@ -71,7 +75,7 @@ public class EmployeeDaoImpl extends BaseDao implements EmployeeDao {
 
 
     @Override
-    public List<Employee> findFromTo(int start, int end) throws DaoException {
+    public List<Employee> readFromTo(int start, int end) throws DaoException {
         return super.findInRange(FIND_IN_RANGE, new EmployeeCreator(), start, end);
     }
 

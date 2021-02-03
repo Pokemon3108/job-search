@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Vacancy dao is a dao for access to vacancy table and linked with it
+ */
 public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String READ_ALL_QUERY = "SELECT city," +
@@ -127,7 +130,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public List<Vacancy> findFromTo(int start, int end) throws DaoException {
+    public List<Vacancy> readFromTo(int start, int end) throws DaoException {
         return super.findInRange(FIND_IN_RANGE, new VacancyCreator(), start, end);
     }
 
@@ -159,7 +162,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     }
 
     @Override
-    public void deleteEmployeeVacanciesByVacancyId(Integer vacancyId) throws DaoException {
+    public void deleteEmployeeVacancyByVacancyId(Integer vacancyId) throws DaoException {
         delete(vacancyId, DELETE_EMPLOYEE_VACANCY);
     }
 

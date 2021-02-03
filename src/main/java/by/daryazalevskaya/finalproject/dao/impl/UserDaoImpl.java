@@ -16,13 +16,16 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Log4j2
+
+/**
+ * The type User dao is a dao for access to usr table
+ */
 public class UserDaoImpl extends BaseDao implements UserDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM usr";
-    private static final String READ_LOGIN_QUERY = "SELECT * FROM usr WHERE email = ?";
+    private static final String READ_LOGIN_QUERY = "SELECT (email, password,role, id) FROM usr WHERE email = ?";
     private static final String UPDATE_QUERY = "UPDATE usr SET  email = ?, password=?, role=?::user_role WHERE id=?";
-    private static final String READ_BY_ID_QUERY = "SELECT * FROM usr WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT (email, password,role, id) FROM usr WHERE id=?";
     private static final String CREATE_QUERY = "INSERT INTO usr (email, password,role) VALUES (?, ?, ?::user_role)";
     private static final String DELETE_QUERY = "DELETE FROM usr WHERE id =?";
 

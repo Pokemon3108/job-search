@@ -16,7 +16,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Log4j2
+
+/**
+ * The type Job preference dao is a dao for access to job preference table and specialization table
+ */
 public class JobPreferenceDaoImpl extends BaseDao implements JobPreferenceDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM job_preference";

@@ -84,7 +84,7 @@ public class VacancyServiceImpl extends VacancyService {
     public void deleteVacancyFromEmployeeVacancies(int vacancyId) throws DaoException, TransactionException {
         try {
             VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-            dao.deleteEmployeeVacanciesByVacancyId(vacancyId);
+            dao.deleteEmployeeVacancyByVacancyId(vacancyId);
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);
@@ -104,7 +104,7 @@ public class VacancyServiceImpl extends VacancyService {
     @Override
     public List<Vacancy> findInRange(int start, int end) throws DaoException {
         VacancyDao dao = transaction.createDao(DaoType.VACANCY);
-        List<Vacancy> vacancies = dao.findFromTo(start, end);
+        List<Vacancy> vacancies = dao.readFromTo(start, end);
         for (Vacancy vacancy : vacancies) {
             fillVacancy(vacancy);
         }

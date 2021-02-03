@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The type Country dao is a dao for access to country database
+ * The type Country dao is a dao for access to country table
  */
 @Log4j2
 public class CountryDaoImpl extends BaseDao implements CountryDao {

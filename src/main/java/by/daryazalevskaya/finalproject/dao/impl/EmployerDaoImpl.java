@@ -13,6 +13,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * The type Employer dao for access to employee personal info table and linked with it
+ */
 public class EmployerDaoImpl extends BaseDao implements EmployerDao {
 
     private static final String READ_ALL_QUERY = "SELECT * FROM employer";

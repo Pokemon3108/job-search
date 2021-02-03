@@ -16,7 +16,7 @@ public interface Dao<T extends Entity> {
     /**
      * Create record in database.
      *
-     * @param entity the entity that inserts to databse
+     * @param entity the entity that inserts to table
      * @return id of inserted record
      * @throws InsertIdDataBaseException is thrown when id wasn't generated after inserting in database
      * @throws DaoException   is thrown when occured error with access to database

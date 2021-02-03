@@ -14,6 +14,10 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * The type Resume dao is a dao for access to resume table and linked with it
+ */
 public class ResumeDaoImpl extends BaseDao implements ResumeDao {
 
 
