@@ -9,11 +9,17 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 public class EmployeePersonalInfo extends Entity {
 
+    /**
+     * Instantiates a new Employee personal info.
+     *
+     * @param id
+     */
     public EmployeePersonalInfo(Integer id) {
         super.id=id;
     }

@@ -10,6 +10,10 @@ import by.daryazalevskaya.finalproject.model.type.Schedule;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type VacancyCreator creator is used for creation {@code Vacancy} object from sql result set
+ * {@link by.daryazalevskaya.finalproject.model.employer.Vacancy}
+ */
 public class VacancyCreator extends Creator<Vacancy> {
     @Override
     public Vacancy createEntity(ResultSet set) throws SQLException {
@@ -21,7 +25,7 @@ public class VacancyCreator extends Creator<Vacancy> {
                 .build();
 
         if (existsColumn(set, "specialization_id")) {
-            vacancy.setSpecialization(new Specialization(wasNull(set, "specialization_id")));
+            vacancy.setSpecialization(new Specialization(wasNullId(set, "specialization_id")));
         }
 
         if (existsColumn(set, "country_id")) {

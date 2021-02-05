@@ -31,17 +31,10 @@ public class TransactionFactoryImpl implements TransactionFactory {
     public void close() throws TransactionException {
         try {
             connection.close();
+            connection.setAutoCommit(true);
         } catch (SQLException e) {
             throw new TransactionException(e);
         }
     }
 
-    @Override
-    public void commit() throws TransactionException {
-        try {
-            connection.commit();
-        } catch(SQLException e) {
-            throw new TransactionException(e);
-        }
-    }
 }

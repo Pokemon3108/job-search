@@ -5,6 +5,10 @@ import by.daryazalevskaya.finalproject.model.Contact;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type Contact creator is used for creation {@code Contact} object from sql result set
+ * {@link by.daryazalevskaya.finalproject.model.Contact}
+ */
 public class ContactCreator extends Creator<Contact> {
     @Override
     public Contact createEntity(ResultSet set) throws SQLException {

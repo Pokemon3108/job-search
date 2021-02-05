@@ -7,11 +7,16 @@ import lombok.experimental.SuperBuilder;
 
 
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true) // object id will be included
+@EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 public class Contact extends Entity {
 
+    /**
+     * Instantiates a new Contact.
+     *
+     * @param id
+     */
     public Contact(Integer id) {
         super.id=id;
     }

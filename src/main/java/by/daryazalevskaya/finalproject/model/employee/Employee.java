@@ -14,6 +14,5 @@ public class Employee extends User {
         super(id);
     }
 
-    // private User user;
     private Resume resume;
 }

@@ -7,6 +7,10 @@ import by.daryazalevskaya.finalproject.model.type.Gender;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type EmployeePersonalInfo creator is used for creation {@code EmployeePersonalInfo} object from sql result set
+ * {@link by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo}
+ */
 public class EmployeePersonalInfoCreator extends Creator<EmployeePersonalInfo> {
 
     @Override

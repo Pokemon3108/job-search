@@ -6,6 +6,10 @@ import by.daryazalevskaya.finalproject.model.type.Role;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type UserCreator creator is used for creation {@code User} object from sql result set
+ * {@link by.daryazalevskaya.finalproject.model.User}
+ */
 public class UserCreator extends Creator<User> {
 
     @Override

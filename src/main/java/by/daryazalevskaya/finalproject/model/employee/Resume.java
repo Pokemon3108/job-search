@@ -10,16 +10,21 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 @NoArgsConstructor
 public class Resume extends Entity {
 
+    /**
+     * Instantiates a new Resume.
+     *
+     * @param id
+     */
     public Resume(Integer id) {
         super.id=id;
     }
-
 
     private LocalDate update;
     private String skills;

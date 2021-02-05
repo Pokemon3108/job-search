@@ -1,9 +1,7 @@
 package by.daryazalevskaya.finalproject.controller.command.allRoles;
 
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
-import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
-import by.daryazalevskaya.finalproject.model.Localization;
+import by.daryazalevskaya.finalproject.model.type.Localization;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;

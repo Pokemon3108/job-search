@@ -7,6 +7,10 @@ import by.daryazalevskaya.finalproject.model.employer.Employer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type EmployerCreator creator is used for creation {@code Employer} object from sql result set
+ * {@link by.daryazalevskaya.finalproject.model.employer.Employer}
+ */
 public class EmployerCreator extends Creator<Employer> {
     @Override
     public Employer createEntity(ResultSet set) throws SQLException {
@@ -14,7 +18,7 @@ public class EmployerCreator extends Creator<Employer> {
                 .city(set.getString("city"))
                 .companyName(set.getString("company_name"))
                 .contact(new Contact(set.getInt("contact_id")))
-                .country(new Country(wasNull(set, "country")))
+                .country(new Country(wasNullId(set, "country")))
                 .build();
 
     }

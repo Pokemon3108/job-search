@@ -1,6 +1,6 @@
 package by.daryazalevskaya.finalproject.controller.filter;
 
-import by.daryazalevskaya.finalproject.model.Localization;
+import by.daryazalevskaya.finalproject.model.type.Localization;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

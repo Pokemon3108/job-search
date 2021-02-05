@@ -10,12 +10,17 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 
-@EqualsAndHashCode(callSuper = true) // object id will be included
+@EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 @NoArgsConstructor
 public class Employer extends User {
 
+    /**
+     * Instantiates a new Employer.
+     *
+     * @param id
+     */
     public Employer(Integer id) {
         super.id=id;
     }

@@ -9,11 +9,17 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 public class Vacancy extends Entity {
 
+    /**
+     * Instantiates a new Vacancy.
+     *
+     * @param id
+     */
     public Vacancy(Integer id) {
         super.id=id;
     }

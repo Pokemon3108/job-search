@@ -1,5 +1,8 @@
 package by.daryazalevskaya.finalproject.model.type;
 
+/**
+ * The type DaoType uses for identifying generated daos or services
+ */
 public enum DaoType {
     CONTACT,
     COUNTRY,

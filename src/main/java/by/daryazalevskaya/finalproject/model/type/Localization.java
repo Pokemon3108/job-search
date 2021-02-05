@@ -1,7 +1,10 @@
-package by.daryazalevskaya.finalproject.model;
+package by.daryazalevskaya.finalproject.model.type;
 
 import lombok.Getter;
 
+/**
+ * The type Localization uses for storing locales, that are used in project
+ */
 @Getter
 public enum Localization {
     ENGLISH("en_US", "english"),
