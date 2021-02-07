@@ -1,13 +1,17 @@
 package by.daryazalevskaya.finalproject.service.requestbuilder;
 
-import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.Specialization;
+import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class JobPreferenceBuilder implements RequestBuilder {
+/**
+ * The  JobPreferenceBuilder is used for creation {@code JobPreference} object from httpRequest
+ * {@link by.daryazalevskaya.finalproject.model.employee.JobPreference}
+ */
+public class JobPreferenceBuilder implements RequestBuilder<JobPreference> {
     @Override
     public JobPreference build(HttpServletRequest request) {
         String position = request.getParameter("position");

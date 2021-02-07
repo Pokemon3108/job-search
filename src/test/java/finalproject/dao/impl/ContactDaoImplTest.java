@@ -3,9 +3,7 @@ package finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.NoEntityInDataBaseException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.impl.ContactDaoImpl;
-import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.Contact;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -85,24 +83,9 @@ public class ContactDaoImplTest {
     }
 
 
-    @DataProvider(name = "contactForDelete")
-    public Object[][] createContactForDelete() {
+    @Test
+    public void deleteTest() throws DaoException {
         final int id=3;
-        Contact contact = Contact.builder()
-                .telephone("+74956789898")
-                .email("qwerty@outlook.com")
-                .skype("pikachi34")
-                .id(id)
-                .build();
-        return new Object[][]{{contact, id}};
-    }
-
-
-    @Test(dataProvider = "contactForDelete")
-    public void deleteTest(Contact contact, int id) throws DaoException {
-        Optional<Contact> contactFromDB = contactDao.read(id);
-        contact.setId(contactFromDB.get().getId());
-        contactFromDB.get().setTelephone("+375296637779");
         contactDao.delete(id);
         Assert.assertTrue(contactDao.read(id).isEmpty());
     }
@@ -110,7 +93,6 @@ public class ContactDaoImplTest {
 
     @DataProvider(name = "contactForUpdate")
     public Object[][] createContactForUpdate() {
-        //should be in database before update test
         final int id=4;
         Contact contact = Contact.builder()
                 .telephone("+375295989090")

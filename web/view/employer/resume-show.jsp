@@ -90,7 +90,6 @@
                         <c:if test='${resume.jobPreference.experience!=null}'>
                             <strong> <fmt:message key="experience" bundle="${ rb }"/>: </strong>
                             ${resume.jobPreference.experience}
-                            <fmt:message key="years" bundle="${ rb }"/>
                         </c:if>
                     </li>
                 </ul>

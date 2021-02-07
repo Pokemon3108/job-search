@@ -5,7 +5,11 @@ import by.daryazalevskaya.finalproject.model.type.Role;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class UserBuilder implements RequestBuilder {
+/**
+ * The  UserBuilder is used for creation {@code User} object from httpRequest
+ * {@link by.daryazalevskaya.finalproject.model.User}
+ */
+public class UserBuilder implements RequestBuilder<User> {
 
     @Override
     public User build(HttpServletRequest request) {

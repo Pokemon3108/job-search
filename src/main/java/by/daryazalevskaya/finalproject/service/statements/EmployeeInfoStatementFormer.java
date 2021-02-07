@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class EmployeeInfoStatementFormer extends StatementFormer<EmployeePersonalInfo> {
+public class EmployeeInfoStatementFormer implements StatementFormer<EmployeePersonalInfo> {
 
     @Override
     public void fillStatement(PreparedStatement statement, EmployeePersonalInfo entity) throws SQLException {

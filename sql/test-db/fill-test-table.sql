@@ -295,7 +295,8 @@ VALUES (1, 'Good', 1, 2, 2, 5, 1);
 
 INSERT INTO resume (id, usr_id)
 VALUES (2, 4),
-       (3, 5);
+       (3, 5),
+       (4, 9);
 
 SELECT setval('resume_id_seq', (SELECT MAX(id) from resume));
 
@@ -307,7 +308,7 @@ VALUES (3, 'Roboteka', 1, 'Moscow', 5),
 
 INSERT INTO employee(user_id, resume_id)
 VALUES (1, 1),
-       (4, 4),
+       (4, 2),
        (5, 3);
 
 

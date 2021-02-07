@@ -7,12 +7,7 @@ import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
 import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.service.ContactService;
-import by.daryazalevskaya.finalproject.service.EmployeeLanguageService;
-import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
-import by.daryazalevskaya.finalproject.service.JobPreferenceService;
-import by.daryazalevskaya.finalproject.service.ResumeComplicatedService;
-import by.daryazalevskaya.finalproject.service.ResumeService;
+import by.daryazalevskaya.finalproject.service.*;
 
 import java.util.Objects;
 import java.util.Optional;

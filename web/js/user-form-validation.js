@@ -1,5 +1,6 @@
 hideElement('emailError');
 hideElement('passwordError');
+hideElement('differentPassword');
 
 function validate(form) {
     let email = form["email"].value;
@@ -9,21 +10,27 @@ function validate(form) {
 
     if (!validateEmail(email)) {
         document.getElementById('emailError').innerHTML = 'Illegal email format.';
-        hideElement('emailError');
         flag = false;
+    } else {
+        document.getElementById('emailError').innerHTML='';
     }
+    hideElement('emailError');
 
     if (!validatePassword(password)) {
         document.getElementById('passwordError').innerHTML = 'Invalid password format. It should contains 1 number, 1 capital, 1 lowercase letter and at least 8 symbols. js';
-        hideElement('passwordError');
         flag = false;
+    } else {
+        document.getElementById('passwordError').innerHTML='';
     }
+    hideElement('passwordError');
 
     if (!comparePasswords()) {
-        document.getElementById('passwordError').innerHTML = 'The values entered for password and confirm password do not match. Please, enter the same password for both fields.';
-        hideElement('passwordError');
+        document.getElementById('differentPassword').innerHTML = 'The values entered for password and confirm password do not match. Please, enter the same password for both fields.';
         flag = false;
+    } else {
+        document.getElementById('differentPassword').innerHTML='';
     }
+    hideElement('differentPassword');
 
     return flag;
 }

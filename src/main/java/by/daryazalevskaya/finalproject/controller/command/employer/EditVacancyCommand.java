@@ -2,16 +2,16 @@ package by.daryazalevskaya.finalproject.controller.command.employer;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.model.type.Currency;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import by.daryazalevskaya.finalproject.service.CountryService;
 import by.daryazalevskaya.finalproject.service.JobPreferenceService;
-import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
+import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;

@@ -1,10 +1,10 @@
 package by.daryazalevskaya.finalproject.controller.command.validation;
 
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.EmployerService;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactoryImpl;

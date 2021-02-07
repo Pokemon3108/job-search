@@ -8,7 +8,6 @@ import by.daryazalevskaya.finalproject.service.dbcreator.Creator;
 import by.daryazalevskaya.finalproject.service.dbcreator.UserCreator;
 import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
 import by.daryazalevskaya.finalproject.service.statements.UserStatementFormer;
-import lombok.extern.log4j.Log4j2;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,10 +21,10 @@ import java.util.Optional;
  */
 public class UserDaoImpl extends BaseDao implements UserDao {
 
-    private static final String READ_ALL_QUERY = "SELECT * FROM usr";
-    private static final String READ_LOGIN_QUERY = "SELECT (email, password,role, id) FROM usr WHERE email = ?";
+    private static final String READ_ALL_QUERY = "SELECT id, email, password, role FROM usr";
+    private static final String READ_LOGIN_QUERY = "SELECT id, email, password, role FROM usr WHERE email = ?";
     private static final String UPDATE_QUERY = "UPDATE usr SET  email = ?, password=?, role=?::user_role WHERE id=?";
-    private static final String READ_BY_ID_QUERY = "SELECT (email, password,role, id) FROM usr WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT email, password,role, id FROM usr WHERE id=?";
     private static final String CREATE_QUERY = "INSERT INTO usr (email, password,role) VALUES (?, ?, ?::user_role)";
     private static final String DELETE_QUERY = "DELETE FROM usr WHERE id =?";
 

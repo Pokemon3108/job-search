@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-public class JobPreferenceStatementFormer extends StatementFormer<JobPreference> {
+public class JobPreferenceStatementFormer implements StatementFormer<JobPreference> {
 
 
     @Override

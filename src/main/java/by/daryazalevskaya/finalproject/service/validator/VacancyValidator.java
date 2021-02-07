@@ -12,7 +12,7 @@ public class VacancyValidator extends Validator {
     private static final int POSITION = 255;
     private static final int LONG_TEXT_LENGTH=2000;
     private static final String CITY_REGEX = "^[a-zA-Zа-яА-Я\\s\\/\\-\\)\\(\\`\\.\\\"\\']+$";
-    private static final String NOT_TAG_REGEX="[^<>*]+$";
+
 
     /**
      *
@@ -29,7 +29,7 @@ public class VacancyValidator extends Validator {
      * @return true if position name is correct, else - false
      */
     public boolean isValidPosition(String position) {
-        return  position.length()<POSITION;
+        return  (position.length()<POSITION && super.isValid(NOT_TAG_REGEX, position));
     }
 
     /**

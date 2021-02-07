@@ -1,11 +1,9 @@
 package by.daryazalevskaya.finalproject.service;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Language;
-import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 
 import java.util.List;
 import java.util.Optional;

@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class EmployeePersonalInfoBuilder implements RequestBuilder {
+/**
+ * The  EmployeePersonalInfoBuilder is used for creation {@code EmployeePersonalInfo} object from httpRequest
+ * {@link by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo}
+ */
+public class EmployeePersonalInfoBuilder implements RequestBuilder<EmployeePersonalInfo> {
     @Override
     public EmployeePersonalInfo build(HttpServletRequest request) {
         String name = request.getParameter("name");

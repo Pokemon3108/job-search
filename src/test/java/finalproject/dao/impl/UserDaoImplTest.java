@@ -3,9 +3,7 @@ package finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.NoEntityInDataBaseException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.impl.UserDaoImpl;
-import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.type.Role;
 import org.testng.Assert;
@@ -48,6 +46,7 @@ public class UserDaoImplTest {
 
     @DataProvider(name = "user")
     public Object[][] createUser() {
+        //passes if user with email zdashka31@tut.by doesn't exists
         User user = User.builder().password("$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.1111")
                 .role(Role.EMPLOYEE)
                 .email("zdashka31@tut.by")
@@ -88,17 +87,12 @@ public class UserDaoImplTest {
     }
 
 
-    @DataProvider(name = "updatedUser")
-    public Object[][] createUpdatedUser() {
-        final int id=2;
-        final String email="Dasha@tut.by";
-        return new Object[][]{{email, id}};
-    }
 
-    @Test(dataProvider = "updatedUser")
-    public void updateTest(String email, int id) throws DaoException, NoEntityInDataBaseException {
+    @Test
+    public void updateTest() throws DaoException, NoEntityInDataBaseException {
+        final int id=2;
         final String newEmail = "MyLogin@tut.by";
-        User userFromDB = userDao.read(email).orElseThrow(NoEntityInDataBaseException::new);
+        User userFromDB = userDao.read(id).orElseThrow(NoEntityInDataBaseException::new);
         userFromDB.setEmail(newEmail);
 
         userDao.update(userFromDB);
@@ -107,11 +101,10 @@ public class UserDaoImplTest {
     }
 
 
-    @Test
+    @Test(expectedExceptions = DaoException.class)
     public void deleteTest() throws DaoException {
         final int id=3;
         userDao.delete(id);
-        Assert.assertTrue(userDao.read(id).isEmpty());
     }
 
     @Test

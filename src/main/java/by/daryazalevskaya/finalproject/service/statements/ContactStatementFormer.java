@@ -5,7 +5,7 @@ import by.daryazalevskaya.finalproject.model.Contact;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ContactStatementFormer extends StatementFormer<Contact>{
+public class ContactStatementFormer implements StatementFormer<Contact>{
 
     @Override
     public void fillStatement(PreparedStatement statement, Contact entity) throws SQLException {

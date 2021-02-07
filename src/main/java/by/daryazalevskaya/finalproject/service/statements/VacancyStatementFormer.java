@@ -5,7 +5,7 @@ import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class VacancyStatementFormer extends StatementFormer<Vacancy> {
+public class VacancyStatementFormer implements StatementFormer<Vacancy> {
 
     @Override
     public void fillStatement(PreparedStatement statement, Vacancy entity) throws SQLException {

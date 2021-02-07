@@ -4,7 +4,6 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.impl.CountryDaoImpl;
 import by.daryazalevskaya.finalproject.dao.transaction.Transaction;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionImpl;
-import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.impl.CountryServiceImpl;

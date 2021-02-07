@@ -9,11 +9,7 @@ import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.type.Currency;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -92,7 +88,7 @@ public class JobPreferenceDaoImplTest {
 
     @Test
     public void updateTest() throws DaoException, NoEntityInDataBaseException {
-        final Integer id = 7;
+        final Integer id = 6;
         final int experience = 2;
         JobPreference jobPreferenceFromDB = dao.read(id).orElseThrow(NoEntityInDataBaseException::new);
         jobPreferenceFromDB.setExperience(experience);
@@ -105,8 +101,6 @@ public class JobPreferenceDaoImplTest {
     @Test
     public void deleteTest() throws DaoException {
         final Integer id = 7;
-        Optional<JobPreference> preferenceFromDB = dao.read(id);
-        Assert.assertNotNull(preferenceFromDB.get());
         dao.delete(id);
         Assert.assertTrue(dao.read(id).isEmpty());
     }

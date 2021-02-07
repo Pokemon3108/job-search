@@ -1,9 +1,9 @@
 package by.daryazalevskaya.finalproject.controller.command.guest;
 
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.model.User;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.model.type.Role;
 import by.daryazalevskaya.finalproject.service.UserService;
 import lombok.extern.log4j.Log4j2;

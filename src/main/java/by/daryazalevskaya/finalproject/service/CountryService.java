@@ -1,8 +1,6 @@
 package by.daryazalevskaya.finalproject.service;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
 
 import java.util.List;

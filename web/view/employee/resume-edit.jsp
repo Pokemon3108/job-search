@@ -18,9 +18,14 @@
 
 <div class="container">
     <div class="card-deck">
+
+        <div class="alert alert-info mt-3 alert-resume" role="alert">
+            <fmt:message key="employee_hint" bundle="${ rb }"/>
+        </div>
+
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
-                <fmt:message key="persInfo" bundle="${ rb }"/>
+                <fmt:message key="persInfo" bundle="${ rb }"/>*
             </h3>
             <c:if test="${resume.personalInfo!=null}">
 
@@ -64,7 +69,7 @@
 
         <div class="card-body border my-sm-3">
             <h3 class="card-title">
-                <fmt:message key="contact" bundle="${ rb }"/>
+                <fmt:message key="contact" bundle="${ rb }"/>*
             </h3>
             <ctg:contact contact="${resume.contact}"/>
             <a href="${pageContext.request.contextPath}/job/employee/changeContact" class="btn btn-success">
@@ -75,7 +80,9 @@
 
     <div class="card-deck">
         <div class="card-body border my-sm-3">
-            <h3 class="card-title"><fmt:message key="jobPreference" bundle="${ rb }"/></h3>
+            <h3 class="card-title">
+                <fmt:message key="jobPreference" bundle="${ rb }"/>*
+            </h3>
 
             <c:if test="${resume.jobPreference!=null}">
 

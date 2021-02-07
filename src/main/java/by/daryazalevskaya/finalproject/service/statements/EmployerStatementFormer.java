@@ -5,7 +5,7 @@ import by.daryazalevskaya.finalproject.model.employer.Employer;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class EmployerStatementFormer extends StatementFormer<Employer> {
+public class EmployerStatementFormer implements StatementFormer<Employer> {
     @Override
     public void fillStatement(PreparedStatement statement, Employer entity) throws SQLException {
         statement.setString(1, entity.getCompanyName());

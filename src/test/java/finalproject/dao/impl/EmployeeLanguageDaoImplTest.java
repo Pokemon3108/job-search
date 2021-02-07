@@ -8,11 +8,7 @@ import by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage;
 import by.daryazalevskaya.finalproject.model.employee.Language;
 import by.daryazalevskaya.finalproject.model.type.LanguageLevel;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -92,8 +88,6 @@ public class EmployeeLanguageDaoImplTest {
     @Test
     public void deleteTest() throws DaoException {
         final Integer id = 3;
-        Optional<EmployeeLanguage> employeeLanguageDB = dao.read(id);
-        Assert.assertNotNull(employeeLanguageDB.get());
         dao.delete(id);
         Assert.assertTrue(dao.read(id).isEmpty());
     }

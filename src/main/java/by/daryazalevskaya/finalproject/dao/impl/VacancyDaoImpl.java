@@ -60,9 +60,9 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String READ_VACANCIES_BY_POSITION = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE position=? LIMIT ? OFFSET ?";
+            "WHERE position like ? LIMIT ? OFFSET ?";
 
-    private static final String COUNT_BY_POSITION = "SELECT count(*) FROM vacancy WHERE position=?";
+    private static final String COUNT_BY_POSITION = "SELECT count(*) FROM vacancy WHERE position like ?";
 
     private static final String READ_VACANCIES_BY_SPECIALIZATION_ID_AND_COUNTRY_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
@@ -72,22 +72,22 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String READ_VACANCIES_POSITION_AND_BY_SPECIALIZATION_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE position=? AND specialization_id=? LIMIT ? OFFSET ?";
+            "WHERE position like ? AND specialization_id=? LIMIT ? OFFSET ?";
 
-    private static final String COUNT_BY_POSITION_AND_SPECIALIZATION = "SELECT count(*) FROM vacancy WHERE position=? AND specialization_id=?";
+    private static final String COUNT_BY_POSITION_AND_SPECIALIZATION = "SELECT count(*) FROM vacancy WHERE position like ? AND specialization_id=?";
 
     private static final String READ_VACANCIES_BY_POSITION_AND_COUNTRY_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE position=? AND country_id=? LIMIT ? OFFSET ?";
+            "WHERE position like ? AND country_id=? LIMIT ? OFFSET ?";
 
-    private static final String COUNT_BY_POSITION_AND_COUNTRY = "SELECT count(*) FROM vacancy WHERE position=? AND country_id=?";
+    private static final String COUNT_BY_POSITION_AND_COUNTRY = "SELECT count(*) FROM vacancy WHERE position like ? AND country_id=?";
 
     private static final String READ_VACANCIES_BY_COUNTRY_ID_AND_POSITION_AND_SPECIALIZATION_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE country_id=? AND position=? AND specialization_id=? LIMIT ? OFFSET ?";
+            "WHERE country_id=? AND position like ? AND specialization_id=? LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_COUNTRY_AND_POSITION_AND_SPECIALIZATION
-            = "SELECT count(*) FROM vacancy WHERE country_id=? AND position=? AND specialization_id=?";
+            = "SELECT count(*) FROM vacancy WHERE country_id=? AND position like ? AND specialization_id=?";
 
     private static final String DELETE_EMPLOYEE_VACANCY = "DELETE FROM employee_vacancies WHERE vacancy_id=?";
 
@@ -245,7 +245,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     @Override
     public List<Vacancy> readVacanciesByPosition(String position, int limit, int offset) throws DaoException {
         SearchVacancyFormer former = (statement -> {
-            statement.setString(1, position);
+            statement.setString(1, "%" + position + "%");
             statement.setInt(2, limit);
             statement.setInt(3, offset);
         });
@@ -268,7 +268,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     public List<Vacancy> readVacanciesByPositionAndCountryId
             (String position, Integer countryId, int limit, int offset) throws DaoException {
         SearchVacancyFormer createStatement = (statement -> {
-            statement.setString(1, position);
+            statement.setString(1, "%" + position + "%");
             statement.setInt(2, countryId);
             statement.setInt(3, limit);
             statement.setInt(4, offset);
@@ -280,7 +280,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     public List<Vacancy> readVacanciesByPositionAndSpecializationId
             (String position, Integer specializationId, int limit, int offset) throws DaoException {
         SearchVacancyFormer former = (statement -> {
-            statement.setString(1, position);
+            statement.setString(1, "%" + position + "%");
             statement.setInt(2, specializationId);
             statement.setInt(3, limit);
             statement.setInt(4, offset);
@@ -293,7 +293,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             (Integer specializationId, Integer countryId, String position, int limit, int offset) throws DaoException {
         SearchVacancyFormer former = (statement -> {
             statement.setInt(1, countryId);
-            statement.setString(2, position);
+            statement.setString(2, "%" + position + "%");
             statement.setInt(3, specializationId);
             statement.setInt(4, limit);
             statement.setInt(5, offset);
@@ -332,7 +332,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     @Override
     public Integer countVacanciesByPosition(String position) throws DaoException {
-        SearchVacancyFormer former = (statement -> statement.setString(1, position));
+        SearchVacancyFormer former = (statement -> statement.setString(1, "%" + position + "%"));
         return countByParam(former, COUNT_BY_POSITION);
     }
 
@@ -348,7 +348,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     @Override
     public Integer countVacanciesByPositionAndCountryId(String position, Integer countryId) throws DaoException {
         SearchVacancyFormer former = (statement -> {
-            statement.setString(1, position);
+            statement.setString(1, "%" + position + "%");
             statement.setInt(2, countryId);
         });
         return countByParam(former, COUNT_BY_POSITION_AND_COUNTRY);
@@ -357,7 +357,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     @Override
     public Integer countVacanciesByPositionAndSpecializationId(String position, Integer specializationId) throws DaoException {
         SearchVacancyFormer former = (statement -> {
-            statement.setString(1, position);
+            statement.setString(1, "%" + position + "%");
             statement.setInt(2, specializationId);
         });
         return countByParam(former, COUNT_BY_POSITION_AND_SPECIALIZATION);
@@ -367,7 +367,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     public Integer countVacanciesBySpecializationIdAndCountryIdAndPosition(Integer specializationId, Integer countryId, String position) throws DaoException {
         SearchVacancyFormer former = (statement -> {
             statement.setInt(1, countryId);
-            statement.setString(2, position);
+            statement.setString(2, "%" + position + "%");
             statement.setInt(3, specializationId);
         });
         return countByParam(former, COUNT_BY_COUNTRY_AND_POSITION_AND_SPECIALIZATION);

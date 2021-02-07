@@ -1,8 +1,8 @@
 package by.daryazalevskaya.finalproject.tag;
 
 import by.daryazalevskaya.finalproject.service.EmployeePersonalInfoService;
-import by.daryazalevskaya.finalproject.service.utils.LocaleService;
 import by.daryazalevskaya.finalproject.service.impl.EmployeePersonalInfoServiceImpl;
+import by.daryazalevskaya.finalproject.service.utils.LocaleService;
 import lombok.Setter;
 
 import javax.servlet.jsp.JspException;
@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Age tag class refers to JSTL custom tag
+ */
 @Setter
 public class AgeTag extends TagSupport {
     private LocalDate birthday;

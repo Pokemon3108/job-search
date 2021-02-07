@@ -1,6 +1,5 @@
 package by.daryazalevskaya.finalproject.controller.command.validation;
 
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 

@@ -2,13 +2,13 @@ package by.daryazalevskaya.finalproject.controller.command.allRoles;
 
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.CountryService;
 import by.daryazalevskaya.finalproject.service.JobPreferenceService;
-import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
+import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -43,7 +43,7 @@ public class ShowAllVacanciesCommand extends ActionCommand {
             request.setAttribute("specializations", preferenceService.findAllSpecializations());
 
             int maxPage = vacancyService.getVacanciesAmount();
-            request.setAttribute("maxPage", Math.ceil(maxPage / VACANCY_AMOUNT_ON_PAGE));
+            request.setAttribute("maxPage", (int) Math.ceil ((float)maxPage / VACANCY_AMOUNT_ON_PAGE));
             request.setAttribute("currentPage", request.getParameter("currentPage"));
             request.setAttribute("action", "show");
 

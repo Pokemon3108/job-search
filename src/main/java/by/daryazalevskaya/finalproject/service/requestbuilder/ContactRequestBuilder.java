@@ -4,7 +4,11 @@ import by.daryazalevskaya.finalproject.model.Contact;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ContactBuilder implements RequestBuilder {
+/**
+ * The  ContactRequestBuilder is used for creation {@code Contact} object from httpRequest
+ * {@link by.daryazalevskaya.finalproject.model.Contact}
+ */
+public class ContactRequestBuilder implements RequestBuilder<Contact> {
     @Override
     public Contact build(HttpServletRequest request) {
         String phone = request.getParameter("number");

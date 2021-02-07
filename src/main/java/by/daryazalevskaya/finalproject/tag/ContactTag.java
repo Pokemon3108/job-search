@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * Contact tag class refers to JSTL custom tag
+ */
 @Setter
 public class ContactTag extends TagSupport {
     private Contact contact;

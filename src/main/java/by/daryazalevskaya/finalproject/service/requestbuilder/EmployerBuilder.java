@@ -5,7 +5,11 @@ import by.daryazalevskaya.finalproject.model.employer.Employer;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class EmployerBuilder implements RequestBuilder {
+/**
+ * The  EmployerBuilder is used for creation {@code Employer} object from httpRequest
+ * {@link by.daryazalevskaya.finalproject.model.employer.Employer}
+ */
+public class EmployerBuilder implements RequestBuilder<Employer> {
     @Override
     public Employer build(HttpServletRequest request) {
         Country country=new Country(Integer.parseInt(request.getParameter("country")));

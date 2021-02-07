@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class VacancyValidationCommand implements ValidationCommand {
     @Override
     public boolean isValid(HttpServletRequest request, HttpServletResponse response) {
-        RequestBuilder builder=new VacancyBuilder();
+        RequestBuilder<Vacancy> builder=new VacancyBuilder();
         Vacancy vacancy=builder.build(request);
         VacancyValidator vacancyValidator=new VacancyValidator();
 

@@ -2,12 +2,8 @@ package finalproject.dao.impl;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
-import by.daryazalevskaya.finalproject.dao.exception.PoolException;
 import by.daryazalevskaya.finalproject.dao.impl.CountryDaoImpl;
-import by.daryazalevskaya.finalproject.dao.pool.ConnectionPool;
 import by.daryazalevskaya.finalproject.model.Country;
-import by.daryazalevskaya.finalproject.model.User;
-import by.daryazalevskaya.finalproject.model.type.Role;
 import org.testng.Assert;
 import org.testng.annotations.*;
 

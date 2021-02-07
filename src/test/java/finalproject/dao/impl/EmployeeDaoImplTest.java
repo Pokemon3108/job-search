@@ -2,11 +2,8 @@ package finalproject.dao.impl;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.impl.EmployeeDaoImpl;
-import by.daryazalevskaya.finalproject.dao.impl.EmployerDaoImpl;
 import by.daryazalevskaya.finalproject.model.employee.Employee;
-import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.employee.Resume;
-import by.daryazalevskaya.finalproject.model.employer.Employer;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -44,10 +41,10 @@ public class EmployeeDaoImplTest {
     }
 
     @DataProvider(name = "employeeCreate")
-    public Object[][] createEmployer() {
-        final Integer userId = 1;
+    public Object[][] createEmployee() {
+        final Integer userId = 9;
         Employee employee = new Employee(userId);
-        employee.setResume(new Resume(1));
+        employee.setResume(new Resume(4));
         return new Object[][]{{employee}};
     }
 
@@ -61,7 +58,7 @@ public class EmployeeDaoImplTest {
     @Test
     public void readTest() throws DaoException {
         final Integer userId=4;
-        final Integer resumeId=4;
+        final Integer resumeId=2;
         Employee employee=new Employee(userId);
         employee.setResume(new Resume(resumeId));
         Assert.assertEquals(employee, dao.read(userId).get());

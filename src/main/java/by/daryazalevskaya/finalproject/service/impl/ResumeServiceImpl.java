@@ -1,13 +1,12 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.ResumeDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
-import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.*;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.*;
 
 import java.util.List;
@@ -57,7 +56,7 @@ public class ResumeServiceImpl extends ResumeService {
         List<Resume> resumeList = resumeDao.findAll();
         resumeList = resumeList.stream().filter(resume -> resume.getPersonalInfo().getId() != null
                 && resume.getJobPreference().getId() != null
-                && (resume.getSkills()!=null || !resume.getSkills().isEmpty())).collect(Collectors.toList());
+                && resume.getContact().getId()!=null).collect(Collectors.toList());
         for (Resume resume : resumeList) {
             fillResume(resume);
         }

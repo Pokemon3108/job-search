@@ -5,7 +5,7 @@ import by.daryazalevskaya.finalproject.model.User;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public  class UserStatementFormer extends StatementFormer<User> {
+public  class UserStatementFormer implements StatementFormer<User> {
 
     @Override
     public void fillStatement(PreparedStatement statement, User entity) throws SQLException {

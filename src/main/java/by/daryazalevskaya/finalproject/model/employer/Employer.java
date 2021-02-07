@@ -2,7 +2,6 @@ package by.daryazalevskaya.finalproject.model.employer;
 
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
-import by.daryazalevskaya.finalproject.model.Entity;
 import by.daryazalevskaya.finalproject.model.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

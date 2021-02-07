@@ -1,11 +1,9 @@
 package by.daryazalevskaya.finalproject.service;
 
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
-import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
-import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 
 import java.time.LocalDate;
 import java.time.Period;

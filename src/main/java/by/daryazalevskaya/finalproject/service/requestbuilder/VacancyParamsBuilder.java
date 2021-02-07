@@ -4,7 +4,7 @@ import by.daryazalevskaya.finalproject.model.dto.VacancySearchParams;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class VacancyParamsBuilder implements RequestBuilder {
+public class VacancyParamsBuilder implements RequestBuilder<VacancySearchParams> {
 
     @Override
     public VacancySearchParams build(HttpServletRequest request) {

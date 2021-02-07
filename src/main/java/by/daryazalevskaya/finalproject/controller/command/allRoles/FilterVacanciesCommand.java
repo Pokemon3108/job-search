@@ -3,16 +3,16 @@ package by.daryazalevskaya.finalproject.controller.command.allRoles;
 import by.daryazalevskaya.finalproject.controller.PagePath;
 import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.model.dto.VacancySearchParams;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.CountryService;
 import by.daryazalevskaya.finalproject.service.JobPreferenceService;
-import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 import by.daryazalevskaya.finalproject.service.requestbuilder.RequestBuilder;
 import by.daryazalevskaya.finalproject.service.requestbuilder.VacancyParamsBuilder;
+import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -25,11 +25,13 @@ import java.util.List;
 public class FilterVacanciesCommand extends ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestBuilder builder = new VacancyParamsBuilder();
+        RequestBuilder<VacancySearchParams> builder = new VacancyParamsBuilder();
         VacancySearchParams params = builder.build(request);
 
         if (params.isEmptyFull()) {
-            response.sendRedirect(request.getContextPath() + UriPattern.SHOW_ALL_VACANCIES.getUrl());
+            ActionCommand command=new ShowAllVacanciesCommand();
+            command.setServiceFactory(serviceFactory);
+            command.execute(request, response);
         } else {
             VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);
             int page = 1;
@@ -49,7 +51,7 @@ public class FilterVacanciesCommand extends ActionCommand {
 
                 Integer maxPage = vacancyService.countVacanciesByParams(params);
                 log.debug(maxPage);
-                request.setAttribute("maxPage", Math.ceil(maxPage / VACANCY_AMOUNT_ON_PAGE));
+                request.setAttribute("maxPage", (int) Math.ceil((float)maxPage / VACANCY_AMOUNT_ON_PAGE));
 
                 CountryService countryService = (CountryService) serviceFactory.createService(DaoType.COUNTRY);
                 request.setAttribute("countries", new SortingService().sortCountriesByAlphabet(countryService.findAll()));

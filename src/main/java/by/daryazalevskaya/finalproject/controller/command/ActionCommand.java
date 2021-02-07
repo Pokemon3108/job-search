@@ -1,7 +1,5 @@
 package by.daryazalevskaya.finalproject.controller.command;
 
-import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
-import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.service.factory.ServiceFactory;
 import lombok.Setter;
 

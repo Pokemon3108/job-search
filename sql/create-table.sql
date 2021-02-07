@@ -66,6 +66,14 @@ CREATE TABLE IF NOT EXISTS usr
     password CHAR(64)            NOT NULL
 );
 
+CREATE TABLE resume_languages
+(
+--     resume_id   INTEGER REFERENCES resume (id),
+    language_id INTEGER REFERENCES language (id),
+    id          SERIAL PRIMARY KEY,
+    level       lang_level
+);
+
 CREATE TABLE IF NOT EXISTS resume
 (
     id                SERIAL PRIMARY KEY,
@@ -80,22 +88,12 @@ CREATE TABLE IF NOT EXISTS resume
 );
 
 
-CREATE TABLE resume_languages
-(
---     resume_id   INTEGER REFERENCES resume (id),
-    language_id INTEGER REFERENCES language (id),
-    id          SERIAL PRIMARY KEY,
-    level       lang_level
-);
-
-
 CREATE TABLE employee
 (
     user_id   INTEGER REFERENCES usr (id),
     resume_id INTEGER REFERENCES resume (id),
     PRIMARY KEY (user_id)
 );
-
 
 CREATE TABLE employer
 (

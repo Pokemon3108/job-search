@@ -1,10 +1,10 @@
 package by.daryazalevskaya.finalproject.service.factory;
 
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.ConnectionException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory;
 import by.daryazalevskaya.finalproject.dao.transaction.TransactionFactoryImpl;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.model.type.Role;
 import by.daryazalevskaya.finalproject.service.BaseService;
 import by.daryazalevskaya.finalproject.service.UserRoleService;
@@ -13,6 +13,9 @@ import by.daryazalevskaya.finalproject.service.impl.*;
 import java.util.EnumMap;
 import java.util.Map;
 
+/**
+ * The class {@code ServiceFactoryImpl} creates services of chosen type
+ */
 public class ServiceFactoryImpl implements ServiceFactory {
 
     private static Map<DaoType, BaseService> serviceMap = new EnumMap<>(DaoType.class);
@@ -40,10 +43,21 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     private TransactionFactory transactionFactory;
 
+    /**
+     * Instantiates a new Service factory.
+     *
+     * @param factory of transactions
+     * {@link by.daryazalevskaya.finalproject.dao.transaction.TransactionFactory}
+     */
     public ServiceFactoryImpl(TransactionFactory factory) {
         this.transactionFactory = factory;
     }
 
+    /**
+     * Instantiates a new Service factory.
+     *
+     * @throws ConnectionException if occcures errors with connection to databaseh
+     */
     public ServiceFactoryImpl() throws ConnectionException {
         this.transactionFactory=new TransactionFactoryImpl();
     }
@@ -64,7 +78,6 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     @Override
     public void close() throws TransactionException {
-      //  transactionFactory.commit();
         transactionFactory.close();
     }
 }

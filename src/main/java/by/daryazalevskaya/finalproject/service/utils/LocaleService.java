@@ -8,8 +8,17 @@ import javax.servlet.jsp.PageContext;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * Service for  operations with locale
+ */
 public class LocaleService {
 
+    /**
+     * Create resource bundle from page context
+     *
+     * @param pageContext
+     * @return the resource bundle
+     */
     public ResourceBundle createResourceBundle(PageContext pageContext) {
         CookieOperations operations = new CookieOperations();
         Cookie cookie=operations.findCookieByName((HttpServletRequest) pageContext.getRequest(), "lang");

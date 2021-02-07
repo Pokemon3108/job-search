@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * @version 1.0
  */
 public class Validator {
-
+    protected static final String NOT_TAG_REGEX="[^<>*]+$";
     /**
      *
      * @param regex is an expression, that statement matches

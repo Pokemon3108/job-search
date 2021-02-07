@@ -3,13 +3,12 @@ package by.daryazalevskaya.finalproject.dao.impl;
 import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
-import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.model.Specialization;
+import by.daryazalevskaya.finalproject.model.employee.JobPreference;
 import by.daryazalevskaya.finalproject.service.dbcreator.JobPreferenceCreator;
 import by.daryazalevskaya.finalproject.service.dbcreator.SpecializationCreator;
 import by.daryazalevskaya.finalproject.service.statements.JobPreferenceStatementFormer;
 import by.daryazalevskaya.finalproject.service.statements.StatementFormer;
-import lombok.extern.log4j.Log4j2;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

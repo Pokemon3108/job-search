@@ -78,6 +78,7 @@
         </c:if>
 
         <p class="alert alert-danger my-sm-3 " role="alert" id="passwordError"></p>
+        <p class="alert alert-danger my-sm-3 " role="alert" id="differentPassword"></p>
 
         <div class="form-group">
             <div class="password">

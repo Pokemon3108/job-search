@@ -7,11 +7,7 @@ import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.Country;
 import by.daryazalevskaya.finalproject.model.employer.Employer;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -95,8 +91,6 @@ public class EmployerDaoImplTest {
     @Test
     public void deleteTest() throws DaoException {
         final Integer id = 7;
-        Optional<Employer> employerFromDB = dao.read(id);
-        Assert.assertNotNull(employerFromDB.get());
         dao.delete(id);
         Assert.assertTrue(dao.read(id).isEmpty());
     }

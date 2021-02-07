@@ -19,9 +19,9 @@ import java.util.Optional;
  */
 public class EmployeePersonalInfoDaoImpl extends BaseDao implements EmployeePersonalInfoDao {
 
-    private static final String READ_ALL_QUERY = "SELECT (name, surname, birthday, gender, country, city, id) FROM employee_personal_info";
+    private static final String READ_ALL_QUERY = "SELECT name, surname, birthday, gender, country, city, id FROM employee_personal_info";
 
-    private static final String READ_BY_ID_QUERY = "SELECT (name, surname, birthday, gender, country, city, id) FROM employee_personal_info WHERE id=?";
+    private static final String READ_BY_ID_QUERY = "SELECT name, surname, birthday, gender, country, city, id FROM employee_personal_info WHERE id=?";
 
     private static final String CREATE_QUERY = "INSERT INTO employee_personal_info " +
             "(name, surname, birthday, gender, country, city)" +

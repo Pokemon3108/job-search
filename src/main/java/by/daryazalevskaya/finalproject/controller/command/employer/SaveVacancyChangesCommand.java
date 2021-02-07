@@ -5,11 +5,11 @@ import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.VacancyValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ValidationCommand;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employer.Vacancy;
 import by.daryazalevskaya.finalproject.model.type.Currency;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.model.type.Schedule;
 import by.daryazalevskaya.finalproject.service.VacancyService;
 import by.daryazalevskaya.finalproject.service.requestbuilder.RequestBuilder;
@@ -34,7 +34,7 @@ public class SaveVacancyChangesCommand extends ActionCommand {
                 request.setAttribute("action", action);
                 request.getServletContext().getRequestDispatcher(PagePath.VACANCY_EDIT).forward(request, response);
             } else {
-                RequestBuilder builder = new VacancyBuilder();
+                RequestBuilder<Vacancy> builder = new VacancyBuilder();
                 Vacancy vacancy = builder.build(request);
 
                 VacancyService vacancyService = (VacancyService) serviceFactory.createService(DaoType.VACANCY);

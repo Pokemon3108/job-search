@@ -9,7 +9,11 @@ import by.daryazalevskaya.finalproject.model.type.Schedule;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class VacancyBuilder implements RequestBuilder {
+/**
+ * The  VacancyBuilder is used for creation {@code Vacancy} object from httpRequest
+ * {@link by.daryazalevskaya.finalproject.model.employer.Vacancy}
+ */
+public class VacancyBuilder implements RequestBuilder<Vacancy> {
     @Override
     public Vacancy build(HttpServletRequest request) {
         String position=request.getParameter("position");

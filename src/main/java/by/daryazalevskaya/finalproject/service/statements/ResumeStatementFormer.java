@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-public class ResumeStatementFormer extends StatementFormer<Resume> {
+public class ResumeStatementFormer implements StatementFormer<Resume> {
     @Override
     public void fillStatement(PreparedStatement statement, Resume entity) throws SQLException {
         statement.setString(1, entity.getSkills());

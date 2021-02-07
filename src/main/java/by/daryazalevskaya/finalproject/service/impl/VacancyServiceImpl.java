@@ -1,6 +1,8 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
-import by.daryazalevskaya.finalproject.dao.*;
+import by.daryazalevskaya.finalproject.dao.CountryDao;
+import by.daryazalevskaya.finalproject.dao.JobPreferenceDao;
+import by.daryazalevskaya.finalproject.dao.VacancyDao;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
@@ -180,28 +182,22 @@ public class VacancyServiceImpl extends VacancyService {
         if (!params.isEmptyCountry() && params.isEmptySpecialization() && params.isEmptyPosition()) {
             vacancyList = vacancyDao.readVacanciesByCountryId
                     (params.getCountryId(), limit, offset);
-        }
-        if (!params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
+        } else if (!params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
             vacancyList = vacancyDao.readVacanciesBySpecializationIdAndCountryId
                     (params.getSpecializationId(), params.getCountryId(), limit, offset);
-        }
-        if (!params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
+        } else if (!params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
             vacancyList = vacancyDao.readVacanciesBySpecializationIdAndCountryIdAndPosition
                     (params.getSpecializationId(), params.getCountryId(), params.getPosition(), limit, offset);
-        }
-        if (!params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
+        } else if (!params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
             vacancyList = vacancyDao.readVacanciesByPositionAndCountryId
                     (params.getPosition(), params.getCountryId(), limit, offset);
-        }
-        if (params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
+        } else if (params.isEmptyCountry() && !params.isEmptySpecialization() && params.isEmptyPosition()) {
             vacancyList = vacancyDao.readVacanciesBySpecializationId
                     (params.getSpecializationId(), limit, offset);
-        }
-        if (params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
+        } else if (params.isEmptyCountry() && !params.isEmptySpecialization() && !params.isEmptyPosition()) {
             vacancyList = vacancyDao.readVacanciesByPositionAndSpecializationId
                     (params.getPosition(), params.getSpecializationId(), limit, offset);
-        }
-        if (params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
+        } else if (params.isEmptyCountry() && params.isEmptySpecialization() && !params.isEmptyPosition()) {
             vacancyList = vacancyDao.readVacanciesByPosition
                     (params.getPosition(), limit, offset);
         }

@@ -5,11 +5,7 @@ import by.daryazalevskaya.finalproject.dao.exception.IllegalOperationException;
 import by.daryazalevskaya.finalproject.dao.exception.InsertIdDataBaseException;
 import by.daryazalevskaya.finalproject.dao.impl.ResumeDaoImpl;
 import by.daryazalevskaya.finalproject.model.Contact;
-import by.daryazalevskaya.finalproject.model.Specialization;
-import by.daryazalevskaya.finalproject.model.User;
 import by.daryazalevskaya.finalproject.model.employee.*;
-import by.daryazalevskaya.finalproject.model.type.Currency;
-import by.daryazalevskaya.finalproject.model.type.Schedule;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -90,14 +86,6 @@ public class ResumeDaoImplTest {
         dao.update(new Resume(1));
     }
 
-    @Test
-    public void testDelete() throws DaoException {
-        final Integer id = 2;
-        Optional<Resume> resumeFromDB = dao.read(id);
-        Assert.assertNotNull(resumeFromDB.get());
-        dao.delete(id);
-        Assert.assertTrue(dao.read(id).isEmpty());
-    }
 
     @Test
     public void testFindAll() throws DaoException {

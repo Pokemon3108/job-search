@@ -6,7 +6,11 @@ import by.daryazalevskaya.finalproject.model.type.LanguageLevel;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class EmployeeLanguageBuilder implements RequestBuilder {
+/**
+ * The  EmployeeLanguageBuilder is used for creation {@code EmployeeLanguage} object from httpRequest
+ * {@link by.daryazalevskaya.finalproject.model.employee.EmployeeLanguage}
+ */
+public class EmployeeLanguageBuilder implements RequestBuilder<EmployeeLanguage> {
     @Override
     public EmployeeLanguage build(HttpServletRequest request) {
         int languageId=Integer.parseInt(request.getParameter("language"));

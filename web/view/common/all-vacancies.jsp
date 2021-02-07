@@ -28,11 +28,9 @@
 
 <div class="container">
     <form action="${pageContext.request.contextPath}/job/filterVacancies" method="get" id="formFilter">
-    <div class="row">
-
-
-                <div class="col-lg-4 mr-5">
-                    <h3 class="filter"><fmt:message key="filter" bundle="${ rb }"/></h3>
+        <div class="row">
+            <div class="col-lg-4 mr-5">
+                <h3 class="filter"><fmt:message key="filter" bundle="${ rb }"/></h3>
 
 
                 <div class="card-body col mb-4 border my-sm-3">
@@ -40,11 +38,12 @@
                         <input type="text" class="form-control" id="position"
                                name="position" maxlength="255" minlength="3" value="${vacancyParams.position}"
                                placeholder=
-                               <fmt:message key="desiredPosition" bundle="${ rb }"/>>
+                        <fmt:message key="desiredPosition" bundle="${ rb }"/>>
                     </div>
 
                     <select class="form-select mb-2" name="countryId">
-                        <option class="default-selector" value="${null}" selected><fmt:message key="country" bundle="${ rb }"/></option>
+                        <option class="default-selector" value="${null}" selected><fmt:message key="country"
+                                                                                               bundle="${ rb }"/></option>
                         <c:forEach items="${countries}" var="countryArr">
                             <c:if test="${vacancyParams!=null  and vacancyParams.countryId==countryArr.id}">
                                 <option name="country" value="${countryArr.id}" selected>${countryArr.name}</option>
@@ -57,8 +56,8 @@
 
 
                     <select class="form-select mb-2" name="specializationId">
-                        <option class="default-selector"  value="${null}" selected><fmt:message key="specialization"
-                                                                               bundle="${ rb }"/></option>
+                        <option class="default-selector" value="${null}" selected><fmt:message key="specialization"
+                                                                                               bundle="${ rb }"/></option>
                         <c:forEach items="${specializations}" var="specArr">
                             <c:if test="${vacancyParams!=null  and vacancyParams.specializationId==specArr.id}">
                                 <option name="specialization" value="${specArr.id}" selected>
@@ -74,18 +73,25 @@
                     </select>
 
                     <div>
-                        <button class="btn btn-success" value="1" name="currentPage" >
+                        <button class="btn btn-success mb-2'" value="1" name="currentPage">
                             <fmt:message key="search" bundle="${ rb }"/>
                         </button>
+                        <div>
+                            <a style="color: forestgreen"
+                               href="${pageContext.servletContext.contextPath}/job/showAllVacancies?currentPage=1">
+                                <fmt:message key="reset" bundle="${ rb }"/>
+                            </a>
+                        </div>
                     </div>
 
                 </div>
-        </div>
+            </div>
 
-        <div class="col-lg-7">
-            <h3 class="vacancy"><fmt:message key="vacancies" bundle="${ rb }"/></h3>
 
-            <c:forEach var="vacancy" items="${vacancies}">
+            <div class="col-lg-7">
+                <h3 class="vacancy"><fmt:message key="vacancies" bundle="${ rb }"/></h3>
+
+                <c:forEach var="vacancy" items="${vacancies}">
                 <div class="card-body col mb-4 border my-sm-3">
 
                     <a style="color: darkblue"
@@ -114,21 +120,21 @@
                     </p>
 
                 </div>
-            </c:forEach>
+                </c:forEach>
 
-            <c:if test="${action=='show'}">
-            <c:set var="paginationPath" scope="session" value="/job/showAllVacancies?currentPage=" />
-            </c:if>
+                <c:if test="${action=='show'}">
+                    <c:set var="paginationPath" scope="session" value="/job/showAllVacancies?currentPage="/>
+                </c:if>
 
-            <c:if test="${action=='filter'}">
-                <c:set var="paginationPath" scope="session" value="/job/filterVacancies?currentPage=" />
-            </c:if>
+                <c:if test="${action=='filter'}">
+                    <c:set var="paginationPath" scope="session" value="/job/filterVacancies?currentPage="/>
+                </c:if>
 
-            <c:import url="/view/imports/pagination.jsp"/>
-            </form>
-        </div>
+                <c:import url="/view/imports/pagination.jsp"/>
+    </form>
+</div>
 
-    </div>
+</div>
 </div>
 <c:import url="/view/imports/footer.jsp"/>
 

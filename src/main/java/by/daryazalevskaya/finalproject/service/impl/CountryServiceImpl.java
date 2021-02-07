@@ -1,9 +1,9 @@
 package by.daryazalevskaya.finalproject.service.impl;
 
 import by.daryazalevskaya.finalproject.dao.CountryDao;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.model.Country;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.CountryService;
 
 import java.util.List;

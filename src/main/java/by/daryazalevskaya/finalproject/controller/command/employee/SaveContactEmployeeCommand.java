@@ -5,12 +5,12 @@ import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ContactValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ValidationCommand;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.service.impl.ResumeComplicatedServiceImpl;
-import by.daryazalevskaya.finalproject.service.requestbuilder.ContactBuilder;
+import by.daryazalevskaya.finalproject.service.requestbuilder.ContactRequestBuilder;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -28,8 +28,8 @@ public class SaveContactEmployeeCommand extends ActionCommand {
             if (!validationCommand.isValid(request, response)) {
                 request.getServletContext().getRequestDispatcher(PagePath.CONTACT).forward(request, response);
             } else {
-                ContactBuilder contactBuilder = new ContactBuilder();
-                Contact contact = contactBuilder.build(request);
+                ContactRequestBuilder contactRequestBuilder = new ContactRequestBuilder();
+                Contact contact = contactRequestBuilder.build(request);
                 ResumeComplicatedServiceImpl complicatedService =
                         (ResumeComplicatedServiceImpl) serviceFactory.createService(DaoType.COMPLICATED_RESUME);
                 complicatedService.saveContact(userId, contact);

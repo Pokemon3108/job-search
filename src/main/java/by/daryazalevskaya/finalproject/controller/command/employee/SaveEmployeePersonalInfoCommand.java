@@ -5,15 +5,15 @@ import by.daryazalevskaya.finalproject.controller.UriPattern;
 import by.daryazalevskaya.finalproject.controller.command.ActionCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.PersonalInfoValidationCommand;
 import by.daryazalevskaya.finalproject.controller.command.validation.ValidationCommand;
-import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.employee.EmployeePersonalInfo;
+import by.daryazalevskaya.finalproject.model.type.DaoType;
 import by.daryazalevskaya.finalproject.model.type.Gender;
 import by.daryazalevskaya.finalproject.service.CountryService;
-import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import by.daryazalevskaya.finalproject.service.impl.ResumeComplicatedServiceImpl;
 import by.daryazalevskaya.finalproject.service.requestbuilder.EmployeePersonalInfoBuilder;
+import by.daryazalevskaya.finalproject.service.utils.SortingService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
