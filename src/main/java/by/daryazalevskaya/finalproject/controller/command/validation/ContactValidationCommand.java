@@ -22,7 +22,7 @@ public class ContactValidationCommand implements ValidationCommand {
             isValid=false;
             request.setAttribute("isInvalidEmail", true);
         }
-        if (!validator.isValidPhone(contact.getTelephone())) {
+        if (!contact.getTelephone().equals("") && !validator.isValidPhone(contact.getTelephone())) {
             isValid=false;
             request.setAttribute("isInvalidTelephone", true);
         }
@@ -34,7 +34,6 @@ public class ContactValidationCommand implements ValidationCommand {
         if (!isValid) {
             request.setAttribute("contact", contact);
             log.error("Invalid contact format");
-            isValid=false;
         }
 
         return isValid;

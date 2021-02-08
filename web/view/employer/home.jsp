@@ -36,7 +36,7 @@
                     </p>
                 </c:if>
 
-                <c:if test="${employer.city!=null}">
+                <c:if test="${employer.city!='' and employer.city!=null}">
                     <p>
                         <strong><fmt:message key="city" bundle="${ rb }"/>: </strong>
                         <span>${employer.city}</span>

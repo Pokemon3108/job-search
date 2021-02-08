@@ -110,7 +110,7 @@
                             <fmt:message key="experience" bundle="${ rb }"/>
                         </label>
                         <input type="number" name="experience" value="${preference.experience}" id="typeNumber"
-                               class="form-control" min="0" max="40"/>
+                               class="form-control" min="0" max="60"/>
                     </div>
 
 

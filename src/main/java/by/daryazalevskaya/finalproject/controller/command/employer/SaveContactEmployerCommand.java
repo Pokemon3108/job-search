@@ -9,6 +9,8 @@ import by.daryazalevskaya.finalproject.dao.exception.DaoException;
 import by.daryazalevskaya.finalproject.dao.exception.TransactionException;
 import by.daryazalevskaya.finalproject.model.Contact;
 import by.daryazalevskaya.finalproject.model.type.DaoType;
+import by.daryazalevskaya.finalproject.service.EmployerComplicatedService;
+import by.daryazalevskaya.finalproject.service.EmployerService;
 import by.daryazalevskaya.finalproject.service.ResumeComplicatedService;
 import by.daryazalevskaya.finalproject.service.requestbuilder.ContactRequestBuilder;
 import lombok.extern.log4j.Log4j2;
@@ -32,9 +34,8 @@ public class SaveContactEmployerCommand extends ActionCommand {
                 ContactRequestBuilder contactRequestBuilder = new ContactRequestBuilder();
                 Contact contact = contactRequestBuilder.build(request);
 
-                ResumeComplicatedService complicatedService=
-                        (ResumeComplicatedService) serviceFactory.createService(DaoType.COMPLICATED_EMPLOYER);
-                complicatedService.saveContact(userId, contact);
+                EmployerComplicatedService employerService= (EmployerComplicatedService) serviceFactory.createService(DaoType.COMPLICATED_EMPLOYER);
+                employerService.saveContact(userId, contact);
                 response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYER_HOME.getUrl());
             }
 

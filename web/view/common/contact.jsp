@@ -71,7 +71,7 @@
 
                     <c:if test='${isInvalidSkype==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
-                            <fmt:message key="invalidEmail" bundle="${ rb }"/>
+                            <fmt:message key="invalidSkype" bundle="${ rb }"/>
                         </p>
                     </c:if>
 

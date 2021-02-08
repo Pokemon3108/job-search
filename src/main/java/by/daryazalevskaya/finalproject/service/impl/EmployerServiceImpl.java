@@ -107,9 +107,14 @@ public class EmployerServiceImpl extends EmployerService {
     }
 
     @Override
-    public boolean isRepeatedCompanyName(String company, Integer userId) throws DaoException {
+    public boolean isRepeatedCompanyName(String company, Integer employerId) throws DaoException {
         EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
-        return employerDao.readUserIdByCompany(company)!=userId;
+        Integer employerIdByCompany=employerDao.readUserIdByCompany(company);
+        boolean isRepeated=true;
+        if (employerIdByCompany==null || employerIdByCompany.equals(employerId)) {
+            isRepeated=false;
+        }
+        return isRepeated;
     }
 
 }

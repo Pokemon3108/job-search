@@ -26,6 +26,7 @@ public class RepeatedCompanyNameCommand implements ValidationCommand {
             if (employerService.isRepeatedCompanyName(employer.getCompanyName(), employer.getId())) {
                 isValid=false;
                 request.setAttribute("repeatedCompany", true);
+                request.setAttribute("employer", employer);
             }
             return isValid;
         } catch (ConnectionException ex) {

@@ -1,7 +1,7 @@
 package by.daryazalevskaya.finalproject.service.validator;
 
 public class JobPreferenceValidator extends Validator {
-    private static final int MAX_EXPERIENCE=40;
+    private static final int MAX_EXPERIENCE=60;
     private static final int MIN_EXPERIENCE=0;
     private static final int MIN_SALARY=0;
     private static final int POSITION_MAX_LENGTH=255;

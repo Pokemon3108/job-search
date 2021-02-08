@@ -25,6 +25,7 @@ function validateEmail(email) {
 }
 
 function validatePhone(phone) {
+    if (phone==='') return true;
     const re=/\+\d{12}/;
     return re.test(String(phone));
 }

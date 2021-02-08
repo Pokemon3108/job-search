@@ -6,9 +6,9 @@ import lombok.extern.log4j.Log4j2;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -25,10 +25,9 @@ public final class ConnectionPool {
     private ReentrantLock lock = new ReentrantLock();
 
     private BlockingQueue<ProxyConnection> freeConnections = new LinkedBlockingQueue<>();
-    private List<ProxyConnection> usedConnections = new CopyOnWriteArrayList<>();
+    private List<ProxyConnection> usedConnections = new LinkedList<>();
 
     private ConnectionPool() {
-
     }
 
     private static ConnectionPool instance = new ConnectionPool();
