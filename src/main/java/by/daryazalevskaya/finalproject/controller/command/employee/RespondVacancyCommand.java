@@ -21,7 +21,7 @@ public class RespondVacancyCommand extends ActionCommand {
         try {
             vacancyService.addEmployeeVacancy(Integer.parseInt(request.getParameter("vacancyId")),
                     (int)request.getSession().getAttribute("user"));
-            response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_HOME.getUrl());
+            response.sendRedirect(request.getContextPath() + UriPattern.EMPLOYEE_VACANCIES.getUrl());
         } catch (DaoException | TransactionException ex) {
             log.error(ex);
             response.sendError(500);

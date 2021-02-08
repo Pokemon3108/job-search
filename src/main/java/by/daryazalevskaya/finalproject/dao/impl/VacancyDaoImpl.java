@@ -47,7 +47,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
             "WHERE employer_id=?";
 
     private static final String READ_VACANCIES_BY_SPECIALIZATION_ID = "SELECT city, " +
-            "salary, position, currency, id  FROM vacancy " +
+            "salary, position, currency, id, employer_id FROM vacancy " +
             "WHERE specialization_id=? LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_SPEC = "SELECT count(*) FROM vacancy WHERE specialization_id=?";

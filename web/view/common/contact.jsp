@@ -52,7 +52,7 @@
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="emailError"></div>
 
-                    <c:if test='${invalidEmail==true}'>
+                    <c:if test='${isInvalidEmail==true}'>
                         <p class="alert alert-danger my-sm-3 " role="alert">
                             <fmt:message key="invalidEmail" bundle="${ rb }"/>
                         </p>
@@ -69,9 +69,15 @@
 
                     <div class="alert alert-danger my-sm-3 " role="alert" id="skypeError"></div>
 
+                    <c:if test='${isInvalidSkype==true}'>
+                        <p class="alert alert-danger my-sm-3 " role="alert">
+                            <fmt:message key="invalidEmail" bundle="${ rb }"/>
+                        </p>
+                    </c:if>
+
                     <div class="form-group">
                         <label for="skype">Skype</label>
-                        <input type="text" class="form-control" id="skype" value="${contact.skype}" name="skype">
+                        <input type="text" class="form-control" id="skype" value="${contact.skype}" name="skype" maxlength="50">
                     </div>
 
                     <input type="hidden" name="id" value="${contact.id}">

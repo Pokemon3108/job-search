@@ -16,13 +16,6 @@ function validate(form) {
         hideElement('contactError');
         flag = false;
     }
-
-    if (skype.length>50) {
-        document.getElementById('skypeError').innerHTML = 'Skype name cannot be greater than 50 symbols.';
-        hideElement('skypeError');
-        flag = false;
-    }
-
     return flag;
 }
 

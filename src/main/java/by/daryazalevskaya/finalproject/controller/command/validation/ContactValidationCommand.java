@@ -18,17 +18,20 @@ public class ContactValidationCommand implements ValidationCommand {
 
         ContactValidator validator = new ContactValidator();
 
-        int errors=0;
         if (!validator.isValidEmail(contact.getEmail())) {
-            ++errors;
+            isValid=false;
             request.setAttribute("isInvalidEmail", true);
         }
         if (!validator.isValidPhone(contact.getTelephone())) {
-            ++errors;
+            isValid=false;
             request.setAttribute("isInvalidTelephone", true);
         }
+        if (!contact.getSkype().equals("") && !validator.isValidSkype(contact.getSkype())) {
+            isValid=false;
+            request.setAttribute("isInvalidSkype", true);
+        }
 
-        if (errors!=0) {
+        if (!isValid) {
             request.setAttribute("contact", contact);
             log.error("Invalid contact format");
             isValid=false;

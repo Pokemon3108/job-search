@@ -158,7 +158,6 @@ public class VacancyServiceImpl extends VacancyService {
     private void fillVacancy(Vacancy vacancy) throws DaoException {
         EmployerService employerService=new EmployerServiceImpl();
         employerService.setTransaction(transaction);
-       // EmployerDao employerDao = transaction.createDao(DaoType.EMPLOYER);
         Optional<Employer> employer = employerService.read(vacancy.getEmployer().getId());
         employer.ifPresent(vacancy::setEmployer);
 
