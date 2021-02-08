@@ -18,7 +18,7 @@ public class EmployerCreator extends Creator<Employer> {
                 .city(set.getString("city"))
                 .companyName(set.getString("company_name"))
                 .contact(new Contact(set.getInt("contact_id")))
-                .country(new Country(wasNullId(set, "country")))
+                .country(new Country(wasNullInt(set, "country")))
                 .build();
 
     }

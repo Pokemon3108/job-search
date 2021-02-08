@@ -18,11 +18,11 @@ public class JobPreferenceCreator extends Creator<JobPreference> {
     public JobPreference createEntity(ResultSet set) throws SQLException {
         return JobPreference.builder()
                 .position(set.getString("position"))
-                .salary(set.getInt("salary"))
-                .experience(set.getInt("experience"))
+                .salary(wasNullInt(set, "salary"))
+                .experience(wasNullInt(set, "experience"))
                 .currency(Currency.valueOf(set.getString("currency")))
                 .schedule(Schedule.valueOf(set.getString("schedule")))
-                .specialization(new Specialization(wasNullId(set, "specialization_id")))
+                .specialization(new Specialization(wasNullInt(set, "specialization_id")))
                 .build();
     }
 }

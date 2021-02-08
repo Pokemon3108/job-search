@@ -36,6 +36,10 @@ public class JobPreferenceBuilder implements RequestBuilder<JobPreference> {
             jobPreference.setExperience(Integer.parseInt(request.getParameter("experience")));
         }
 
+        if (!request.getParameter("id").isEmpty()) {
+            jobPreference.setId(Integer.parseInt(request.getParameter("id")));
+        }
+
         return jobPreference;
 
     }

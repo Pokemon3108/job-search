@@ -25,7 +25,7 @@ public class VacancyCreator extends Creator<Vacancy> {
                 .build();
 
         if (existsColumn(set, "specialization_id")) {
-            vacancy.setSpecialization(new Specialization(wasNullId(set, "specialization_id")));
+            vacancy.setSpecialization(new Specialization(wasNullInt(set, "specialization_id")));
         }
 
         if (existsColumn(set, "country_id")) {

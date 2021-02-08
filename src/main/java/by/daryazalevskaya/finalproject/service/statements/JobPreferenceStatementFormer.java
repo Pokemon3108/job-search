@@ -12,10 +12,19 @@ public class JobPreferenceStatementFormer implements StatementFormer<JobPreferen
     @Override
     public void fillStatement(PreparedStatement statement, JobPreference entity) throws SQLException {
         statement.setString(1, entity.getPosition());
-        statement.setInt(2, entity.getSalary());
+        setNull(2, entity.getSalary(), statement);
         statement.setString(3, entity.getCurrency().toString());
         statement.setInt(4, entity.getSpecialization().getId());
         statement.setString(5, entity.getSchedule().toString());
-        statement.setInt(6, entity.getExperience());
+        setNull(6, entity.getExperience(), statement);
+
+    }
+
+    private void setNull(int index, Integer value, PreparedStatement statement) throws SQLException {
+        if (value==null) {
+            statement.setNull(index, java.sql.Types.NULL);
+        } else {
+            statement.setInt(index, value);
+        }
     }
 }

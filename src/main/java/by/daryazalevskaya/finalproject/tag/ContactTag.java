@@ -25,7 +25,7 @@ public class ContactTag extends TagSupport {
             LocaleService localeService = new LocaleService();
             ResourceBundle rb = localeService.createResourceBundle(pageContext);
             try {
-                if (!contact.getTelephone().isEmpty() && Objects.nonNull(contact.getTelephone())) {
+                if (Objects.nonNull(contact.getTelephone()) && !contact.getTelephone().isEmpty()) {
                     out.write("<p><strong>" + rb.getString("phone") + ": </strong>");
                     out.write("<span>" + contact.getTelephone() + "</span></p>");
                 }
@@ -33,7 +33,7 @@ public class ContactTag extends TagSupport {
                     out.write("<p><strong>" + rb.getString("email") + ": </strong>");
                     out.write("<span>" + contact.getEmail() + "</span></p>");
                 }
-                if (!contact.getSkype().isEmpty() && Objects.nonNull(contact.getSkype())) {
+                if (Objects.nonNull(contact.getSkype()) && !contact.getSkype().isEmpty() ) {
                     out.write("<p><strong>" + "Skype" + ": </strong>");
                     out.write("<span>" + contact.getSkype() + "</span></p>");
                 }

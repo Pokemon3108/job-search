@@ -14,12 +14,12 @@ public class ResumeCreator extends Creator<Resume> {
     @Override
     public Resume createEntity(ResultSet set) throws SQLException {
         Resume resume= Resume.builder()
-                .contact(new Contact(wasNullId(set,"contact_id")))
+                .contact(new Contact(wasNullInt(set,"contact_id")))
                 .skills(set.getString("prof_description"))
-                .jobPreference(new JobPreference(wasNullId(set, "job_preference_id")))
-                .personalInfo(new EmployeePersonalInfo((wasNullId(set, "personal_info_id"))))
-                .employee(new Employee(wasNullId(set, "usr_id")))
-                .language(new EmployeeLanguage(wasNullId(set, "language_id")))
+                .jobPreference(new JobPreference(wasNullInt(set, "job_preference_id")))
+                .personalInfo(new EmployeePersonalInfo((wasNullInt(set, "personal_info_id"))))
+                .employee(new Employee(wasNullInt(set, "usr_id")))
+                .language(new EmployeeLanguage(wasNullInt(set, "language_id")))
                 .build();
         if (existsColumn(set, "id")) {
             resume.setId(set.getInt("id"));

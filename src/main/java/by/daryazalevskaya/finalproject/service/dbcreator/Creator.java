@@ -46,7 +46,7 @@ public abstract class Creator<T> {
      * @return null if columnName doesn't contain in {@code resultSet}, else - its integer value
      * @throws SQLException the sql exception
      */
-    protected Integer wasNullId(ResultSet resultSet, String columnName) throws SQLException {
+    protected Integer wasNullInt(ResultSet resultSet, String columnName) throws SQLException {
         Integer value=resultSet.getInt(columnName);
         if (resultSet.wasNull()) {
             value=null;

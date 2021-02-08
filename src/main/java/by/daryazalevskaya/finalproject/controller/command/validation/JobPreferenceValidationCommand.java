@@ -17,11 +17,11 @@ public class JobPreferenceValidationCommand implements ValidationCommand {
         JobPreference preference=builder.build(request);
         JobPreferenceValidator validator=new JobPreferenceValidator();
 
-        if (!validator.isValidExperience(preference.getExperience())) {
+        if (preference.getExperience()!=null && !validator.isValidExperience(preference.getExperience())) {
             isValid=false;
             request.setAttribute("invalidExperience", true);
         }
-        if (!validator.isValidSalary(preference.getSalary())) {
+        if (preference.getSalary()!=null && !validator.isValidSalary(preference.getSalary())) {
             isValid=false;
             request.setAttribute("invalidSalary", true);
         }
