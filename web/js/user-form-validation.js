@@ -17,7 +17,8 @@ function validate(form) {
     hideElement('emailError');
 
     if (!validatePassword(password)) {
-        document.getElementById('passwordError').innerHTML = 'Invalid password format. It should contains 1 number, 1 capital, 1 lowercase letter and at least 8 symbols. js';
+        document.getElementById('passwordError').innerHTML = 'Invalid password format. It should contains 1 number, 1 capital, 1 lowercase letter, 1 special symbol !@#$%^&*' +
+            ' and at least 8 symbols.';
         flag = false;
     } else {
         document.getElementById('passwordError').innerHTML='';
