@@ -38,12 +38,12 @@ ___
 
 First you need to install and start PostgreSQL server. Then you should run sql scripts
 from /sql folder:
-- drop-db.sql - will drop database job_search if it exists
-- create-db.sql - will create the database job_search and its user (job_user)
-- create-table.sql - will create tables and enums in database job_search
-- fill-table.sql - will fill job_search tables with some content, such as country catalog,
+- 1-drop-db.sql - will drop database job_search if it exists
+- 2-create-db.sql - will create the database job_search and its user (job_user)
+- 3-create-table.sql - will create tables and enums in database job_search
+- 4-fill-table.sql - will fill job_search tables with some content, such as country catalog,
   specializations, etc.
-- permission-user.sql - will give permission to user
+- 5-permission-user.sql - will give permission to user
 
 ___
 

@@ -1,4 +1,0 @@
-CREATE DATABASE job_search;
-
-CREATE USER job_user WITH PASSWORD '12345';
-

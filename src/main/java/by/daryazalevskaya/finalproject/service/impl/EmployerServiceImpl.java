@@ -76,7 +76,7 @@ public class EmployerServiceImpl extends EmployerService {
             if (Objects.nonNull(employer)) {
                 VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
                 vacancyDao.deleteVacancyByEmployerId(employer.getId());
-                
+
 
                 ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
                 contactDao.delete(employer.getId());
