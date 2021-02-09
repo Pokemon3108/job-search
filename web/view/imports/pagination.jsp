@@ -24,9 +24,9 @@
             </c:if>
 
             <c:if test="${currentPage>3}">
-                <a>
+                <button>
                     <li>...</li>
-                </a>
+                </button>
 
             </c:if>
 
@@ -47,9 +47,9 @@
             </c:if>
 
             <c:if test="${currentPage<maxPage-2}">
-                <a>
+                <button>
                     <li>...</li>
-                </a>
+                </button>
             </c:if>
 
             <c:if test="${currentPage<maxPage-1}">

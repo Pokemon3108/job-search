@@ -72,14 +72,6 @@ public class UserServiceImpl extends UserService {
         }
     }
 
-    @Override
-    public List<User> findAll() throws DaoException {
-        List<User> users;
-        UserDao userDao = new UserDaoImpl();
-        users = userDao.findAll();
-        return users;
-    }
-
     private String crypt(String string) {
         MessageDigest digest;
         try {
@@ -97,6 +89,14 @@ public class UserServiceImpl extends UserService {
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
+    }
+
+    @Override
+    public List<User> findAll() throws DaoException {
+        List<User> users;
+        UserDao userDao = new UserDaoImpl();
+        users = userDao.findAll();
+        return users;
     }
 
     @Override

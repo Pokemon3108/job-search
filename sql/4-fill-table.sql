@@ -245,3 +245,69 @@ INSERT INTO country (id, name) VALUES (215, 'South Ossetia');
 INSERT INTO country (id, name) VALUES (216, 'Jamaica');
 INSERT INTO country (id, name) VALUES (217, 'Japan');
 
+
+
+INSERT INTO usr(id, role, email, password)
+VALUES (1, 'EMPLOYEE', 'asdfghj@tut.by', 'A431DC1B4CF0F2AD354A2B5781F127CDA296ECDF685D8874895C38E7954AE5C4'),
+       (2, 'EMPLOYER', 'new_employer@gmail.com', 'A431DC1B4CF0F2AD354A2B5781F127CDA296ECDF685D8874895C38E7954AE5C4'),
+       (3, 'EMPLOYEE', 'new_employee@outlook.com', 'A431DC1B4CF0F2AD354A2B5781F127CDA296ECDF685D8874895C38E7954AE5C4'),
+       (4, 'EMPLOYER', 'new_employer@tut.by', 'A431DC1B4CF0F2AD354A2B5781F127CDA296ECDF685D8874895C38E7954AE5C4');
+
+SELECT setval('usr_id_seq', (SELECT MAX(id) from usr));
+
+INSERT INTO contact (id, telephone, email, skype)
+VALUES (1, '+375295395676', 'asdfghj@tut.by', 'parrot'),
+       (2, '+74956789898', 'qwerty@outlook.com', 'pikachi34'),
+       (3, '+375295989090', 'qwerty@gmail.com', 'login1456'),
+       (4, '+123456789090', 'zxcvb@mail.ru', NULL);
+
+SELECT setval('contact_id_seq', (SELECT MAX(id) from contact));
+
+
+INSERT INTO job_preference(id, salary, currency, schedule, experience, specialization_id, position)
+VALUES (1, 234, 'USD', 'FULL_DAY', 10, 13, 'Java developer'),
+       (2, 500, 'BYN', 'FULL_DAY', 2, 3, 'Teacher');
+
+SELECT setval('job_preference_id_seq', (SELECT MAX(id) from job_preference));
+
+
+INSERT INTO employee_personal_info(id, name, surname, birthday, gender, country, city)
+VALUES (1, 'Darya', 'Zalevskaya', '31.08.2001', 'FEMALE', 21, NULL),
+       (2, 'Tom', NULL, '12.09.1999', 'MALE', 60, 'Tbilisi');
+
+SELECT setval('employee_personal_info_id_seq', (SELECT MAX(id) from employee_personal_info));
+
+
+INSERT INTO resume_languages (id, language_id, level)
+VALUES (1, 2, 'B2'),
+       (2, 3, 'B1');
+
+SELECT setval('resume_languages_id_seq', (SELECT MAX(id) from resume_languages));
+
+
+INSERT INTO resume(id, prof_description, usr_id, contact_id, personal_info_id, job_preference_id, language_id)
+VALUES (1, 'Specialist with high education and big experience', 1, 1, 1, 1, 1),
+        (2, 'Junior specialist, student.', 3, 2, 2, 2, 2);
+
+SELECT setval('resume_id_seq', (SELECT MAX(id) from resume));
+
+INSERT INTO employee(user_id, resume_id)
+VALUES (1, 1),
+       (3, 2);
+
+INSERT INTO employer(user_id, company_name, country, city, contact_id)
+VALUES (2, 'Roboteka', 1, 'Moscow', 3),
+       (4, 'Oracle', 152, NULL, 4);
+
+
+INSERT INTO vacancy(id, position, city, salary, schedule, currency, duties, requirements, country_id, specialization_id,
+                    employer_id)
+VALUES (1, 'Manager', 'Minsk', 100, 'FULL_DAY', 'EUR', 'Communication with clients, organization meetings with partners.', 'High education', 0, 10, 2),
+       (2, 'Software developer', 'Moscow', 3600, 'PART_TIME', 'USD', 'Develop software for outsource.', 'Good job', 2, 13, 2),
+       (3, 'Lawyer', 'Warsaw', 500, 'PART_TIME', 'EUR', 'Process documents, contracts with partners.', 'High education, experience 5+ years', 5, 14, 4),
+       (4, 'Driver', 'Munchen', 789, 'FULL_DAY', 'EUR', 'build house', 'Category B and experience 5+ years.', 52, 6, 2),
+       (5, 'Head engineer', 'Minsk', 230, 'FULL_DAY', 'BYN', 'Create embedded systems', 'High education', 21, 12, 2),
+       (6, 'Service engineer', 'Boston', 6000, 'FULL_DAY', 'USD', 'Control facade of buildings', 'experience 10+ years, not pensioner', 12, 1, 4),
+       (7, 'Senior developer', 'Boston', 6000, 'REMOTE_JOB', 'USD', 'create systems with python', 'experience 5+ years, high education', 12, 12, 4);
+
+SELECT setval('vacancy_id_seq', (SELECT MAX(id) from vacancy));
