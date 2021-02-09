@@ -32,7 +32,9 @@ To run this project you will need:
 
 Other dependencies will be downloaded by maven.
 ___
-## SQL 
+## Build
+
+### SQL 
 
 First you need to install and start PostgreSQL server. Then you should run sql scripts
 from /sql folder:
@@ -45,9 +47,10 @@ from /sql folder:
 
 ___
 
-## Web 
+### Web 
 
-Application context is /main
+Application context is /main. 
+![](https://github.com/Pokemon3108/job-search/blob/master/readme/context.png "Context")
 ___
 ## Testing
 
