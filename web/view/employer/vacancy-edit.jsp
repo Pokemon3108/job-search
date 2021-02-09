@@ -24,7 +24,7 @@
             <div class="col-6">
 
                 <form action="${pageContext.request.contextPath}/job/employer/saveVacancyChanges" method="post"
-                onsubmit="return validateForm(this);">
+                      onsubmit="return validateForm(this);">
 
                     <p class="requiredField"><fmt:message key="required_field" bundle="${ rb }"/></p>
 
@@ -37,12 +37,12 @@
                     <fmt:message key="specialization" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="specialization">
                         <c:forEach items="${specializations}" var="specArr">
-                            <c:if test="${preference.specialization.id==specArr.id}">
+                            <c:if test="${vacancy.specialization.id==specArr.id}">
                                 <option name="specialization" value="${specArr.id}" selected>
                                         ${specArr.name}
                                 </option>
                             </c:if>
-                            <c:if test="${preference.specialization.id!=specArr.id}">
+                            <c:if test="${vacancy.specialization.id!=specArr.id}">
                                 <option name="specialization" value="${specArr.id}">
                                         ${specArr.name}
                                 </option>
@@ -60,10 +60,10 @@
                     <fmt:message key="country" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="country">
                         <c:forEach items="${countries}" var="countryArr">
-                            <c:if test="${employer.country.id==countryArr.id}">
+                            <c:if test="${vacancy.country.id==countryArr.id}">
                                 <option name="country" value="${countryArr.id}" selected>${countryArr.name}</option>
                             </c:if>
-                            <c:if test="${employer.country.name!=countryArr.name}">
+                            <c:if test="${vacancy.country.id!=countryArr.id}">
                                 <option name="country" value="${countryArr.id}">${countryArr.name}</option>
                             </c:if>
                         </c:forEach>
@@ -87,10 +87,19 @@
                     <fmt:message key="schedule" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="schedule">
                         <c:forEach items="${schedules}" var="scheduleArr">
-                            <option name="schedule" value="${scheduleArr}">
-                                <c:set var="sch" value="${scheduleArr}"/>
-                                <fmt:message key="${fn:toLowerCase(sch)}" bundle="${ rb }"/>
-                            </option>
+                            <c:set var="sch" value="${scheduleArr}"/>
+                            <c:if test="${vacancy.schedule==sch}">
+                                <option name="schedule" value="${scheduleArr}" selected>
+                                    <fmt:message key="${fn:toLowerCase(sch)}" bundle="${ rb }"/>
+                                </option>
+                            </c:if>
+                            <c:if test="${vacancy.schedule!=sch}">
+                                <option name="schedule" value="${scheduleArr}">
+                                    <fmt:message key="${fn:toLowerCase(sch)}" bundle="${ rb }"/>
+                                </option>
+                            </c:if>
+
+
                         </c:forEach>
                     </select>
 
@@ -104,9 +113,17 @@
                         <div class="col">
                             <select class="form-select" name="currency">
                                 <c:forEach items="${currencies}" var="currencyArr">
-                                    <option name="currency" value="${currencyArr}">
-                                            ${currencyArr}
-                                    </option>
+
+                                    <c:if test="${vacancy.currency==currencyArr}">
+                                        <option name="currency" value="${currencyArr}" selected>
+                                                ${currencyArr}
+                                        </option>
+                                    </c:if>
+                                    <c:if test="${vacancy.currency!=currencyArr}">
+                                        <option name="currency" value="${currencyArr}">
+                                                ${currencyArr}
+                                        </option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>
@@ -120,7 +137,8 @@
 
                     <div class="form-group">
                         <label for="requirements"><fmt:message key="requirements" bundle="${ rb }"/> *</label>
-                        <textarea class="form-control" id="requirements" rows="3" name="requirements" maxlength="2000" required>${vacancy.requirements}</textarea>
+                        <textarea class="form-control" id="requirements" rows="3" name="requirements" maxlength="2000"
+                                  required>${vacancy.requirements}</textarea>
                     </div>
 
                     <c:if test='${invalidDuties==true}'>
@@ -131,7 +149,8 @@
 
                     <div class="form-group">
                         <label for="duties"><fmt:message key="duties" bundle="${ rb }"/> *</label>
-                        <textarea class="form-control" id="duties" rows="3" name="duties" maxlength="2000" required>${vacancy.duties}</textarea>
+                        <textarea class="form-control" id="duties" rows="3" name="duties" maxlength="2000"
+                                  required>${vacancy.duties}</textarea>
                     </div>
 
 

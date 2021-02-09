@@ -33,7 +33,7 @@
                             </c:if>
                             <c:if test="${userLanguage.name.id!=langArr.id}">
                                 <option name="language" value="${langArr.id}">${langArr.name}</option>
-                            </c:if>>
+                            </c:if>
                         </c:forEach>
                     </select>
 

@@ -22,7 +22,8 @@ import java.util.Optional;
 public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String READ_ALL_QUERY = "SELECT city," +
-            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy";
+            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy " +
+            "ORDER BY id DESC";
 
     private static final String READ_BY_ID_QUERY = "SELECT city," +
             "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy WHERE id=?";
