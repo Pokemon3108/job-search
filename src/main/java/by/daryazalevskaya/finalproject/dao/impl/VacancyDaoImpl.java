@@ -41,7 +41,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     private static final String DELETE_EMPLOYER_VACANCY = "DELETE FROM vacancy WHERE employer_id=?";
 
     private static final String FIND_IN_RANGE = "SELECT city," +
-            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy LIMIT ? OFFSET ?";
+            "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy ORDER BY id DESC LIMIT ? OFFSET ?";
 
     private static final String COUNT = "SELECT count(*) FROM vacancy";
 
@@ -51,43 +51,43 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String READ_VACANCIES_BY_SPECIALIZATION_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id FROM vacancy " +
-            "WHERE specialization_id=? LIMIT ? OFFSET ?";
+            "WHERE specialization_id=? ORDER BY id DESC LIMIT ? OFFSET ? ";
 
     private static final String COUNT_BY_SPEC = "SELECT count(*) FROM vacancy WHERE specialization_id=?";
 
     private static final String READ_VACANCIES_BY_COUNTRY_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE country_id=? LIMIT ? OFFSET ?";
+            "WHERE country_id=? ORDER BY id DESC LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_COUNTRY = "SELECT count(*) FROM vacancy WHERE country_id=?";
 
     private static final String READ_VACANCIES_BY_POSITION = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE position like ? LIMIT ? OFFSET ?";
+            "WHERE position like ? ORDER BY id DESC LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_POSITION = "SELECT count(*) FROM vacancy WHERE position like ?";
 
     private static final String READ_VACANCIES_BY_SPECIALIZATION_ID_AND_COUNTRY_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE specialization_id=? AND country_id=? LIMIT ? OFFSET ? ";
+            "WHERE specialization_id=? AND country_id=? ORDER BY id DESC LIMIT ? OFFSET ? ";
 
     private static final String COUNT_BY_SPEC_AND_COUNTRY = "SELECT count(*) FROM vacancy WHERE specialization_id=? AND country_id=?";
 
     private static final String READ_VACANCIES_POSITION_AND_BY_SPECIALIZATION_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE position like ? AND specialization_id=? LIMIT ? OFFSET ?";
+            "WHERE position like ? AND specialization_id=? ORDER BY id DESC LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_POSITION_AND_SPECIALIZATION = "SELECT count(*) FROM vacancy WHERE position like ? AND specialization_id=?";
 
     private static final String READ_VACANCIES_BY_POSITION_AND_COUNTRY_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE position like ? AND country_id=? LIMIT ? OFFSET ?";
+            "WHERE position like ? AND country_id=? ORDER BY id DESC LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_POSITION_AND_COUNTRY = "SELECT count(*) FROM vacancy WHERE position like ? AND country_id=?";
 
     private static final String READ_VACANCIES_BY_COUNTRY_ID_AND_POSITION_AND_SPECIALIZATION_ID = "SELECT city, " +
             "salary, position, currency, id, employer_id  FROM vacancy " +
-            "WHERE country_id=? AND position like ? AND specialization_id=? LIMIT ? OFFSET ?";
+            "WHERE country_id=? AND position like ? AND specialization_id=? ORDER BY id DESC LIMIT ? OFFSET ?";
 
     private static final String COUNT_BY_COUNTRY_AND_POSITION_AND_SPECIALIZATION
             = "SELECT count(*) FROM vacancy WHERE country_id=? AND position like ? AND specialization_id=?";

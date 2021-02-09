@@ -86,7 +86,7 @@
 
                     <fmt:message key="schedule" bundle="${ rb }"/>
                     <select class="form-select mb-2" name="schedule">
-                        <c:forEach items="${schedules}" var="scheduleArr">
+                        <c:forEach items="${schedules}" var="scheduleArr">6u
                             <c:set var="sch" value="${scheduleArr}"/>
                             <c:if test="${vacancy.schedule==sch}">
                                 <option name="schedule" value="${scheduleArr}" selected>

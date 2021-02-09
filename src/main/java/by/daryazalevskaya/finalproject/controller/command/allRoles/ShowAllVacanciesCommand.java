@@ -33,7 +33,15 @@ public class ShowAllVacanciesCommand extends ActionCommand {
             }
 
             final int VACANCY_AMOUNT_ON_PAGE = 2;
-            List<Vacancy> vacancies = vacancyService.findInRange(VACANCY_AMOUNT_ON_PAGE, (page - 1) * VACANCY_AMOUNT_ON_PAGE);
+            int vacanciesAmount = vacancyService.getVacanciesAmount();
+            int maxPage=(int) Math.ceil ((float)vacanciesAmount / VACANCY_AMOUNT_ON_PAGE);
+            request.setAttribute("maxPage", maxPage);
+            request.setAttribute("action", "show");
+
+            page= Math.min(maxPage, page);
+            request.setAttribute("currentPage", page);
+
+            List<Vacancy> vacancies = vacancyService.findInRange(VACANCY_AMOUNT_ON_PAGE,  (page - 1) * VACANCY_AMOUNT_ON_PAGE);
             request.setAttribute("vacancies", vacancies);
 
             CountryService countryService = (CountryService) serviceFactory.createService(DaoType.COUNTRY);
@@ -42,10 +50,6 @@ public class ShowAllVacanciesCommand extends ActionCommand {
             JobPreferenceService preferenceService= (JobPreferenceService) serviceFactory.createService(DaoType.JOB_PREFERENCE);
             request.setAttribute("specializations", preferenceService.findAllSpecializations());
 
-            int maxPage = vacancyService.getVacanciesAmount();
-            request.setAttribute("maxPage", (int) Math.ceil ((float)maxPage / VACANCY_AMOUNT_ON_PAGE));
-            request.setAttribute("currentPage", request.getParameter("currentPage"));
-            request.setAttribute("action", "show");
 
             request.getRequestDispatcher(PagePath.ALL_VACANCIES).forward(request, response);
         } catch (DaoException e) {
