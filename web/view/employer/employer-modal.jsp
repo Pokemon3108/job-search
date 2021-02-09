@@ -21,7 +21,11 @@
             <div class="row align-items-start">
                 <div class="col">
                     <i class="fas fa-city ml-2"></i>
-                    <span>${vacancy.employer.country.name}, ${vacancy.employer.city}</span>
+                    <span>${vacancy.employer.country.name}</span>
+                    <c:if test="${vacancy.employer.city!=null and vacancy.employer.city!=''}">
+                        <span>, ${vacancy.employer.city}</span>
+                    </c:if>
+
                 </div>
                 <div class="col">
                     <i class="fas fa-at"></i>
@@ -34,7 +38,7 @@
                     <i class="fas fa-phone-square-alt ml-2"></i>
                     <span>${vacancy.employer.contact.telephone}</span>
                 </div>
-                <c:if test="${vacancy.employer.contact.skype!=null}">
+                <c:if test="${vacancy.employer.contact.skype!=null and vacancy.employer.contact.skype!=''}">
                     <div class="col">
                         <i class="fab fa-skype"></i>
                         <span>${vacancy.employer.contact.skype}</span>

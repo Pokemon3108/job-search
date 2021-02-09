@@ -32,7 +32,6 @@
             <div class="col-lg-4 mr-5">
                 <h3 class="filter"><fmt:message key="filter" bundle="${ rb }"/></h3>
 
-
                 <div class="card-body col mb-4 border my-sm-3">
                     <div class="form-group">
                         <input type="text" class="form-control" id="position"

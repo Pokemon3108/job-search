@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
 
-        <h3><fmt:message key="all_resume" bundle="${ rb }"/></h3>
+        <h3 class="mt-2 text-center"><fmt:message key="all_resume" bundle="${ rb }"/></h3>
         <c:forEach var="resume" items="${resumeList}">
             <div class="mt-3 mr-1 card-body col-md-6 col-lg-3 center">
                 <a style="color: darkblue"

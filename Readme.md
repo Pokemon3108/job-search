@@ -30,7 +30,7 @@ To run this project you will need:
 - Maven - for building sources
 - Tomcat - for starting server
 
-Other dependencies will be downloaded by maven
+Other dependencies will be downloaded by maven.
 ___
 ## SQL 
 
@@ -41,7 +41,13 @@ from /sql folder:
 - create-table.sql - will create tables and enums in database job_search
 - fill-table.sql - will fill job_search tables with some content, such as country catalog,
   specializations, etc.
+- permission-user.sql - will give permission to user
 
+___
+
+## Web 
+
+Application context is /main
 ___
 ## Testing
 

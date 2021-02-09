@@ -29,7 +29,7 @@
                 <li class=""><i class="fa fa-city">
                     <c:if test="${resume.personalInfo.country!=null}">
                         <span>${resume.personalInfo.country.name}</span>
-                        <c:if test="${resume.personalInfo.city!=null}">
+                        <c:if test="${resume.personalInfo.city!=null and resume.personalInfo.city!=''}">
                             <span>, ${resume.personalInfo.city}</span>
                         </c:if>
                     </c:if>
