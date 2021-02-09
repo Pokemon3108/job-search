@@ -68,6 +68,12 @@ public class EmployeeServiceImpl extends EmployeeService {
 
                 if (Objects.nonNull(resume)) {
 
+                    VacancyDao vacancyDao=transaction.createDao(DaoType.VACANCY);
+                    vacancyDao.deleteEmployeeVacanciesByEmployeeId(id);
+
+                    employeeDao.delete(id);
+                    resumeDao.delete(resume.getId());
+
                     if (resume.getJobPreference().getId() != null) {
                         JobPreferenceDao jobPreferenceDao = transaction.createDao(DaoType.JOB_PREFERENCE);
                         jobPreferenceDao.delete(resume.getJobPreference().getId());
@@ -88,14 +94,9 @@ public class EmployeeServiceImpl extends EmployeeService {
                         employeeLanguageDao.delete(resume.getLanguage().getId());
                     }
 
-                    VacancyDao vacancyDao=transaction.createDao(DaoType.VACANCY);
-                    vacancyDao.deleteEmployeeVacanciesByEmployeeId(id);
 
-                    employeeDao.delete(id);
-                    resumeDao.delete(resume.getId());
                 }
 
-                employeeDao.delete(id);
             }
         } catch (DaoException ex) {
             transaction.rollback();

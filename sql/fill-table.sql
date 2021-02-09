@@ -1,3 +1,5 @@
+\c job_search;
+
 INSERT INTO specialization_type (id, name) VALUES(1, 'Service industry');
 INSERT INTO specialization_type (id, name) VALUES(2, 'Sales');
 INSERT INTO specialization_type (id, name) VALUES(3, 'Education');

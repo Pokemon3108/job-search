@@ -37,6 +37,8 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String DELETE_QUERY = "DELETE FROM vacancy WHERE id =?";
 
+    private static final String DELETE_EMPLOYER_VACANCY = "DELETE FROM vacancy WHERE employer_id=?";
+
     private static final String FIND_IN_RANGE = "SELECT city," +
             "salary, schedule, duties, requirements,  position, currency, id, country_id, specialization_id, employer_id FROM vacancy LIMIT ? OFFSET ?";
 
@@ -91,7 +93,7 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
 
     private static final String DELETE_EMPLOYEE_VACANCY = "DELETE FROM employee_vacancies WHERE vacancy_id=?";
 
-    private static final String DELETE_EMPLOYEE_VACANCIES_QUERY = "DELETE employee_vacancies WHERE employee_id=?";
+    private static final String DELETE_EMPLOYEE_VACANCIES_QUERY = "DELETE FROM employee_vacancies WHERE employee_id=?";
 
     private static final String ADD_VACANCY_TO_EMPLOYEE_QUERY = "INSERT INTO employee_vacancies (vacancy_id, employee_id ) VALUES(?,?)";
 
@@ -164,6 +166,11 @@ public class VacancyDaoImpl extends BaseDao implements VacancyDao {
     @Override
     public void deleteEmployeeVacancyByVacancyId(Integer vacancyId) throws DaoException {
         delete(vacancyId, DELETE_EMPLOYEE_VACANCY);
+    }
+
+    @Override
+    public void deleteVacancyByEmployerId(Integer employerId) throws DaoException {
+        delete(employerId, DELETE_EMPLOYER_VACANCY);
     }
 
     @Override

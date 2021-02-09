@@ -74,13 +74,15 @@ public class EmployerServiceImpl extends EmployerService {
             Employer employer = employerDao.read(id).orElse(null);
 
             if (Objects.nonNull(employer)) {
+                VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
+                vacancyDao.deleteVacancyByEmployerId(employer.getId());
+                
+
                 ContactDao contactDao = transaction.createDao(DaoType.CONTACT);
                 contactDao.delete(employer.getId());
-
-                VacancyDao vacancyDao = transaction.createDao(DaoType.VACANCY);
-                vacancyDao.delete(employer.getId());
             }
             employerDao.delete(id);
+
         } catch (DaoException ex) {
             transaction.rollback();
             throw new DaoException(ex);

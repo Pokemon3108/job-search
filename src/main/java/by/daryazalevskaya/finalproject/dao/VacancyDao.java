@@ -45,6 +45,14 @@ public interface VacancyDao extends Dao<Vacancy> {
     void deleteEmployeeVacancyByVacancyId(Integer vacancyId) throws DaoException;
 
     /**
+     * Delete employer vacancy by employer id.
+     *
+     * @param employerId the vacancy id
+     * @throws DaoException the dao exception is thrown when occures error with access to database
+     */
+    void deleteVacancyByEmployerId(Integer employerId) throws DaoException;
+
+    /**
      * Add vacancy to employee vacancies.
      *
      * @param vacancyId  the vacancy id
